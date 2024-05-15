@@ -116,7 +116,8 @@ function App() {
     } else if (isAuth && userType == "freelancer") {
         Navigate("/Profile");
         return null;
-    }
+    } else
+        Navigate("/Home")
 }
 
 export default App;
