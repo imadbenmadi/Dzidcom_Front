@@ -5,7 +5,7 @@ import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
 
 import Freelancer from "./Components/Freelancer/Freelancer";
-import Freelancer_Profile from "./Components/Freelancer/freelancer_Profile";
+import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile";
 import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_Profile";
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
@@ -52,7 +52,7 @@ const routes = createBrowserRouter([
         path: "/",
         element: <App />,
         children: [
-            { index: true, element: <Home /> },
+            { path: "/Home", element: <Home /> },
             {
                 path: "/Login",
                 element: <Login />,
