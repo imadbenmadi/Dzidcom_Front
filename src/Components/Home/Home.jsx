@@ -5,8 +5,104 @@ import Ower_Goal from "./3_Ower_Goal";
 import Services from "./4_Services";
 import Clients_said from "./5_Clients_said";
 import Contact from "./6_Contact";
+import { useState, useEffect } from "react";
 // import Footer from "./7_Footer";
+import login_image from "../../../public/Login.png";
+import register_image from "../../../public/Register.png";
+import user1 from "../../../public/user1.png";
+import contact_image from "../../../public/Home/Contact/contact_image.png";
+
+import Facebook_image from "../../../public/Home/Footer/Facebook.png";
+import Instagram_image from "../../../public/Home/Footer/Instagram.png";
+import Linkedin_image from "../../../public/Home/Footer/Linkedin.png";
+import Twitter_image from "../../../public/Home/Footer/Twitter.png";
+
+import hero_arrow from "../../../public/Home/Hero/Arrow.png";
+import hero_icon from "../../../public/Home/Hero/icon.png";
+import hero_search from "../../../public/Home/Hero/search.png";
+import Hero1 from "../../../public/Home/Hero/Hero1.png";
+import Hero2 from "../../../public/Home/Hero/Hero2.png";
+import Hero3 from "../../../public/Home/Hero/Hero3.png";
+
+import ower_goal_image from "../../../public/Home/ower goal/ower_goal_image.png";
+import ower_goal_star from "../../../public/Home/ower goal/star.png";
+import ower_goal_stars from "../../../public/Home/ower goal/stars.png";
+import ower_goal_item from "../../../public/Home/ower goal/item.png";
+
+import Services_image1 from "../../../public/Home/Services/image1.png";
+import Services_image2 from "../../../public/Home/Services/image2.png";
+import Services_image3 from "../../../public/Home/Services/image3.png";
+
+import Why_choose_us_image1 from "../../../public/Home/Why choose us/image1.png";
+import Why_choose_us_image2 from "../../../public/Home/Why choose us/image2.png";
+import Why_choose_us_image3 from "../../../public/Home/Why choose us/image3.png";
+import Why_choose_us_image4 from "../../../public/Home/Why choose us/image4.png";
+
 function Home() {
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetch_images = () => {
+            return new Promise((resolve, reject) => {
+                const images = [
+                    login_image,
+                    register_image,
+                    user1,
+                    contact_image,
+                    Facebook_image,
+                    Instagram_image,
+                    Linkedin_image,
+                    Twitter_image,
+                    hero_arrow,
+                    hero_icon,
+                    hero_search,
+                    Hero1,
+                    Hero2,
+                    Hero3,
+                    ower_goal_image,
+                    ower_goal_star,
+                    ower_goal_stars,
+                    ower_goal_item,
+                    Services_image1,
+                    Services_image2,
+                    Services_image3,
+                    Why_choose_us_image1,
+                    Why_choose_us_image2,
+                    Why_choose_us_image3,
+                    Why_choose_us_image4,
+                ];
+                let loadedCount = 0;
+                if (images.length === 0) resolve();
+                images.forEach((imageSrc) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) {
+                            resolve(); // Resolve promise when all images are loaded
+                        }
+                    };
+                    img.onerror = () => {
+                        resolve(); // Reject if any image fails to load
+                    };
+                    img.src = imageSrc;
+                });
+            });
+        };
+
+        Promise.all([fetch_images()])
+            .then(() => {
+                setLoading(false);
+            })
+            .catch(() => {
+                setLoading(false);
+            });
+    }, []);
+    if (loading) {
+        return (
+            <div className=" w-screen h-screen flex items-center justify-center">
+                <span className="loader"></span>
+            </div>
+        );
+    }
     return (
         <>
             <Hero />
