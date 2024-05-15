@@ -109,7 +109,7 @@ function Home() {
                 <Hero />
                 <Why_Choose_us />
             </div>
-            <div id="goal">
+            <div id="Goal">
                 <Ower_Goal />
             </div>
             <div id="Our_features">

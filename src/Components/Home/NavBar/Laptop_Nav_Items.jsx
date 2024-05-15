@@ -25,7 +25,7 @@ function Laptop_Nav_Items() {
                 </div>
                 <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                     <a
-                        href={"/#goal"}
+                        href={"/#Goal"}
                         className={
                             " md:hover:text-perpol_v transition-all duration-150 select-none"
                         }
