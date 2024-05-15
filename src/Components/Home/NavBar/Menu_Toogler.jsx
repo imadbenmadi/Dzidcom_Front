@@ -21,7 +21,7 @@ function Menu_Toogler({ MobileNav_Open, set_MobileNav_Open , Toogle_Menu_Bar }) 
                 } md:hidden flex flex-col items-center justify-center `}
             >
                 <IoClose
-                    className=" text-4xl text-black text cursor-pointer"
+                    className=" text-4xl text-red-500 border-2 border-red-500 rounded-lg text cursor-pointer"
                     onClick={Toogle_Menu_Bar}
                 />
             </div>

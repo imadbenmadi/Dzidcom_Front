@@ -51,9 +51,9 @@ input {
 }
 
 .custom-overflow::-webkit-scrollbar-thumb {
-    background-color: #078343; /* Change the color as needed */
+    background-color: #9DA0E3; /* Change the color as needed */
     border-radius: 999px; /* Makes the thumb round */
 }
 .custom-overflow::-webkit-scrollbar-track {
-    background-color: #cfd8dc; /* Change the color as needed */
+    background-color: #ffffff; /* Change the color as needed */
 }

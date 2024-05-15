@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "../../../../public/Logo.png";
 function Laptop_Nav_Items() {
     return (
-        <div className="hidden  md:flex  items-center justify-between mx-12 md:gap-12 lg:gap-24 text-md text-black_text h-full p-2 ">
+        <div className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12  md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 ">
             <div>
                 <Link to={"/"} className="select-none">
                     <img
@@ -13,55 +13,47 @@ function Laptop_Nav_Items() {
                 </Link>
             </div>
             <div className="flex gap-6 lg:gap-12">
-                <div className=" md:hover:text-green_v transition-colors cursor-pointer">
-                    <Link
-                        to={"/"}
+                <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
+                    <a
+                        href={"/#Hero"}
                         className={
-                            "text-black_text md:hover:text-green_v select-none"
+                            " md:hover:text-perpol_v transition-all duration-150 select-none"
                         }
                     >
-                        Home
-                    </Link>
+                        How it works?
+                    </a>
                 </div>
-                <div className=" md:hover:text-green_v transition-colors cursor-pointer">
-                    <Link
-                        to={"/Blogs"}
+                <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
+                    <a
+                        href={"/#goal"}
                         className={
-                            "text-black_text md:hover:text-green_v select-none"
+                            " md:hover:text-perpol_v transition-all duration-150 select-none"
                         }
                     >
-                        Blogs
-                    </Link>
+                        Owr goal
+                    </a>
                 </div>
-                <div className="  transition-colors cursor-pointer">
-                    <Link
-                        to={"/Contact"}
-                        className="text-black_text md:hover:text-green_v select-none"
+                <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
+                    <a
+                        href={"/#Our_features"}
+                        className=" md:hover:text-perpol_v transition-all duration-150 select-none"
                     >
-                        Contact Us
-                    </Link>
+                        Our features
+                    </a>
                 </div>
 
-                <div className=" md:hover:text-green_v transition-colors cursor-pointer">
-                    <Link
-                        to={"/About"}
-                        className="text-black_text md:hover:text-green_v select-none"
+                <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
+                    <a
+                        href={"/#Contact_us"}
+                        className=" md:hover:text-perpol_v transition-all duration-150 select-none"
                     >
-                        About Us
-                    </Link>
-                </div>
-                <div className=" md:hover:text-green_v transition-colors cursor-pointer">
-                    <Link
-                        to={"/FAQ"}
-                        className="text-black_text md:hover:text-green_v select-none"
-                    >
-                        FAQ
-                    </Link>
+                        Contact us
+                    </a>
                 </div>
             </div>
             <div className="flex gap-4 justify-center items-center h-full">
                 <div className=" flex items-center justify-center gap-3">
-                    <span className=" text-black_text  text-md rounded-lg cursor-pointer">
+                    <span className="   text-md rounded-lg cursor-pointer">
                         <Link to={"/Login"} className="select-none">
                             Login
                         </Link>

@@ -6,7 +6,7 @@ import Services from "./4_Services";
 import Clients_said from "./5_Clients_said";
 import Contact from "./6_Contact";
 import { useState, useEffect } from "react";
-// import Footer from "./7_Footer";
+import Footer from "./7_Footer";
 import login_image from "../../../public/Login.png";
 import register_image from "../../../public/Register.png";
 import user1 from "../../../public/user1.png";
@@ -104,15 +104,23 @@ function Home() {
         );
     }
     return (
-        <>
-            <Hero />
-            <Why_Choose_us />
-            <Ower_Goal />
-            <Services />
+        <div className="scroll-smooth ">
+            <div id="Hero" className="  h-screen">
+                <Hero />
+                <Why_Choose_us />
+            </div>
+            <div id="goal">
+                <Ower_Goal />
+            </div>
+            <div id="Our_features">
+                <Services />
+            </div>
             <Clients_said />
-            <Contact />
-            {/* <Footer /> */}
-        </>
+            <div id="Contact_us">
+                <Contact />
+            </div>
+            <Footer />
+        </div>
     );
 }
 

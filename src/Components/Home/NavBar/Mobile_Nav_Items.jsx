@@ -9,15 +9,15 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                         ? " translate-x-[0vw]"
                         : " translate-x-[200vh] "
                 } absolute   transition-transform duration-300 select-none w-[100vw]
-                  z-50    text-black_text font-semibold bg-white `}
+                  z-50    text-black_text  bg-white `}
             >
-                <div className=" w-[90%] ml-6 h-screen text-xl  mt-12 ">
-                    <div className=" flex flex-col justify-start h-[80%] ">
-                        <div className="flex flex-col mb-2 justify-around ">
+                <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
+                    <div className=" flex flex-col justify-start items-center h-[80%]  ">
+                        <div className="flex flex-col gap-6 pb-6 justify-around w-[120px] text-center font-semibold ">
                             <Link
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Register"}
-                                className="select-none bg-blue_v  px-3 py-2 rounded-lg"
+                                className="select-none px-3 py-2 rounded-lg"
                             >
                                 Sign up
                             </Link>
@@ -26,51 +26,39 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                                 to={"/Login"}
                                 className="select-none   px-3 py-2 rounded-lg "
                             >
-                                Sign in
+                                Log in
                             </Link>
                         </div>
-                        <div className=" w-full h-1 bg-gray_v "></div>
-                        <div>
-                            <Link
+                        <div className=" w-full h-[2px] bg-gray_white "></div>
+                        <div className="text-center flex flex-col gap-12 mt-10">
+                            <a
                                 onClick={Toogle_Menu_Bar}
-                                to={"/"}
-                                className="select-none flex gap-2 mb-4 w-[120px] ml-6 mt-6   "
+                               href={"/#Hero"}
+                                className="select-none   "
                             >
-                                {/* <AiFillHome className=" text-2xl" /> */}
-                                Home
-                            </Link>
-                            <Link
+                                How it works?
+                            </a>
+                            <a
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Blogs"}
-                                className="select-none flex  gap-2 mb-4 w-[120px] ml-6 mt-6   "
+                               href={"/#goal"}
+                                className="select-none    "
                             >
-                                {/* <RiArticleFill className=" text-3xl" /> */}
-                                Blogs
-                            </Link>
-                            <Link
+                                Owr goal
+                            </a>
+                            <a
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Contact"}
-                                className="select-none flex   gap-2 mb-4 w-[120px] ml-6 mt-6  "
+                               href={"/#Our_features"}
+                                className="select-none    "
                             >
-                                {/* <IoCall className=" text-3xl" /> */}
-                                Contact Us
-                            </Link>
-                            <Link
+                                Our features
+                            </a>
+                            <a
                                 onClick={Toogle_Menu_Bar}
-                                to={"/About"}
-                                className="select-none flex gap-2 mb-4 w-[120px] ml-6 mt-6   "
+                               href={"/#Contact_us"}
+                                className="select-none   "
                             >
-                                {/* <FaRegHandshake className=" text-3xl" /> */}
-                                About us
-                            </Link>
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/FAQ"}
-                                className="select-none flex items-center   gap-2  mb-4 w-[120px] ml-6 mt-6   "
-                            >
-                                {/* <FaBook className=" text-2xl" /> */}
-                                FAQ
-                            </Link>
+                                Contact us
+                            </a>
                         </div>
                     </div>
                 </div>
