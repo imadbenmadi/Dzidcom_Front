@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
-
+// import { useNavigate } from "react-router";
 async function handleLogin(values, { setSubmitting }) {
+    // const Navigate = useNavigate();
     try {
         let response = await Axios.post("http://localhost:3000/Login", values, {
             withCredentials: true,
@@ -9,9 +10,14 @@ async function handleLogin(values, { setSubmitting }) {
         });
 
         if (response.status == 200) {
-            window.location.href = "/";
+            // window.location.href = "/Profile";
+            // Navigate("/Profile");
         } else if (response.status == 401) {
-            Swal.fire("Username or Password isn't correct", ``, "error");
+            Swal.fire(
+                "Error!",
+                "Username or Password isn't correct",
+                "error"
+            );
         } else if (response.status == 409) {
             Swal.fire("Error!", `${response.data.message} `, "error");
         } else if (response.status == 500) {
@@ -28,7 +34,6 @@ async function handleLogin(values, { setSubmitting }) {
     } catch (error) {
         Swal.fire("Error!", `Something Went Wrong `, "error");
     }
-
     setSubmitting(false);
 }
 export default handleLogin;
