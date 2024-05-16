@@ -5,7 +5,7 @@ import  handleLogin  from "./Post_Login";
 function Login() {
     return (
         <div className="flex">
-            <div className="  shrink-0  h-[calc(100vh)]">
+            <div className=" max-w-[350px] lg:max-w-full hidden md:block shrink-0  h-[calc(100vh)]">
                 <img
                     src={Login_image}
                     alt="Login"

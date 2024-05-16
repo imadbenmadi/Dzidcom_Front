@@ -100,24 +100,26 @@ function App() {
                 <span className="loader"></span>
             </div>
         );
-    } else if (!isAuth || !userType)
-        return (
-            <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
-                <NavBar />
-                <div className=" mt-[50px] md:mt-[60px]">
-                    <Outlet />
-                </div>
+    }
+    // } else if (!isAuth || !userType)
+    return (
+        <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+            <NavBar />
+            <div className=" mt-[50px] md:mt-[60px]">
+                <Outlet />
             </div>
-        );
+        </div>
+    );
     // Naviagting to Profiles
-    else if (isAuth && userType == "client") {
-        Navigate("/Profile");
-        return null;
-    } else if (isAuth && userType == "freelancer") {
-        Navigate("/Profile");
-        return null;
-    } else
-        Navigate("/Home")
+    // else if (isAuth && userType == "client") {
+    //     Navigate("/Profile");
+    //     return null;
+    // } else if (isAuth && userType == "freelancer") {
+    //     Navigate("/Profile");
+    //     return null;
+    // }
+    // else
+    //     Navigate("/")
 }
 
 export default App;
