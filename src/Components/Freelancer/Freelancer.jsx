@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../../AppContext";
 import axios from "axios";
 import { Outlet } from "react-router";
+import NavBar from "./NavBar/NavBar";
 function Freelancer() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -77,8 +78,8 @@ function Freelancer() {
     //         </div>
     //     );
     // }
-    else if (isProfileIncomplete(user)) {
-        Navigate("/Freelancer/Complete_Profile");
+    else if (!isProfileIncomplete(user)) {
+        return <div>please complete your profile</div>;
     } else
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
