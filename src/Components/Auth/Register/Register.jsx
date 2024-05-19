@@ -124,7 +124,7 @@ function Register() {
                                                     <div className=" w-2 h-2 rounded-full bg-perpol_v"></div>
                                                 )}
                                             </div>
-                                            <div>Superviseur</div>
+                                            <div>Client</div>
                                         </div>
                                     </div>
                                     <div className=" flex items-center justify-center gap-4 w-full pb-6 ">
