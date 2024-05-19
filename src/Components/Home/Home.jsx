@@ -38,6 +38,8 @@ import Why_choose_us_image2 from "../../../public/Home/Why choose us/image2.png"
 import Why_choose_us_image3 from "../../../public/Home/Why choose us/image3.png";
 import Why_choose_us_image4 from "../../../public/Home/Why choose us/image4.png";
 
+import NavBar from "../../Components/Home/NavBar/NavBar";
+
 function Home() {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -104,22 +106,27 @@ function Home() {
         );
     }
     return (
-        <div className="scroll-smooth ">
-            <div id="Hero" className="  h-screen">
-                <Hero />
-                <Why_Choose_us />
+        <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+            <NavBar />
+            <div className=" mt-[50px] md:mt-[60px]">
+                <div className="scroll-smooth ">
+                    <div id="Hero" className="  h-screen">
+                        <Hero />
+                        <Why_Choose_us />
+                    </div>
+                    <div id="Goal">
+                        <Ower_Goal />
+                    </div>
+                    <div id="Our_features">
+                        <Services />
+                    </div>
+                    <Clients_said />
+                    <div id="Contact_us">
+                        <Contact />
+                    </div>
+                    <Footer />
+                </div>
             </div>
-            <div id="Goal">
-                <Ower_Goal />
-            </div>
-            <div id="Our_features">
-                <Services />
-            </div>
-            <Clients_said />
-            <div id="Contact_us">
-                <Contact />
-            </div>
-            <Footer />
         </div>
     );
 }

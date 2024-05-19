@@ -12,58 +12,93 @@ import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
-
+import Default from "./Default";
 const routes = createBrowserRouter([
-    {
-        path: "/Freelancer/:id",
-        element: <Freelancer />,
-        children: [
-            {
-                path: "/Freelancer/:id/Profile",
-                element: <Freelancer_Profile />,
-            },
-            {
-                path: "/Freelancer/:id/Profile/Edite",
-                element: <Freelancer_Edite_Profile />,
-            },
-            {
-                path: "/Freelancer/:id/jobs",
-                element: <Freelancer_Jobs />,
-            },
-            // {
-            //     path: "/Freelancer/:id/Process",
-            //     element: < />,
-            // },
-            {
-                path: "/Freelancer/:id/Messages",
-                element: <Freelancer_Messages />,
-            },
-            {
-                path: "/Freelancer/:id/applications",
-                element: <Freelancer_Messages />,
-            },
-            {
-                path: "*",
-                element: <Not_Found />,
-            },
-        ],
-    },
     {
         path: "/",
         element: <App />,
         children: [
-            { index: true, element: <Home /> },
+            { index: true, element: <Default /> },
             { path: "/Home", element: <Home /> },
+            {
+                path: "/Login",
+                element: <Login />,
+            },
+            {
+                path: "/Register",
+                element: <Register />,
+            },
+            {
+                path: "/Freelancer/:id",
+                element: <Freelancer />,
+                children: [
+                    {
+                        path: "/Freelancer/:id/Profile",
+                        element: <Freelancer_Profile />,
+                    },
+                    {
+                        path: "/Freelancer/:id/Profile/Edite",
+                        element: <Freelancer_Edite_Profile />,
+                    },
+                    {
+                        path: "/Freelancer/:id/jobs",
+                        element: <Freelancer_Jobs />,
+                    },
+                    // {
+                    //     path: "/Freelancer/:id/Process",
+                    //     element: < />,
+                    // },
+                    {
+                        path: "/Freelancer/:id/Messages",
+                        element: <Freelancer_Messages />,
+                    },
+                    {
+                        path: "/Freelancer/:id/applications",
+                        element: <Freelancer_Messages />,
+                    },
+                    {
+                        path: "*",
+                        element: <Not_Found />,
+                    },
+                ],
+            },
+            {
+                path: "/Client/:id",
+                element: <Freelancer />,
+                children: [
+                    {
+                        path: "/Client/:id/Profile",
+                        element: <Freelancer_Profile />,
+                    },
+                    {
+                        path: "/Client/:id/Profile/Edite",
+                        element: <Freelancer_Edite_Profile />,
+                    },
+                    {
+                        path: "/Client/:id/jobs",
+                        element: <Freelancer_Jobs />,
+                    },
+                    // {
+                    //     path: "/Client/:id/Process",
+                    //     element: < />,
+                    // },
+                    {
+                        path: "/Client/:id/Messages",
+                        element: <Freelancer_Messages />,
+                    },
+                    {
+                        path: "/Client/:id/applications",
+                        element: <Freelancer_Messages />,
+                    },
+                    {
+                        path: "*",
+                        element: <Not_Found />,
+                    },
+                ],
+            },
         ],
     },
-    {
-        path: "/Login",
-        element: <Login />,
-    },
-    {
-        path: "/Register",
-        element: <Register />,
-    },
+
     {
         path: "/Profile",
         element: <Not_Finished />,
