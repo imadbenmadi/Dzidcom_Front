@@ -13,7 +13,8 @@ function Freelancer() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
-    const { userId, userType, isAuth, set_user, user } = useAppContext();
+    const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
+        useAppContext();
     if (!isAuth || !userId || userType !== "freelancer") {
         window.location.href = "/Login";
     }
@@ -89,8 +90,10 @@ function Freelancer() {
         if (user) {
             if (isProfileIncomplete(user)) {
                 setisProfileCompleted(false);
+                set_Profile_Completed(false);
             } else {
                 setisProfileCompleted(true);
+                set_Profile_Completed(true);
             }
         }
     }, [user]);
@@ -108,19 +111,25 @@ function Freelancer() {
     //         </div>
     //     );
     // }
+    // return (
+    //     <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+    //         <NavBar isProfileCompleted={isProfileCompleted} />
+    //         {!isProfileIncomplete(user) ? (
+    //             <div className="pt-[60px] ">
+    //                 please compleet your profile{" "}
+    //             </div>
+    //         ) : (
+    //             <div className=" pt-[60px]">
+    //                 <Outlet context={isProfileCompleted}/>
+    //             </div>
+    //         )}
+    //     </div>
+    // );
     else
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
                 <NavBar isProfileCompleted={isProfileCompleted} />
-                {!isProfileIncomplete(user) ? (
-                    <div className="pt-[60px] ">
-                        please compleet your profile{" "}
-                    </div>
-                ) : (
-                    <div className=" pt-[60px]">
-                        <Outlet />
-                    </div>
-                )}
+                <Outlet />
             </div>
         );
 }

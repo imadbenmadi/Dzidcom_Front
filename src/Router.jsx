@@ -6,6 +6,7 @@ import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
 
 import Freelancer from "./Components/Freelancer/Freelancer";
+import Freelancer_Default from "./Components/Freelancer/Freelancer_Default";
 import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile";
 import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_Profile";
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
@@ -14,6 +15,7 @@ import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
 import Freelancer_Complete_Profile from "./Components/Freelancer/Freelancer_Complete_Profile";
 
 import Client from "./Components/Client/Client";
+import Client_Default from "./Components/Client/Client_Default";
 import Client_Profile from "./Components/Client/Client_Profile";
 import Client_Edite_Profile from "./Components/Client/Client_Edite_Profile";
 import Client_Projects from "./Components/Client/Client_Projects";
@@ -42,6 +44,7 @@ const routes = createBrowserRouter([
                 path: "/Freelancer",
                 element: <Freelancer />,
                 children: [
+                    { index: true, element: <Freelancer_Default /> },
                     {
                         path: "/Freelancer/Complete_Profile",
                         element: <Freelancer_Complete_Profile />,
@@ -99,6 +102,7 @@ const routes = createBrowserRouter([
                 path: "/Client",
                 element: <Client />,
                 children: [
+                    // { index: true, element: <Client_Default /> },
                     {
                         path: "/Client/Comeplete_Profile",
                         element: <Client_Complete_Profile />,

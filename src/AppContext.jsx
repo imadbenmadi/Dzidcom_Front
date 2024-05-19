@@ -11,6 +11,7 @@ const initialState = {
     userId: null,
     userType: null,
     user: null,
+    isProfileCompleted: null,
 };
 const reducer = (state, action) => {
     switch (action.type) {
@@ -28,6 +29,7 @@ const reducer = (state, action) => {
                 userId: null,
                 userType: null,
                 user: null,
+                isProfileCompleted: null,
             };
         case "SET_AUTH":
             return {
@@ -38,6 +40,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 user: action.payload, // Update user data
+            };
+        case "SET_PROFILE_COMPLETED":
+            return {
+                ...state,
+                isProfileCompleted: action.payload,
             };
         default:
             return state;
@@ -65,13 +72,19 @@ export const AppProvider = ({ children }) => {
     const set_user = (user) => {
         dispatch({ type: "SET_USER", payload: user });
     };
-
+    const set_Profile_Completed = (isProfileCompleted) => {
+        dispatch({
+            type: "SET_PROFILE_COMPLETED",
+            payload: isProfileCompleted,
+        });
+    };
     const AppContextValue = {
         ...state,
         store_login,
         store_logout,
         set_Auth,
         set_user,
+        set_Profile_Completed,
     };
 
     return (
