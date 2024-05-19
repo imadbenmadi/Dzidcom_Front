@@ -10,9 +10,11 @@ function Default() {
     useEffect(() => {
         if (!isAuth || !userType) Navigate("/Home");
         else if (isAuth && userType == "client") {
-            Navigate(`/Client/${userId}`);
+            // Navigate(`/Client/${userId}`);
+            Navigate(`/Client`);
         } else if (isAuth && userType == "freelancer") {
-            Navigate(`/Freelancer/${userId}`);
+            // Navigate(`/Freelancer/${userId}`);
+            Navigate(`/Freelancer`);
         } else Navigate("/Home");
     }, []);
     // const { isAuth, userType } = useAppContext();

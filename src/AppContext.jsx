@@ -10,6 +10,7 @@ const initialState = {
     isAuth: false,
     userId: null,
     userType: null,
+    user: null,
 };
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,13 +27,18 @@ const reducer = (state, action) => {
                 isAuth: false,
                 userId: null,
                 userType: null,
+                user: null,
             };
         case "SET_AUTH":
             return {
                 ...state,
                 isAuth: action.payload,
             };
-
+        case "SET_USER":
+            return {
+                ...state,
+                user: action.payload, // Update user data
+            };
         default:
             return state;
     }
@@ -56,12 +62,16 @@ export const AppProvider = ({ children }) => {
     const store_logout = () => {
         dispatch({ type: "LOGOUT" });
     };
+    const set_user = (user) => {
+        dispatch({ type: "SET_USER", payload: user });
+    };
 
     const AppContextValue = {
         ...state,
         store_login,
         store_logout,
         set_Auth,
+        set_user,
     };
 
     return (
