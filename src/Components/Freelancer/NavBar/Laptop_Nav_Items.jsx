@@ -25,7 +25,7 @@ function Laptop_Nav_Items({ isProfileCompleted }) {
                             }
                         >
                             <span className=" relative">
-                                Modify profil
+                                Complete profil
                                 <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>{" "}
                             </span>
                         </Link>
