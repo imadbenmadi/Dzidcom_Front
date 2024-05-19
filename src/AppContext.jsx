@@ -11,7 +11,7 @@ const initialState = {
     userId: null,
     userType: null,
     user: null,
-    isProfileCompleted: null,
+    isProfileCompleted: false,
 };
 const reducer = (state, action) => {
     switch (action.type) {
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
                 userId: null,
                 userType: null,
                 user: null,
-                isProfileCompleted: null,
+                isProfileCompleted: false,
             };
         case "SET_AUTH":
             return {

@@ -73,7 +73,7 @@ function Register() {
                                 handleRegister(values, { setSubmitting });
                             }}
                         >
-                            {({ isSubmitting }) => (
+                            {({ isSubmitting, setFieldValue }) => (
                                 <Form className="  flex flex-col text-sm md:text-lg  gap-4 text-black_text">
                                     <div className="  flex items-center justify-center gap-4 md:gap-8 w-full text-gray_v">
                                         <div
@@ -82,11 +82,15 @@ function Register() {
                                                     ? "border-2 border-perpol_v text-perpol_v"
                                                     : "border border-gray_white text-gray-400"
                                             } rounded-lg  text-base py-1 font-semibold px-4`}
-                                            onClick={() =>
-                                                handle_change_UserType(
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "userType",
                                                     "freelancer"
-                                                )
-                                            }
+                                                ),
+                                                    handle_change_UserType(
+                                                        "freelancer"
+                                                    );
+                                            }}
                                         >
                                             <div
                                                 className={` w-4 h-4 rounded-full border-2 ${
@@ -109,9 +113,15 @@ function Register() {
                                                     ? "border-2 border-perpol_v text-perpol_v"
                                                     : "border border-gray_white text-gray-400"
                                             } rounded-lg  text-base py-1 font-semibold px-4`}
-                                            onClick={() =>
-                                                handle_change_UserType("client")
-                                            }
+                                            onClick={() => {
+                                                setFieldValue(
+                                                    "userType",
+                                                    "client"
+                                                ),
+                                                    handle_change_UserType(
+                                                        "client"
+                                                    );
+                                            }}
                                         >
                                             <div
                                                 className={` w-4 h-4 rounded-full border-2 ${

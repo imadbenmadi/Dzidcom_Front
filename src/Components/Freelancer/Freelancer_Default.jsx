@@ -3,9 +3,9 @@ import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
 function Freelancer_Default() {
+    const Navigate = useNavigate();
+    const { isProfileCompleted } = useAppContext();
     useEffect(() => {
-        const { isProfileCompleted } = useAppContext();
-        const Navigate = useNavigate();
         if (isProfileCompleted == false) {
             Navigate("/Freelancer/Complete_Profile");
         } else {
