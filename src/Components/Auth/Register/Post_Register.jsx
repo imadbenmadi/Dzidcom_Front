@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
-
 async function handleRegister(values, { setSubmitting }) {
     try {
         let response = await Axios.post(

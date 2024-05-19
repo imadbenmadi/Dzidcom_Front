@@ -1,8 +1,6 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
-// import { useNavigate } from "react-router";
 async function handleLogin(values, { setSubmitting }) {
-    // const Navigate = useNavigate();
     try {
         let response = await Axios.post("http://localhost:3000/Login", values, {
             withCredentials: true,
@@ -10,8 +8,7 @@ async function handleLogin(values, { setSubmitting }) {
         });
 
         if (response.status == 200) {
-            // window.location.href = "/Profile";
-            // Navigate("/Profile");
+            window.location.href = "/Profile";
         } else if (response.status == 401) {
             Swal.fire(
                 "Error!",
