@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import Axios from "axios";
 async function handleRegister(values, { setSubmitting }) {
     try {
+        console.log("values to send in register: ", values);
         let response = await Axios.post(
             "http://localhost:3000/Register",
             values,
@@ -10,7 +11,7 @@ async function handleRegister(values, { setSubmitting }) {
                 validateStatus: () => true,
             }
         );
-
+        console.log("response from register: ", response);
         if (response.status == 200) {
             try {
                 let Login_response = await Axios.post(
@@ -21,6 +22,7 @@ async function handleRegister(values, { setSubmitting }) {
                         validateStatus: () => true,
                     }
                 );
+                console.log("Login_response from register: ", Login_response);
                 if (Login_response.status == 200) {
                     if (Login_response.data.userType == "client") {
                         window.location.href = `/Client`;
