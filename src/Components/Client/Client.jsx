@@ -13,8 +13,9 @@ function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
-    const { userId, userType, isAuth, set_user, user } = useAppContext();
-    if (!isAuth || !userId || userType !== "client") {
+    const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
+        useAppContext();
+    if (!isAuth || !userId || userType !== "Client") {
         window.location.href = "/Login";
     }
     useEffect(() => {
@@ -89,8 +90,10 @@ function Client() {
         if (user) {
             if (isProfileIncomplete(user)) {
                 setisProfileCompleted(false);
+                set_Profile_Completed(false);
             } else {
                 setisProfileCompleted(true);
+                set_Profile_Completed(true);
             }
         }
     }, [user]);
@@ -112,15 +115,9 @@ function Client() {
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
                 <NavBar isProfileCompleted={isProfileCompleted} />
-                {!isProfileIncomplete(user) ? (
-                    <div className="pt-[60px] ">
-                        please compleet your profile{" "}
-                    </div>
-                ) : (
-                    <div className=" pt-[60px]">
-                        <Outlet />
-                    </div>
-                )}
+                <div className=" pt-[60px]">
+                    <Outlet />
+                </div>
             </div>
         );
 }

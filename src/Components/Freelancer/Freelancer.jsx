@@ -129,7 +129,9 @@ function Freelancer() {
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
                 <NavBar isProfileCompleted={isProfileCompleted} />
-                <Outlet />
+                <div className=" pt-[60px]">
+                    <Outlet />
+                </div>
             </div>
         );
 }
