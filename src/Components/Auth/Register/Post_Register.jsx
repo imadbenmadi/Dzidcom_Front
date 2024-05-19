@@ -1,9 +1,7 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
-// import { useState } from "react";
-// import { useNavigate } from "react-router";
-async function handleLogin(values, { setSubmitting }) {
-    // const Navigate = useNavigate();
+
+async function handleRegister(values, { setSubmitting }) {
     try {
         let response = await Axios.post(
             "http://localhost:3000/Register",
@@ -15,8 +13,6 @@ async function handleLogin(values, { setSubmitting }) {
         );
 
         if (response.status == 200) {
-            Swal("Done!", "Account Created Successfully", "success");
-
             try {
                 let Login_response = await Axios.post(
                     "http://localhost:3000/Login",
@@ -27,24 +23,14 @@ async function handleLogin(values, { setSubmitting }) {
                     }
                 );
                 if (Login_response.status == 200) {
-                    // Navigate("/Profile");
-                    Swal("Done!", "Account Login Successfully", "success");
-                    // window.location.href = "/Profile";
+                    window.location.href = "/Profile";
                 } else {
-                  // window.location.href = "/Login";
-                    Swal.fire(
-                        "Error!",
-                        "Username or Password isn't correct",
-                        "error"
-                    );
-                    // Navigate("/Login");
+                    window.location.href = "/Login";
                 }
             } catch (error) {
-                console.log("error ducring regestration : ", error);
-                Swal("Error!", "Something Went Wrong", "error");
-                // window.location.href = "/Login";
+                console.log("error during regestration : ", error);
+                window.location.href = "/Login";
             }
-            Swal.fire("Done!", "Account Created Successfully", "success");
         } else if (response.status == 400) {
             Swal.fire("Error", `${response.data.message} `, "error");
         } else if (response.status == 409) {
@@ -74,4 +60,4 @@ async function handleLogin(values, { setSubmitting }) {
 
     setSubmitting(false);
 }
-export default handleLogin;
+export default handleRegister;
