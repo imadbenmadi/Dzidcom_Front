@@ -5,10 +5,14 @@ import { useAppContext } from "../../AppContext";
 import axios from "axios";
 import { Outlet } from "react-router";
 import NavBar from "./NavBar/NavBar";
+import user_image from "../../../public/user2.png";
+import message_icon from "../../../public/Profile/message.png";
+import notification_icon from "../../../public/Profile/Notification.png";
+
 function Freelancer() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
+    const [isProfileCompleted, setisProfileCompleted] = useState(false);
     const { userId, userType, isAuth, set_user, user } = useAppContext();
     if (!isAuth || !userId || userType !== "freelancer") {
         window.location.href = "/Login";
@@ -39,9 +43,28 @@ function Freelancer() {
                 // set_Auth(false);
             }
         };
-
-        // Promise.all([fetch_images(), fetchData()])
-        Promise.all([fetchData()])
+        const fetch_images = () => {
+            return new Promise((resolve, reject) => {
+                const images = [user_image, message_icon, notification_icon];
+                let loadedCount = 0;
+                if (images.length === 0) resolve();
+                images.forEach((imageSrc) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) {
+                            resolve();
+                        }
+                    };
+                    img.onerror = () => {
+                        resolve();
+                    };
+                    img.src = imageSrc;
+                });
+            });
+        };
+        // Promise.all([fetchData()]);
+        Promise.all([fetch_images(), fetchData()])
             .then(() => {
                 setLoading(false);
             })
@@ -49,9 +72,6 @@ function Freelancer() {
                 setLoading(false);
             });
     }, []);
-    useEffect(() => {
-        console.log("Updated user in the context", user);
-    }, [user]);
     const isProfileIncomplete = (user) => {
         return (
             !user.telephone ||
@@ -65,6 +85,16 @@ function Freelancer() {
                 user.Freelancer_SocialMediaLinks.length === 0)
         );
     };
+    useEffect(() => {
+        if (user) {
+            if (isProfileIncomplete(user)) {
+                setisProfileCompleted(false);
+            } else {
+                setisProfileCompleted(true);
+            }
+        }
+    }, [user]);
+
     if (loading)
         return (
             <div className=" w-screen h-screen flex items-center justify-center">
@@ -78,13 +108,19 @@ function Freelancer() {
     //         </div>
     //     );
     // }
-    else if (!isProfileIncomplete(user)) {
-        return <div>please complete your profile</div>;
-    } else
+    else
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
-                <NavBar />
-                <Outlet />
+                <NavBar isProfileCompleted={isProfileCompleted} />
+                {!isProfileIncomplete(user) ? (
+                    <div className="pt-[60px] ">
+                        please compleet your profile{" "}
+                    </div>
+                ) : (
+                    <div className=" pt-[60px]">
+                        <Outlet />
+                    </div>
+                )}
             </div>
         );
 }

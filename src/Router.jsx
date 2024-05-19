@@ -10,7 +10,7 @@ import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile";
 import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_Profile";
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
-
+import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
 const routes = createBrowserRouter([
@@ -58,6 +58,7 @@ const routes = createBrowserRouter([
                     //         },
                     //     ],
                     // },
+                    {index:true,element:<Freelancer_Profile/>},
                     {
                         path: "/Freelancer/Profile",
                         element: <Freelancer_Profile />,
@@ -70,10 +71,10 @@ const routes = createBrowserRouter([
                         path: "/Freelancer/jobs",
                         element: <Freelancer_Jobs />,
                     },
-                    // {
-                    //     path: "/Freelancer/Process",
-                    //     element: < />,
-                    // },
+                    {
+                        path: "/Freelancer/Process",
+                        element: <Freelancer_Process />,
+                    },
                     {
                         path: "/Freelancer/Messages",
                         element: <Freelancer_Messages />,

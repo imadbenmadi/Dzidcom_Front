@@ -9,9 +9,9 @@ async function handleLogin(values, { setSubmitting }) {
 
         if (response.status == 200) {
             if (response.data.userType == "client") {
-                window.location.href = `/Client/${response.data.userId}`;
+                window.location.href = `/Client`;
             } else if (response.data.userType == "freelancer") {
-                window.location.href = `/Freelancer/${response.data.userId}`;
+                window.location.href = `/Freelancer`;
             } else window.location.href = `/Home`;
         } else if (response.status == 401) {
             Swal.fire("Error!", "Username or Password isn't correct", "error");
