@@ -7,7 +7,6 @@ function NavBar({ isProfileCompleted }) {
     const [Active_nav, setActive_nav] = useState("Home");
     const location = useLocation();
     useEffect(() => {
-        console.log("ActiveNav = ", Active_nav);
         setActive_nav(location.pathname.split("/")[2]);
     }, [location.pathname]);
     return (
