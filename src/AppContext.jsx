@@ -1,4 +1,4 @@
-import  { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const AppContext = createContext();
 
@@ -8,45 +8,24 @@ export const useAppContext = () => {
 
 const initialState = {
     isAuth: false,
-    FirstName: "",
-    LastName: "",
-    Email: "",
-    Gender: null,
-    Courses: [],
-    Services: [],
-    Notifications: [],
-    IsEmailVerified : null,
-    _id: null,
+    userId: null,
+    userType: null,
 };
 const reducer = (state, action) => {
     switch (action.type) {
         case "LOGIN":
             return {
                 ...state,
-                isAuth: true,
-                FirstName: action.payload.FirstName,
-                LastName: action.payload.LastName,
-                Email: action.payload.Email,
-                Gender: action.payload.Gender,
-                Courses: action.payload.Courses,
-                Services: action.payload.Services,
-                Notifications: action.payload.Notifications,
-                IsEmailVerified: action.payload.IsEmailVerified,
-                _id: action.payload._id,
+                // isAuth: true,
+                userId: action.payload.userId,
+                userType: action.payload.userType,
             };
         case "LOGOUT":
             return {
                 ...state,
                 isAuth: false,
-                FirstName: "",
-                LastName: "",
-                Email: "",
-                Gender: null,
-                Courses: [],
-                Services: [],
-                Notifications: [],
-                IsEmailVerified: null,
-                _id: null,
+                userId: null,
+                userType: null,
             };
         case "SET_AUTH":
             return {
@@ -64,29 +43,12 @@ export const AppProvider = ({ children }) => {
     const set_Auth = (isAuth) => {
         dispatch({ type: "SET_AUTH", payload: isAuth });
     };
-    const store_login = (
-        FirstName,
-        LastName,
-        Email,
-        Gender,
-        Courses,
-        Services,
-        Notifications,
-        IsEmailVerified,
-        _id
-    ) => {
+    const store_login = (userId, userType) => {
         dispatch({
             type: "LOGIN",
             payload: {
-                FirstName,
-                LastName,
-                Email,
-                Gender,
-                Courses,
-                Services,
-                Notifications,
-                IsEmailVerified,
-                _id,
+                userId,
+                userType,
             },
         });
     };

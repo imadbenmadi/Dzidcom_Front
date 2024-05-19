@@ -22,7 +22,13 @@ async function handleRegister(values, { setSubmitting }) {
                     }
                 );
                 if (Login_response.status == 200) {
-                    window.location.href = "/Profile";
+                    if (Login_response.data.userType == "client") {
+                        window.location.href = `/Client/${Login_response.data.userId}`;
+                    } else if (Login_response.data.userType == "freelancer") {
+                        window.location.href = `/Freelancer/${Login_response.data.userId}`;
+                    } else {
+                        window.location.href = "/Login";
+                    }
                 } else {
                     window.location.href = "/Login";
                 }

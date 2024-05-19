@@ -8,13 +8,13 @@ async function handleLogin(values, { setSubmitting }) {
         });
 
         if (response.status == 200) {
-            window.location.href = "/Profile";
+            if (response.data.userType == "client") {
+                window.location.href = `/Client/${response.data.userId}`;
+            } else if (response.data.userType == "freelancer") {
+                window.location.href = `/Freelancer/${response.data.userId}`;
+            } else window.location.href = `/Home`;
         } else if (response.status == 401) {
-            Swal.fire(
-                "Error!",
-                "Username or Password isn't correct",
-                "error"
-            );
+            Swal.fire("Error!", "Username or Password isn't correct", "error");
         } else if (response.status == 409) {
             Swal.fire("Error!", `${response.data.message} `, "error");
         } else if (response.status == 500) {

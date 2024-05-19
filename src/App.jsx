@@ -8,8 +8,8 @@ import { useAppContext } from "./AppContext";
 function App() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const [userType, setUserType] = useState(null);
-    const { set_Auth, isAuth } = useAppContext();
+    // const [userType, setUserType] = useState(null);
+    const { set_Auth, isAuth, store_login } = useAppContext();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -25,7 +25,8 @@ function App() {
                     response.data
                 );
                 if (response.status == 200) {
-                    setUserType(response.data.userType);
+                    store_login(response.data.userId, response.data.userType);
+                    // setUserType(response.data.userType);
                     set_Auth(true);
                 } else {
                     set_Auth(false);

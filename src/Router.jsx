@@ -99,10 +99,10 @@ const routes = createBrowserRouter([
         ],
     },
 
-    {
-        path: "/Profile",
-        element: <Not_Finished />,
-    },
+    // {
+    //     path: "/Profile",
+    //     element: <Not_Finished />,
+    // },
 
     {
         path: "*",
