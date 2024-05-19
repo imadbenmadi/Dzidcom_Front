@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import App from "./App";
+import Default from "./Default";
 import Login from "./Components/Auth/Login/Login";
 import Register from "./Components/Auth/Register/Register";
 
@@ -12,7 +13,6 @@ import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
-import Default from "./Default";
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -29,31 +29,57 @@ const routes = createBrowserRouter([
                 element: <Register />,
             },
             {
-                path: "/Freelancer/:id",
+                path: "/Freelancer",
                 element: <Freelancer />,
                 children: [
+                    // {
+                    //     path: "/Freelancer/Complete_Profile",
+                    //     element: <Freelancer_Profile />,
+                    //     children: [
+                    //         {
+                    //             path: "/Freelancer/Complete_Profile/step_1",
+                    //             element: <Freelancer_Edite_Profile />,
+                    //         },
+                    //         {
+                    //             path: "/Freelancer/Complete_Profile/step_2",
+                    //             element: <Freelancer_Edite_Profile />,
+                    //         },
+                    //         {
+                    //             path: "/Freelancer/Complete_Profile/step_3",
+                    //             element: <Freelancer_Edite_Profile />,
+                    //         },
+                    //         {
+                    //             path: "/Freelancer/Complete_Profile/step_4",
+                    //             element: <Freelancer_Edite_Profile />,
+                    //         },
+                    //         {
+                    //             path: "/Freelancer/Complete_Profile/step_5",
+                    //             element: <Freelancer_Edite_Profile />,
+                    //         },
+                    //     ],
+                    // },
                     {
-                        path: "/Freelancer/:id/Profile",
+                        path: "/Freelancer/Profile",
                         element: <Freelancer_Profile />,
                     },
                     {
-                        path: "/Freelancer/:id/Profile/Edite",
+                        path: "/Freelancer/Profile/Edite",
                         element: <Freelancer_Edite_Profile />,
                     },
                     {
-                        path: "/Freelancer/:id/jobs",
+                        path: "/Freelancer/jobs",
                         element: <Freelancer_Jobs />,
                     },
                     // {
-                    //     path: "/Freelancer/:id/Process",
+                    //     path: "/Freelancer/Process",
                     //     element: < />,
                     // },
                     {
-                        path: "/Freelancer/:id/Messages",
+                        path: "/Freelancer/Messages",
                         element: <Freelancer_Messages />,
                     },
                     {
-                        path: "/Freelancer/:id/applications",
+                        path: "/Freelancer/applications",
                         element: <Freelancer_Messages />,
                     },
                     {
@@ -63,31 +89,31 @@ const routes = createBrowserRouter([
                 ],
             },
             {
-                path: "/Client/:id",
+                path: "/Client",
                 element: <Freelancer />,
                 children: [
                     {
-                        path: "/Client/:id/Profile",
+                        path: "/Client/Profile",
                         element: <Freelancer_Profile />,
                     },
                     {
-                        path: "/Client/:id/Profile/Edite",
+                        path: "/Client/Profile/Edite",
                         element: <Freelancer_Edite_Profile />,
                     },
                     {
-                        path: "/Client/:id/jobs",
+                        path: "/Client/jobs",
                         element: <Freelancer_Jobs />,
                     },
                     // {
-                    //     path: "/Client/:id/Process",
+                    //     path: "/Client/Process",
                     //     element: < />,
                     // },
                     {
-                        path: "/Client/:id/Messages",
+                        path: "/Client/Messages",
                         element: <Freelancer_Messages />,
                     },
                     {
-                        path: "/Client/:id/applications",
+                        path: "/Client/applications",
                         element: <Freelancer_Messages />,
                     },
                     {
