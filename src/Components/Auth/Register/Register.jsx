@@ -3,6 +3,7 @@ import Register_image from "../../../../public/Register.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import handleRegister from "./Post_Register";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 function Register() {
     const [userType_value, setuserType_value] = useState("freelancer");
     function handle_change_UserType(value) {
@@ -100,21 +101,17 @@ function Register() {
                                                     : "border border-gray_white text-gray-400"
                                             } rounded-lg  text-base py-1 font-semibold px-4`}
                                             onClick={() =>
-                                                handle_change_UserType(
-                                                    "client"
-                                                )
+                                                handle_change_UserType("client")
                                             }
                                         >
                                             <div
                                                 className={` w-4 h-4 rounded-full border-2 ${
-                                                    userType_value ==
-                                                    "client"
+                                                    userType_value == "client"
                                                         ? "border-perpol_v"
                                                         : "border-gray_white"
                                                 } flex items-center justify-center`}
                                             >
-                                                {userType_value ==
-                                                    "client" && (
+                                                {userType_value == "client" && (
                                                     <div className=" w-2 h-2 rounded-full bg-perpol_v"></div>
                                                 )}
                                             </div>
@@ -210,6 +207,15 @@ function Register() {
                                 </Form>
                             )}
                         </Formik>
+                        <div className="pt-6 text-sm font-semibold text-gray_v text-center">
+                            Already have an account?{" "}
+                            <Link
+                                to={"/Login"}
+                                className=" underline text-perpol_v"
+                            >
+                                Sign in
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

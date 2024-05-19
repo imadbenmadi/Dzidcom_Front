@@ -1,7 +1,8 @@
 import React from "react";
 import Login_image from "../../../../public/Login.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import  handleLogin  from "./Post_Login";
+import handleLogin from "./Post_Login";
+import { Link } from "react-router-dom";
 function Login() {
     return (
         <div className="flex">
@@ -107,6 +108,15 @@ function Login() {
                                 </Form>
                             )}
                         </Formik>
+                        <div className="pt-6 text-sm font-semibold text-gray_v text-center">
+                            Don’t have an account?{" "}
+                            <Link
+                                to={"/Register"}
+                                className=" underline text-perpol_v"
+                            >
+                                Sign up
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
