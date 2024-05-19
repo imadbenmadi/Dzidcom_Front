@@ -11,6 +11,16 @@ import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_P
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
 import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
+import Freelancer_Complete_Profile from "./Components/Freelancer/Freelancer_Complete_Profile";
+
+import Client from "./Components/Client/Client";
+import Client_Profile from "./Components/Client/Client_Profile";
+import Client_Edite_Profile from "./Components/Client/Client_Edite_Profile";
+import Client_Projects from "./Components/Client/Client_Projects";
+import Client_Messages from "./Components/Client/Client_Messages";
+import Client_Process from "./Components/Client/Client_Process";
+import Client_Complete_Profile from "./Components/Client/Client_Complete_Profile";
+
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
 const routes = createBrowserRouter([
@@ -32,33 +42,33 @@ const routes = createBrowserRouter([
                 path: "/Freelancer",
                 element: <Freelancer />,
                 children: [
-                    // {
-                    //     path: "/Freelancer/Complete_Profile",
-                    //     element: <Freelancer_Profile />,
-                    //     children: [
-                    //         {
-                    //             path: "/Freelancer/Complete_Profile/step_1",
-                    //             element: <Freelancer_Edite_Profile />,
-                    //         },
-                    //         {
-                    //             path: "/Freelancer/Complete_Profile/step_2",
-                    //             element: <Freelancer_Edite_Profile />,
-                    //         },
-                    //         {
-                    //             path: "/Freelancer/Complete_Profile/step_3",
-                    //             element: <Freelancer_Edite_Profile />,
-                    //         },
-                    //         {
-                    //             path: "/Freelancer/Complete_Profile/step_4",
-                    //             element: <Freelancer_Edite_Profile />,
-                    //         },
-                    //         {
-                    //             path: "/Freelancer/Complete_Profile/step_5",
-                    //             element: <Freelancer_Edite_Profile />,
-                    //         },
-                    //     ],
-                    // },
-                    {index:true,element:<Freelancer_Profile/>},
+                    {
+                        path: "/Freelancer/Complete_Profile",
+                        element: <Freelancer_Complete_Profile />,
+                        // children: [
+                        //     {
+                        //         path: "/Freelancer/Complete_Profile/step_1",
+                        //         element: <Freelancer_Edite_Profile />,
+                        //     },
+                        //     {
+                        //         path: "/Freelancer/Complete_Profile/step_2",
+                        //         element: <Freelancer_Edite_Profile />,
+                        //     },
+                        //     {
+                        //         path: "/Freelancer/Complete_Profile/step_3",
+                        //         element: <Freelancer_Edite_Profile />,
+                        //     },
+                        //     {
+                        //         path: "/Freelancer/Complete_Profile/step_4",
+                        //         element: <Freelancer_Edite_Profile />,
+                        //     },
+                        //     {
+                        //         path: "/Freelancer/Complete_Profile/step_5",
+                        //         element: <Freelancer_Edite_Profile />,
+                        //     },
+                        // ],
+                    },
+                    // { index: true, element: <Freelancer_Profile /> },
                     {
                         path: "/Freelancer/Profile",
                         element: <Freelancer_Profile />,
@@ -80,10 +90,6 @@ const routes = createBrowserRouter([
                         element: <Freelancer_Messages />,
                     },
                     {
-                        path: "/Freelancer/applications",
-                        element: <Freelancer_Messages />,
-                    },
-                    {
                         path: "*",
                         element: <Not_Found />,
                     },
@@ -91,31 +97,31 @@ const routes = createBrowserRouter([
             },
             {
                 path: "/Client",
-                element: <Freelancer />,
+                element: <Client />,
                 children: [
                     {
+                        path: "/Client/Comeplete_Profile",
+                        element: <Client_Complete_Profile />,
+                    },
+                    {
                         path: "/Client/Profile",
-                        element: <Freelancer_Profile />,
+                        element: <Client_Profile />,
                     },
                     {
                         path: "/Client/Profile/Edite",
-                        element: <Freelancer_Edite_Profile />,
+                        element: <Client_Edite_Profile />,
                     },
                     {
-                        path: "/Client/jobs",
-                        element: <Freelancer_Jobs />,
+                        path: "/Client/Projects",
+                        element: <Client_Projects />,
                     },
-                    // {
-                    //     path: "/Client/Process",
-                    //     element: < />,
-                    // },
                     {
                         path: "/Client/Messages",
-                        element: <Freelancer_Messages />,
+                        element: <Client_Messages />,
                     },
                     {
-                        path: "/Client/applications",
-                        element: <Freelancer_Messages />,
+                        path: "/Client/Process",
+                        element: <Client_Process />,
                     },
                     {
                         path: "*",
