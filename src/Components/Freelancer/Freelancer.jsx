@@ -8,6 +8,7 @@ import NavBar from "./NavBar/NavBar";
 import user_image from "../../../public/user2.png";
 import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
+import user_default from "../../../public/Profile/user_default.png";
 
 function Freelancer() {
     const Navigate = useNavigate();
@@ -46,7 +47,12 @@ function Freelancer() {
         };
         const fetch_images = () => {
             return new Promise((resolve, reject) => {
-                const images = [user_image, message_icon, notification_icon];
+                const images = [
+                    user_image,
+                    message_icon,
+                    notification_icon,
+                    user_default,
+                ];
                 let loadedCount = 0;
                 if (images.length === 0) resolve();
                 images.forEach((imageSrc) => {
