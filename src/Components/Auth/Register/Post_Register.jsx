@@ -23,9 +23,9 @@ async function handleRegister(values, { setSubmitting }) {
                 );
                 if (Login_response.status == 200) {
                     if (Login_response.data.userType == "client") {
-                        window.location.href = `/Client/${Login_response.data.userId}`;
+                        window.location.href = `/Client`;
                     } else if (Login_response.data.userType == "freelancer") {
-                        window.location.href = `/Freelancer/${Login_response.data.userId}`;
+                        window.location.href = `/Freelancer`;
                     } else {
                         window.location.href = "/Login";
                     }
