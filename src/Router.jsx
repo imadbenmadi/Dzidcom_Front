@@ -68,7 +68,7 @@ const routes = createBrowserRouter([
                         element: <Freelancer_Edite_Profile />,
                     },
                     {
-                        path: "/Freelancer/jobs",
+                        path: "/Freelancer/Jobs",
                         element: <Freelancer_Jobs />,
                     },
                     {

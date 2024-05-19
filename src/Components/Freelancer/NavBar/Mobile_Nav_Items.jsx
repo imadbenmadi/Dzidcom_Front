@@ -4,6 +4,7 @@ function Mobile_Nav_Items({
     MobileNav_Open,
     Toogle_Menu_Bar,
     isProfileCompleted,
+    Active_nav,
 }) {
     return (
         <div className="flex md:hidden">
@@ -21,8 +22,12 @@ function Mobile_Nav_Items({
                             {!isProfileCompleted && (
                                 <Link
                                     onClick={Toogle_Menu_Bar}
-                                    to={"/Freelancer/Profile"}
-                                    className="select-none    "
+                                    to={"/Freelancer/Complete_Profile"}
+                                    className={`${
+                                        Active_nav == "Complete_Profile"
+                                            ? "text-perpol_v"
+                                            : "text-black_text"
+                                    } select-none    `}
                                 >
                                     <span className=" relative">
                                         Complete profil
@@ -33,14 +38,22 @@ function Mobile_Nav_Items({
                             <Link
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Freelancer/Profile"}
-                                className="select-none   "
+                                className={`${
+                                    Active_nav == "Profile"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
                             >
                                 Profile
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Freelancer/jobs"}
-                                className="select-none    "
+                                to={"/Freelancer/Jobs"}
+                                className={`${
+                                    Active_nav == "Jobs"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
                             >
                                 Jobs
                             </Link>
@@ -50,7 +63,11 @@ function Mobile_Nav_Items({
                             <Link
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Process"}
-                                className="select-none    "
+                                className={`${
+                                    Active_nav == "Process"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none   `}
                             >
                                 Process
                             </Link>

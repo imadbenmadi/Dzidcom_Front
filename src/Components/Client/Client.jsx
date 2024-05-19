@@ -4,19 +4,24 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../../AppContext";
 import axios from "axios";
 import { Outlet } from "react-router";
-function Freelancer() {
+import NavBar from "./NavBar/NavBar";
+import user_image from "../../../public/user2.png";
+import message_icon from "../../../public/Profile/message.png";
+import notification_icon from "../../../public/Profile/Notification.png";
+
+function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
+    const [isProfileCompleted, setisProfileCompleted] = useState(false);
     const { userId, userType, isAuth, set_user, user } = useAppContext();
-    if (!isAuth || !userId || userType !== "freelancer") {
+    if (!isAuth || !userId || userType !== "client") {
         window.location.href = "/Login";
     }
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${userId}/Profile`,
+                    `http://localhost:3000/Clients/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
@@ -38,9 +43,28 @@ function Freelancer() {
                 // set_Auth(false);
             }
         };
-
-        // Promise.all([fetch_images(), fetchData()])
-        Promise.all([fetchData()])
+        const fetch_images = () => {
+            return new Promise((resolve, reject) => {
+                const images = [user_image, message_icon, notification_icon];
+                let loadedCount = 0;
+                if (images.length === 0) resolve();
+                images.forEach((imageSrc) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedCount++;
+                        if (loadedCount === images.length) {
+                            resolve();
+                        }
+                    };
+                    img.onerror = () => {
+                        resolve();
+                    };
+                    img.src = imageSrc;
+                });
+            });
+        };
+        // Promise.all([fetchData()]);
+        Promise.all([fetch_images(), fetchData()])
             .then(() => {
                 setLoading(false);
             })
@@ -48,9 +72,6 @@ function Freelancer() {
                 setLoading(false);
             });
     }, []);
-    useEffect(() => {
-        console.log("Updated user in the context", user);
-    }, [user]);
     const isProfileIncomplete = (user) => {
         return (
             !user.telephone ||
@@ -60,10 +81,20 @@ function Freelancer() {
             !user.JobTitle ||
             (user.PortfolioItems && user.PortfolioItems.length === 0) ||
             (user.Skills && user.Skills.length === 0) ||
-            (user.Freelancer_SocialMediaLinks &&
-                user.Freelancer_SocialMediaLinks.length === 0)
+            (user.Client_SocialMediaLinks &&
+                user.Client_SocialMediaLinks.length === 0)
         );
     };
+    useEffect(() => {
+        if (user) {
+            if (isProfileIncomplete(user)) {
+                setisProfileCompleted(false);
+            } else {
+                setisProfileCompleted(true);
+            }
+        }
+    }, [user]);
+
     if (loading)
         return (
             <div className=" w-screen h-screen flex items-center justify-center">
@@ -77,15 +108,21 @@ function Freelancer() {
     //         </div>
     //     );
     // }
-    else if (isProfileIncomplete(user)) {
-        Navigate("/Freelancer/Complete_Profile");
-    } else
+    else
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
-                <NavBar />
-                <Outlet />
+                <NavBar isProfileCompleted={isProfileCompleted} />
+                {!isProfileIncomplete(user) ? (
+                    <div className="pt-[60px] ">
+                        please compleet your profile{" "}
+                    </div>
+                ) : (
+                    <div className=" pt-[60px]">
+                        <Outlet />
+                    </div>
+                )}
             </div>
         );
 }
 
-export default Freelancer;
+export default Client;
