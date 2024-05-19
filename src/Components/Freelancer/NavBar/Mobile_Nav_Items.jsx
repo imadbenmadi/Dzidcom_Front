@@ -42,7 +42,7 @@ function Mobile_Nav_Items({
                                 to={"/Freelancer/jobs"}
                                 className="select-none    "
                             >
-                                Ask for work{" "}
+                                Jobs
                             </Link>
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>

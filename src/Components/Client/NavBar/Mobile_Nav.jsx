@@ -4,8 +4,9 @@ import Menu_Toogler from "./Menu_Toogler";
 import Mobile_Nav_Items from "./Mobile_Nav_Items";
 import { Link } from "react-router-dom";
 import Logo from "../../../../public/Logo.png";
-
-function Mobile_Nav() {
+import message_icon from "../../../../public/Profile/message.png";
+import notification_icon from "../../../../public/Profile/Notification.png";
+function Mobile_Nav({ isProfileCompleted }) {
     const [MobileNav_Open, set_MobileNav_Open] = useState(false);
     function Toogle_Menu_Bar() {
         set_MobileNav_Open(!MobileNav_Open);
@@ -22,13 +23,26 @@ function Mobile_Nav() {
                         />
                     </Link>
                 </div>
-                <Menu_Toogler
-                    MobileNav_Open={MobileNav_Open}
-                    set_MobileNav_Open={set_MobileNav_Open}
-                    Toogle_Menu_Bar={Toogle_Menu_Bar}
-                />
+                <div className=" flex items-center justify-center gap-4 md:gap-6">
+                    {isProfileCompleted && (
+                        <>
+                            <div>
+                                <img src={message_icon} alt="" />
+                            </div>
+                            <div>
+                                <img src={notification_icon} alt="" />
+                            </div>
+                        </>
+                    )}
+                    <Menu_Toogler
+                        MobileNav_Open={MobileNav_Open}
+                        set_MobileNav_Open={set_MobileNav_Open}
+                        Toogle_Menu_Bar={Toogle_Menu_Bar}
+                    />
+                </div>
             </div>
             <Mobile_Nav_Items
+                isProfileCompleted={isProfileCompleted}
                 MobileNav_Open={MobileNav_Open}
                 Toogle_Menu_Bar={Toogle_Menu_Bar}
             />

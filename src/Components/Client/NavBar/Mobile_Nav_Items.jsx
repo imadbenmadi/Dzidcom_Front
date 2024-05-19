@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
+function Mobile_Nav_Items({
+    MobileNav_Open,
+    Toogle_Menu_Bar,
+    isProfileCompleted,
+}) {
     return (
         <div className="flex md:hidden">
             <div
@@ -13,52 +17,43 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
             >
                 <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
                     <div className=" flex flex-col justify-start items-center h-[80%]  ">
-                        <div className="flex flex-col gap-6 pb-6 justify-around w-[120px] text-center font-semibold ">
+                        <div className="text-center flex flex-col gap-8 my-8 ">
+                            {!isProfileCompleted && (
+                                <Link
+                                    onClick={Toogle_Menu_Bar}
+                                    to={"/Freelancer/Profile"}
+                                    className="select-none    "
+                                >
+                                    <span className=" relative">
+                                        Complete profil
+                                        <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>{" "}
+                                    </span>
+                                </Link>
+                            )}
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Register"}
-                                className="select-none px-3 py-2 rounded-lg"
+                                to={"/Freelancer/Profile"}
+                                className="select-none   "
                             >
-                                Sign up
+                                Profile
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Login"}
-                                className="select-none   px-3 py-2 rounded-lg "
+                                to={"/Freelancer/jobs"}
+                                className="select-none    "
                             >
-                                Log in
+                                Ask for work{" "}
                             </Link>
                         </div>
-                        <div className=" w-full h-[2px] bg-gray_white "></div>
-                        <div className="text-center flex flex-col gap-12 mt-10">
-                            <a
+                        <div className=" w-screen h-[2px] bg-gray_white "></div>
+                        <div className="text-center pt-7">
+                            <Link
                                 onClick={Toogle_Menu_Bar}
-                                href={"/#Hero"}
-                                className="select-none   "
-                            >
-                                How it works?
-                            </a>
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/#Goal"}
+                                to={"/Process"}
                                 className="select-none    "
                             >
-                                Owr goal
-                            </a>
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/#Our_features"}
-                                className="select-none    "
-                            >
-                                Our features
-                            </a>
-                            <a
-                                onClick={Toogle_Menu_Bar}
-                                href={"/#Contact_us"}
-                                className="select-none   "
-                            >
-                                Contact us
-                            </a>
+                                Process
+                            </Link>
                         </div>
                     </div>
                 </div>

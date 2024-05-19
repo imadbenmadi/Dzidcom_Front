@@ -15,7 +15,7 @@ function Laptop_Nav_Items({ isProfileCompleted }) {
                     />
                 </Link>
             </div>
-            <div className="flex gap-6 lg:gap-12">
+            <div className="flex gap-6 lg:gap-14">
                 {!isProfileCompleted ? (
                     <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                         <Link
@@ -47,7 +47,7 @@ function Laptop_Nav_Items({ isProfileCompleted }) {
                         to={"/Freelancer/jobs"}
                         className=" md:hover:text-perpol_v transition-all duration-150 select-none"
                     >
-                        Ask for work
+                        Jobs
                     </Link>
                 </div>
 
@@ -61,7 +61,7 @@ function Laptop_Nav_Items({ isProfileCompleted }) {
                 </div>
             </div>
             {!isProfileCompleted ? (
-                <div className="flex items-center justify-center gap-6 lg:gap-12">
+                <div className="flex items-center justify-center gap-6 ">
                     <div>
                         <img src={message_icon} alt="" />
                     </div>
