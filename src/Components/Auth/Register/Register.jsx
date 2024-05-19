@@ -39,8 +39,19 @@ function Register() {
                             validate={(values) => {
                                 const errors = {};
 
-                                // Validate email
+                                if (!values.firstName) {
+                                    errors.firstName = "First Name is Required";
+                                } else if (values.firstName.length < 3)
+                                    errors.firstName =
+                                        " First Name must be at least 3 characters long";
+                                if (!values.lastName) {
+                                    errors.lastName = "Last Name is Required";
+                                } else if (values.lastName.length < 3)
+                                    errors.lastName =
+                                        " Last Name must be at least 3 characters long";
+
                                 if (!values.email) {
+                                    // Validate email
                                     errors.email = "email is Required";
                                 } else if (
                                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
@@ -118,8 +129,8 @@ function Register() {
                                             <div>Superviseur</div>
                                         </div>
                                     </div>
-                                    <div className=" flex items-center justify-center gap-4 w-full ">
-                                        <div className=" w-[50%]">
+                                    <div className=" flex items-center justify-center gap-4 w-full pb-6 ">
+                                        <div className=" w-[50%] relative">
                                             <div className="  font-semibold text-sm pb-1">
                                                 First Name
                                             </div>
@@ -133,10 +144,10 @@ function Register() {
                                             <ErrorMessage
                                                 name="firstName"
                                                 component="div"
-                                                style={errorInputMessage}
+                                                style={names_errorInputMessage}
                                             />
                                         </div>
-                                        <div className="  w-[50%]">
+                                        <div className="  w-[50%] relative">
                                             <div className="font-semibold text-sm pb-1">
                                                 Last Name
                                             </div>
@@ -148,9 +159,9 @@ function Register() {
                                                 className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                             />
                                             <ErrorMessage
-                                                name="firstName"
+                                                name="lastName"
                                                 component="div"
-                                                style={errorInputMessage}
+                                                style={names_errorInputMessage}
                                             />
                                         </div>
                                     </div>
@@ -223,6 +234,13 @@ function Register() {
     );
 }
 const errorInputMessage = {
+    fontSize: "12px",
+    color: "red",
+};
+const names_errorInputMessage = {
+    position: "absolute",
+    bottom: "-22px",
+    left: "5px",
     fontSize: "12px",
     color: "red",
 };
