@@ -15,7 +15,7 @@ function Freelancer() {
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
     const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
         useAppContext();
-    if (!isAuth || !userId || userType !== "freelancer") {
+    if (!isAuth || !userId) {
         window.location.href = "/Login";
     }
     useEffect(() => {

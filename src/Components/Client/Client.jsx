@@ -15,7 +15,8 @@ function Client() {
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
     const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
         useAppContext();
-    if (!isAuth || !userId || userType !== "Client") {
+    // if (!isAuth || !userId || userType !== "client") {
+    if (!isAuth || !userId) {
         window.location.href = "/Login";
     }
     useEffect(() => {
@@ -35,12 +36,12 @@ function Client() {
                 if (response.status == 200) {
                     set_user(response.data.User);
                 } else {
-                    window.location.href = "/Login";
+                    // window.location.href = "/Login";
                     // set_Auth(false);
                 }
             } catch (error) {
                 console.log("error from get user Profile :", error);
-                window.location.href = "/Login";
+                // window.location.href = "/Login";
                 // set_Auth(false);
             }
         };
