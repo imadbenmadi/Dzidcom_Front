@@ -16,10 +16,10 @@ function Step_1() {
     // }, [image_state]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="w-fit flex flex-col gap-6  ">
-                <div className=" flex items-start justify-start gap-12 w-full ">
-                    <div>
-                        <div className="w-full">
+            <div className="max-w-[300px] md:max-w-[500px] flex flex-col gap-6  ">
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-4 md:gap-12 w-full ">
+                    <div className=" order-2 md:order-1">
+                        <div className=" w-full">
                             <input
                                 id="Step1_image"
                                 type="file"
@@ -64,14 +64,8 @@ function Step_1() {
                                 </div>
                             )}{" "}
                         </div>
-
-                        {/* <img
-                            src={user_default}
-                            alt=""
-                            className=" w-[120px] cursor-pointer"
-                        /> */}
                     </div>
-                    <div>
+                    <div className=" order-1  md:order-2">
                         <div className=" font-semibold text-gray_v pt-6">
                             Profil 20% Completed ✅
                         </div>

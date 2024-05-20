@@ -9,13 +9,13 @@ function Freelancer_Complete_Profile() {
     const { isProfileCompleted, user } = useAppContext();
     return (
         <div>
-            {/* {!user.telephone || !user.nationalCardNumber || !user.JobTitle ? (*/}
-            <Step_1 />
-            {/* ) : !user.about || !user.Skills ? ( */}
-            {/* <Step_2 /> */}
-            {/* ) : (
+            {!user.telephone || !user.nationalCardNumber || !user.JobTitle ? (
+                <Step_1 />
+            ) : !user.about || !user.Skills ? (
+                <Step_2 />
+            ) : (
                 <div>Done</div>
-            )} */}
+            )}
         </div>
     );
 }

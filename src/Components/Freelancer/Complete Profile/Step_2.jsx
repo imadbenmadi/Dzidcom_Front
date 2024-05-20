@@ -64,10 +64,10 @@ function Step_2() {
 
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="w-fit flex flex-col gap-6  ">
-                <div className=" flex items-start justify-start gap-12 w-full ">
-                    <div>
-                        <div className="w-full">
+            <div className="max-w-[300px] md:max-w-[500px] flex flex-col gap-6  ">
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-4 md:gap-12 w-full ">
+                    <div className=" order-2 md:order-1">
+                        <div className=" w-full">
                             <input
                                 id="Step1_image"
                                 type="file"
@@ -113,8 +113,7 @@ function Step_2() {
                             )}{" "}
                         </div>
                     </div>
-
-                    <div>
+                    <div className=" order-1  md:order-2">
                         <div className=" font-semibold text-gray_v pt-6">
                             Profil 20% Completed ✅
                         </div>
@@ -189,15 +188,19 @@ function Step_2() {
                                                 ]);
                                             }}
                                             disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full"
+                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full "
                                         >
-                                            <option value="">
+                                            <option
+                                                value=""
+                                                className=" text-sm font-semibold  "
+                                            >
                                                 Select a skill
                                             </option>
                                             {availableSkills.map((skill) => (
                                                 <option
                                                     key={skill}
                                                     value={skill}
+                                                    className=" text-sm font-semibold  "
                                                 >
                                                     {skill}
                                                 </option>
@@ -210,7 +213,7 @@ function Step_2() {
                                         />
                                     </div>
                                     <div>
-                                        <ul className=" pt-2 flex items-center justify-start gap-4">
+                                        <ul className=" pt-2 flex flex-wrap items-center justify-start gap-4">
                                             {selectedSkills.map((skill) => (
                                                 <li
                                                     key={skill}
@@ -224,10 +227,10 @@ function Step_2() {
                                                                 skill
                                                             )
                                                         }
-                                                        className="ml-1 text-sm font-semibold bg-red_error
+                                                        className="ml-1 text-sm font-semibold 
                                                          text-white rounded-full w-4 h-4 flex items-center justify-center "
                                                     >
-                                                        x
+                                                        <IoClose className=" md:font-semibold md:text-xl"/>
                                                     </button>
                                                 </li>
                                             ))}
@@ -236,7 +239,7 @@ function Step_2() {
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        About{" "}
+                                        Tell us About your Self{" "}
                                     </div>
                                     <Field
                                         placeholder="Tell us about your self"
