@@ -102,9 +102,9 @@ const routes = createBrowserRouter([
                 path: "/Client",
                 element: <Client />,
                 children: [
-                    // { index: true, element: <Client_Default /> },
+                    { index: true, element: <Client_Default /> },
                     {
-                        path: "/Client/Comeplete_Profile",
+                        path: "/Client/Complete_Profile",
                         element: <Client_Complete_Profile />,
                     },
                     {

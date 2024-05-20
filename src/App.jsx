@@ -32,7 +32,7 @@ function App() {
                     set_Auth(false);
                 }
             } catch (error) {
-                console.log("error from app.jsx check_auth :", error);
+                // console.log("error from app.jsx check_auth :", error);
                 set_Auth(false);
             }
         };
