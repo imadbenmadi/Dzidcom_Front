@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { TbLogout2 } from "react-icons/tb";
 
 function Mobile_Nav_Items({
     MobileNav_Open,
     Toogle_Menu_Bar,
     isProfileCompleted,
     Active_nav,
+    handleLogout,
+    LogoutClicked,
 }) {
     return (
         <div className="flex md:hidden">
@@ -71,6 +74,24 @@ function Mobile_Nav_Items({
                             >
                                 Process
                             </Link>
+                        </div>
+                        <div className=" pt-8">
+                            {LogoutClicked ? (
+                                <div className="w-full ">
+                                    <span className="small-loader font-bold  w-full m-auto"></span>
+                                </div>
+                            ) : (
+                                <div
+                                    className="cursor-pointer w-full 
+                                    flex items-center gap-3 text-red-500"
+                                    onClick={() => {
+                                        handleLogout();
+                                    }}
+                                >
+                                    <TbLogout2 className=" shrink-0 text-xl" />
+                                    Logout
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

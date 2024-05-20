@@ -6,7 +6,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../../../public/Logo.png";
 import message_icon from "../../../../public/Profile/message.png";
 import notification_icon from "../../../../public/Profile/Notification.png";
-function Mobile_Nav({ isProfileCompleted, Active_nav }) {
+function Mobile_Nav({
+    isProfileCompleted,
+    Active_nav,
+    handleLogout,
+    LogoutClicked,
+}) {
     const [MobileNav_Open, set_MobileNav_Open] = useState(false);
     function Toogle_Menu_Bar({ Active_nav }) {
         set_MobileNav_Open(!MobileNav_Open);
@@ -46,6 +51,8 @@ function Mobile_Nav({ isProfileCompleted, Active_nav }) {
                 MobileNav_Open={MobileNav_Open}
                 Toogle_Menu_Bar={Toogle_Menu_Bar}
                 Active_nav={Active_nav}
+                handleLogout={handleLogout}
+                LogoutClicked={LogoutClicked}
             />
         </>
     );

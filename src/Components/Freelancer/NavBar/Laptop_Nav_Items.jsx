@@ -5,7 +5,7 @@ import notification_icon from "../../../../public/Profile/Notification.png";
 import user_image from "../../../../public/user2.png";
 import { useState } from "react";
 import { TbLogout2 } from "react-icons/tb";
-import { CiUser } from "react-icons/ci";
+import { FiUser } from "react-icons/fi";
 
 function Laptop_Nav_Items({
     isProfileCompleted,
@@ -118,7 +118,7 @@ function Laptop_Nav_Items({
                                 to={"/Freelancer/Profile"}
                                 className=" select-none flex items-center gap-2 "
                             >
-                                <CiUser className=" shrink-0 text-xl " />
+                                <FiUser className=" shrink-0 text-xl " />
                                 Profil
                             </Link>
                         </div>

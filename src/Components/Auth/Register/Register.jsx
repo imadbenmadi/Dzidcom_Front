@@ -140,7 +140,7 @@ function Register() {
                                             <div>Client</div>
                                         </div>
                                     </div>
-                                    <div className=" flex flex-col md-flex-row items-center justify-center gap-6 md:gap-4 w-full pb-6 ">
+                                    <div className=" flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 w-full pb-6 ">
                                         <div className="w-full  md:w-[50%]  relative">
                                             <div className="  font-semibold text-sm pb-1">
                                                 First Name

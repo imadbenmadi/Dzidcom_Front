@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { TbLogout2 } from "react-icons/tb";
-import { CiUser } from "react-icons/ci";
 
 function Mobile_Nav_Items({
     MobileNav_Open,
