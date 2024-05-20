@@ -6,10 +6,11 @@ import { useState, useEffect } from "react";
 
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
+import handleEdite from "./Post_EditUser";
 
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
-    const { user } = useAppContext();
+    const { user, set_user } = useAppContext();
     useEffect(() => {
         console.log(image_state);
     }, [image_state]);
@@ -89,6 +90,7 @@ function Step_1() {
                     </div>
                     <Formik
                         initialValues={{
+                            userId: user.id,
                             telephone: user.telephone || "",
                             nationalCardNumber: user.nationalCardNumber || "",
                             JobTitle: user.JobTitle || "",
@@ -112,7 +114,10 @@ function Step_1() {
                             if (!values.nationalCardNumber) {
                                 errors.nationalCardNumber =
                                     "Last Name is Required";
-                            } else if (values.nationalCardNumber.length < 10)
+                            } else if (!/^\d+$/.test(values.nationalCardNumber))
+                                errors.nationalCardNumber =
+                                    "National Card Number must be a number";
+                            else if (values.nationalCardNumber.length < 10)
                                 errors.nationalCardNumber =
                                     " At least 10 chars";
                             if (!values.JobTitle) {
@@ -121,10 +126,27 @@ function Step_1() {
                                 errors.JobTitle = "At least 3 chars";
                             else if (values.JobTitle.length > 50)
                                 errors.JobTitle = "Max 50 chars";
+                            else if (!isNaN(Number(values.JobTitle))) {
+                                errors.JobTitle =
+                                    "Job title cannot be a number";
+                            }
+
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            handleRegister(values, { setSubmitting });
+                            // if (
+                            //     values.nationalCardNumber ==
+                            //         user.nationalCardNumber &&
+                            //     values.telephone == user.telephone &&
+                            //     values.JobTitle == user.JobTitle
+                            // ) {
+                            //     return;
+                            // }
+                            // else {
+                            handleEdite(values, user, set_user, {
+                                setSubmitting,
+                            });
+                            // }
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
