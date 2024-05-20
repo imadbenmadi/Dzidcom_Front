@@ -13,9 +13,9 @@ function Freelancer_Complete_Profile() {
                 <Step_1 />
             ) : !user.about || !user.Skills ? (
                 <Step_2 />
-            ) : (
-                <div>Done</div>
-            )}
+            ) : user.PortfolioItems ? (
+                <Step_3 />
+            ) : null}
         </div>
     );
 }

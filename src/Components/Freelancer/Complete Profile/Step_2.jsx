@@ -13,6 +13,7 @@ function Step_2() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
     const skillsOptions = [
+        "Social Media Marketing",
         "Graphic Design",
         "Logo Design",
         "UI/UX Design",
@@ -34,7 +35,6 @@ function Step_2() {
         "Search Engine Optimization (SEO)",
         "Digital Marketing",
     ];
-    console.log("user Skills from the server : ", user.Skills);
     const Skills_from_Server = user.Skills.map((skill) => skill.skill);
     const [selectedSkills, setSelectedSkills] = useState(
         Skills_from_Server || []
@@ -53,13 +53,6 @@ function Step_2() {
     const handleRemoveSkill = (skill) => {
         setSelectedSkills(selectedSkills.filter((s) => s !== skill));
         setAvailableSkills([...availableSkills, skill]);
-    };
-
-    const handleAddCustomSkill = () => {
-        if (customSkill.trim() !== "") {
-            setSelectedSkills([...selectedSkills, customSkill]);
-            setCustomSkill("");
-        }
     };
 
     return (
@@ -115,7 +108,7 @@ function Step_2() {
                     </div>
                     <div className=" order-1  md:order-2">
                         <div className=" font-semibold text-gray_v pt-6">
-                            Profil 20% Completed ✅
+                            Profil 40% Completed ✅
                         </div>
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user.firstName}</div>
@@ -230,7 +223,7 @@ function Step_2() {
                                                         className="ml-1 text-sm font-semibold 
                                                          text-white rounded-full w-4 h-4 flex items-center justify-center "
                                                     >
-                                                        <IoClose className=" md:font-semibold md:text-xl"/>
+                                                        <IoClose className=" md:font-semibold md:text-xl" />
                                                     </button>
                                                 </li>
                                             ))}
