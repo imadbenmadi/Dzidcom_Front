@@ -8,15 +8,14 @@ function Default() {
     console.log("data from default", isAuth, userType);
     const Navigate = useNavigate();
     useEffect(() => {
-         throw new Error("error from default page");
-        // if (!isAuth || !userType) Navigate("/Home");
-        // else if (isAuth && userType == "client") {
-        //     // Navigate(`/Client/${userId}`);
-        //     Navigate(`/Client`);
-        // } else if (isAuth && userType == "freelancer") {
-        //     // Navigate(`/Freelancer/${userId}`);
-        //     Navigate(`/Freelancer`);
-        // } else Navigate("/Home");
+        if (!isAuth || !userType) Navigate("/Home");
+        else if (isAuth && userType == "client") {
+            // Navigate(`/Client/${userId}`);
+            Navigate(`/Client`);
+        } else if (isAuth && userType == "freelancer") {
+            // Navigate(`/Freelancer/${userId}`);
+            Navigate(`/Freelancer`);
+        } else Navigate("/Home");
     }, []);
 }
 export default Default;
