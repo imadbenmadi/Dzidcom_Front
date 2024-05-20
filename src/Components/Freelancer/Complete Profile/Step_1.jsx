@@ -2,21 +2,76 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
+import { useState, useEffect } from "react";
+
+import { IoClose } from "react-icons/io5";
+import { FaRegImage } from "react-icons/fa";
+
 function Step_1() {
+    const [image_state, setimage_state] = useState(null);
     const { user } = useAppContext();
+    useEffect(() => {
+        console.log(image_state);
+    }, [image_state]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-fit flex flex-col gap-6  ">
-                <div className=" flex items-center justify-start gap-12 w-full ">
+                <div className=" flex items-start justify-start gap-12 w-full ">
                     <div>
-                        <img
+                        <div className="w-full">
+                            <input
+                                id="Step1_image"
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    setimage_state(
+                                        event.currentTarget.files[0]
+                                    );
+                                }}
+                                // disabled={isSubmitting}
+                                className="hidden" // Hide the default file input button
+                            />
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                            {image_state ? (
+                                <div className=" relative ">
+                                    <img
+                                        src={URL.createObjectURL(image_state)} // Create a URL for the selected image
+                                        alt="Selected Image"
+                                        className=" w-[150px] h-[150px]  object-cover rounded-full"
+                                    />
+                                    <div
+                                        className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                        onClick={() => setimage_state(null)}
+                                    >
+                                        {/* <IoClose /> */}
+                                        Remove
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
+                                    onClick={() =>
+                                        document
+                                            .getElementById("Step1_image")
+                                            .click()
+                                    }
+                                >
+                                    <FaRegImage className=" text-gray_v text-2xl" />
+                                </div>
+                            )}{" "}
+                        </div>
+
+                        {/* <img
                             src={user_default}
                             alt=""
                             className=" w-[120px] cursor-pointer"
-                        />
+                        /> */}
                     </div>
                     <div>
-                        <div className=" font-semibold text-gray_v">
+                        <div className=" font-semibold text-gray_v pt-6">
                             Profil 20% Completed ✅
                         </div>
                     </div>
