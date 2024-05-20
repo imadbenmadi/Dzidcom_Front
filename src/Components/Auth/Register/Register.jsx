@@ -18,7 +18,7 @@ function Register() {
                     className=" w-full h-full object-cover "
                 />
             </div>
-            <div className="w-full h-screen bg-white flex flex-col items-center justify-center ">
+            <div className="w-full h-screen overflow-y-auto py-12 bg-white flex flex-col items-center justify-center ">
                 <div className=" w-[80%] text-black_text">
                     <div className=" pb-4 ">
                         <div className=" text-3xl font-semibold ">
@@ -140,8 +140,8 @@ function Register() {
                                             <div>Client</div>
                                         </div>
                                     </div>
-                                    <div className=" flex items-center justify-center gap-4 w-full pb-6 ">
-                                        <div className=" w-[50%] relative">
+                                    <div className=" flex flex-col md-flex-row items-center justify-center gap-6 md:gap-4 w-full pb-6 ">
+                                        <div className="w-full  md:w-[50%]  relative">
                                             <div className="  font-semibold text-sm pb-1">
                                                 First Name
                                             </div>
@@ -158,7 +158,7 @@ function Register() {
                                                 style={names_errorInputMessage}
                                             />
                                         </div>
-                                        <div className="  w-[50%] relative">
+                                        <div className="  w-full  md:w-[50%] relative">
                                             <div className="font-semibold text-sm pb-1">
                                                 Last Name
                                             </div>
