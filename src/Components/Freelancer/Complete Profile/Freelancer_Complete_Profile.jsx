@@ -9,33 +9,13 @@ function Freelancer_Complete_Profile() {
     const { isProfileCompleted, user } = useAppContext();
     return (
         <div>
-            {!user.telephone || !user.nationalCardNumber || !user.JobTitle ? (
-                <Step_1 />
-            ) : (
-                <div>
-                    <div className=" flex items-center justify-start gap-12 w-full ">
-                        <div>
-                            <img
-                                src={user_default}
-                                alt=""
-                                className=" w-[120px] cursor-pointer"
-                            />
-                        </div>
-                        <div>
-                            <div className=" font-semibold text-gray_v">
-                                Profil 100% Completed ✅
-                            </div>
-                        </div>
-                    </div>
-                    {/* Progress*/}
-                    <div className=" flex items-center justify-start gap-5">
-                        <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                        <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                        <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                        <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    </div>
-                </div>
-            )}
+            {/* {!user.telephone || !user.nationalCardNumber || !user.JobTitle ? (*/}
+            <Step_1 />
+            {/* ) : !user.about || !user.Skills ? ( */}
+            {/* <Step_2 /> */}
+            {/* ) : (
+                <div>Done</div>
+            )} */}
         </div>
     );
 }

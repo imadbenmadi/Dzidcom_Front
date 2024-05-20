@@ -11,9 +11,9 @@ import handleEdite from "./Post_EditUser";
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
-    useEffect(() => {
-        console.log(image_state);
-    }, [image_state]);
+    // useEffect(() => {
+    //     console.log(image_state);
+    // }, [image_state]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-fit flex flex-col gap-6  ">
@@ -74,6 +74,11 @@ function Step_1() {
                     <div>
                         <div className=" font-semibold text-gray_v pt-6">
                             Profil 20% Completed ✅
+                        </div>
+                        <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
+                            <div>{user.firstName}</div>
+                            <div>{user.lastName}</div>
+                            <div>{user.email}</div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +179,7 @@ function Step_1() {
                                     </div>
                                     <Field
                                         placeholder="••••••••••••••••••••••••••••••••••••••••"
-                                        type="nationalCardNumber"
+                                        type="text"
                                         name="nationalCardNumber"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"

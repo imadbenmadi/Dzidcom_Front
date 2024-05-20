@@ -43,11 +43,14 @@ function Register() {
                                     errors.firstName = "First Name is Required";
                                 } else if (values.firstName.length < 3)
                                     errors.firstName = " At least 3 chars";
+                                else if (values.firstName.length > 30)
+                                    errors.firstName = " At most 30 chars";
                                 if (!values.lastName) {
                                     errors.lastName = "Last Name is Required";
                                 } else if (values.lastName.length < 3)
                                     errors.lastName = " At least 3 chars";
-
+                                else if (values.lastName.length > 30)
+                                    errors.lastName = " At most 30 chars";
                                 if (!values.email) {
                                     // Validate email
                                     errors.email = "email is Required";

@@ -1,132 +1,258 @@
 import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useAppContext } from "../../../AppContext";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
-function Step_1() {
+import { IoClose } from "react-icons/io5";
+import { FaRegImage } from "react-icons/fa";
+import handleEdite from "./Post_EditUser";
+
+function Step_2() {
+    const [image_state, setimage_state] = useState(null);
+    const { user, set_user } = useAppContext();
+    const skillsOptions = [
+        "Graphic Design",
+        "Logo Design",
+        "UI/UX Design",
+        "Web Design",
+        "Illustration",
+        "Typography Design",
+        "Motion Graphics",
+        "Video Editing",
+        "Animation",
+        "Content Creation",
+        "Copywriting",
+        "Creative Writing",
+        "Blog Writing",
+        "Article Writing",
+        "SEO Writing",
+        "Social Media Management",
+        "Content Strategy",
+        "Content Marketing",
+        "Search Engine Optimization (SEO)",
+        "Digital Marketing",
+    ];
+    console.log("user Skills from the server : ", user.Skills);
+    const Skills_from_Server = user.Skills.map((skill) => skill.skill);
+    const [selectedSkills, setSelectedSkills] = useState(
+        Skills_from_Server || []
+    );
+    const [availableSkills, setAvailableSkills] = useState(skillsOptions);
+    const [customSkill, setCustomSkill] = useState("");
+
+    const handleSkillChange = (e) => {
+        const selectedValue = e.target.value;
+        setSelectedSkills([...selectedSkills, selectedValue]);
+        setAvailableSkills(
+            availableSkills.filter((skill) => skill !== selectedValue)
+        );
+    };
+
+    const handleRemoveSkill = (skill) => {
+        setSelectedSkills(selectedSkills.filter((s) => s !== skill));
+        setAvailableSkills([...availableSkills, skill]);
+    };
+
+    const handleAddCustomSkill = () => {
+        if (customSkill.trim() !== "") {
+            setSelectedSkills([...selectedSkills, customSkill]);
+            setCustomSkill("");
+        }
+    };
+
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-fit flex flex-col gap-6  ">
-                <div className=" flex items-center justify-start gap-12 w-full ">
+                <div className=" flex items-start justify-start gap-12 w-full ">
                     <div>
-                        <img
-                            src={user_default}
-                            alt=""
-                            className=" w-[120px] cursor-pointer"
-                        />
+                        <div className="w-full">
+                            <input
+                                id="Step1_image"
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    setimage_state(
+                                        event.currentTarget.files[0]
+                                    );
+                                }}
+                                // disabled={isSubmitting}
+                                className="hidden" // Hide the default file input button
+                            />
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                            {image_state ? (
+                                <div className=" relative ">
+                                    <img
+                                        src={URL.createObjectURL(image_state)} // Create a URL for the selected image
+                                        alt="Selected Image"
+                                        className=" w-[150px] h-[150px]  object-cover rounded-full"
+                                    />
+                                    <div
+                                        className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                        onClick={() => setimage_state(null)}
+                                    >
+                                        {/* <IoClose /> */}
+                                        Remove
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
+                                    onClick={() =>
+                                        document
+                                            .getElementById("Step1_image")
+                                            .click()
+                                    }
+                                >
+                                    <FaRegImage className=" text-gray_v text-2xl" />
+                                </div>
+                            )}{" "}
+                        </div>
                     </div>
+
                     <div>
-                        <div className=" font-semibold text-gray_v">
-                            Profil 40% Completed ✅
+                        <div className=" font-semibold text-gray_v pt-6">
+                            Profil 20% Completed ✅
+                        </div>
+                        <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
+                            <div>{user.firstName}</div>
+                            <div>{user.lastName}</div>
+                            <div>{user.email}</div>
                         </div>
                     </div>
                 </div>
                 {/* Progress*/}
                 <div className=" flex items-center justify-start gap-5">
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        1 - Personal information{" "}
+                        2 - Areas of Expertise{" "}
                     </div>
                     <Formik
                         initialValues={{
-                            telephone: "",
-                            nationalCardNumber: "",
-                            JobTitle: "",
+                            userId: user.id,
+                            about: user.about || "",
+                            Skills: Skills_from_Server || [],
                         }}
                         validate={(values) => {
                             const errors = {};
+                            if (!values.about) {
+                                errors.about = "about is Required";
+                            } else if (values.about.length < 10)
+                                errors.about = "at least 10 chars";
+                            else if (values.about.length > 500)
+                                errors.about = "max 500 chars";
 
-                            if (!values.telephone) {
-                                errors.telephone = "telephone is Required";
-                            } else if (
-                                values.telephone.length < 9 ||
-                                values.telephone.length > 14
-                            )
-                                errors.telephone = "invalide phone number";
-                            else if (
-                                !/^(\+\d{1,3}[-\s]?)?\d+$/.test(
-                                    values.telephone
-                                )
-                            )
-                                errors.telephone = "invalide phone number";
-                            if (!values.nationalCardNumber) {
-                                errors.nationalCardNumber =
-                                    "Last Name is Required";
-                            } else if (values.nationalCardNumber.length < 10)
-                                errors.nationalCardNumber =
-                                    " At least 10 chars";
-                            if (!values.JobTitle) {
-                                errors.JobTitle = "Job Title is Required";
-                            } else if (values.JobTitle.length < 3)
-                                errors.JobTitle = "At least 3 chars";
-                            else if (values.JobTitle.length > 50)
-                                errors.JobTitle = "Max 50 chars";
+                            if (values.Skills.length === 0) {
+                                errors.Skills = "Skills are required";
+                            }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            handleRegister(values, { setSubmitting });
+                            // if (
+                            //     values.about ==
+                            //         user.about &&
+                            //     values.telephone == user.telephone &&
+                            //     values.Skills == Skills_from_Server
+                            // ) {
+                            //     return;
+                            // }
+                            // else {
+                            handleEdite(values, user, set_user, {
+                                setSubmitting,
+                            });
+                            // }
                         }}
                     >
-                        {({ isSubmitting, setFieldValue }) => (
+                        {({ isSubmitting, setFieldValue, values, errors }) => (
                             <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
                                 <div className=" relative">
-                                    <div className=" font-semibold text-sm pb-1">
-                                        Phone Number{" "}
-                                    </div>
-                                    <Field
-                                        placeholder="0655665566"
-                                        type="text"
-                                        name="telephone"
-                                        disabled={isSubmitting}
-                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                    />
-                                    <ErrorMessage
-                                        name="telephone"
-                                        component="div"
-                                        style={errorInputMessage}
-                                    />
-                                </div>
-                                <div className=" relative">
-                                    <div className=" font-semibold text-sm pb-1">
-                                        National Card Number{" "}
-                                    </div>
-                                    <Field
-                                        placeholder="••••••••••••••••••••••••••••••••••••••••"
-                                        type="nationalCardNumber"
-                                        name="nationalCardNumber"
-                                        disabled={isSubmitting}
-                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                    />
-                                    <ErrorMessage
-                                        name="nationalCardNumber"
-                                        component="div"
-                                        style={errorInputMessage}
-                                    />
-                                </div>
-                                <div className=" relative">
-                                    <div className=" font-semibold text-sm pb-1">
-                                        Job Title{" "}
-                                    </div>
-                                    <div className=" flex items-center">
-                                        <Field
-                                            placeholder="Designer, Developer, Writer, etc."
-                                            type="text"
-                                            name="JobTitle"
+                                    <div className="relative">
+                                        <div className="font-semibold text-sm pb-1">
+                                            Skills
+                                        </div>
+                                        <select
+                                            name="Skills"
+                                            onChange={(e) => {
+                                                handleSkillChange(e);
+                                                setFieldValue("Skills", [
+                                                    ...selectedSkills,
+                                                    e.target.value,
+                                                ]);
+                                            }}
                                             disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
+                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full"
+                                        >
+                                            <option value="">
+                                                Select a skill
+                                            </option>
+                                            {availableSkills.map((skill) => (
+                                                <option
+                                                    key={skill}
+                                                    value={skill}
+                                                >
+                                                    {skill}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <ErrorMessage
+                                            name="Skills"
+                                            component="div"
+                                            style={errorInputMessage}
                                         />
                                     </div>
-
+                                    <div>
+                                        <ul className=" pt-2 flex items-center justify-start gap-4">
+                                            {selectedSkills.map((skill) => (
+                                                <li
+                                                    key={skill}
+                                                    className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
+                                                >
+                                                    {skill}
+                                                    <button
+                                                        type="button"
+                                                        onClick={() =>
+                                                            handleRemoveSkill(
+                                                                skill
+                                                            )
+                                                        }
+                                                        className="ml-1 text-sm font-semibold bg-red_error
+                                                         text-white rounded-full w-4 h-4 flex items-center justify-center "
+                                                    >
+                                                        x
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        About{" "}
+                                    </div>
+                                    <Field
+                                        placeholder="Tell us about your self"
+                                        as="textarea"
+                                        rows={7}
+                                        name="about"
+                                        disabled={isSubmitting}
+                                        className=" resize-none border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
                                     <ErrorMessage
-                                        name="JobTitle"
+                                        name="about"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
+
                                 {isSubmitting ? (
                                     <span className="small-loader  w-full m-auto"></span>
                                 ) : (
@@ -154,4 +280,4 @@ const errorInputMessage = {
     fontSize: "12px",
     color: "red",
 };
-export default Step_1;
+export default Step_2;

@@ -35,6 +35,8 @@ async function handleEdite(values, user, set_user, { setSubmitting }) {
             );
         }
     } catch (error) {
+        console.log("response from register: ", error);
+
         Swal.fire(
             "Error!",
             `Something Went Wrong ,please trye again latter`,
