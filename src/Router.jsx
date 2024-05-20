@@ -25,24 +25,36 @@ import Client_Complete_Profile from "./Components/Client/Client_Complete_Profile
 
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
+import ErrorElement from "./Components/ErrorElement";
 const routes = createBrowserRouter([
     {
         path: "/",
         element: <App />,
         children: [
-            { index: true, element: <Default /> },
-            { path: "/Home", element: <Home /> },
+            {
+                index: true,
+                element: <Default />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Home",
+                element: <Home />,
+                errorElement: <ErrorElement />,
+            },
             {
                 path: "/Login",
                 element: <Login />,
+                errorElement: <ErrorElement />,
             },
             {
                 path: "/Register",
                 element: <Register />,
+                errorElement: <ErrorElement />,
             },
             {
                 path: "/Freelancer",
                 element: <Freelancer />,
+                errorElement: <ErrorElement />,
                 children: [
                     { index: true, element: <Freelancer_Default /> },
                     {
@@ -101,6 +113,7 @@ const routes = createBrowserRouter([
             {
                 path: "/Client",
                 element: <Client />,
+                errorElement: <ErrorElement />,
                 children: [
                     { index: true, element: <Client_Default /> },
                     {

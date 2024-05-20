@@ -36,13 +36,13 @@ function Freelancer() {
                 if (response.status == 200) {
                     set_user(response.data.User);
                 } else {
+                    set_Auth(false);
                     window.location.href = "/Login";
-                    // set_Auth(false);
                 }
             } catch (error) {
                 console.log("error from get user Profile :", error);
+                set_Auth(false);
                 window.location.href = "/Login";
-                // set_Auth(false);
             }
         };
         const fetch_images = () => {
