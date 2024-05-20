@@ -12,7 +12,7 @@ import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_P
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
 import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
-import Freelancer_Complete_Profile from "./Components/Freelancer/Freelancer_Complete_Profile";
+import Freelancer_Complete_Profile from "./Components/Freelancer/Complete Profile/Freelancer_Complete_Profile";
 
 import Client from "./Components/Client/Client";
 import Client_Default from "./Components/Client/Client_Default";
