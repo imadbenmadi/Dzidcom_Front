@@ -4,7 +4,9 @@ import { useNavigate } from "react-router";
 function Complete_Profile() {
     const Navigate = useNavigate();
     return (
-        <div className=" w-full h-10 bg-red_error text-white font-semibold text-2xl">
+        <div className=" w-full h-10 bg-red_error text-white 
+        flex items-center justify-center
+        font-semibold text-base md:text-lg">
             Please Complete your Profile ,Go to{" "}
             <span
                 className=" underline "

@@ -25,7 +25,7 @@ function Mobile_Nav_Items({
                             {!isProfileCompleted && (
                                 <Link
                                     onClick={Toogle_Menu_Bar}
-                                    to={"/Freelancer/Complete_Profile"}
+                                    to={"/Client/Complete_Profile"}
                                     className={`${
                                         Active_nav == "Complete_Profile"
                                             ? "text-perpol_v"
@@ -40,7 +40,7 @@ function Mobile_Nav_Items({
                             )}
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Freelancer/Profile"}
+                                to={"/Client/Profile"}
                                 className={`${
                                     Active_nav == "Profile"
                                         ? "text-perpol_v"
@@ -51,7 +51,7 @@ function Mobile_Nav_Items({
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
-                                to={"/Freelancer/Jobs"}
+                                to={"/Client/Jobs"}
                                 className={`${
                                     Active_nav == "Jobs"
                                         ? "text-perpol_v"

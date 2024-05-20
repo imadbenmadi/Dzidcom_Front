@@ -114,7 +114,7 @@ function Laptop_Nav_Items({
                             }}
                         >
                             <Link
-                                to={"/Freelancer/Profile"}
+                                to={"/Client/Profile"}
                                 className=" select-none flex items-center gap-2 "
                             >
                                 <FiUser className=" shrink-0 text-xl " />
