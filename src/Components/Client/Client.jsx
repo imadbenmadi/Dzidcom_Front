@@ -79,28 +79,23 @@ function Client() {
                 setLoading(false);
             });
     }, []);
-    const isProfileIncomplete = (user) => {
-        return (
+
+    useEffect(() => {
+        if (!user) return;
+        else if (
             !user.telephone ||
             !user.about ||
             !user.nationalCardNumber ||
-            !user.portfolioWebsite ||
             !user.JobTitle ||
-            (user.PortfolioItems && user.PortfolioItems.length === 0) ||
-            (user.Skills && user.Skills.length === 0) ||
-            (user.Client_SocialMediaLinks &&
-                user.Client_SocialMediaLinks.length === 0)
-        );
-    };
-    useEffect(() => {
-        if (user) {
-            if (isProfileIncomplete(user)) {
-                setisProfileCompleted(false);
-                set_Profile_Completed(false);
-            } else {
-                setisProfileCompleted(true);
-                set_Profile_Completed(true);
-            }
+            !user.Skills ||
+            user.Skills.length === 0
+        ) {
+            // if (isProfileIncomplete(user)) {
+            setisProfileCompleted(false);
+            set_Profile_Completed(false);
+        } else {
+            setisProfileCompleted(true);
+            set_Profile_Completed(true);
         }
     }, [user]);
 
@@ -110,13 +105,6 @@ function Client() {
                 <span className="loader"></span>
             </div>
         );
-    // if (!user) {
-    //     return (
-    //         <div className="w-screen h-screen flex items-center justify-center">
-    //             <span className="loader"></span>
-    //         </div>
-    //     );
-    // }
     else
         return (
             <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">

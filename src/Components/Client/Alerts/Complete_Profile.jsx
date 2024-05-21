@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 function Complete_Profile() {
     const Navigate = useNavigate();
     return (
-        <div className=" w-full h-10 bg-red_error text-white 
-        flex items-center justify-center
-        font-semibold text-base md:text-lg">
+        <div className=" w-full h-10 bg-red_error text-white font-semibold text-2xl">
             Please Complete your Profile ,Go to{" "}
             <span
                 className=" underline "
-                onClick={Navigate("/Client/Complete_Profile")}
+                onClick={() => {
+                    Navigate("/Freelancer/Complete_Profile");
+                }}
             >
                 Complete Profile page
             </span>{" "}
