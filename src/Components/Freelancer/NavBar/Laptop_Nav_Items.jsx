@@ -84,65 +84,70 @@ function Laptop_Nav_Items({
                     </Link>
                 </div>
             </div>
-            {isProfileCompleted ? (
-                <div className="flex items-center justify-center gap-6 ">
-                    <div>
-                        <img src={message_icon} alt="" />
-                    </div>
-                    <div>
-                        <img src={notification_icon} alt="" />
-                    </div>
-                </div>
-            ) : (
-                <div></div>
-            )}
-            <div className=" relative">
-                <img
-                    src={user_image}
-                    alt=""
-                    className=" w-8 cursor-pointer"
-                    onClick={toogleProfile}
-                />
-                {ProfileClicked ? (
-                    <div
-                        className="absolute top-10 right-0 bg-white shadow border  
-                    rounded-lg p-2 w-40 z-50 flex items-center  flex-col gap-3"
-                    >
-                        <div
-                            className="text-black_text cursor-pointer w-[80px] "
-                            onClick={() => {
-                                setProfileClicked(false);
-                            }}
-                        >
-                            <Link
-                                to={"/Freelancer/Profile"}
-                                className=" select-none flex items-center gap-2 "
-                            >
-                                <FiUser className=" shrink-0 text-xl " />
-                                Profil
-                            </Link>
+            <div className=" flex items center justify-center gap-5">
+                {isProfileCompleted ? (
+                    <div className="flex items-center justify-center gap-6 ">
+                        <div>
+                            <img src={message_icon} alt="" />
                         </div>
-                        <div className="">
-                            {LogoutClicked ? (
-                                <div className="w-full ">
-                                    <span className="small-loader font-bold  w-full m-auto"></span>
-                                </div>
-                            ) : (
+                        <div>
+                            <img src={notification_icon} alt="" />
+                        </div>
+                    </div>
+                ) : (
+                    <div></div>
+                )}
+                <div className=" relative">
+                    <img
+                        src={user_image}
+                        alt=""
+                        className=" w-8 cursor-pointer"
+                        onClick={toogleProfile}
+                    />
+                    {ProfileClicked ? (
+                        <div
+                            className="absolute top-10 right-0 bg-white shadow border  
+                    rounded-lg p-2 w-40 z-50 flex items-center  flex-col gap-3"
+                        >
+                            <div
+                                className="text-black_text cursor-pointer w-[80px] "
+                                onClick={() => {
+                                    setProfileClicked(false);
+                                }}
+                            >
                                 <div
-                                    className="cursor-pointer w-full 
-                                    flex items-center gap-3 text-red-500"
+                                    className=" select-none flex items-center gap-2 "
                                     onClick={() => {
-                                        handleLogout();
+                                        window.location.href =
+                                            "/Freelancer/Profile";
                                     }}
                                 >
-                                    <TbLogout2 className=" shrink-0 text-xl" />
-                                    Logout
+                                    <FiUser className=" shrink-0 text-xl " />
+                                    Profil
                                 </div>
-                            )}
+                            </div>
+                            <div className="">
+                                {LogoutClicked ? (
+                                    <div className="w-full ">
+                                        <span className="small-loader font-bold  w-full m-auto"></span>
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="cursor-pointer w-full 
+                                    flex items-center gap-3 text-red-500"
+                                        onClick={() => {
+                                            handleLogout();
+                                        }}
+                                    >
+                                        <TbLogout2 className=" shrink-0 text-xl" />
+                                        Logout
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ) : null}
-            </div>{" "}
+                    ) : null}
+                </div>{" "}
+            </div>
         </div>
     );
 }
