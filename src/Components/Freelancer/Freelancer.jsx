@@ -14,8 +14,16 @@ function Freelancer() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
-    const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
-        useAppContext();
+    const {
+        userId,
+        userType,
+        isAuth,
+        set_user,
+        user,
+        set_Profile_Completed,
+        show_Alert_completeProfile,
+        set_show_Alert_completeProfile,
+    } = useAppContext();
     if (!isAuth || !userId) {
         window.location.href = "/Login";
     }
@@ -93,12 +101,13 @@ function Freelancer() {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);
             set_Profile_Completed(false);
+            set_show_Alert_completeProfile(true);
         } else {
             setisProfileCompleted(true);
             set_Profile_Completed(true);
+            set_show_Alert_completeProfile(false);
         }
     }, [user]);
-
     if (loading)
         return (
             <div className=" w-screen h-screen flex items-center justify-center">

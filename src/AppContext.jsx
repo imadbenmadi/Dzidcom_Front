@@ -12,6 +12,7 @@ const initialState = {
     userType: null,
     user: null,
     isProfileCompleted: false,
+    show_Alert_completeProfile: false,
 };
 const reducer = (state, action) => {
     switch (action.type) {
@@ -46,6 +47,11 @@ const reducer = (state, action) => {
                 ...state,
                 isProfileCompleted: action.payload,
             };
+        case "SET_SHOW_ALERT_COMPLETE_PROFILE":
+            return {
+                ...state,
+                show_Alert_completeProfile: action.payload,
+            };
         default:
             return state;
     }
@@ -78,6 +84,12 @@ export const AppProvider = ({ children }) => {
             payload: isProfileCompleted,
         });
     };
+    const set_show_Alert_completeProfile = (show_Alert_completeProfile) => {
+        dispatch({
+            type: "SET_SHOW_ALERT_COMPLETE_PROFILE",
+            payload: show_Alert_completeProfile,
+        });
+    };
     const AppContextValue = {
         ...state,
         store_login,
@@ -85,6 +97,7 @@ export const AppProvider = ({ children }) => {
         set_Auth,
         set_user,
         set_Profile_Completed,
+        set_show_Alert_completeProfile,
     };
 
     return (

@@ -1,12 +1,15 @@
-import React from 'react'
-import Complete_Profile_Alert from "./Alerts/Complete_Profile";
-
+import React from "react";
+import Alert_Complete_Profile from "./Alerts/Alert_Complete_Profile";
+import { useAppContext } from "../../AppContext";
 function Client_Profile() {
-  return (
-      <div>
-          <Complete_Profile_Alert />
-      </div>
-  );
+    const { show_Alert_completeProfile } = useAppContext();
+    return (
+        <div>
+            <div>
+                {show_Alert_completeProfile && <Alert_Complete_Profile />}
+            </div>
+        </div>
+    );
 }
 
-export default Client_Profile
+export default Client_Profile;

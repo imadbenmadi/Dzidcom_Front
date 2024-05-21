@@ -13,8 +13,16 @@ function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
-    const { userId, userType, isAuth, set_user, user, set_Profile_Completed } =
-        useAppContext();
+    const {
+        userId,
+        userType,
+        isAuth,
+        set_user,
+        user,
+        set_Profile_Completed,
+        show_Alert_completeProfile,
+        set_show_Alert_completeProfile,
+    } = useAppContext();
     // if (!isAuth || !userId || userType !== "client") {
     if (!isAuth || !userId) {
         window.location.href = "/Login";
@@ -36,13 +44,13 @@ function Client() {
                 if (response.status == 200) {
                     set_user(response.data.User);
                 } else {
-                    // window.location.href = "/Login";
-                    // set_Auth(false);
+                    set_Auth(false);
+                    window.location.href = "/Login";
                 }
             } catch (error) {
                 console.log("error from get user Profile :", error);
-                // window.location.href = "/Login";
-                // set_Auth(false);
+                set_Auth(false);
+                window.location.href = "/Login";
             }
         };
         const fetch_images = () => {
@@ -93,9 +101,11 @@ function Client() {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);
             set_Profile_Completed(false);
+            set_show_Alert_completeProfile(true);
         } else {
             setisProfileCompleted(true);
             set_Profile_Completed(true);
+            set_show_Alert_completeProfile(false);
         }
     }, [user]);
 
