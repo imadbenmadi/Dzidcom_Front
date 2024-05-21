@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import Logo from "../../../../public/Logo.png";
 import message_icon from "../../../../public/Profile/message.png";
 import notification_icon from "../../../../public/Profile/Notification.png";
-import user_image from "../../../../public/user2.png";
+import user_default from "../../../../public/Profile/user_default2.png";
 import { useState } from "react";
 import { TbLogout2 } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
+import { useAppContext } from "../../../AppContext";
 
 function Laptop_Nav_Items({
     isProfileCompleted,
@@ -13,6 +14,7 @@ function Laptop_Nav_Items({
     handleLogout,
     LogoutClicked,
 }) {
+    const { user } = useAppContext();
     const [ProfileClicked, setProfileClicked] = useState(false);
     const toogleProfile = () => {
         setProfileClicked(!ProfileClicked);
@@ -98,12 +100,26 @@ function Laptop_Nav_Items({
                     <div></div>
                 )}
                 <div className=" relative">
-                    <img
-                        src={user_image}
-                        alt=""
-                        className=" w-8 cursor-pointer"
-                        onClick={toogleProfile}
-                    />
+                    {user?.profile_pic_link ? (
+                        <img
+                            src={user.profile_pic_link}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = user_default;
+                            }}
+                            alt=""
+                            className=" w-8 cursor-pointer"
+                            onClick={toogleProfile}
+                        />
+                    ) : (
+                        <img
+                            src={user_default}
+                            alt=""
+                            className=" w-8 cursor-pointer"
+                            onClick={toogleProfile}
+                        />
+                    )}
+
                     {ProfileClicked ? (
                         <div
                             className="absolute top-10 right-0 bg-white shadow border  
