@@ -5,7 +5,7 @@ import { IoWarningOutline } from "react-icons/io5";
 function Applications() {
     const { user } = useAppContext();
     return (
-        <div className="  mx-auto pt-16">
+        <div className="  pt-16">
             <div className=" text-2xl text-gray_v font-semibold text-center">
                 My Applications
             </div>

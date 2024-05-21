@@ -8,8 +8,8 @@ function Step_1() {
     const { user, set_user } = useAppContext();
 
     return (
-        <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="w-fit flex flex-col gap-6  ">
+        <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
+            <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
                 <div className=" flex items-center justify-start gap-12 w-full ">
                     <div>
                         <img
@@ -20,20 +20,20 @@ function Step_1() {
                     </div>
                     <div>
                         <div className=" font-semibold text-gray_v">
-                            Profil 20% Completed ✅
+                            Profil 80% Completed ✅
                         </div>
                     </div>
                 </div>
                 {/* Progress*/}
                 <div className=" flex items-center justify-start gap-5">
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        3 - Links and Social Media{" "}
+                        5 - Links and Social Media{" "}
                         <span className=" text-sm font-semibold text-gray_v">
                             (optional)
                         </span>

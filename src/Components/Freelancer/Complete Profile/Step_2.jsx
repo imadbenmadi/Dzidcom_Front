@@ -57,7 +57,7 @@ function Step_2() {
 
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="max-w-[300px] md:max-w-[500px] flex flex-col gap-6  ">
+            <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
                 <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-4 md:gap-12 w-full ">
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
