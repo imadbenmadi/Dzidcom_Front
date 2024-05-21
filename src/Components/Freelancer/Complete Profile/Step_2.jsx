@@ -148,6 +148,7 @@ function Step_2() {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
+                            // console.log("values: ", values);
                             if (values.telephone == user.telephone) {
                                 delete values.telephone;
                             } else if (
@@ -158,7 +159,7 @@ function Step_2() {
                             } else if (values.JobTitle == user.JobTitle) {
                                 delete values.JobTitle;
                             }
-                            if (Object.keys(values).length > 1)
+                            if (Object.keys(values).length >= 1)
                                 handleEdite(
                                     values,
                                     user,
@@ -168,6 +169,11 @@ function Step_2() {
                                         setSubmitting,
                                     }
                                 );
+                            else {
+                                setSubmitting(false);
+                                window.location.href =
+                                    "/Freelancer/Complete_Profile/Step_3";
+                            }
                         }}
                     >
                         {({ isSubmitting, setFieldValue, values, errors }) => (
@@ -221,11 +227,25 @@ function Step_2() {
                                                     {skill}
                                                     <button
                                                         type="button"
-                                                        onClick={() =>
+                                                        onClick={() => {
                                                             handleRemoveSkill(
                                                                 skill
-                                                            )
-                                                        }
+                                                            );
+                                                            const updatedSkills =
+                                                                selectedSkills.filter(
+                                                                    (s) =>
+                                                                        s !==
+                                                                        skill
+                                                                );
+                                                            setFieldValue(
+                                                                "Skills",
+                                                                updatedSkills
+                                                            );
+                                                            // set_user({
+                                                            //     ...user,
+                                                            //     Skills: updatedSkills,
+                                                            // });
+                                                        }}
                                                         className="ml-1 text-sm font-semibold 
                                                          text-white rounded-full w-4 h-4 flex items-center justify-center "
                                                     >

@@ -12,7 +12,7 @@ async function handleEdite(values, user, set_user, Link, { setSubmitting }) {
                 // validateStatus: () => true,
             }
         );
-        console.log("response from register: ", response);
+        console.log("response from Edite: ", response);
         if (response.status == 200) {
             set_user(response.data.user);
             if (Link) window.location.href = Link;

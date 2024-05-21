@@ -141,7 +141,7 @@ function Step_1() {
                             } else if (values.JobTitle == user.JobTitle) {
                                 delete values.JobTitle;
                             }
-                            if (Object.keys(values).length > 1)
+                            if (Object.keys(values).length >= 1)
                                 handleEdite(
                                     values,
                                     user,
@@ -151,6 +151,10 @@ function Step_1() {
                                         setSubmitting,
                                     }
                                 );
+                            else {
+                                setSubmitting(false);
+                                window.location.href("/Freelancer/Complete_Profile/Step_2")
+                            }
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
