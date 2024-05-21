@@ -2,8 +2,11 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
+import handleEdite from "./Post_EditUser";
+
 function Step_1() {
-    const { user } = useAppContext();
+    const { user, set_user } = useAppContext();
+
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-fit flex flex-col gap-6  ">
@@ -30,100 +33,124 @@ function Step_1() {
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        1 - Personal information{" "}
+                        3 - Links and Social Media{" "}
+                        <span className=" text-sm font-semibold text-gray_v">
+                            (optional)
+                        </span>
                     </div>
                     <Formik
                         initialValues={{
-                            telephone: user.telephone || "",
-                            nationalCardNumber: user.nationalCardNumber || "",
-                            JobTitle: user.JobTitle || "",
+                            userId: user.id,
+                            portfolioWebsite: user.portfolioWebsite || "",
+                            instgram_Link: user.instgram_Link || "",
+                            linkedIn_Link: user.linkedIn_Link || "",
+                            facebook_Link: user.JobTitle || "",
                         }}
                         validate={(values) => {
                             const errors = {};
-
-                            if (!values.telephone) {
-                                errors.telephone = "telephone is Required";
-                            } else if (
-                                values.telephone.length < 9 ||
-                                values.telephone.length > 14
-                            )
-                                errors.telephone = "invalide phone number";
-                            else if (
-                                !/^(\+\d{1,3}[-\s]?)?\d+$/.test(
-                                    values.telephone
-                                )
-                            )
-                                errors.telephone = "invalide phone number";
-                            if (!values.nationalCardNumber) {
-                                errors.nationalCardNumber =
-                                    "Last Name is Required";
-                            } else if (values.nationalCardNumber.length < 10)
-                                errors.nationalCardNumber =
-                                    " At least 10 chars";
-                            if (!values.JobTitle) {
-                                errors.JobTitle = "Job Title is Required";
-                            } else if (values.JobTitle.length < 3)
-                                errors.JobTitle = "At least 3 chars";
-                            else if (values.JobTitle.length > 50)
-                                errors.JobTitle = "Max 50 chars";
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            handleRegister(values, { setSubmitting });
+                            if (
+                                values.portfolioWebsite == user.portfolioWebsite
+                            ) {
+                                delete values.portfolioWebsite;
+                            } else if (
+                                values.instgram_Link == user.instgram_Link
+                            ) {
+                                delete values.instgram_Link;
+                            } else if (
+                                values.linkedIn_Link == user.linkedIn_Link
+                            ) {
+                                delete values.linkedIn_Link;
+                            } else if (
+                                values.facebook_Link == user.facebook_Link
+                            ) {
+                                delete values.facebook_Link;
+                            }
+                            if (Object.keys(values).length >= 1)
+                                handleEdite(
+                                    values,
+                                    user,
+                                    set_user,
+                                    "/Freelancer/Profile",
+                                    {
+                                        setSubmitting,
+                                    }
+                                );
+                            else {
+                                setSubmitting(false);
+                                window.location.href("/Freelancer/Profile");
+                            }
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
                             <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Phone Number{" "}
+                                        Portfolio Website{" "}
                                     </div>
                                     <Field
-                                        placeholder="0655665566"
+                                        placeholder="https://www.example.com"
                                         type="text"
-                                        name="telephone"
+                                        name="portfolioWebsite"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="telephone"
+                                        name="portfolioWebsite"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        National Card Number{" "}
+                                        your Instgram account Link
                                     </div>
                                     <Field
-                                        placeholder="••••••••••••••••••••••••••••••••••••••••"
-                                        type="nationalCardNumber"
-                                        name="nationalCardNumber"
+                                        placeholder="https://www.example.com"
+                                        type="instgram_Link"
+                                        name="instgram_Link"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="nationalCardNumber"
+                                        name="instgram_Link"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        your LinkedIn account Link
+                                    </div>
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="linkedIn_Link"
+                                        name="linkedIn_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="linkedIn_Link"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Job Title{" "}
+                                        your Facebook account Link
                                     </div>
-                                    <div className=" flex items-center">
-                                        <Field
-                                            placeholder="Designer, Developer, Writer, etc."
-                                            type="text"
-                                            name="JobTitle"
-                                            disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
-                                        />
-                                    </div>
-
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="facebook_Link"
+                                        name="facebook_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
                                     <ErrorMessage
-                                        name="JobTitle"
+                                        name="facebook_Link"
                                         component="div"
                                         style={errorInputMessage}
                                     />
