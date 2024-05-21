@@ -71,7 +71,6 @@ function Step_2() {
                                         event.currentTarget.files[0]
                                     );
                                 }}
-                                // disabled={isSubmitting}
                                 className="hidden" // Hide the default file input button
                             />
                         </div>
@@ -126,7 +125,7 @@ function Step_2() {
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        2 - Areas of Expertise{" "}
+                        3 - Areas of Expertise{" "}
                     </div>
                     <Formik
                         initialValues={{
@@ -144,24 +143,31 @@ function Step_2() {
                                 errors.about = "max 500 chars";
 
                             if (values.Skills.length === 0) {
-                                errors.Skills = "Skills are required";
+                                errors.Skills = " At least add one skill ";
                             }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            // if (
-                            //     values.about ==
-                            //         user.about &&
-                            //     values.telephone == user.telephone &&
-                            //     values.Skills == Skills_from_Server
-                            // ) {
-                            //     return;
-                            // }
-                            // else {
-                            handleEdite(values, user, set_user, {
-                                setSubmitting,
-                            });
-                            // }
+                            if (values.telephone == user.telephone) {
+                                delete values.telephone;
+                            } else if (
+                                values.nationalCardNumber ==
+                                user.nationalCardNumber
+                            ) {
+                                delete values.nationalCardNumber;
+                            } else if (values.JobTitle == user.JobTitle) {
+                                delete values.JobTitle;
+                            }
+                            if (Object.keys(values).length > 1)
+                                handleEdite(
+                                    values,
+                                    user,
+                                    set_user,
+                                    "/Freelancer/Complete_Profile/Step_3",
+                                    {
+                                        setSubmitting,
+                                    }
+                                );
                         }}
                     >
                         {({ isSubmitting, setFieldValue, values, errors }) => (

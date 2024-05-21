@@ -13,6 +13,12 @@ import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
 import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
 import Freelancer_Complete_Profile from "./Components/Freelancer/Complete Profile/Freelancer_Complete_Profile";
+import Freelancer_Complete_Profile_Default from "./Components/Freelancer/Complete Profile/Default";
+import Freelancer_Complete_Profile_Step_0 from "./Components/Freelancer/Complete Profile/Step_0";
+import Freelancer_Complete_Profile_Step_1 from "./Components/Freelancer/Complete Profile/Step_1";
+import Freelancer_Complete_Profile_Step_2 from "./Components/Freelancer/Complete Profile/Step_2";
+import Freelancer_Complete_Profile_Step_3 from "./Components/Freelancer/Complete Profile/Step_3";
+import Freelancer_Complete_Profile_Step_4 from "./Components/Freelancer/Complete Profile/Step_4";
 
 import Client from "./Components/Client/Client";
 import Client_Default from "./Components/Client/Client_Default";
@@ -60,28 +66,35 @@ const routes = createBrowserRouter([
                     {
                         path: "/Freelancer/Complete_Profile",
                         element: <Freelancer_Complete_Profile />,
-                        // children: [
-                        //     {
-                        //         path: "/Freelancer/Complete_Profile/step_1",
-                        //         element: <Freelancer_Edite_Profile />,
-                        //     },
-                        //     {
-                        //         path: "/Freelancer/Complete_Profile/step_2",
-                        //         element: <Freelancer_Edite_Profile />,
-                        //     },
-                        //     {
-                        //         path: "/Freelancer/Complete_Profile/step_3",
-                        //         element: <Freelancer_Edite_Profile />,
-                        //     },
-                        //     {
-                        //         path: "/Freelancer/Complete_Profile/step_4",
-                        //         element: <Freelancer_Edite_Profile />,
-                        //     },
-                        //     {
-                        //         path: "/Freelancer/Complete_Profile/step_5",
-                        //         element: <Freelancer_Edite_Profile />,
-                        //     },
-                        // ],
+
+                        children: [
+                            {
+                                index: true,
+                                element: (
+                                    <Freelancer_Complete_Profile_Default />
+                                ),
+                            },
+                            {
+                                path: "/Freelancer/Complete_Profile/Step_0",
+                                element: <Freelancer_Complete_Profile_Step_0 />,
+                            },
+                            {
+                                path: "/Freelancer/Complete_Profile/Step_1",
+                                element: <Freelancer_Complete_Profile_Step_1 />,
+                            },
+                            {
+                                path: "/Freelancer/Complete_Profile/Step_2",
+                                element: <Freelancer_Complete_Profile_Step_2 />,
+                            },
+                            {
+                                path: "/Freelancer/Complete_Profile/Step_3",
+                                element: <Freelancer_Complete_Profile_Step_3 />,
+                            },
+                            {
+                                path: "/Freelancer/Complete_Profile/Step_4",
+                                element: <Freelancer_Complete_Profile_Step_4 />,
+                            },
+                        ],
                     },
                     // { index: true, element: <Freelancer_Profile /> },
                     {

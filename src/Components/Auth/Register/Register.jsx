@@ -52,7 +52,6 @@ function Register() {
                                 else if (values.lastName.length > 30)
                                     errors.lastName = " At most 30 chars";
                                 if (!values.email) {
-                                    // Validate email
                                     errors.email = "email is Required";
                                 } else if (
                                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(

@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 import Axios from "axios";
-async function handleEdite(values, user, set_user, { setSubmitting }) {
+async function handleEdite(values, user, set_user, Link, { setSubmitting }) {
     try {
         console.log("values to send in Edite: ", values);
-        
+
         let response = await Axios.put(
             `http://localhost:3000/Freelancers/${values.userId}/Profile`,
             values,
@@ -15,6 +15,7 @@ async function handleEdite(values, user, set_user, { setSubmitting }) {
         console.log("response from register: ", response);
         if (response.status == 200) {
             set_user(response.data.user);
+            if (Link) window.location.href = Link;
         } else if (response.status == 400) {
             Swal.fire("Error", `${response.data.message} `, "error");
         } else if (response.status == 409) {

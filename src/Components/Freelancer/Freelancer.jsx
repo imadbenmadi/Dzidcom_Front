@@ -84,12 +84,12 @@ function Freelancer() {
             !user.telephone ||
             !user.about ||
             !user.nationalCardNumber ||
-            !user.portfolioWebsite ||
+            // !user.portfolioWebsite ||
             !user.JobTitle ||
-            (user.PortfolioItems && user.PortfolioItems.length === 0) ||
-            (user.Skills && user.Skills.length === 0) ||
-            (user.Freelancer_SocialMediaLinks &&
-                user.Freelancer_SocialMediaLinks.length === 0)
+            // (user.PortfolioItems && user.PortfolioItems.length === 0) ||
+            (user.Skills && user.Skills.length === 0)
+            // (user.Freelancer_SocialMediaLinks &&
+            //     user.Freelancer_SocialMediaLinks.length === 0)
         );
     };
     useEffect(() => {

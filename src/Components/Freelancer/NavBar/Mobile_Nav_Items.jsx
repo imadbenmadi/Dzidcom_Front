@@ -22,22 +22,22 @@ function Mobile_Nav_Items({
                 <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
                     <div className=" flex flex-col justify-start items-center h-[80%]  ">
                         <div className="text-center flex flex-col gap-8 my-8 ">
-                            {!isProfileCompleted && (
-                                <Link
-                                    onClick={Toogle_Menu_Bar}
-                                    to={"/Freelancer/Complete_Profile"}
-                                    className={`${
-                                        Active_nav == "Complete_Profile"
-                                            ? "text-perpol_v"
-                                            : "text-black_text"
-                                    } select-none    `}
-                                >
-                                    <span className=" relative">
-                                        Complete profil
-                                        <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>{" "}
-                                    </span>
-                                </Link>
-                            )}
+                            <Link
+                                onClick={Toogle_Menu_Bar}
+                                to={"/Freelancer/Complete_Profile"}
+                                className={`${
+                                    Active_nav == "Complete_Profile"
+                                        ? "text-perpol_v"
+                                        : "text-black_text"
+                                } select-none    `}
+                            >
+                                <span className=" relative">
+                                    Modify profile
+                                    {!isProfileCompleted && (
+                                        <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                                    )}
+                                </span>
+                            </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Freelancer/Profile"}

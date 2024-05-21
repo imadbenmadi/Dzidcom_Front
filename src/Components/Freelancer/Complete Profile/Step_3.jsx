@@ -193,7 +193,7 @@ function Step_3() {
                             //     return;
                             // }
                             // else {
-                            handleEdite(values, user, set_user, {
+                            handleEdite(values, user, set_user, "/Freelancer/Complete_Profile/Step_4",{
                                 setSubmitting,
                             });
                             // }

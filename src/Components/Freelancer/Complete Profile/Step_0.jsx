@@ -4,13 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect } from "react";
 
+import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./Post_EditUser";
 
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
-
     // useEffect(() => {
     //     console.log(image_state);
     // }, [image_state]);
@@ -21,7 +21,7 @@ function Step_1() {
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
                             <input
-                                id="Step1_image"
+                                id="Step0_image"
                                 type="file"
                                 name="image"
                                 accept="image/*"
@@ -30,14 +30,15 @@ function Step_1() {
                                         event.currentTarget.files[0]
                                     );
                                 }}
-                                className="hidden"
+                                // disabled={isSubmitting}
+                                className="hidden" // Hide the default file input button
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
                             {image_state ? (
                                 <div className=" relative ">
                                     <img
-                                        src={URL.createObjectURL(image_state)}
+                                        src={URL.createObjectURL(image_state)} // Create a URL for the selected image
                                         alt="Selected Image"
                                         className=" w-[150px] h-[150px]  object-cover rounded-full"
                                     />
@@ -46,6 +47,7 @@ function Step_1() {
                                          bg-gray-400 cursor-pointer"
                                         onClick={() => setimage_state(null)}
                                     >
+                                        {/* <IoClose /> */}
                                         Remove
                                     </div>
                                 </div>
@@ -54,7 +56,7 @@ function Step_1() {
                                     className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
                                     onClick={() =>
                                         document
-                                            .getElementById("Step1_image")
+                                            .getElementById("Step0_image")
                                             .click()
                                     }
                                 >
@@ -65,146 +67,134 @@ function Step_1() {
                     </div>
                     <div className=" order-1  md:order-2">
                         <div className=" font-semibold text-gray_v pt-6">
-                            Profil 20% Completed ✅
+                            Profil 10% Completed ✅
                         </div>
-                        <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
+                        {/* <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user.firstName}</div>
                             <div>{user.lastName}</div>
                             <div>{user.email}</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/* Progress*/}
                 <div className=" flex items-center justify-start gap-5">
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        2 - Personal information{" "}
+                        1 - Basic Informations
                     </div>
                     <Formik
                         initialValues={{
                             userId: user.id,
-                            telephone: user.telephone || "",
-                            nationalCardNumber: user.nationalCardNumber || "",
-                            JobTitle: user.JobTitle || "",
+                            firstName: user.firstName || "",
+                            lastName: user.lastName || "",
+                            email: user.email || "",
                         }}
                         validate={(values) => {
                             const errors = {};
 
-                            if (!values.telephone) {
-                                errors.telephone = "telephone is Required";
-                            } else if (
-                                values.telephone.length < 9 ||
-                                values.telephone.length > 14
-                            )
-                                errors.telephone = "invalide phone number";
-                            else if (
-                                !/^(\+\d{1,3}[-\s]?)?\d+$/.test(
-                                    values.telephone
-                                )
-                            )
-                                errors.telephone = "invalide phone number";
-                            if (!values.nationalCardNumber) {
-                                errors.nationalCardNumber =
-                                    "Last Name is Required";
-                            } else if (!/^\d+$/.test(values.nationalCardNumber))
-                                errors.nationalCardNumber =
-                                    "National Card Number must be a number";
-                            else if (values.nationalCardNumber.length < 10)
-                                errors.nationalCardNumber =
-                                    " At least 10 chars";
-                            if (!values.JobTitle) {
-                                errors.JobTitle = "Job Title is Required";
-                            } else if (values.JobTitle.length < 3)
-                                errors.JobTitle = "At least 3 chars";
-                            else if (values.JobTitle.length > 50)
-                                errors.JobTitle = "Max 50 chars";
-                            else if (!isNaN(Number(values.JobTitle))) {
-                                errors.JobTitle =
-                                    "Job title cannot be a number";
-                            }
+                            if (!values.firstName) {
+                                errors.firstName = "first Name is Required";
+                            } else if (values.firstName.length < 3)
+                                errors.firstName = "at least 3 chars";
+                            else if (values.firstName.length > 50)
+                                errors.firstName = "Max 50 chars";
 
+                            if (!values.lastName) {
+                                errors.lastName = "last Name is Required";
+                            } else if (values.lastName.length < 3)
+                                errors.lastName = "at least 3 chars";
+                            else if (values.lastName.length > 50)
+                                errors.lastName = "Max 50 chars";
+                            if (!values.email) {
+                                errors.email = "email is Required";
+                            } else if (
+                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                                    values.email
+                                )
+                            ) {
+                                errors.email = "Invalid email address";
+                            }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            if (values.telephone == user.telephone) {
-                                delete values.telephone;
-                            } else if (
-                                values.nationalCardNumber ==
-                                user.nationalCardNumber
-                            ) {
-                                delete values.nationalCardNumber;
-                            } else if (values.JobTitle == user.JobTitle) {
-                                delete values.JobTitle;
-                            }
-                            if (Object.keys(values).length > 1)
-                                handleEdite(
-                                    values,
-                                    user,
-                                    set_user,
-                                    "/Freelancer/Complete_Profile/Step_2",
-                                    {
-                                        setSubmitting,
-                                    }
-                                );
+                            // if (
+                            //     values.lastName ==
+                            //         user.lastName &&
+                            //     values.firstName == user.firstName &&
+                            //     values.email == user.email
+                            // ) {
+                            //     return;
+                            // }
+                            // else {
+                            handleEdite(
+                                values,
+                                user,
+                                set_user,
+                                "/Freelancer/Complete_Profile/Step_1",
+                                {
+                                    setSubmitting,
+                                }
+                            );
+                            // }
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
                             <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Phone Number{" "}
+                                        First Name{" "}
                                     </div>
                                     <Field
-                                        placeholder="0655665566"
+                                        placeholder="Prénom"
                                         type="text"
-                                        name="telephone"
+                                        name="firstName"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="telephone"
+                                        name="firstName"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        National Card Number{" "}
+                                        Last Name
                                     </div>
                                     <Field
-                                        placeholder="••••••••••••••••••••••••••••••••••••••••"
+                                        placeholder="nom de famille"
                                         type="text"
-                                        name="nationalCardNumber"
+                                        name="lastName"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="nationalCardNumber"
+                                        name="lastName"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Job Title{" "}
+                                        Email
                                     </div>
                                     <div className=" flex items-center">
                                         <Field
-                                            placeholder="Designer, Developer, Writer, etc."
+                                            placeholder="example@gmail.com"
                                             type="text"
-                                            name="JobTitle"
+                                            name="email"
                                             disabled={isSubmitting}
                                             className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
                                         />
                                     </div>
 
                                     <ErrorMessage
-                                        name="JobTitle"
+                                        name="email"
                                         component="div"
                                         style={errorInputMessage}
                                     />

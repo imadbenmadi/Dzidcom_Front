@@ -28,25 +28,25 @@ function Laptop_Nav_Items({
                 </Link>
             </div>
             <div className="flex gap-6 lg:gap-14">
-                {!isProfileCompleted ? (
-                    <div
-                        className={` ${
-                            Active_nav == "Complete_Profile"
-                                ? "text-perpol_v"
-                                : "text-black_text"
-                        } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
+                <div
+                    className={` ${
+                        Active_nav == "Complete_Profile"
+                            ? "text-perpol_v"
+                            : "text-black_text"
+                    } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
+                >
+                    <Link
+                        to={"/Client/Complete_Profile"}
+                        className={"select-none"}
                     >
-                        <Link
-                            to={"/Client/Complete_Profile"}
-                            className={"select-none"}
-                        >
-                            <span className=" relative">
-                                Complete profil
-                                <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>{" "}
-                            </span>
-                        </Link>
-                    </div>
-                ) : null}
+                        <span className=" relative">
+                            Modify profile{" "}
+                            {!isProfileCompleted ? (
+                                <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                            ) : null}
+                        </span>
+                    </Link>
+                </div>
 
                 <div
                     className={` ${
