@@ -164,7 +164,7 @@ function Step_1() {
                                         Phone Number{" "}
                                     </div>
                                     <Field
-                                        placeholder="0655665566"
+                                        placeholder="0655555555"
                                         type="text"
                                         name="telephone"
                                         disabled={isSubmitting}

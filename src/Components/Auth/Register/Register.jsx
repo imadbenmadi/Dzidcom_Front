@@ -181,7 +181,7 @@ function Register() {
                                             email{" "}
                                         </div>
                                         <Field
-                                            placeholder="example.google@gmail.com"
+                                            placeholder="example@gmail.com"
                                             type="email"
                                             name="email"
                                             disabled={isSubmitting}

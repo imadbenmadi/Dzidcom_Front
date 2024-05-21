@@ -81,8 +81,6 @@ function Step_3() {
         setdeltedProject_Loading(false);
     };
 
-
-
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="max-w-[300px] md:max-w-[500px] flex flex-col gap-6  ">
@@ -247,7 +245,10 @@ function Step_3() {
                                         className=" bg-perpol_v gap-1 cursor-pointer text-xl text-white mt-6 
                                         flex items-center justify-center 
                                              font-semibold px-4 py-2 rounded-lg"
-                                        onClick={toogleAddProject}
+                                        onClick={() => {
+                                            window.location.href =
+                                                "/Freelancer/Complete_Profile/Step_4";
+                                        }}
                                     >
                                         Continue
                                     </div>
