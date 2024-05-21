@@ -7,7 +7,7 @@ import Register from "./Components/Auth/Register/Register";
 
 import Freelancer from "./Components/Freelancer/Freelancer";
 import Freelancer_Default from "./Components/Freelancer/Freelancer_Default";
-import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile";
+import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile/Freelancer_Profile";
 import Freelancer_Edite_Profile from "./Components/Freelancer/Freelancer_Edite_Profile";
 import Freelancer_Jobs from "./Components/Freelancer/Freelancer_jobs";
 import Freelancer_Messages from "./Components/Freelancer/Freelancer_Messages";
