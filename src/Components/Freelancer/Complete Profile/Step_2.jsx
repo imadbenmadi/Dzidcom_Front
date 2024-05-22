@@ -36,26 +36,28 @@ function Step_2() {
         "Search Engine Optimization (SEO)",
         "Digital Marketing",
     ];
-    const Skills_from_Server =
-        (user?.Skills && user.Skills.map((skill) => skill.skill)) || [];
-    const [selectedSkills, setSelectedSkills] = useState(
-        Skills_from_Server || []
+    const Skills_from_Server = user?.Skills
+        ? user.Skills.map((skill) => skill.skill)
+        : [];
+    const [selectedSkills, setSelectedSkills] = useState(Skills_from_Server);
+    const [availableSkills, setAvailableSkills] = useState(
+        skillsOptions.filter((skill) => !Skills_from_Server.includes(skill))
     );
-    const [availableSkills, setAvailableSkills] = useState(skillsOptions);
 
     const handleSkillChange = (e) => {
         const selectedValue = e.target.value;
-        setSelectedSkills([...selectedSkills, selectedValue]);
-        setAvailableSkills(
-            availableSkills.filter((skill) => skill !== selectedValue)
-        );
+        if (!selectedSkills.includes(selectedValue) && selectedValue !== "") {
+            setSelectedSkills([...selectedSkills, selectedValue]);
+            setAvailableSkills(
+                availableSkills.filter((skill) => skill !== selectedValue)
+            );
+        }
     };
 
     const handleRemoveSkill = (skill) => {
         setSelectedSkills(selectedSkills.filter((s) => s !== skill));
         setAvailableSkills([...availableSkills, skill]);
     };
-
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -185,6 +187,7 @@ function Step_2() {
                                         <div className="font-semibold text-sm pb-1">
                                             Skills
                                         </div>
+
                                         <select
                                             name="Skills"
                                             onChange={(e) => {
@@ -195,25 +198,25 @@ function Step_2() {
                                                 ]);
                                             }}
                                             disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full "
+                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full"
                                         >
                                             <option
                                                 value=""
-                                                className=" text-sm font-semibold  "
+                                                className="text-sm font-semibold"
                                             >
                                                 Select a skill
                                             </option>
-                                            {availableSkills &&
-                                                availableSkills.map((skill) => (
-                                                    <option
-                                                        key={skill.id}
-                                                        value={skill}
-                                                        className=" text-sm font-semibold  "
-                                                    >
-                                                        {skill}
-                                                    </option>
-                                                ))}
+                                            {availableSkills.map((skill) => (
+                                                <option
+                                                    key={skill.id}
+                                                    value={skill}
+                                                    className="text-sm  font-semibold"
+                                                >
+                                                    {skill}
+                                                </option>
+                                            ))}
                                         </select>
+
                                         <ErrorMessage
                                             name="Skills"
                                             component="div"
@@ -223,40 +226,41 @@ function Step_2() {
                                     <div>
                                         <ul className=" pt-2 flex flex-wrap items-center justify-start gap-4">
                                             {selectedSkills &&
-                                                selectedSkills.map((skill) => (
-                                                    <li
-                                                        key={skill.id}
-                                                        className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
-                                                    >
-                                                        {skill}
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => {
-                                                                handleRemoveSkill(
-                                                                    skill
-                                                                );
-                                                                const updatedSkills =
-                                                                    selectedSkills.filter(
-                                                                        (s) =>
-                                                                            s !==
-                                                                            skill
-                                                                    );
-                                                                setFieldValue(
-                                                                    "Skills",
-                                                                    updatedSkills
-                                                                );
-                                                                // set_user({
-                                                                //     ...user,
-                                                                //     Skills: updatedSkills,
-                                                                // });
-                                                            }}
-                                                            className="ml-1 text-sm font-semibold 
-                                                         text-white rounded-full w-4 h-4 flex items-center justify-center "
+                                                selectedSkills.map(
+                                                    (skill, index) => (
+                                                        <li
+                                                            // key={skill.id}
+                                                            key={index}
+                                                            className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
                                                         >
-                                                            <IoClose className=" md:font-semibold md:text-xl" />
-                                                        </button>
-                                                    </li>
-                                                ))}
+                                                            {skill}
+
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    handleRemoveSkill(
+                                                                        skill
+                                                                    );
+                                                                    const updatedSkills =
+                                                                        selectedSkills.filter(
+                                                                            (
+                                                                                s
+                                                                            ) =>
+                                                                                s !==
+                                                                                skill
+                                                                        );
+                                                                    setFieldValue(
+                                                                        "Skills",
+                                                                        updatedSkills
+                                                                    );
+                                                                }}
+                                                                className="ml-1 text-sm font-semibold text-white rounded-full w-4 h-4 flex items-center justify-center"
+                                                            >
+                                                                <IoClose className="md:font-semibold md:text-xl" />
+                                                            </button>
+                                                        </li>
+                                                    )
+                                                )}
                                         </ul>
                                     </div>
                                 </div>
