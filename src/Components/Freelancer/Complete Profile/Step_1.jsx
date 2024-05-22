@@ -114,7 +114,7 @@ function Step_1() {
                             } else if (!/^\d+$/.test(values.nationalCardNumber))
                                 errors.nationalCardNumber =
                                     "National Card Number must be a number";
-                            else if (values.nationalCardNumber.length < 10)
+                            else if (values.nationalCardNumber.length < 9)
                                 errors.nationalCardNumber =
                                     " At least 10 chars";
                             if (!values.JobTitle) {
