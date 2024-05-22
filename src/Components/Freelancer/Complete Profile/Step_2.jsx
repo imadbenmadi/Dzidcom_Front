@@ -206,15 +206,18 @@ function Step_2() {
                                             >
                                                 Select a skill
                                             </option>
-                                            {availableSkills.map((skill) => (
-                                                <option
-                                                    key={skill.id}
-                                                    value={skill}
-                                                    className="text-sm  font-semibold"
-                                                >
-                                                    {skill}
-                                                </option>
-                                            ))}
+                                            {availableSkills.map(
+                                                (skill, index) => (
+                                                    <option
+                                                        // key={skill.id}
+                                                        key={index}
+                                                        value={skill}
+                                                        className="text-sm  font-semibold"
+                                                    >
+                                                        {skill}
+                                                    </option>
+                                                )
+                                            )}
                                         </select>
 
                                         <ErrorMessage
