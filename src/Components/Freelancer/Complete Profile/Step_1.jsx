@@ -68,7 +68,7 @@ function Step_1() {
                             Profil 20% Completed ✅
                         </div>
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div className=" break-all">{user.firstName}</div>
+                            <div className=" break-all">{user?.firstName}</div>
                             <div className=" break-all">{user.lastName}</div>
                             <div className=" break-all">{user.email}</div>
                         </div>

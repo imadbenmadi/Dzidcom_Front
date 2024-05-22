@@ -20,6 +20,8 @@ function Step_3() {
     }
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
+    if (!user || !set_user) return null;
+
     const [deltedProject_Loading, setdeltedProject_Loading] = useState(null);
     const handleRemoveProject = async (projectId, user, set_user) => {
         setdeltedProject_Loading(true);
@@ -137,7 +139,7 @@ function Step_3() {
                             Profil 60% Completed ✅
                         </div>
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div>{user.firstName}</div>
+                            <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>
                             <div>{user.email}</div>
                         </div>
@@ -159,7 +161,7 @@ function Step_3() {
                     </div>
                     <div>
                         {!addProjectClicked ? (
-                            !user.PortfolioItems ||
+                            !user?.PortfolioItems ||
                             user.PortfolioItems.length == 0 ? (
                                 <div className=" flex flex-col items-center justify-center gap-6">
                                     <div className=" text-center flex items-center justify-center gap-2 text-gray_v ">
@@ -192,54 +194,59 @@ function Step_3() {
                                         <IoMdAddCircleOutline className=" font-bold text-2xl" />
                                         Add an item
                                     </div>
-                                    {user.PortfolioItems.map((project) => (
-                                        <div
-                                            key={project.id}
-                                            className=" flex flex-col gap-2 border border-gray_white rounded-lg p-4"
-                                        >
-                                            <div className=" font-semibold text-lg text-gray_v">
-                                                {project.title}
-                                            </div>
-                                            <div className=" text-sm text-gray_v">
-                                                {project.description}
-                                            </div>
-                                            <div className=" flex items-center gap-2 text-sm text-gray_v">
-                                                <div>{project.startDate}</div>
-                                                <div>{project.endDate}</div>
-                                            </div>
-                                            <div className=" flex items-center gap-2 text-sm text-gray_v">
-                                                <div>
-                                                    {project.livePreviewLink}
+                                    {user?.PortfolioItems &&
+                                        user.PortfolioItems.map((project) => (
+                                            <div
+                                                key={project.id}
+                                                className=" flex flex-col gap-2 border border-gray_white rounded-lg p-4"
+                                            >
+                                                <div className=" font-semibold text-lg text-gray_v">
+                                                    {project.title}
                                                 </div>
-                                                <div>
-                                                    {project.stillWorking
-                                                        ? "Still Working"
-                                                        : ""}
+                                                <div className=" text-sm text-gray_v">
+                                                    {project.description}
                                                 </div>
-                                            </div>
-                                            <div>
-                                                {deltedProject_Loading ? (
-                                                    <span className="small-loader"></span>
-                                                ) : (
-                                                    <div className=" flex items-center gap-2">
-                                                        <div
-                                                            className=" text-white font-semibold
-                                                         bg-red-600 px-4 py-2 rounded-lg cursor-pointer"
-                                                            onClick={(e) =>
-                                                                handleRemoveProject(
-                                                                    project.id,
-                                                                    user,
-                                                                    set_user
-                                                                )
-                                                            }
-                                                        >
-                                                            Remove
-                                                        </div>
+                                                <div className=" flex items-center gap-2 text-sm text-gray_v">
+                                                    <div>
+                                                        {project.startDate}
                                                     </div>
-                                                )}
+                                                    <div>{project.endDate}</div>
+                                                </div>
+                                                <div className=" flex items-center gap-2 text-sm text-gray_v">
+                                                    <div>
+                                                        {
+                                                            project.livePreviewLink
+                                                        }
+                                                    </div>
+                                                    <div>
+                                                        {project.stillWorking
+                                                            ? "Still Working"
+                                                            : ""}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {deltedProject_Loading ? (
+                                                        <span className="small-loader"></span>
+                                                    ) : (
+                                                        <div className=" flex items-center gap-2">
+                                                            <div
+                                                                className=" text-white font-semibold
+                                                         bg-red-600 px-4 py-2 rounded-lg cursor-pointer"
+                                                                onClick={(e) =>
+                                                                    handleRemoveProject(
+                                                                        project.id,
+                                                                        user,
+                                                                        set_user
+                                                                    )
+                                                                }
+                                                            >
+                                                                Remove
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
 
                                     <div
                                         className=" bg-perpol_v gap-1 cursor-pointer text-xl text-white mt-6 

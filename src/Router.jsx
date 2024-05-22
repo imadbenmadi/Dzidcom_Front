@@ -96,7 +96,6 @@ const routes = createBrowserRouter([
                             },
                         ],
                     },
-                    // { index: true, element: <Freelancer_Profile /> },
                     {
                         path: "/Freelancer/Profile",
                         element: <Freelancer_Profile />,

@@ -12,6 +12,7 @@ import handleEdite from "./Post_EditUser";
 function Step_2() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
+    if (!user || !set_user) return null;
     const skillsOptions = [
         "Social Media Marketing",
         "Graphic Design",
@@ -35,12 +36,12 @@ function Step_2() {
         "Search Engine Optimization (SEO)",
         "Digital Marketing",
     ];
-    const Skills_from_Server = user.Skills.map((skill) => skill.skill);
+    const Skills_from_Server =
+        (user?.Skills && user.Skills.map((skill) => skill.skill)) || [];
     const [selectedSkills, setSelectedSkills] = useState(
         Skills_from_Server || []
     );
     const [availableSkills, setAvailableSkills] = useState(skillsOptions);
-    const [customSkill, setCustomSkill] = useState("");
 
     const handleSkillChange = (e) => {
         const selectedValue = e.target.value;
@@ -110,7 +111,7 @@ function Step_2() {
                             Profil 40% Completed ✅
                         </div>
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div>{user.firstName}</div>
+                            <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>
                             <div>{user.email}</div>
                         </div>
@@ -165,6 +166,7 @@ function Step_2() {
                                     user,
                                     set_user,
                                     "/Freelancer/Complete_Profile/Step_3",
+                                    // null,
                                     {
                                         setSubmitting,
                                     }
@@ -201,15 +203,16 @@ function Step_2() {
                                             >
                                                 Select a skill
                                             </option>
-                                            {availableSkills.map((skill) => (
-                                                <option
-                                                    key={skill}
-                                                    value={skill}
-                                                    className=" text-sm font-semibold  "
-                                                >
-                                                    {skill}
-                                                </option>
-                                            ))}
+                                            {availableSkills &&
+                                                availableSkills.map((skill) => (
+                                                    <option
+                                                        key={skill.id}
+                                                        value={skill}
+                                                        className=" text-sm font-semibold  "
+                                                    >
+                                                        {skill}
+                                                    </option>
+                                                ))}
                                         </select>
                                         <ErrorMessage
                                             name="Skills"
@@ -219,40 +222,41 @@ function Step_2() {
                                     </div>
                                     <div>
                                         <ul className=" pt-2 flex flex-wrap items-center justify-start gap-4">
-                                            {selectedSkills.map((skill) => (
-                                                <li
-                                                    key={skill}
-                                                    className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
-                                                >
-                                                    {skill}
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => {
-                                                            handleRemoveSkill(
-                                                                skill
-                                                            );
-                                                            const updatedSkills =
-                                                                selectedSkills.filter(
-                                                                    (s) =>
-                                                                        s !==
-                                                                        skill
-                                                                );
-                                                            setFieldValue(
-                                                                "Skills",
-                                                                updatedSkills
-                                                            );
-                                                            // set_user({
-                                                            //     ...user,
-                                                            //     Skills: updatedSkills,
-                                                            // });
-                                                        }}
-                                                        className="ml-1 text-sm font-semibold 
-                                                         text-white rounded-full w-4 h-4 flex items-center justify-center "
+                                            {selectedSkills &&
+                                                selectedSkills.map((skill) => (
+                                                    <li
+                                                        key={skill.id}
+                                                        className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
                                                     >
-                                                        <IoClose className=" md:font-semibold md:text-xl" />
-                                                    </button>
-                                                </li>
-                                            ))}
+                                                        {skill}
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => {
+                                                                handleRemoveSkill(
+                                                                    skill
+                                                                );
+                                                                const updatedSkills =
+                                                                    selectedSkills.filter(
+                                                                        (s) =>
+                                                                            s !==
+                                                                            skill
+                                                                    );
+                                                                setFieldValue(
+                                                                    "Skills",
+                                                                    updatedSkills
+                                                                );
+                                                                // set_user({
+                                                                //     ...user,
+                                                                //     Skills: updatedSkills,
+                                                                // });
+                                                            }}
+                                                            className="ml-1 text-sm font-semibold 
+                                                         text-white rounded-full w-4 h-4 flex items-center justify-center "
+                                                        >
+                                                            <IoClose className=" md:font-semibold md:text-xl" />
+                                                        </button>
+                                                    </li>
+                                                ))}
                                         </ul>
                                     </div>
                                 </div>

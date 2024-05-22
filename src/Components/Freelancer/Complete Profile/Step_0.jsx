@@ -70,7 +70,7 @@ function Step_1() {
                             Profil 10% Completed ✅
                         </div>
                         {/* <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div>{user.firstName}</div>
+                            <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>
                             <div>{user.email}</div>
                         </div> */}
@@ -90,7 +90,7 @@ function Step_1() {
                     <Formik
                         initialValues={{
                             userId: user.id,
-                            firstName: user.firstName || "",
+                            firstName: user?.firstName || "",
                             lastName: user.lastName || "",
                             email: user.email || "",
                         }}
@@ -125,7 +125,7 @@ function Step_1() {
                             // if (
                             //     values.lastName ==
                             //         user.lastName &&
-                            //     values.firstName == user.firstName &&
+                            //     values.firstName == user?.firstName &&
                             //     values.email == user.email
                             // ) {
                             //     return;
