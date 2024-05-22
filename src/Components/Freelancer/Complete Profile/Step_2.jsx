@@ -1,9 +1,7 @@
 import React from "react";
-import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
 
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
