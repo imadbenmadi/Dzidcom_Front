@@ -44,7 +44,7 @@ function Step_1() {
                             portfolioWebsite: user.portfolioWebsite || "",
                             instgram_Link: user.instgram_Link || "",
                             linkedIn_Link: user.linkedIn_Link || "",
-                            facebook_Link: user.JobTitle || "",
+                            facebook_Link: user.facebook_Link || "",
                         }}
                         validate={(values) => {
                             const errors = {};

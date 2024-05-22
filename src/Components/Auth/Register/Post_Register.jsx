@@ -39,18 +39,23 @@ async function handleRegister(values, { setSubmitting }) {
                 window.location.href = "/Login";
             }
         } else if (response.status == 400) {
+            setSubmitting(false);
             Swal.fire("Error", `${response.data.message} `, "error");
         } else if (response.status == 409) {
+            setSubmitting(false);
             Swal.fire("Error!", `${response.data.message} `, "error");
         } else if (response.status == 500) {
+            setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
         } else if (response.status == 429) {
+            setSubmitting(false);
             Swal.fire(
                 "Error!",
                 `Too many requests ,try again latter\n  `,
                 "error"
             );
         } else {
+            setSubmitting(false);
             Swal.fire(
                 "Error!",
                 `Something Went Wrong ,please trye again latter, ${response.data.message} `,
@@ -58,6 +63,7 @@ async function handleRegister(values, { setSubmitting }) {
             );
         }
     } catch (error) {
+        setSubmitting(false);
         Swal.fire(
             "Error!",
             `Something Went Wrong ,please trye again latter`,
@@ -65,6 +71,6 @@ async function handleRegister(values, { setSubmitting }) {
         );
     }
 
-    setSubmitting(false);
+    // setSubmitting(false);
 }
 export default handleRegister;
