@@ -17,18 +17,23 @@ async function handleEdite(values, user, set_user, Link, { setSubmitting }) {
             set_user(response.data.user);
             if (Link) window.location.href = Link;
         } else if (response.status == 400) {
+            setSubmitting(false);
             Swal.fire("Error", `${response.data.message} `, "error");
         } else if (response.status == 409) {
+            setSubmitting(false);
             Swal.fire("Error!", `${response.data.message} `, "error");
         } else if (response.status == 500) {
+            setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
         } else if (response.status == 429) {
+            setSubmitting(false);
             Swal.fire(
                 "Error!",
                 `Too many requests ,try again latter\n  `,
                 "error"
             );
         } else {
+            setSubmitting(false);
             Swal.fire(
                 "Error!",
                 `Something Went Wrong ,please trye again latter, ${response.data.message} `,
@@ -37,7 +42,7 @@ async function handleEdite(values, user, set_user, Link, { setSubmitting }) {
         }
     } catch (error) {
         console.log("response from register: ", error);
-
+        setSubmitting(false);
         Swal.fire(
             "Error!",
             `Something Went Wrong ,please trye again latter`,
@@ -45,6 +50,6 @@ async function handleEdite(values, user, set_user, Link, { setSubmitting }) {
         );
     }
 
-    setSubmitting(false);
+    // setSubmitting(false);
 }
 export default handleEdite;

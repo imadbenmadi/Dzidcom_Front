@@ -7,7 +7,7 @@ import { useState } from "react";
 import { TbLogout2 } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
 import { useAppContext } from "../../../AppContext";
-
+import { useNavigate } from "react-router-dom";
 function Laptop_Nav_Items({
     isProfileCompleted,
     Active_nav,
@@ -15,6 +15,7 @@ function Laptop_Nav_Items({
     LogoutClicked,
 }) {
     const { user } = useAppContext();
+    const Navigate = useNavigate();
     const [ProfileClicked, setProfileClicked] = useState(false);
     const toogleProfile = () => {
         setProfileClicked(!ProfileClicked);
@@ -133,8 +134,9 @@ function Laptop_Nav_Items({
                                 <div
                                     className=" select-none flex items-center gap-2 "
                                     onClick={() => {
-                                        window.location.href =
-                                            "/Freelancer/Profile";
+                                        // window.location.href =
+                                        //     "/Freelancer/Profile";
+                                        Navigate("/Client/Profile");
                                     }}
                                 >
                                     <FiUser className=" shrink-0 text-xl " />

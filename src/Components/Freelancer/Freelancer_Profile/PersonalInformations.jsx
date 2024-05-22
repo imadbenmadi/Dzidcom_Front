@@ -2,11 +2,13 @@ import React from "react";
 import { useAppContext } from "../../../AppContext";
 import EditeIcon from "../../../../public/Profile/EditeIcon.png";
 import { IoIosAddCircle } from "react-icons/io";
+import { useNavigate } from "react-router";
 
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 function PersonalInformations() {
+    const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
         <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col  gap-16 break-all ">
@@ -17,8 +19,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_1";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_1";
+                        Navigate("/Freelancer/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -43,8 +46,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_2";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_2";
+                        Navigate("/Freelancer/Complete_Profile/Step_2");
                     }}
                 />{" "}
             </div>
@@ -60,8 +64,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_1";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_1";
+                        Navigate("/Freelancer/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -81,8 +86,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_1";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_1";
+                        Navigate("/Freelancer/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -115,8 +121,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_2";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_2";
+                        Navigate("/Freelancer/Complete_Profile/Step_2");
                     }}
                 />{" "}
             </div>
@@ -143,8 +150,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_4";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_4";
+                        Navigate("/Freelancer/Complete_Profile/Step_4");
                     }}
                 />{" "}
             </div>
@@ -169,8 +177,9 @@ function PersonalInformations() {
                             <div
                                 className=" flex items-center justify-center w-full gap-2 text-xl text-center text-perpol_v font-semibold cursor-pointer"
                                 onClick={() => {
-                                    window.location.href =
-                                        "/Freelancer/Complete_Profile/Step_3";
+                                    // window.location.href =
+                                    //     "/Freelancer/Complete_Profile/Step_3";
+                                    Navigate("/Freelancer/Complete_Profile/Step_3");
                                 }}
                             >
                                 <IoIosAddCircle />
@@ -184,8 +193,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_3";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_3";
+                        Navigate("/Freelancer/Complete_Profile/Step_3");
                     }}
                 />{" "}
             </div>
@@ -221,8 +231,9 @@ function PersonalInformations() {
                     alt=""
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
-                        window.location.href =
-                            "/Freelancer/Complete_Profile/Step_4";
+                        // window.location.href =
+                        //     "/Freelancer/Complete_Profile/Step_4";
+                        Navigate("/Freelancer/Complete_Profile/Step_4");
                     }}
                 />{" "}
             </div>

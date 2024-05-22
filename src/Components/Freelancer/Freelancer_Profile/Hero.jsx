@@ -3,8 +3,10 @@ import { useAppContext } from "../../../AppContext";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 import user_default from "../../../../public/Profile/user_default2.png";
+import { useNavigate } from "react-router";
 
 function Hero() {
+    const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
         <div className="flex flex-col md:flex-row  items-center justify-around mt-8">
@@ -40,7 +42,8 @@ function Hero() {
                 className=" text-white font-semibold bg-perpol_v py-2 px-4  text-xl
             rounded-md cursor-pointer "
                 onClick={() => {
-                    window.location.href = "/Freelancer/Jobs";
+                    // window.location.href = "/Freelancer/Jobs";
+                    Navigate("/Freelancer/Jobs");
                 }}
             >
                 See work offers

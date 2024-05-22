@@ -1,8 +1,9 @@
 import React from "react";
 import { useAppContext } from "../../../AppContext";
 import { IoWarningOutline } from "react-icons/io5";
-
+import { useNavigate } from "react-router";
 function Applications() {
+    const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
         <div className="  pt-16">
@@ -18,7 +19,8 @@ function Applications() {
                         className=" text-white font-semibold bg-perpol_v py-2 px-4  cursor-pointer text-center text-xl mt-6
                         rounded-md cursor-pointe"
                         onClick={() => {
-                            window.location.href = "/Freelancer/Jobs";
+                            // window.location.href = "/Freelancer/Jobs";
+                            Navigate("/Freelancer/Jobs");
                         }}
                     >
                         See work offers
