@@ -201,59 +201,88 @@ function Step_3() {
                                         <IoMdAddCircleOutline className=" font-bold text-2xl" />
                                         Add an item
                                     </div>
-                                    {user?.PortfolioItems &&
-                                        user.PortfolioItems.map((project) => (
-                                            <div
-                                                key={project.id}
-                                                className=" flex flex-col gap-2 border border-gray_white rounded-lg p-4"
-                                            >
-                                                <div className=" font-semibold text-lg text-gray_v">
-                                                    {project.title}
-                                                </div>
-                                                <div className=" text-sm text-gray_v">
-                                                    {project.description}
-                                                </div>
-                                                <div className=" flex items-center gap-2 text-sm text-gray_v">
-                                                    <div>
-                                                        {project.startDate}
-                                                    </div>
-                                                    <div>{project.endDate}</div>
-                                                </div>
-                                                <div className=" flex items-center gap-2 text-sm text-gray_v">
-                                                    <div>
-                                                        {
-                                                            project.livePreviewLink
-                                                        }
-                                                    </div>
-                                                    <div>
-                                                        {project.stillWorking
-                                                            ? "Still Working"
-                                                            : ""}
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    {deltedProject_Loading ? (
-                                                        <span className="small-loader"></span>
-                                                    ) : (
-                                                        <div className=" flex items-center gap-2">
-                                                            <div
-                                                                className=" text-white font-semibold
-                                                         bg-red-600 px-4 py-2 rounded-lg cursor-pointer"
-                                                                onClick={(e) =>
-                                                                    handleRemoveProject(
-                                                                        project.id,
-                                                                        user,
-                                                                        set_user
-                                                                    )
-                                                                }
-                                                            >
-                                                                Remove
+                                    <div className=" flex flex-col gap-6">
+                                        {user?.PortfolioItems &&
+                                            user.PortfolioItems.map(
+                                                (project) => (
+                                                    <div
+                                                        key={project.id}
+                                                        className=" max-w-[300px] mx-auto md:mx-0 md:max-w-[500px] break-all flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
+                                                    >
+                                                        <div className=" font-semibold text-lg text-gray_v">
+                                                            {project?.title}
+                                                        </div>
+                                                        <div className=" text-sm text-gray_v">
+                                                            {
+                                                                project?.description
+                                                            }
+                                                        </div>
+                                                        <div className=" flex items-center gap-2 text-sm text-gray_v">
+                                                            <div>
+                                                                {new Date(
+                                                                    project.startDate
+                                                                ).toLocaleDateString()}
+                                                            </div>
+                                                            <div className=" flex gap-2">
+                                                                <div> -</div>
+                                                                {project.endDate &&
+                                                                    new Date(
+                                                                        project.endDate
+                                                                    ).toLocaleDateString()}
+                                                            </div>
+                                                            <div className="  font-semibold">
+                                                                {project.stillWorking
+                                                                    ? "Still Working"
+                                                                    : ""}
                                                             </div>
                                                         </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
+                                                        {project.livePreviewLink && (
+                                                            <div className=" flex gap-2 ">
+                                                                <div className=" font-semibold text-gray_v">
+                                                                    preview link
+                                                                    :
+                                                                </div>
+
+                                                                <a
+                                                                    href={
+                                                                        project?.livePreviewLink
+                                                                    }
+                                                                    className=" underline text-perpol_v"
+                                                                >
+                                                                    {
+                                                                        project?.livePreviewLink
+                                                                    }
+                                                                </a>
+                                                            </div>
+                                                        )}
+
+                                                        <div>
+                                                            {deltedProject_Loading ? (
+                                                                <span className="small-loader"></span>
+                                                            ) : (
+                                                                <div className=" flex items-center gap-2">
+                                                                    <div
+                                                                        className=" text-white font-semibold
+                                                                         bg-red-600 px-4 py-2 rounded-lg cursor-pointer"
+                                                                        onClick={(
+                                                                            e
+                                                                        ) =>
+                                                                            handleRemoveProject(
+                                                                                project.id,
+                                                                                user,
+                                                                                set_user
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        Remove
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            )}
+                                    </div>
 
                                     <div
                                         className=" bg-perpol_v gap-1 cursor-pointer text-xl text-white mt-6 
@@ -337,6 +366,15 @@ function Step_3() {
                                         ) {
                                             errors.endDate =
                                                 "End Date must be after Start Date";
+                                        }
+                                        if (
+                                            values.livePreviewLink &&
+                                            !values.livePreviewLink.match(
+                                                /^(ftp|http|https):\/\/[^ "]+$/
+                                            )
+                                        ) {
+                                            errors.livePreviewLink =
+                                                "Invalid URL";
                                         }
 
                                         return errors;
@@ -486,6 +524,23 @@ function Step_3() {
                                                         );
                                                     }}
                                                     value={values.stillWorking}
+                                                />
+                                            </div>
+                                            <div className=" relative">
+                                                <div className=" font-semibold text-sm pb-1">
+                                                    preview link
+                                                </div>
+                                                <Field
+                                                    placeholder="https://www.example.com"
+                                                    type="text"
+                                                    name="livePreviewLink"
+                                                    disabled={isSubmitting}
+                                                    className="  border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                                />
+                                                <ErrorMessage
+                                                    name="livePreviewLink"
+                                                    component="div"
+                                                    style={errorInputMessage}
                                                 />
                                             </div>
                                             <div className=" flex items-center justify-center gap-12 ">

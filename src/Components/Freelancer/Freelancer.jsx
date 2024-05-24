@@ -96,8 +96,9 @@ function Freelancer() {
             !user.nationalCardNumber ||
             !user.JobTitle ||
             !user.Skills ||
-            user.Skills.length === 0 ||
-            !user.profile_pic_link
+            user.Skills.length === 0
+            // ||
+            // !user.profile_pic_link
         ) {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);
