@@ -37,98 +37,102 @@ import Why_choose_us_image1 from "../../../public/Home/Why choose us/image1.png"
 import Why_choose_us_image2 from "../../../public/Home/Why choose us/image2.png";
 import Why_choose_us_image3 from "../../../public/Home/Why choose us/image3.png";
 import Why_choose_us_image4 from "../../../public/Home/Why choose us/image4.png";
-
+import Why_choose_us_image5 from "../../../public/Home/Why choose us/image5.png";
+import Why_choose_us_image6 from "../../../public/Home/Why choose us/image6.png";
 import NavBar from "../../Components/Home/NavBar/NavBar";
 
 function Home() {
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const fetch_images = () => {
-            return new Promise((resolve, reject) => {
-                const images = [
-                    login_image,
-                    register_image,
-                    user1,
-                    contact_image,
-                    Facebook_image,
-                    Instagram_image,
-                    Linkedin_image,
-                    Twitter_image,
-                    hero_arrow,
-                    hero_icon,
-                    hero_search,
-                    Hero1,
-                    Hero2,
-                    Hero3,
-                    ower_goal_image,
-                    ower_goal_star,
-                    ower_goal_stars,
-                    ower_goal_item,
-                    Services_image1,
-                    Services_image2,
-                    Services_image3,
-                    Why_choose_us_image1,
-                    Why_choose_us_image2,
-                    Why_choose_us_image3,
-                    Why_choose_us_image4,
-                ];
-                let loadedCount = 0;
-                if (images.length === 0) resolve();
-                images.forEach((imageSrc) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        loadedCount++;
-                        if (loadedCount === images.length) {
-                            resolve(); // Resolve promise when all images are loaded
-                        }
-                    };
-                    img.onerror = () => {
-                        resolve(); // Reject if any image fails to load
-                    };
-                    img.src = imageSrc;
-                });
-            });
-        };
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetch_images = () => {
+      return new Promise((resolve, reject) => {
+        const images = [
+          login_image,
+          register_image,
+          user1,
+          contact_image,
+          Facebook_image,
+          Instagram_image,
+          Linkedin_image,
+          Twitter_image,
+          hero_arrow,
+          hero_icon,
+          hero_search,
+          Hero1,
+          Hero2,
+          Hero3,
+          ower_goal_image,
+          ower_goal_star,
+          ower_goal_stars,
+          ower_goal_item,
+          Services_image1,
+          Services_image2,
+          Services_image3,
+          Why_choose_us_image1,
+          Why_choose_us_image2,
+          Why_choose_us_image3,
+          Why_choose_us_image4,
+          Why_choose_us_image5,
+          Why_choose_us_image6,
+        ];
+        let loadedCount = 0;
+        if (images.length === 0) resolve();
+        images.forEach((imageSrc) => {
+          const img = new Image();
+          img.onload = () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              resolve(); // Resolve promise when all images are loaded
+            }
+          };
+          img.onerror = () => {
+            resolve(); // Reject if any image fails to load
+          };
+          img.src = imageSrc;
+        });
+      });
+    };
 
-        Promise.all([fetch_images()])
-            .then(() => {
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    }, []);
-    if (loading) {
-        return (
-            <div className=" w-screen h-screen flex items-center justify-center">
-                <span className="loader"></span>
-            </div>
-        );
-    }
+    Promise.all([fetch_images()])
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  }, []);
+  if (loading) {
     return (
-        <div className="relative h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
-            <NavBar />
-            <div className=" mt-[50px] md:mt-[60px]">
-                <div className="scroll-smooth ">
-                    <div id="Hero" className="  h-screen">
-                        <Hero />
-                        <Why_Choose_us />
-                    </div>
-                    <div id="Goal">
-                        <Ower_Goal />
-                    </div>
-                    <div id="Our_features">
-                        <Services />
-                    </div>
-                    <Clients_said />
-                    <div id="Contact_us">
-                        <Contact />
-                    </div>
-                    <Footer />
-                </div>
-            </div>
-        </div>
+      <div className=" w-screen h-screen flex items-center justify-center">
+        <span className="loader"></span>
+      </div>
     );
+  }
+  return (
+    <div className="relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+      <NavBar />
+      <div className=" mt-[50px] md:mt-[60px] h-fit ">
+        <div className="scroll-smooth  ">
+          <div id="Hero" className=" max-w-[1200px] mx-auto h-fit">
+            <Hero />
+            <Why_Choose_us />
+          </div>
+          <div id="Goal">
+            <Ower_Goal />
+          </div>
+          <div id="Our_features" className=" max-w-[1200px] mx-auto">
+            <Services />
+          </div>
+
+          <Clients_said />
+          <div id="Contact_us">
+            <Contact />
+          </div>
+          <Footer />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Home;
