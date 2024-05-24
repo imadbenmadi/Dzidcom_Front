@@ -9,7 +9,7 @@ import handleEdite from "./Post_EditUser";
 
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
-    const { user, set_user } = useAppContext();
+    const { user, set_user , isProfileCompleted} = useAppContext();
 
     // useEffect(() => {
     //     console.log(image_state);
@@ -64,9 +64,12 @@ function Step_1() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 20% Completed ✅
-                        </div>
+                        {!isProfileCompleted && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 20% Completed ✅
+                            </div>
+                        )}
+
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div className=" break-all">{user?.firstName}</div>
                             <div className=" break-all">{user.lastName}</div>

@@ -30,7 +30,13 @@ function PersonalInformations() {
                     <div className=" text-xl underline font-semibold">
                         Email :
                     </div>
-                    <div>{user?.email ? user.email : "none"}</div>
+                    <div>
+                        {user?.email ? (
+                            user.email
+                        ) : (
+                            <div className="text-sm">none</div>
+                        )}
+                    </div>
                 </div>
                 {/* <img src={EditeIcon} alt="" className=" w-8 cursor-pointer" />{" "} */}
             </div>
@@ -39,7 +45,13 @@ function PersonalInformations() {
                     <div className=" text-xl underline font-semibold">
                         About :
                     </div>
-                    <div>{user?.about ? user.about : "none"}</div>
+                    <div>
+                        {user?.about ? (
+                            user.about
+                        ) : (
+                            <div className="text-sm">none</div>
+                        )}
+                    </div>
                 </div>
                 <img
                     src={EditeIcon}
@@ -57,7 +69,13 @@ function PersonalInformations() {
                     <div className=" text-xl underline font-semibold">
                         Phone Number :
                     </div>
-                    <div>{user?.telephone ? user.telephone : "none"}</div>
+                    <div>
+                        {user?.telephone ? (
+                            user.telephone
+                        ) : (
+                            <div className="text-sm">none</div>
+                        )}
+                    </div>
                 </div>
                 <img
                     src={EditeIcon}
@@ -77,9 +95,11 @@ function PersonalInformations() {
                         {" "}
                         National Card Number{"    "}
                     </div>
-                    {user?.nationalCardNumber
-                        ? user.nationalCardNumber
-                        : "none"}{" "}
+                    {user?.nationalCardNumber ? (
+                        user.nationalCardNumber
+                    ) : (
+                        <div className="text-sm">none</div>
+                    )}{" "}
                 </div>
                 <img
                     src={EditeIcon}
@@ -98,7 +118,7 @@ function PersonalInformations() {
                         Skills :
                     </div>
                     <div className="flex flex-wrap  gap-6">
-                        {user?.Skills ? (
+                        {user?.Skills && user.Skills.lenght > 0 ? (
                             user.Skills.map((skill) => (
                                 <div key={skill.id}>
                                     <div
@@ -141,7 +161,7 @@ function PersonalInformations() {
                                 {user.portfolioWebsite}
                             </a>
                         ) : (
-                            "none"
+                            <div className="text-sm">none</div>
                         )}
                     </div>
                 </div>
@@ -179,7 +199,9 @@ function PersonalInformations() {
                                 onClick={() => {
                                     // window.location.href =
                                     //     "/Freelancer/Complete_Profile/Step_3";
-                                    Navigate("/Freelancer/Complete_Profile/Step_3");
+                                    Navigate(
+                                        "/Freelancer/Complete_Profile/Step_3"
+                                    );
                                 }}
                             >
                                 <IoIosAddCircle />
@@ -199,44 +221,48 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
-            <div className=" flex justify-between">
-                <div className=" flex gap-6">
-                    {user?.facebook_Link && (
-                        <FaFacebook
-                            className=" text-blue-500 text-5xl cursor-pointer  "
-                            onClick={() => {
-                                window.location.href = user.facebook_Link;
-                            }}
-                        />
-                    )}
-                    {user?.instgram_Link && (
-                        <FaInstagram
-                            className=" text-red-500 text-5xl cursor-pointer  "
-                            onClick={() => {
-                                window.location.href = user.instagram_Link;
-                            }}
-                        />
-                    )}
-                    {user?.linkedIn_Link && (
-                        <FaLinkedin
-                            className=" text-blue-500 text-5xl cursor-pointer  "
-                            onClick={() => {
-                                window.location.href = user.linkedin_Link;
-                            }}
-                        />
-                    )}
+            {user?.facebook_Link ||
+            user?.instgram_Link ||
+            user?.linkedIn_Link ? (
+                <div className=" flex justify-between">
+                    <div className=" flex gap-6">
+                        {user?.facebook_Link && (
+                            <FaFacebook
+                                className=" text-blue-500 text-5xl cursor-pointer  "
+                                onClick={() => {
+                                    window.location.href = user.facebook_Link;
+                                }}
+                            />
+                        )}
+                        {user?.instgram_Link && (
+                            <FaInstagram
+                                className=" text-red-500 text-5xl cursor-pointer  "
+                                onClick={() => {
+                                    window.location.href = user.instagram_Link;
+                                }}
+                            />
+                        )}
+                        {user?.linkedIn_Link && (
+                            <FaLinkedin
+                                className=" text-blue-500 text-5xl cursor-pointer  "
+                                onClick={() => {
+                                    window.location.href = user.linkedin_Link;
+                                }}
+                            />
+                        )}
+                    </div>
+                    <img
+                        src={EditeIcon}
+                        alt=""
+                        className=" w-8 h-8 cursor-pointer"
+                        onClick={() => {
+                            // window.location.href =
+                            //     "/Freelancer/Complete_Profile/Step_4";
+                            Navigate("/Freelancer/Complete_Profile/Step_4");
+                        }}
+                    />{" "}
                 </div>
-                <img
-                    src={EditeIcon}
-                    alt=""
-                    className=" w-8 h-8 cursor-pointer"
-                    onClick={() => {
-                        // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_4";
-                        Navigate("/Freelancer/Complete_Profile/Step_4");
-                    }}
-                />{" "}
-            </div>
+            ) : null}
 
             <div className=" w-full bg-gray_white h-[1px]"> </div>
             <div>
@@ -255,7 +281,7 @@ function PersonalInformations() {
                                     {user.Rate % 1 !== 0 && <FaStarHalf />}
                                 </>
                             ) : (
-                                <p className=" text-lg">No ratings yet</p>
+                                <div className=" text-sm">No ratings yet</div>
                             )}
                         </div>
                     </div>

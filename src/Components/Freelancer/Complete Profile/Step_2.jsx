@@ -9,7 +9,7 @@ import handleEdite from "./Post_EditUser";
 
 function Step_2() {
     const [image_state, setimage_state] = useState(null);
-    const { user, set_user } = useAppContext();
+    const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
     const skillsOptions = [
         "Social Media Marketing",
@@ -107,9 +107,11 @@ function Step_2() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 40% Completed ✅
-                        </div>
+                        {!isProfileCompleted && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 40% Completed ✅
+                            </div>
+                        )}
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>

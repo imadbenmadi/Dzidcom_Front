@@ -133,9 +133,13 @@ function Step_3() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 60% Completed ✅
-                        </div>
+                        {(!user?.PortfolioItems ||
+                            !user.PortfolioItems.length > 0) && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 60% Completed ✅
+                            </div>
+                        )}
+
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>
