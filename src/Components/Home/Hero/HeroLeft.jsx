@@ -16,14 +16,12 @@ function HeroLeft() {
         </div>
         <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
           <img
-            loading="lazy"
             src={Arrow}
             className="grow shrink-0 max-w-full aspect-[1.61] w-[179px] max-md:mt-3.5"
           />
         </div>
         <div className="flex flex-col ml-2  max-md:ml-0 max-md:w-full">
           <img
-            loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e082bccd5f644e6d54ddbaf5433c00520a351d7e5f2451c46486b49559a3ee0?"
             className="grow shrink-0 max-w-full aspect-[1.64] w-[186px] max-md:mt-3"
           />

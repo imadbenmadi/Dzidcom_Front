@@ -37,7 +37,8 @@ import Why_choose_us_image1 from "../../../public/Home/Why choose us/image1.png"
 import Why_choose_us_image2 from "../../../public/Home/Why choose us/image2.png";
 import Why_choose_us_image3 from "../../../public/Home/Why choose us/image3.png";
 import Why_choose_us_image4 from "../../../public/Home/Why choose us/image4.png";
-
+import Why_choose_us_image5 from "../../../public/Home/Why choose us/image5.png";
+import Why_choose_us_image6 from "../../../public/Home/Why choose us/image6.png";
 import NavBar from "../../Components/Home/NavBar/NavBar";
 
 function Home() {
@@ -71,6 +72,8 @@ function Home() {
           Why_choose_us_image2,
           Why_choose_us_image3,
           Why_choose_us_image4,
+          Why_choose_us_image5,
+          Why_choose_us_image6,
         ];
         let loadedCount = 0;
         if (images.length === 0) resolve();
@@ -108,18 +111,19 @@ function Home() {
   return (
     <div className="relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
       <NavBar />
-      <div className=" mt-[50px] md:mt-[60px] h-fit">
+      <div className=" mt-[50px] md:mt-[60px] h-fit ">
         <div className="scroll-smooth  ">
-          <div id="Hero" className="  h-fit">
+          <div id="Hero" className=" max-w-[1200px] mx-auto h-fit">
             <Hero />
             <Why_Choose_us />
           </div>
           <div id="Goal">
             <Ower_Goal />
           </div>
-          <div id="Our_features">
+          <div id="Our_features" className=" max-w-[1200px] mx-auto">
             <Services />
           </div>
+
           <Clients_said />
           <div id="Contact_us">
             <Contact />
