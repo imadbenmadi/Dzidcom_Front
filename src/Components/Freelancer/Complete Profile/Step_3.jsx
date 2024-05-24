@@ -17,7 +17,7 @@ function Step_3() {
         setAddProjectClicked(!addProjectClicked);
     }
     const [image_state, setimage_state] = useState(null);
-    const { user, set_user } = useAppContext();
+    const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
 
     const [deltedProject_Loading, setdeltedProject_Loading] = useState(null);
@@ -133,7 +133,8 @@ function Step_3() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        {(!user?.PortfolioItems ||
+                        {(!isProfileCompleted ||
+                            !user?.PortfolioItems ||
                             !user.PortfolioItems.length > 0) && (
                             <div className=" font-semibold text-gray_v pt-6">
                                 Profil 60% Completed ✅
