@@ -21,6 +21,29 @@ function Step_3() {
     if (!user || !set_user) return null;
 
     const [deltedProject_Loading, setdeltedProject_Loading] = useState(null);
+    // const handleRemoveProject = async (projectId, user, set_user) => {
+    //     setdeltedProject_Loading(true);
+    //     // Filter out the project to be removed
+    //     let updatedPortfolioItems = user.PortfolioItems.filter(
+    //         (item) => item.id !== projectId
+    //     );
+    //     if (updatedPortfolioItems.length == 0) {
+    //         updatedPortfolioItems = [];
+    //     }
+    //     // Create an updated user object with the new portfolio items
+    //     const updatedUser = {
+    //         ...user,
+    //         PortfolioItems: updatedPortfolioItems,
+    //     };
+    //     console.log("data to be sent in delete : ", updatedUser);
+    //     try {
+    //         let response = await Axios.put(
+    //             `http://localhost:3000/Freelancers/${user.id}/Profile`,
+    //             updatedUser.PortfolioItems,
+    //             {
+    //                 withCredentials: true,
+    //             }
+    //         );
     const handleRemoveProject = async (projectId, user, set_user) => {
         setdeltedProject_Loading(true);
 
@@ -29,45 +52,26 @@ function Step_3() {
             (item) => item.id !== projectId
         );
 
-        // Create an updated user object with the new portfolio items
-        const updatedUser = {
-            ...user,
-            PortfolioItems: updatedPortfolioItems,
-        };
-
-        console.log("data to be sent: ", updatedUser);
-
         try {
             let response = await Axios.put(
                 `http://localhost:3000/Freelancers/${user.id}/Profile`,
-                updatedUser.PortfolioItems,
+                { PortfolioItems: updatedPortfolioItems }, // Send the updated list to the backend
                 {
                     withCredentials: true,
                 }
             );
-
             console.log("response from edit: ", response);
 
             if (response.status === 200) {
-                set_user(response.data.user);
-            } else if (response.status === 400) {
-                Swal.fire("Error", `${response.data.message}`, "error");
-            } else if (response.status === 409) {
-                Swal.fire("Error!", `${response.data.message}`, "error");
-            } else if (response.status === 500) {
-                Swal.fire("Error!", `Internal Server Error`, "error");
-            } else if (response.status === 429) {
-                Swal.fire(
-                    "Error!",
-                    `Too many requests, try again later`,
-                    "error"
-                );
+                const updatedUser = {
+                    ...user,
+                    Skills: response.data.Skills,
+                    PortfolioItems: response.data.PortfolioItems,
+                };
+                console.log("updated user: ", updatedUser);
+                set_user(updatedUser);
             } else {
-                Swal.fire(
-                    "Error!",
-                    `Something went wrong, please try again later. ${response.data.message}`,
-                    "error"
-                );
+                Swal.fire("Error", `${response.data.message}`, "error");
             }
         } catch (error) {
             console.log("response from register: ", error);
@@ -175,7 +179,7 @@ function Step_3() {
                                     </div>
                                     <div
                                         className=" text-center flex items-center justify-center gap-2 text-white font-semibold 
-                                cursor-pointer bg-perpol_v px-4 py-2 rounded-lg"
+                                        cursor-pointer bg-perpol_v px-4 py-2 rounded-lg"
                                         onClick={toogleAddProject}
                                     >
                                         {/* <IoMdAddCircleOutline className=" font-bold text-2xl"/> */}
@@ -279,41 +283,60 @@ function Step_3() {
                                     validate={(values) => {
                                         const errors = {};
                                         if (!values.title) {
-                                            errors.title = "title is Required";
-                                        } else if (values.title.length < 5)
-                                            errors.title = "at least 5 chars";
-                                        else if (values.title.length > 200)
-                                            errors.title = "max 200 chars";
+                                            errors.title = "Title is required";
+                                        } else if (values.title.length < 5) {
+                                            errors.title =
+                                                "Title must be at least 5 characters";
+                                        } else if (values.title.length > 200) {
+                                            errors.title =
+                                                "Title cannot exceed 200 characters";
+                                        }
 
                                         if (!values.description) {
                                             errors.description =
-                                                "description is Required";
+                                                "Description is required";
                                         } else if (
                                             values.description.length < 10
-                                        )
+                                        ) {
                                             errors.description =
-                                                "at least 10 chars";
-                                        else if (
+                                                "Description must be at least 10 characters";
+                                        } else if (
                                             values.description.length > 1500
-                                        )
+                                        ) {
                                             errors.description =
-                                                "max 1500 chars";
+                                                "Description cannot exceed 1500 characters";
+                                        }
+
                                         if (!values.startDate) {
                                             errors.startDate =
-                                                "startDate is Required";
+                                                "Start Date is required";
+                                        } else if (
+                                            new Date(values.startDate) >
+                                            new Date()
+                                        ) {
+                                            errors.startDate =
+                                                "Start Date cannot be in the future";
                                         }
+
                                         if (
                                             !values.endDate &&
-                                            stillWorking == false
+                                            !values.stillWorking
                                         ) {
                                             errors.endDate =
-                                                "endDate is Required";
+                                                "End Date is required";
                                         } else if (
-                                            !stillWorking &&
-                                            values.startDate > values.endDate
+                                            new Date(values.endDate) >
+                                            new Date()
                                         ) {
                                             errors.endDate =
-                                                "invalid endDate startDate";
+                                                "End Date cannot be in the future";
+                                        } else if (
+                                            !values.stillWorking &&
+                                            new Date(values.startDate) >
+                                                new Date(values.endDate)
+                                        ) {
+                                            errors.endDate =
+                                                "End Date must be after Start Date";
                                         }
 
                                         return errors;
@@ -356,6 +379,8 @@ function Step_3() {
                                                 setSubmitting,
                                             }
                                         );
+                                        window.location.reload();
+                                        // setAddProjectClicked(false);
                                     }}
                                 >
                                     {({
@@ -401,6 +426,9 @@ function Step_3() {
                                                 />
                                             </div>
                                             <div className=" relative">
+                                                <div className=" font-semibold text-sm pb-1">
+                                                    Start Date
+                                                </div>
                                                 <input
                                                     type="date"
                                                     onChange={(e) =>
@@ -419,6 +447,9 @@ function Step_3() {
                                                 />
                                             </div>
                                             <div className=" relative">
+                                                <div className=" font-semibold text-sm pb-1">
+                                                    End Date
+                                                </div>
                                                 <input
                                                     type="date"
                                                     onChange={(e) =>

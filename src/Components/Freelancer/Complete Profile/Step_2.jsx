@@ -142,8 +142,8 @@ function Step_2() {
                                 errors.about = "about is Required";
                             } else if (values.about.length < 10)
                                 errors.about = "at least 10 chars";
-                            else if (values.about.length > 500)
-                                errors.about = "max 500 chars";
+                            else if (values.about.length > 3000)
+                                errors.about = "max 3000 chars";
 
                             if (values.Skills.length === 0) {
                                 errors.Skills = " At least add one skill ";
