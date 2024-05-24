@@ -8,7 +8,7 @@ function Applications() {
     return (
         <div className="  pt-16">
             <div className=" text-2xl text-gray_v font-semibold text-center">
-                My Applications
+                Applications
             </div>
             {!user?.Applications || user?.Applications?.lengh === 0 ? (
                 <div className=" w-fit mx-auto ">

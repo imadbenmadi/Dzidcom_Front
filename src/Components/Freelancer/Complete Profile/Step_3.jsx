@@ -207,7 +207,7 @@ function Step_3() {
                                                 (project) => (
                                                     <div
                                                         key={project.id}
-                                                        className=" max-w-[300px] mx-auto md:mx-0 md:max-w-[500px] break-all flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
+                                                        className=" max-w-[300px] mx-auto md:mx-0 md:max-w-[500px] break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
                                                     >
                                                         <div className=" font-semibold text-lg text-gray_v">
                                                             {project?.title}

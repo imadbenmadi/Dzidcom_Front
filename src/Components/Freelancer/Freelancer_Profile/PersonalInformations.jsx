@@ -147,6 +147,8 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
+            <div className=" w-full bg-gray_white h-[1px]"> </div>
+
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex items-center justify-center gap-6">
                     <div className=" text-xl underline font-semibold">
@@ -181,33 +183,68 @@ function PersonalInformations() {
                     <div className=" shrink-0 text-xl underline font-semibold text-gray_v">
                         Portfolio :
                     </div>
-                    <div className="flex flex-wrap  gap-6">
-                        {user.PortfolioItems.lenght ? (
-                            user.PortfolioItems.map((item) => (
-                                <div key={item.id}>
-                                    <div
-                                        className=" bg-perpol_v text-xl w-fit py-1
-                                        px-2 text-white rounded-lg "
-                                    >
-                                        {item.title}
+                    <div className="flex flex-wrap gap-6">
+                        {user?.PortfolioItems &&
+                            user.PortfolioItems.length > 0 &&
+                            user.PortfolioItems.map((project) => (
+                                <div
+                                    key={project.id}
+                                    className="max-w-[300px] mx-auto md:mx-0 md:min-w-full break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
+                                >
+                                    <div className="font-semibold text-lg text-gray_v">
+                                        {project.title}
                                     </div>
+                                    <div className="text-sm text-gray_v">
+                                        {project.description}
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-gray_v">
+                                        <div>
+                                            {new Date(
+                                                project.startDate
+                                            ).toLocaleDateString()}
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <div> -</div>
+                                            {project.endDate && (
+                                                <div>
+                                                    {new Date(
+                                                        project.endDate
+                                                    ).toLocaleDateString()}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="font-semibold">
+                                            {project.stillWorking
+                                                ? "Still Working"
+                                                : ""}
+                                        </div>
+                                    </div>
+                                    {project.livePreviewLink && (
+                                        <div className="flex gap-2">
+                                            <div className="font-semibold text-gray_v">
+                                                Preview link:
+                                            </div>
+                                            <a
+                                                href={project.livePreviewLink}
+                                                className="underline text-perpol_v"
+                                            >
+                                                {project.livePreviewLink}
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
-                            ))
-                        ) : (
-                            <div
-                                className=" flex items-center justify-center w-full gap-2 text-xl text-center text-perpol_v font-semibold cursor-pointer"
-                                onClick={() => {
-                                    // window.location.href =
-                                    //     "/Freelancer/Complete_Profile/Step_3";
-                                    Navigate(
-                                        "/Freelancer/Complete_Profile/Step_3"
-                                    );
-                                }}
-                            >
-                                <IoIosAddCircle />
-                                add item
-                            </div>
-                        )}
+                            ))}
+                        <div
+                            className="flex items-center justify-center w-full gap-2 text-xl text-center text-perpol_v font-semibold cursor-pointer"
+                            onClick={() => {
+                                // window.location.href =
+                                //     "/Freelancer/Complete_Profile/Step_3";
+                                Navigate("/Freelancer/Complete_Profile/Step_3");
+                            }}
+                        >
+                            <IoIosAddCircle />
+                            Add item
+                        </div>
                     </div>
                 </div>
                 <img
