@@ -17,13 +17,13 @@ function HeroLeft() {
         <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
           <img
             src={Arrow}
-            className="grow shrink-0 max-w-full aspect-[1.61] w-[179px] max-md:mt-3.5"
+            className="grow  max-w-full aspect-[1.61] w-[179px] max-md:mt-3.5"
           />
         </div>
         <div className="flex flex-col ml-2  max-md:ml-0 max-md:w-full">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e082bccd5f644e6d54ddbaf5433c00520a351d7e5f2451c46486b49559a3ee0?"
-            className="grow shrink-0 max-w-full aspect-[1.64] w-[186px] max-md:mt-3"
+            className="grow  max-w-full aspect-[1.64] w-[186px] max-md:mt-3"
           />
         </div>
       </div>
@@ -51,7 +51,7 @@ function HeroLeft() {
       </div>
       <div className="flex relative gap-5 justify-between  lg:pl-6 max-md:pl-2 mt-8 w-full text-base whitespace-nowrap border border-solid border-zinc-300 rounded-[48px] max-md:flex-wrap  max-md:max-w-full">
         <div className="flex  max-md:w-[70%]  my-auto text-zinc-700">
-          <img src={search} className="shrink-0 w-6 py-2  aspect-square" />
+          <img src={search} className=" w-6 py-2  " />
           <input type="text" placeholder="Search" className="py-2 w-full " />
         </div>
 

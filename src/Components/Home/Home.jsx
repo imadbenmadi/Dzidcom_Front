@@ -101,7 +101,7 @@ function Home() {
         setLoading(false);
       });
   }, []);
-  if (!loading) {
+  if (loading) {
     return (
       <div className=" w-screen h-screen flex items-center justify-center">
         <span className="loader"></span>
@@ -109,7 +109,7 @@ function Home() {
     );
   }
   return (
-    <div className="relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+    <div className=" scroll-smooth duration-500 scroll-d relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
       <NavBar />
       <div className=" mt-[50px] md:mt-[60px] h-fit ">
         <div className="scroll-smooth  ">

@@ -80,7 +80,7 @@ function Contact() {
   };
 
   return (
-    <div className=" flex  justify-center items-center mt-10 lg:min-h-fit min-h-screen gap-6 lg:gap-24">
+    <div className=" flex  justify-center  lg-h-screen minContact_us  items-center my-20 lg:min-h-fit  gap-6 lg:gap-24">
       <div className=" w-[300px] md:w-[400px] text-black_text">
         <div className=" text-base">Connect</div>
         <div className=" text-3xl py-2">Contact Support</div>
