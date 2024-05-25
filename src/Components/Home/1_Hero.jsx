@@ -29,11 +29,17 @@ function Hero() {
       initial="hidden"
       animate="visible"
     >
-      <motion.div variants={itemVariantsLeft}>
-        <HeroLeft /> {/* Your HeroLeft component */}
+      <motion.div
+        variants={itemVariantsLeft}
+        className="md:w-[50%] lg:w-[55%] h-fit"
+      >
+        <HeroLeft />
       </motion.div>
-      <motion.div variants={itemVariantsRight}>
-        <HeroRight /> {/* Your HeroRight component */}
+      <motion.div
+        className="md:w-[45%]   lg:w-[40%] p-5 h-fit"
+        variants={itemVariantsRight}
+      >
+        <HeroRight />
       </motion.div>
     </motion.div>
   );

@@ -93,9 +93,9 @@ function Contact() {
       variants={itemVariants}
       initial="hidden"
       animate={isInView ? "visible" : ""}
-      className=" flex  justify-center  lg-h-screen minContact_us  items-center my-20 lg:min-h-fit  gap-6 lg:gap-24"
+      className=" flex  justify-center p-2  lg-h-screen minContact_us  items-center my-20 lg:min-h-fit  gap-6 lg:gap-24"
     >
-      <div className=" w-[400px] md:w-[400px] text-black_text">
+      <div className=" w-[300px] md:w-[400px]  text-black_text">
         <div className=" text-base">Connect</div>
         <div className=" text-3xl py-2">Contact Support</div>
         <div className=" text-sm">
