@@ -9,11 +9,25 @@ import "swiper/css/effect-fade";
 import ClientsSaidCard from "./ClientsSaid/ClientsSaidCard";
 import user from "../../../public/Home/Client said/user.png";
 import CustomPagination from "./ClientsSaid/CustomPagination";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "./ClientsSaid/clientSaidStyle.css";
+import { useInView, motion } from "framer-motion";
 function ClientsSaid() {
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        staggerChildren: 1, // delay between child animations
+      },
+    },
+  };
 
   const dataChoose = [
     {
@@ -56,16 +70,23 @@ function ClientsSaid() {
   };
   return (
     <div className="lg:px-16 max-md:px-5 px-5 mt-10 max-w-[1200px] mx-auto">
-      <div className="text-5xl leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
-        The services we provide
-      </div>
-      <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
-        Discover services to help your company thrive with our freelance
-        platform.
-      </div>
+      <motion.div
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : ""}
+      >
+        <div className="text-5xl leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
+          The services we provide
+        </div>
+        <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
+          Discover services to help your company thrive with our freelance
+          platform.
+        </div>
+      </motion.div>
       <Swiper
         ref={swiperRef}
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         className="mt-10 h-[400px] w-[100%]"
         effect="coverflow"
         grabCursor={true}
@@ -87,6 +108,12 @@ function ClientsSaid() {
           1024: { slidesPerView: 3, spaceBetween: 50 },
         }}
         onSlideChange={(swiper) => setActiveSlide(swiper.activeIndex)}
+        loop={true}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+
         // navigation={true}
         // navigation={true}
       >

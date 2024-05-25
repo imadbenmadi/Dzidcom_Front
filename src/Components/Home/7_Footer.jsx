@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useRef } from "react";
 import Logo from "../../../public/Logo.png";
 import { Link } from "react-router-dom";
 import feacbook from "../../../public/Home/Footer/Facebook.png";
 import Instagram from "../../../public/Home/Footer/Instagram.png";
 import Linkedin from "../../../public/Home/Footer/Linkedin.png";
 import Twitter from "../../../public/Home/Footer/Twitter.png";
+import { motion, useInView } from "framer-motion";
+
 function Footer() {
   var currentYear = new Date().getFullYear();
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -50, scale: 0.5 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1 } },
+  };
   return (
-    <div className=" bg-zinc-100 py-4 mt-10 ">
+    <motion.div
+      ref={ref}
+      variants={itemVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : ""}
+      className=" bg-zinc-100 py-4 mt-10 "
+    >
       <div className="max-w-[1200px] mx-auto text-center">
         <div>
           <div className="flex  content-center max-md:gap-4 max-md:flex-col justify-center items-center max-w-full text-sm font-bold leading-5 text-zinc-800  max-md:flex-wrap">
@@ -45,7 +61,7 @@ function Footer() {
           © {currentYear}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
