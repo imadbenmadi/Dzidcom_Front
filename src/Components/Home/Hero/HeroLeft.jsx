@@ -50,7 +50,7 @@ function HeroLeft() {
         Find the perfect freelancers or get hired for your next project.
       </div>
       <div className="flex relative gap-5 justify-between  lg:pl-6 max-md:pl-2 mt-8 w-full text-base whitespace-nowrap border border-solid border-zinc-300 rounded-[48px] max-md:flex-wrap  max-md:max-w-full">
-        <div className="flex  max-md:w-[70%]  my-auto text-zinc-700">
+        <div className="flex w-full  max-md:w-[70%]  my-auto text-zinc-700">
           <img src={search} className=" w-6 py-2  " />
           <input type="text" placeholder="Search" className="py-2 w-full " />
         </div>

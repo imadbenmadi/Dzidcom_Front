@@ -5,7 +5,7 @@ import iconHome from "../../../../public/Home/Hero/icon.png";
 
 function HeroRight() {
   return (
-    <div className="w-full mt-10">
+    <div className="w-full md:mt-10 flex flex-col ">
       <div className="flex gap-2 float-right items-center relative w-[90%] mb-4">
         <img
           src={iconHome}
@@ -18,10 +18,10 @@ function HeroRight() {
           className=" md:h-36   max-md:w-56 mr-0 max-md:h-20 z-20 h-46 w-full "
         />
       </div>
-      <div className="flex justify-between  items-center gap-5 w-full  mt-5">
+      <div className="flex   items-center gap-5 w-full  mt-5">
         <img
           src={Hero2}
-          className="lg:h-40   lg:w-[50%] md:w-[50%] max-md:h-28  max-md:w-28 "
+          className="lg:h-36   lg:w-[50%] md:w-[50%] max-md:h-20  max-md:w-28 "
           alt=""
         />
         <img
