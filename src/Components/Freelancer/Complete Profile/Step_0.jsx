@@ -74,8 +74,8 @@ function Step_1() {
 
                         {/* <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
-                            <div>{user.lastName}</div>
-                            <div>{user.email}</div>
+                            <div>{user?.lastName}</div>
+                            <div>{user?.email}</div>
                         </div> */}
                     </div>
                 </div>

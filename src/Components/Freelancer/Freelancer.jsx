@@ -25,7 +25,8 @@ function Freelancer() {
         set_show_Alert_completeProfile,
     } = useAppContext();
     if (!isAuth || !userId) {
-        window.location.href = "/Login";
+        // window.location.href = "/Login";
+        Navigate("/Login");
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -45,12 +46,14 @@ function Freelancer() {
                     set_user(response.data.User);
                 } else {
                     set_Auth(false);
-                    window.location.href = "/Login";
+                    // window.location.href = "/Login";
+                    Navigate("/Login");
                 }
             } catch (error) {
                 console.log("error from get user Profile :", error);
                 set_Auth(false);
-                window.location.href = "/Login";
+                // window.location.href = "/Login";
+                Navigate("/Login");
             }
         };
         const fetch_images = () => {

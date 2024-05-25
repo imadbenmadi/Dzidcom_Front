@@ -146,9 +146,15 @@ function Step_3() {
                         )}
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div>{user?.firstName}</div>
-                            <div>{user.lastName}</div>
-                            <div>{user.email}</div>
+                            <div className=" break-all">
+                                {user?.firstName && user.firstName}
+                            </div>
+                            <div className=" break-all">
+                                {user?.lastName && user.lastName}
+                            </div>
+                            <div className=" break-all">
+                                {user?.email && user.email}{" "}
+                            </div>
                         </div>
                     </div>
                 </div>

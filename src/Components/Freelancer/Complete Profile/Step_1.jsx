@@ -9,7 +9,7 @@ import handleEdite from "./Post_EditUser";
 
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
-    const { user, set_user , isProfileCompleted} = useAppContext();
+    const { user, set_user, isProfileCompleted } = useAppContext();
 
     // useEffect(() => {
     //     console.log(image_state);
@@ -71,9 +71,15 @@ function Step_1() {
                         )}
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div className=" break-all">{user?.firstName}</div>
-                            <div className=" break-all">{user.lastName}</div>
-                            <div className=" break-all">{user.email}</div>
+                            <div className=" break-all">
+                                {user?.firstName && user.firstName}
+                            </div>
+                            <div className=" break-all">
+                                {user?.lastName && user.lastName}
+                            </div>
+                            <div className=" break-all">
+                                {user?.email && user.email}{" "}
+                            </div>
                         </div>
                     </div>
                 </div>

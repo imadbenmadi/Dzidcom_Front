@@ -27,7 +27,7 @@ function Hero() {
                 <div className=" flex items-center justify-center flex-col mb-6">
                     <div className=" text-xl font-semibold mb-4 text-gray_v">
                         <span>{user?.firstName}</span>{" "}
-                        <span>{user.lastName}</span>
+                        <span>{user?.lastName}</span>
                     </div>
                     <div className=" text-yellow-400 flex text-xl gap-1">
                         <FaStar />
