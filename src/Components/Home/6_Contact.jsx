@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import Contact_image from "../../../public/Home/Contact/contact_image.png";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useInView, motion } from "framer-motion";
 function Contact() {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -78,10 +79,23 @@ function Contact() {
         });
       });
   };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -50, scale: 0.8 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1 } },
+  };
 
   return (
-    <div className=" flex  justify-center  lg-h-screen minContact_us  items-center my-20 lg:min-h-fit  gap-6 lg:gap-24">
-      <div className=" w-[300px] md:w-[400px] text-black_text">
+    <motion.div
+      ref={ref}
+      variants={itemVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : ""}
+      className=" flex  justify-center  lg-h-screen minContact_us  items-center my-20 lg:min-h-fit  gap-6 lg:gap-24"
+    >
+      <div className=" w-[400px] md:w-[400px] text-black_text">
         <div className=" text-base">Connect</div>
         <div className=" text-3xl py-2">Contact Support</div>
         <div className=" text-sm">
@@ -148,7 +162,7 @@ function Contact() {
       <div className=" hidden md:block">
         <img src={Contact_image} alt="" className=" w-[300px] h-[300px] " />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
