@@ -1,6 +1,6 @@
 .swiper-slide {
   transition: transform 0.5s ease, opacity 0.5s ease;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   transform: translateZ(-200px);
 }
 
@@ -34,7 +34,6 @@
   margin-top: 10px;
 }
 
-/* Pagination dots */
 .pagination-dot {
   width: 10px;
   height: 10px;
