@@ -5,8 +5,8 @@ import { useAppContext } from "../../../AppContext";
 import handleEdite from "./Post_EditUser";
 
 function Step_1() {
-    const { user, set_user } = useAppContext();
-    if(!user || !set_user) return null;
+    const { user, set_user, isProfileCompleted } = useAppContext();
+    if (!user || !set_user) return null;
     return (
         <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
@@ -19,9 +19,16 @@ function Step_1() {
                         />
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 80% Completed ✅
-                        </div>
+                        {(!isProfileCompleted ||
+                            !user.instgram_Link ||
+                            !user.linkedIn_Link ||
+                            !user.facebook_Link ||
+                            !user.portfolioWebsite) && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 80% Completed ✅
+                            </div>
+                        )}
+
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>

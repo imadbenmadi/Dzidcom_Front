@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./Post_EditUser";
-
 function Step_1() {
+    const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const { user, set_user } = useAppContext();
     // useEffect(() => {
@@ -66,9 +66,12 @@ function Step_1() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 10% Completed ✅
-                        </div>
+                        {!isProfileCompleted && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 10% Completed ✅
+                            </div>
+                        )}
+
                         {/* <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>

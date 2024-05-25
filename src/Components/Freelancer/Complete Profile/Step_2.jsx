@@ -1,9 +1,7 @@
 import React from "react";
-import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
 
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
@@ -11,7 +9,7 @@ import handleEdite from "./Post_EditUser";
 
 function Step_2() {
     const [image_state, setimage_state] = useState(null);
-    const { user, set_user } = useAppContext();
+    const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
     const skillsOptions = [
         "Social Media Marketing",
@@ -109,9 +107,11 @@ function Step_2() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        <div className=" font-semibold text-gray_v pt-6">
-                            Profil 40% Completed ✅
-                        </div>
+                        {!isProfileCompleted && (
+                            <div className=" font-semibold text-gray_v pt-6">
+                                Profil 40% Completed ✅
+                            </div>
+                        )}
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user.lastName}</div>
@@ -142,8 +142,8 @@ function Step_2() {
                                 errors.about = "about is Required";
                             } else if (values.about.length < 10)
                                 errors.about = "at least 10 chars";
-                            else if (values.about.length > 500)
-                                errors.about = "max 500 chars";
+                            else if (values.about.length > 3000)
+                                errors.about = "max 3000 chars";
 
                             if (values.Skills.length === 0) {
                                 errors.Skills = " At least add one skill ";
