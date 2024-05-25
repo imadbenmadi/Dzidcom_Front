@@ -101,6 +101,7 @@ function PersonalInformations() {
     const { user } = useAppContext();
     return (
         <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col  gap-16 break-all ">
+            //new
             <div className=" text-3xl text-gray_v font-semibold flex items-center justify-between ">
                 {user?.JobTitle ? user.JobTitle : "Job Title"}
                 <img
