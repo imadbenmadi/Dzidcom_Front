@@ -13,13 +13,13 @@ function Hero() {
             <div className="  flex flex-col md:flex-row  items-center justify-center max-w-[350px] gap-3 md:gap-12">
                 {user?.profile_pic_link ? (
                     <img
-                        src={user.profile_pic_link}
+                        src={"http://localhost:3000/" + user.profile_pic_link}
                         onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = user_default;
                         }}
                         alt=""
-                        className=" w-32"
+                        className=" w-[150px] rounded-full"
                     />
                 ) : (
                     <img src={user_default} alt="" className=" w-32" />
@@ -29,7 +29,7 @@ function Hero() {
                         <span>{user?.firstName}</span>{" "}
                         <span>{user?.lastName}</span>
                     </div>
-                    <div className=" text-yellow-400 flex text-xl gap-1">
+                    <div className=" text-yellow-400 flex w-full text-xl gap-1">
                         <FaStar />
                         <FaStar />
                         <FaStar />
