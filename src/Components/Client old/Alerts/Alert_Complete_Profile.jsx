@@ -10,22 +10,22 @@ function Alert_Complete_Profile() {
 
     return show_Alert_completeProfile ? (
         <div
-            className="w-full min-h-10 py-3 bg-perpol_v text-white text-lg md:text-center flex select-none
-        items-center justify-start pl-5 md:pl-0 md:justify-center  md:gap-12"
+            className="w-full h-10 bg-perpol_v text-white text-lg text-center flex  select-none
+        items-center justify-center gap-12"
         >
             <div>
                 Please complete your profile to unlock full platform access.{" "}
                 <span
                     className="underline cursor-pointer"
                     onClick={() => {
-                        navigate("/Freelancer/Complete_Profile");
+                        navigate("/Client/Complete_Profile");
                     }}
                 >
                     Complete Profile page
                 </span>{" "}
             </div>
             <span
-                className="text-2xl w-24 text-white font-semibold cursor-pointer"
+                className="text-2xl text-white font-semibold cursor-pointer"
                 onClick={() => {
                     set_show_Alert_completeProfile(false);
                 }}

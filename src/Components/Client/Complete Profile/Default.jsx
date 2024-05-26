@@ -1,11 +1,12 @@
+import React from "react";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-
-function Freelancer_Default() {
+function Default() {
     const Navigate = useNavigate();
     useEffect(() => {
-        Navigate("/Freelancer/Profile");
+        Navigate("/Freelancer/Complete_Profile/Step_0");
     }, []);
+    return null;
 }
 
-export default Freelancer_Default;
+export default Default;

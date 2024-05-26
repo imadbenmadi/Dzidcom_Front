@@ -10,7 +10,7 @@ import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
 import user_default from "../../../public/Profile/user_default.png";
 
-function Freelancer() {
+function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
@@ -24,6 +24,7 @@ function Freelancer() {
         show_Alert_completeProfile,
         set_show_Alert_completeProfile,
     } = useAppContext();
+    // if (!isAuth || !userId || userType !== "client") {
     if (!isAuth || !userId) {
         // window.location.href = "/Login";
         Navigate("/Login");
@@ -32,7 +33,7 @@ function Freelancer() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${userId}/Profile`,
+                    `http://localhost:3000/Clients/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
@@ -100,8 +101,6 @@ function Freelancer() {
             !user.JobTitle ||
             !user.Skills ||
             user.Skills.length === 0
-            // ||
-            // !user.profile_pic_link
         ) {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);
@@ -113,6 +112,7 @@ function Freelancer() {
             set_show_Alert_completeProfile(false);
         }
     }, [user]);
+
     if (loading)
         return (
             <div className=" w-screen h-screen flex items-center justify-center">
@@ -130,4 +130,4 @@ function Freelancer() {
         );
 }
 
-export default Freelancer;
+export default Client;

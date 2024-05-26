@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Client_Edite_Profile() {
+function Freelancer_Edite_Profile() {
   return (
-    <div>Client_Edite_Profile</div>
+    <div>Freelancer_Edite_Profile</div>
   )
 }
 
-export default Client_Edite_Profile
+export default Freelancer_Edite_Profile

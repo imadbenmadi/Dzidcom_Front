@@ -8,15 +8,14 @@ import { TbLogout2 } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
 import { useAppContext } from "../../../AppContext";
 import { useNavigate } from "react-router-dom";
-
 function Laptop_Nav_Items({
   isProfileCompleted,
   Active_nav,
   handleLogout,
   LogoutClicked,
 }) {
-  const Navigate = useNavigate();
   const { user } = useAppContext();
+  const Navigate = useNavigate();
   const [ProfileClicked, setProfileClicked] = useState(false);
   const toogleProfile = () => {
     setProfileClicked(!ProfileClicked);
@@ -24,7 +23,7 @@ function Laptop_Nav_Items({
   return (
     <div className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12  md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 ">
       <div>
-        <Link to={"/Freelancer"} className="select-none">
+        <Link to={"/Client"} className="select-none">
           <img src={Logo} alt="Logo" className=" w-[100px] lg:w-[135px] " />
         </Link>
       </div>
@@ -36,7 +35,7 @@ function Laptop_Nav_Items({
               : "text-black_text"
           } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
         >
-          <Link to={"/Freelancer/Complete_Profile"} className={"select-none"}>
+          <Link to={"/Client/Complete_Profile"} className={"select-none"}>
             <span className=" relative">
               Modify profile{" "}
               {!isProfileCompleted ? (
@@ -51,17 +50,17 @@ function Laptop_Nav_Items({
             Active_nav == "Profile" ? "text-perpol_v" : "text-black_text"
           } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
         >
-          <Link to={"/Freelancer/Profile"} className={" select-none"}>
+          <Link to={"/Client/Profile"} className={" select-none"}>
             Profil{" "}
           </Link>
         </div>
         <div
           className={` ${
-            Active_nav == "Jobs" ? "text-perpol_v" : "text-black_text"
+            Active_nav == "Projects" ? "text-perpol_v" : "text-black_text"
           } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
         >
-          <Link to={"/Freelancer/Jobs"} className=" select-none">
-            Jobs
+          <Link to={"/Client/Projects"} className=" select-none">
+            Ask for Work
           </Link>
         </div>
 
@@ -70,7 +69,7 @@ function Laptop_Nav_Items({
             Active_nav == "Process" ? "text-perpol_v" : "text-black_text"
           } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
         >
-          <Link to={"/Freelancer/Process"} className="  select-none">
+          <Link to={"/Client/Process"} className="  select-none">
             Process
           </Link>
         </div>
@@ -108,7 +107,6 @@ function Laptop_Nav_Items({
               onClick={toogleProfile}
             />
           )}
-
           {ProfileClicked ? (
             <div
               className="absolute top-10 right-0 bg-white shadow border  
@@ -123,9 +121,9 @@ function Laptop_Nav_Items({
                 <div
                   className=" select-none flex items-center gap-2 "
                   onClick={() => {
-                    Navigate("/Freelancer/Profile");
                     // window.location.href =
                     //     "/Freelancer/Profile";
+                    Navigate("/Client/Profile");
                   }}
                 >
                   <FiUser className="  text-xl " />

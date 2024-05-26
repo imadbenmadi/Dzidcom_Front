@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Client_Messages() {
+function Freelancer_Messages() {
   return (
-    <div>Client_Messages</div>
+    <div>Freelancer_Messages</div>
   )
 }
 
-export default Client_Messages
+export default Freelancer_Messages
