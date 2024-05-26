@@ -9,8 +9,8 @@ function Hero() {
     const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
-        <div className="flex flex-col md:flex-row  items-center justify-around mt-8">
-            <div className="  flex flex-col md:flex-row  items-center justify-center max-w-[350px] gap-3 md:gap-12">
+        <div className="flex flex-row  items-center justify-around mt-8">
+            <div className="  flex  justify-center max-w-[350px] gap-6 md:gap-12">
                 {user?.profile_pic_link ? (
                     <img
                         src={"http://localhost:3000/" + user.profile_pic_link}
@@ -19,7 +19,7 @@ function Hero() {
                             e.target.src = user_default;
                         }}
                         alt=""
-                        className=" w-[150px] rounded-full"
+                        className=" w-[150px] h-[150px] rounded-full"
                     />
                 ) : (
                     <img src={user_default} alt="" className=" w-32" />
@@ -29,17 +29,43 @@ function Hero() {
                         <span>{user?.firstName}</span>{" "}
                         <span>{user?.lastName}</span>
                     </div>
-                    <div className=" text-yellow-400 flex w-full text-xl gap-1">
+                    {/* <div className=" text-yellow-400 flex w-full text-xl gap-1">
                         <FaStar />
                         <FaStar />
                         <FaStar />
                         <FaStar />
                         <FaStar />
+                    </div> */}
+                    <div className=" flex  gap-4 w-full ">
+                        {user?.Rate ? (
+                            <>
+                                <div className=" text-yellow-400 flex gap-1">
+                                    {[...Array(Math.floor(user.Rate))].map(
+                                        (_, index) => (
+                                            <FaStar key={index} />
+                                        )
+                                    )}
+                                    {user.Rate % 1 !== 0 && <FaStarHalf />}
+                                </div>
+                            </>
+                        ) : (
+                            <div className=" text-sm">No ratings yet</div>
+                        )}
+                    </div>
+                    <div
+                        className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
+                                rounded-md cursor-pointer "
+                        onClick={() => {
+                            // window.location.href = "/Freelancer/Jobs";
+                            Navigate("/Freelancer/Jobs");
+                        }}
+                    >
+                        See work offers
                     </div>
                 </div>
             </div>
             <div
-                className=" text-white font-semibold bg-perpol_v py-2 px-4  text-xl
+                className=" hidden md:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
             rounded-md cursor-pointer "
                 onClick={() => {
                     // window.location.href = "/Freelancer/Jobs";

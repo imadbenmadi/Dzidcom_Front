@@ -189,7 +189,7 @@ function PersonalInformations() {
                             user.PortfolioItems.map((project) => (
                                 <div
                                     key={project.id}
-                                    className="max-w-[300px] mx-auto md:mx-0 md:min-w-full break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
+                                    className="w-full mx-auto md:mx-0 md:min-w-full break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
                                 >
                                     <div className="font-semibold text-lg text-gray_v">
                                         {project.title}
@@ -304,18 +304,20 @@ function PersonalInformations() {
             <div className=" w-full bg-gray_white h-[1px]"> </div>
             <div>
                 <div className="flex flex-col gap-4 w-full  ">
-                    <div className=" flex items-center  gap-3 shrink-0 text-2xl  font-semibold text-gray_v">
-                        <p className=" underline">Reviews : </p>
-                        <div>
+                    <div className=" flex items-center  gap-10 shrink-0 text-2xl  font-semibold text-gray_v">
+                        <div className=" underline">Reviews : </div>
+                        <div className=" flex items-center justify-center gap-4 ">
                             {user?.Rate ? (
                                 <>
-                                    {user.Rate}
-                                    {[...Array(Math.floor(user.Rate))].map(
-                                        (_, index) => (
-                                            <FaStar key={index} />
-                                        )
-                                    )}
-                                    {user.Rate % 1 !== 0 && <FaStarHalf />}
+                                    <div className=" ">{user.Rate}</div>
+                                    <div className=" text-yellow-400 flex gap-1">
+                                        {[...Array(Math.floor(user.Rate))].map(
+                                            (_, index) => (
+                                                <FaStar key={index} />
+                                            )
+                                        )}
+                                        {user.Rate % 1 !== 0 && <FaStarHalf />}
+                                    </div>
                                 </>
                             ) : (
                                 <div className=" text-sm">No ratings yet</div>
