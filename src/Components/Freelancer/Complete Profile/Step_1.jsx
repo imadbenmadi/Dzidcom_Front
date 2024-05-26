@@ -5,7 +5,7 @@ import { useAppContext } from "../../../AppContext";
 import { useState, useEffect } from "react";
 
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./Post_EditUser";
+import handleEdite from "./API/Post_EditUser";
 
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
@@ -153,9 +153,9 @@ function Step_1() {
                             if (Object.keys(values).length >= 1)
                                 handleEdite(
                                     values,
-                                    user,
                                     set_user,
                                     "/Freelancer/Complete_Profile/Step_2",
+                                    image_state ? image_state : null,
                                     {
                                         setSubmitting,
                                     }

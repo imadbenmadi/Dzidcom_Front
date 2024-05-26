@@ -8,7 +8,7 @@ import { IoWarningOutline } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./Post_EditUser";
+import handleEdite from "./API/Post_EditUser";
 
 function Step_3() {
     const [stillWorking, setstillWorking] = useState(false);
@@ -21,29 +21,6 @@ function Step_3() {
     if (!user || !set_user) return null;
 
     const [deltedProject_Loading, setdeltedProject_Loading] = useState(null);
-    // const handleRemoveProject = async (projectId, user, set_user) => {
-    //     setdeltedProject_Loading(true);
-    //     // Filter out the project to be removed
-    //     let updatedPortfolioItems = user.PortfolioItems.filter(
-    //         (item) => item.id !== projectId
-    //     );
-    //     if (updatedPortfolioItems.length == 0) {
-    //         updatedPortfolioItems = [];
-    //     }
-    //     // Create an updated user object with the new portfolio items
-    //     const updatedUser = {
-    //         ...user,
-    //         PortfolioItems: updatedPortfolioItems,
-    //     };
-    //     console.log("data to be sent in delete : ", updatedUser);
-    //     try {
-    //         let response = await Axios.put(
-    //             `http://localhost:3000/Freelancers/${user.id}/Profile`,
-    //             updatedUser.PortfolioItems,
-    //             {
-    //                 withCredentials: true,
-    //             }
-    //         );
     const handleRemoveProject = async (projectId, user, set_user) => {
         setdeltedProject_Loading(true);
 
@@ -416,9 +393,9 @@ function Step_3() {
                                         };
                                         handleEdite(
                                             formattedData,
-                                            user,
                                             set_user,
                                             null,
+                                            image_state ? image_state : null,
                                             {
                                                 setSubmitting,
                                             }

@@ -3,17 +3,27 @@ import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect } from "react";
-
+import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./Post_EditUser";
+import handleEdite from "./API/Post_EditUser";
 function Step_1() {
     const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);
+    const [imageChanged, setimageChanged] = useState(false);
+    const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
     const { user, set_user } = useAppContext();
-    // useEffect(() => {
-    //     console.log(image_state);
-    // }, [image_state]);
+
+    useEffect(() => {
+        if (image_state) setimageChanged(true);
+        else if (!image_state) setimageChanged(false);
+        else setimageChanged(false);
+    }, [image_state]);
+    useEffect(() => {
+        console.log("image_state", image_state);
+        console.log("imageChanged", imageChanged);
+        console.log("--------------------");
+    }, [image_state, imageChanged]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -35,7 +45,36 @@ function Step_1() {
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {image_state ? (
+                            {user.profile_pic_link ? (
+                                <>
+                                    <img
+                                        src={
+                                            "http://localhost:3000/" +
+                                            user.profile_pic_link
+                                        }
+                                        alt="Profile Pic"
+                                        className=" w-[150px] h-[150px] object-cover rounded-full"
+                                    />
+                                    {imageDeleteLoading ? (
+                                        <span className="small-loader mt-5"></span>
+                                    ) : (
+                                        <div
+                                            className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                            onClick={() => {
+                                                Delete_Profile_Pic(
+                                                    setimageDeleteLoading,
+                                                    set_user,
+                                                    setimage_state
+                                                );
+                                            }}
+                                        >
+                                            {/* <IoClose /> */}
+                                            Remove from srver
+                                        </div>
+                                    )}
+                                </>
+                            ) : image_state ? (
                                 <div className=" relative ">
                                     <img
                                         src={URL.createObjectURL(image_state)} // Create a URL for the selected image
@@ -45,7 +84,10 @@ function Step_1() {
                                     <div
                                         className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
                                          bg-gray-400 cursor-pointer"
-                                        onClick={() => setimage_state(null)}
+                                        onClick={() => {
+                                            setimage_state(null);
+                                            // setimageChanged(false);
+                                        }}
                                     >
                                         {/* <IoClose /> */}
                                         Remove
@@ -62,7 +104,7 @@ function Step_1() {
                                 >
                                     <FaRegImage className=" text-gray_v text-2xl" />
                                 </div>
-                            )}{" "}
+                            )}
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
@@ -124,25 +166,31 @@ function Step_1() {
                             }
                             return errors;
                         }}
-                        onSubmit={(values, { setSubmitting }) => {
-                            // if (
-                            //     values.lastName ==
-                            //         user.lastName &&
-                            //     values.firstName == user?.firstName &&
-                            //     values.email == user.email
-                            // ) {
-                            //     return;
-                            // }
-                            // else {
-                            handleEdite(
-                                values,
-                                user,
-                                set_user,
-                                "/Freelancer/Complete_Profile/Step_1",
-                                {
-                                    setSubmitting,
-                                }
-                            );
+                        onSubmit={async (values, { setSubmitting }) => {
+                            if (values.firstName == user.firstName) {
+                                delete values.firstName;
+                            } else if (values.lastName == user.lastName) {
+                                delete values.lastName;
+                            } else if (values.email == user.email) {
+                                delete values.email;
+                            }
+                            if (Object.keys(values).length >= 1 || imageChanged)
+                                handleEdite(
+                                    values,
+                                    set_user,
+                                    // "/Freelancer/Complete_Profile/Step_1",
+                                    null,
+                                    imageChanged ? image_state : null,
+                                    {
+                                        setSubmitting,
+                                    }
+                                );
+                            else {
+                                setSubmitting(false);
+                                // window.location.href(
+                                //     "/Freelancer/Complete_Profile/Step_1"
+                                // );
+                            }
                             // }
                         }}
                     >

@@ -2,7 +2,7 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import handleEdite from "./Post_EditUser";
+import handleEdite from "./API/Post_EditUser";
 
 function Step_1() {
     const { user, set_user, isProfileCompleted } = useAppContext();
@@ -83,9 +83,9 @@ function Step_1() {
                             if (Object.keys(values).length >= 1)
                                 handleEdite(
                                     values,
-                                    user,
                                     set_user,
                                     "/Freelancer/Profile",
+                                    image_state ? image_state : null,
                                     {
                                         setSubmitting,
                                     }
