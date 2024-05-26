@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Axios from "axios";
 import Swal from "sweetalert2";
 import { IoWarningOutline } from "react-icons/io5";
@@ -9,6 +9,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
+import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 
 function Step_3() {
     const [stillWorking, setstillWorking] = useState(false);
@@ -61,7 +62,15 @@ function Step_3() {
 
         setdeltedProject_Loading(false);
     };
+    const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
+    const [imageChanged, setimageChanged] = useState(false);
+    const fileInputRef = useRef(null);
 
+    useEffect(() => {
+        if (image_state) setimageChanged(true);
+        else if (!image_state) setimageChanged(false);
+        else setimageChanged(false);
+    }, [image_state]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -69,7 +78,7 @@ function Step_3() {
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
                             <input
-                                id="Step1_image"
+                                id="Step3_image"
                                 type="file"
                                 name="image"
                                 accept="image/*"
@@ -78,25 +87,62 @@ function Step_3() {
                                         event.currentTarget.files[0]
                                     );
                                 }}
+                                ref={fileInputRef}
                                 // disabled={isSubmitting}
                                 className="hidden" // Hide the default file input button
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {image_state ? (
+                            {user.profile_pic_link ? (
+                                <>
+                                    <img
+                                        src={
+                                            "http://localhost:3000/" +
+                                            user.profile_pic_link
+                                        }
+                                        alt="Profile Pic"
+                                        className=" w-[150px] h-[150px] object-cover rounded-full"
+                                    />
+                                    {imageDeleteLoading ? (
+                                        <span className="small-loader mt-5"></span>
+                                    ) : (
+                                        <div
+                                            className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                            onClick={() => {
+                                                Delete_Profile_Pic(
+                                                    setimageDeleteLoading,
+                                                    set_user,
+                                                    setimage_state
+                                                );
+                                            }}
+                                        >
+                                            {/* <IoClose /> */}
+                                            Remove
+                                        </div>
+                                    )}
+                                </>
+                            ) : image_state ? (
                                 <div className=" relative ">
                                     <img
                                         src={URL.createObjectURL(image_state)} // Create a URL for the selected image
                                         alt="Selected Image"
+                                        // ref={fileInputRef}
                                         className=" w-[150px] h-[150px]  object-cover rounded-full"
                                     />
                                     <div
                                         className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
                                          bg-gray-400 cursor-pointer"
-                                        onClick={() => setimage_state(null)}
+                                        onClick={() => {
+                                            setimage_state(null);
+                                            // setimageChanged(false);
+                                            if (fileInputRef.current) {
+                                                fileInputRef.current.value = "";
+                                            }
+                                        }}
                                     >
                                         {/* <IoClose /> */}
-                                        Remove
+                                        Cancel
                                     </div>
                                 </div>
                             ) : (
@@ -104,13 +150,13 @@ function Step_3() {
                                     className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
                                     onClick={() =>
                                         document
-                                            .getElementById("Step1_image")
+                                            .getElementById("Step3_image")
                                             .click()
                                     }
                                 >
                                     <FaRegImage className=" text-gray_v text-2xl" />
                                 </div>
-                            )}{" "}
+                            )}
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
@@ -395,7 +441,7 @@ function Step_3() {
                                             formattedData,
                                             set_user,
                                             null,
-                                            image_state ? image_state : null,
+                                            imageChanged ? image_state : null,
                                             {
                                                 setSubmitting,
                                             }

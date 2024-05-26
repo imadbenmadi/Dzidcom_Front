@@ -2,18 +2,25 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
-
+import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user, isProfileCompleted } = useAppContext();
 
-    // useEffect(() => {
-    //     console.log(image_state);
-    // }, [image_state]);
+    const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
+    const [imageChanged, setimageChanged] = useState(false);
+    const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        if (image_state) setimageChanged(true);
+        else if (!image_state) setimageChanged(false);
+        else setimageChanged(false);
+    }, [image_state]);
+
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -30,23 +37,62 @@ function Step_1() {
                                         event.currentTarget.files[0]
                                     );
                                 }}
-                                className="hidden"
+                                ref={fileInputRef}
+                                // disabled={isSubmitting}
+                                className="hidden" // Hide the default file input button
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {image_state ? (
+                            {user.profile_pic_link ? (
+                                <>
+                                    <img
+                                        src={
+                                            "http://localhost:3000/" +
+                                            user.profile_pic_link
+                                        }
+                                        alt="Profile Pic"
+                                        className=" w-[150px] h-[150px] object-cover rounded-full"
+                                    />
+                                    {imageDeleteLoading ? (
+                                        <span className="small-loader mt-5"></span>
+                                    ) : (
+                                        <div
+                                            className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                            onClick={() => {
+                                                Delete_Profile_Pic(
+                                                    setimageDeleteLoading,
+                                                    set_user,
+                                                    setimage_state
+                                                );
+                                            }}
+                                        >
+                                            {/* <IoClose /> */}
+                                            Remove
+                                        </div>
+                                    )}
+                                </>
+                            ) : image_state ? (
                                 <div className=" relative ">
                                     <img
-                                        src={URL.createObjectURL(image_state)}
+                                        src={URL.createObjectURL(image_state)} // Create a URL for the selected image
                                         alt="Selected Image"
+                                        // ref={fileInputRef}
                                         className=" w-[150px] h-[150px]  object-cover rounded-full"
                                     />
                                     <div
                                         className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
                                          bg-gray-400 cursor-pointer"
-                                        onClick={() => setimage_state(null)}
+                                        onClick={() => {
+                                            setimage_state(null);
+                                            // setimageChanged(false);
+                                            if (fileInputRef.current) {
+                                                fileInputRef.current.value = "";
+                                            }
+                                        }}
                                     >
-                                        Remove
+                                        {/* <IoClose /> */}
+                                        Cancel
                                     </div>
                                 </div>
                             ) : (
@@ -60,7 +106,7 @@ function Step_1() {
                                 >
                                     <FaRegImage className=" text-gray_v text-2xl" />
                                 </div>
-                            )}{" "}
+                            )}
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
@@ -150,12 +196,12 @@ function Step_1() {
                             } else if (values.JobTitle == user.JobTitle) {
                                 delete values.JobTitle;
                             }
-                            if (Object.keys(values).length >= 1)
+                            if (Object.keys(values).length >= 1 || imageChanged)
                                 handleEdite(
                                     values,
                                     set_user,
                                     "/Freelancer/Complete_Profile/Step_2",
-                                    image_state ? image_state : null,
+                                    imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
                                     }

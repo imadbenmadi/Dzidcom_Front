@@ -2,28 +2,29 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
-function Step_1() {
+function Step_0() {
     const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
     const { user, set_user } = useAppContext();
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         if (image_state) setimageChanged(true);
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
-    useEffect(() => {
-        console.log("image_state", image_state);
-        console.log("imageChanged", imageChanged);
-        console.log("--------------------");
-    }, [image_state, imageChanged]);
+    // useEffect(() => {
+    //     console.log("image_state", image_state);
+    //     console.log("imageChanged", imageChanged);
+    //     console.log("--------------------");
+    // }, [image_state, imageChanged]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -40,6 +41,7 @@ function Step_1() {
                                         event.currentTarget.files[0]
                                     );
                                 }}
+                                ref={fileInputRef}
                                 // disabled={isSubmitting}
                                 className="hidden" // Hide the default file input button
                             />
@@ -70,7 +72,7 @@ function Step_1() {
                                             }}
                                         >
                                             {/* <IoClose /> */}
-                                            Remove from srver
+                                            Remove
                                         </div>
                                     )}
                                 </>
@@ -79,6 +81,7 @@ function Step_1() {
                                     <img
                                         src={URL.createObjectURL(image_state)} // Create a URL for the selected image
                                         alt="Selected Image"
+                                        // ref={fileInputRef}
                                         className=" w-[150px] h-[150px]  object-cover rounded-full"
                                     />
                                     <div
@@ -87,10 +90,13 @@ function Step_1() {
                                         onClick={() => {
                                             setimage_state(null);
                                             // setimageChanged(false);
+                                            if (fileInputRef.current) {
+                                                fileInputRef.current.value = "";
+                                            }
                                         }}
                                     >
                                         {/* <IoClose /> */}
-                                        Remove
+                                        Cancel
                                     </div>
                                 </div>
                             ) : (
@@ -178,8 +184,8 @@ function Step_1() {
                                 handleEdite(
                                     values,
                                     set_user,
-                                    // "/Freelancer/Complete_Profile/Step_1",
-                                    null,
+                                    "/Freelancer/Complete_Profile/Step_1",
+                                    // null,
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -187,9 +193,9 @@ function Step_1() {
                                 );
                             else {
                                 setSubmitting(false);
-                                // window.location.href(
-                                //     "/Freelancer/Complete_Profile/Step_1"
-                                // );
+                                window.location.href(
+                                    "/Freelancer/Complete_Profile/Step_1"
+                                );
                             }
                             // }
                         }}
@@ -277,4 +283,4 @@ const errorInputMessage = {
     fontSize: "12px",
     color: "red",
 };
-export default Step_1;
+export default Step_0;
