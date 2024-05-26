@@ -6,7 +6,7 @@ function Applications() {
     const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
-        <div className="  pt-16">
+        <div className=" hidden md:block  pt-16">
             <div className=" text-2xl text-gray_v font-semibold text-center">
                 Applications
             </div>

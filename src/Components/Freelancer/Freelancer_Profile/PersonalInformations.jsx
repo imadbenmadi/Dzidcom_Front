@@ -10,13 +10,13 @@ function PersonalInformations() {
     const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
-        <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col  gap-16 break-all ">
+        <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
             <div className=" text-3xl text-gray_v font-semibold flex items-center justify-between ">
                 {user?.JobTitle ? user.JobTitle : "Job Title"}
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_1";
@@ -25,7 +25,7 @@ function PersonalInformations() {
                 />{" "}
             </div>
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex items-center justify-center gap-6">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
                         Email :
                     </div>
@@ -37,10 +37,10 @@ function PersonalInformations() {
                         )}
                     </div>
                 </div>
-                {/* <img src={EditeIcon} alt="" className=" w-8 cursor-pointer" />{" "} */}
+                {/* <img src={EditeIcon} alt="" className=" w-8 h-8 cursor-pointer" />{" "} */}
             </div>
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex items-center justify-center gap-6">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
                         About :
                     </div>
@@ -55,7 +55,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_2";
@@ -64,7 +64,7 @@ function PersonalInformations() {
                 />{" "}
             </div>
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex items-center justify-center gap-6">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
                         Phone Number :
                     </div>
@@ -79,7 +79,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_1";
@@ -89,7 +89,7 @@ function PersonalInformations() {
             </div>
 
             <div className=" font-semibold text-gray_v text-lg flex items-center justify-between">
-                <div className="flex  items-center justify-center gap-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold  ">
                         {" "}
                         National Card Number{"    "}
@@ -103,7 +103,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_1";
@@ -139,7 +139,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_2";
@@ -149,8 +149,8 @@ function PersonalInformations() {
             </div>
             <div className=" w-full bg-gray_white h-[1px]"> </div>
 
-            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex items-center justify-center gap-6">
+            <div className=" text-lg text-gray_v font-semibold flex  justify-between ">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
                         Portfolio Website :
                     </div>
@@ -170,7 +170,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8  cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_4";
@@ -250,7 +250,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt=""
-                    className=" w-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
                         //     "/Freelancer/Complete_Profile/Step_3";
@@ -304,7 +304,7 @@ function PersonalInformations() {
             <div className=" w-full bg-gray_white h-[1px]"> </div>
             <div>
                 <div className="flex flex-col gap-4 w-full  ">
-                    <div className=" flex items-center  gap-10 shrink-0 text-2xl  font-semibold text-gray_v">
+                    <div className=" flex flex-col md:flex-row md:items-center gap-2 md:gap-10 shrink-0 text-2xl  font-semibold text-gray_v">
                         <div className=" underline">Reviews : </div>
                         <div className=" flex items-center justify-center gap-4 ">
                             {user?.Rate ? (
