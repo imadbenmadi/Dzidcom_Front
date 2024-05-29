@@ -4,7 +4,7 @@ import Alert_Complete_Profile from "../Alerts/Alert_Complete_Profile";
 import Hero from "./Hero";
 import Applications from "./Applications";
 import PersonalInformations from "./PersonalInformations";
-function freelancer_Profile() {
+function Client_Profile() {
     const { show_Alert_completeProfile } = useAppContext();
     return (
         <div>
@@ -16,4 +16,4 @@ function freelancer_Profile() {
     );
 }
 
-export default freelancer_Profile;
+export default Client_Profile;

@@ -200,7 +200,7 @@ function Step_1() {
                                 handleEdite(
                                     values,
                                     set_user,
-                                    "/Freelancer/Complete_Profile/Step_2",
+                                    "/Client/Complete_Profile/Step_2",
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -209,7 +209,7 @@ function Step_1() {
                             else {
                                 setSubmitting(false);
                                 window.location.href(
-                                    "/Freelancer/Complete_Profile/Step_2"
+                                    "/Client/Complete_Profile/Step_2"
                                 );
                             }
                         }}

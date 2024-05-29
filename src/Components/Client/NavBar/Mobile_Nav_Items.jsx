@@ -22,7 +22,7 @@ function Mobile_Nav_Items({
             <div className="text-center flex flex-col gap-8 my-8 ">
               <Link
                 onClick={Toogle_Menu_Bar}
-                to={"/Freelancer/Complete_Profile"}
+                to={"/Client/Complete_Profile"}
                 className={`${
                   Active_nav == "Complete_Profile"
                     ? "text-perpol_v"
@@ -38,7 +38,7 @@ function Mobile_Nav_Items({
               </Link>
               <Link
                 onClick={Toogle_Menu_Bar}
-                to={"/Freelancer/Profile"}
+                to={"/Client/Profile"}
                 className={`${
                   Active_nav == "Profile" ? "text-perpol_v" : "text-black_text"
                 } select-none   `}
@@ -47,7 +47,7 @@ function Mobile_Nav_Items({
               </Link>
               <Link
                 onClick={Toogle_Menu_Bar}
-                to={"/Freelancer/Jobs"}
+                to={"/Client/Jobs"}
                 className={`${
                   Active_nav == "Jobs" ? "text-perpol_v" : "text-black_text"
                 } select-none   `}

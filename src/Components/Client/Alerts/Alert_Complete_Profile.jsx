@@ -18,7 +18,7 @@ function Alert_Complete_Profile() {
                 <span
                     className="underline cursor-pointer"
                     onClick={() => {
-                        navigate("/Freelancer/Complete_Profile");
+                        navigate("/Client/Complete_Profile");
                     }}
                 >
                     Complete Profile page

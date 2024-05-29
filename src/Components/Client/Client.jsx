@@ -10,7 +10,7 @@ import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
 import user_default from "../../../public/Profile/user_default.png";
 
-function Freelancer() {
+function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [isProfileCompleted, setisProfileCompleted] = useState(false);
@@ -32,7 +32,7 @@ function Freelancer() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${userId}/Profile`,
+                    `http://localhost:3000/Clients/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
@@ -130,4 +130,4 @@ function Freelancer() {
         );
 }
 
-export default Freelancer;
+export default Client;

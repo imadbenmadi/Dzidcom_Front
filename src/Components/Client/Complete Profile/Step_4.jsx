@@ -172,7 +172,7 @@ function Step_1() {
                                 handleEdite(
                                     values,
                                     set_user,
-                                    "/Freelancer/Profile",
+                                    "/Client/Profile",
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -180,7 +180,7 @@ function Step_1() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href("/Freelancer/Profile");
+                                window.location.href("/Client/Profile");
                             }
                         }}
                     >

@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Freelancer_jobs() {
+function Client_jobs() {
   return (
-    <div>Freelancer_jobs</div>
+    <div>Client_jobs</div>
   )
 }
 
-export default Freelancer_jobs
+export default Client_jobs

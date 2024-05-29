@@ -4,7 +4,7 @@ import { useEffect } from "react";
 function Default() {
     const Navigate = useNavigate();
     useEffect(() => {
-        Navigate("/Freelancer/Complete_Profile/Step_0");
+        Navigate("/Client/Complete_Profile/Step_0");
     }, []);
     return null;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
-function Freelancer_Complete_Profile() {
+function Client_Complete_Profile() {
     return (
         <div>
             <Outlet />
@@ -8,4 +8,4 @@ function Freelancer_Complete_Profile() {
     );
 }
 
-export default Freelancer_Complete_Profile;
+export default Client_Complete_Profile;

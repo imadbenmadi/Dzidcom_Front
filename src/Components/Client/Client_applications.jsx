@@ -2,7 +2,7 @@ import React from "react";
 import Alert_Complete_Profile from "./Alerts/Alert_Complete_Profile";
 import { useAppContext } from "../../AppContext";
 
-function Freelancer_applications() {
+function Client_applications() {
     const { show_Alert_completeProfile } = useAppContext();
 
     return (
@@ -14,4 +14,4 @@ function Freelancer_applications() {
     );
 }
 
-export default Freelancer_applications;
+export default Client_applications;
