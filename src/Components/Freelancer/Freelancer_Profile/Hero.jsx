@@ -48,9 +48,7 @@ function Hero() {
                                     {user.Rate % 1 !== 0 && <FaStarHalf />}
                                 </div>
                             </>
-                        ) : (
-                            <div className=" text-sm">No ratings yet</div>
-                        )}
+                        ) : null}
                     </div>
                     <div
                         className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
