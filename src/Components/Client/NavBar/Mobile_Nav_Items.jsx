@@ -53,12 +53,12 @@ function Mobile_Nav_Items({
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Client/Projects"}
                                 className={`${
-                                    Active_nav == "Jobs"
+                                    Active_nav == "Projects"
                                         ? "text-perpol_v"
                                         : "text-black_text"
                                 } select-none   `}
                             >
-                                Jobs
+                                Projects
                             </Link>
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>
