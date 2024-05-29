@@ -33,28 +33,28 @@ function Mobile_Nav_Items({ MobileNav_Open, Toogle_Menu_Bar }) {
                         <div className="text-center flex flex-col gap-12 mt-10">
                             <a
                                 onClick={Toogle_Menu_Bar}
-                                href={"/#Hero"}
+                                href={"/Home#Hero"}
                                 className="select-none   "
                             >
                                 How it works?
                             </a>
                             <a
                                 onClick={Toogle_Menu_Bar}
-                                href={"/#Goal"}
+                                href={"/Home#Goal"}
                                 className="select-none    "
                             >
                                 Owr goal
                             </a>
                             <a
                                 onClick={Toogle_Menu_Bar}
-                                href={"/#Our_features"}
+                                href={"/Home#Our_features"}
                                 className="select-none    "
                             >
                                 Our features
                             </a>
                             <a
                                 onClick={Toogle_Menu_Bar}
-                                href={"/#Contact_us"}
+                                href={"/Home#Contact_us"}
                                 className="select-none   "
                             >
                                 Contact us
