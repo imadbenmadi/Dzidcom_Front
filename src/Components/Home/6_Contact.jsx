@@ -110,7 +110,7 @@ function Contact() {
                 value={firstName}
                 name="firstName"
                 onChange={(e) => handle_input_change(e)}
-                className=" bg-gray_white py-2 px-4 rounded-md  w-[150px] md:w-[195px]"
+                className=" bg-zinc-100 py-2 px-4 rounded-md  w-[150px] md:w-[195px]"
               />
               <input
                 placeholder="Last Name"
@@ -118,7 +118,7 @@ function Contact() {
                 value={lastName}
                 name="lastName"
                 onChange={(e) => handle_input_change(e)}
-                className=" bg-gray_white py-2 px-4 rounded-md  w-[150px] md:w-[195px]"
+                className=" bg-zinc-100 py-2 px-4 rounded-md  w-[150px] md:w-[195px]"
               />
             </div>
           </div>
@@ -129,7 +129,7 @@ function Contact() {
             value={email}
             placeholder="Email"
             onChange={(e) => handle_input_change(e)}
-            className=" bg-gray_white py-2 px-4 rounded-md w-full"
+            className=" bg-zinc-100 py-2 px-4 rounded-md w-full"
           />
 
           <div className=" w-full">
@@ -140,7 +140,7 @@ function Contact() {
               id=""
               rows={4}
               onChange={(e) => handle_input_change(e)}
-              className=" bg-gray_white py-2 px-4 rounded-md w-full"
+              className=" bg-zinc-100 py-2 px-4 rounded-md w-full"
             ></textarea>
           </div>
         </div>

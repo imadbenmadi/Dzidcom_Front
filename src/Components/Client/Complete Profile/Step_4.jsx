@@ -2,17 +2,15 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import { useState, useEffect, useRef } from "react";
-import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
-import { IoClose } from "react-icons/io5";
-import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
-function Step_0() {
-    const { isProfileCompleted } = useAppContext();
+import { useState, useEffect, useRef } from "react";
+import { FaRegImage } from "react-icons/fa";
+function Step_1() {
+    const { user, set_user, isProfileCompleted } = useAppContext();
+    if (!user || !set_user) return null;
     const [image_state, setimage_state] = useState(null);
-    const [imageChanged, setimageChanged] = useState(false);
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
-    const { user, set_user } = useAppContext();
+    const [imageChanged, setimageChanged] = useState(false);
     const fileInputRef = useRef(null);
 
     useEffect(() => {
@@ -20,19 +18,14 @@ function Step_0() {
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
-    // useEffect(() => {
-    //     console.log("image_state", image_state);
-    //     console.log("imageChanged", imageChanged);
-    //     console.log("--------------------");
-    // }, [image_state, imageChanged]);
     return (
-        <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
-                <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-4 md:gap-12 w-full ">
+        <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
+            <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
+                <div className=" flex items-center justify-start gap-12 w-full ">
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
                             <input
-                                id="Step0_image"
+                                id="Step4_image"
                                 type="file"
                                 name="image"
                                 accept="image/*"
@@ -104,7 +97,7 @@ function Step_0() {
                                     className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
                                     onClick={() =>
                                         document
-                                            .getElementById("Step0_image")
+                                            .getElementById("Step4_image")
                                             .click()
                                     }
                                 >
@@ -114,78 +107,72 @@ function Step_0() {
                         </div>
                     </div>
                     <div className=" order-1  md:order-2">
-                        {!isProfileCompleted && (
+                        {(!isProfileCompleted ||
+                            !user.instgram_Link ||
+                            !user.linkedIn_Link ||
+                            !user.facebook_Link ||
+                            !user.portfolioWebsite) && (
                             <div className=" font-semibold text-gray_v pt-6">
-                                Profil 10% Completed ✅
+                                Profil 80% Completed ✅
                             </div>
                         )}
 
-                        {/* <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
+                        <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
                             <div>{user?.lastName}</div>
                             <div>{user?.email}</div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
                 {/* Progress*/}
                 <div className=" flex items-center justify-start gap-5">
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        1 - Basic Informations
+                        5 - Links and Social Media{" "}
+                        <span className=" text-sm font-semibold text-gray_v">
+                            (optional)
+                        </span>
                     </div>
                     <Formik
                         initialValues={{
                             userId: user.id,
-                            firstName: user?.firstName || "",
-                            lastName: user.lastName || "",
-                            email: user.email || "",
+                            portfolioWebsite: user.portfolioWebsite || "",
+                            instgram_Link: user.instgram_Link || "",
+                            linkedIn_Link: user.linkedIn_Link || "",
+                            facebook_Link: user.facebook_Link || "",
                         }}
                         validate={(values) => {
                             const errors = {};
-
-                            if (!values.firstName) {
-                                errors.firstName = "first Name is Required";
-                            } else if (values.firstName.length < 3)
-                                errors.firstName = "at least 3 chars";
-                            else if (values.firstName.length > 50)
-                                errors.firstName = "Max 50 chars";
-
-                            if (!values.lastName) {
-                                errors.lastName = "last Name is Required";
-                            } else if (values.lastName.length < 3)
-                                errors.lastName = "at least 3 chars";
-                            else if (values.lastName.length > 50)
-                                errors.lastName = "Max 50 chars";
-                            if (!values.email) {
-                                errors.email = "email is Required";
-                            } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                                    values.email
-                                )
-                            ) {
-                                errors.email = "Invalid email address";
-                            }
                             return errors;
                         }}
-                        onSubmit={async (values, { setSubmitting }) => {
-                            if (values.firstName == user.firstName) {
-                                delete values.firstName;
-                            } else if (values.lastName == user.lastName) {
-                                delete values.lastName;
-                            } else if (values.email == user.email) {
-                                delete values.email;
+                        onSubmit={(values, { setSubmitting }) => {
+                            if (
+                                values.portfolioWebsite == user.portfolioWebsite
+                            ) {
+                                delete values.portfolioWebsite;
+                            } else if (
+                                values.instgram_Link == user.instgram_Link
+                            ) {
+                                delete values.instgram_Link;
+                            } else if (
+                                values.linkedIn_Link == user.linkedIn_Link
+                            ) {
+                                delete values.linkedIn_Link;
+                            } else if (
+                                values.facebook_Link == user.facebook_Link
+                            ) {
+                                delete values.facebook_Link;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
                                 handleEdite(
                                     values,
                                     set_user,
-                                    "/Freelancer/Complete_Profile/Step_1",
-                                    // null,
+                                    "/Client/Profile",
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -193,65 +180,77 @@ function Step_0() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Freelancer/Complete_Profile/Step_1"
-                                );
+                                window.location.href("/Client/Profile");
                             }
-                            // }
                         }}
                     >
                         {({ isSubmitting, setFieldValue }) => (
                             <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        First Name{" "}
+                                        Portfolio Website{" "}
                                     </div>
                                     <Field
-                                        placeholder="Prénom"
+                                        placeholder="https://www.example.com"
                                         type="text"
-                                        name="firstName"
+                                        name="portfolioWebsite"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="firstName"
+                                        name="portfolioWebsite"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Last Name
+                                        your Instgram account Link
                                     </div>
                                     <Field
-                                        placeholder="nom de famille"
-                                        type="text"
-                                        name="lastName"
+                                        placeholder="https://www.example.com"
+                                        type="instgram_Link"
+                                        name="instgram_Link"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="lastName"
+                                        name="instgram_Link"
                                         component="div"
                                         style={errorInputMessage}
                                     />
                                 </div>
-                                <div className=" relative">
-                                    <div className=" font-semibold text-sm pb-1">
-                                        Email
-                                    </div>
-                                    <div className=" flex items-center">
-                                        <Field
-                                            placeholder="example@gmail.com"
-                                            type="text"
-                                            name="email"
-                                            disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
-                                        />
-                                    </div>
 
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        your LinkedIn account Link
+                                    </div>
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="linkedIn_Link"
+                                        name="linkedIn_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
                                     <ErrorMessage
-                                        name="email"
+                                        name="linkedIn_Link"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        your Facebook account Link
+                                    </div>
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="facebook_Link"
+                                        name="facebook_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="facebook_Link"
                                         component="div"
                                         style={errorInputMessage}
                                     />
@@ -283,4 +282,4 @@ const errorInputMessage = {
     fontSize: "12px",
     color: "red",
 };
-export default Step_0;
+export default Step_1;

@@ -54,8 +54,8 @@ function Hero() {
                         className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
                                 rounded-md cursor-pointer "
                         onClick={() => {
-                            // window.location.href = "/Freelancer/Jobs";
-                            Navigate("/Freelancer/Jobs");
+                            // window.location.href = "/Client/Projects";
+                            Navigate("/Client/Projects");
                         }}
                     >
                         See work offers
@@ -66,8 +66,8 @@ function Hero() {
                 className=" hidden md:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
             rounded-md cursor-pointer "
                 onClick={() => {
-                    // window.location.href = "/Freelancer/Jobs";
-                    Navigate("/Freelancer/Jobs");
+                    // window.location.href = "/Client/Projects";
+                    Navigate("/Client/Projects");
                 }}
             >
                 See work offers

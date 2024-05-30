@@ -1,8 +1,10 @@
 import React from "react";
 import Alert_Complete_Profile from "./Alerts/Alert_Complete_Profile";
 import { useAppContext } from "../../AppContext";
-function Client_Profile() {
+
+function Client_applications() {
     const { show_Alert_completeProfile } = useAppContext();
+
     return (
         <div>
             <div>
@@ -12,4 +14,4 @@ function Client_Profile() {
     );
 }
 
-export default Client_Profile;
+export default Client_applications;

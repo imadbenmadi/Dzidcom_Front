@@ -2,21 +2,109 @@ import React from "react";
 import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
-import handleEdite from "./Post_EditUser";
-
+import handleEdite from "./API/Post_EditUser";
+import { useState, useEffect, useRef } from "react";
+import { FaRegImage } from "react-icons/fa";
 function Step_1() {
     const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
+    const [image_state, setimage_state] = useState(null);
+    const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
+    const [imageChanged, setimageChanged] = useState(false);
+    const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        if (image_state) setimageChanged(true);
+        else if (!image_state) setimageChanged(false);
+        else setimageChanged(false);
+    }, [image_state]);
     return (
         <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
                 <div className=" flex items-center justify-start gap-12 w-full ">
-                    <div>
-                        <img
-                            src={user_default}
-                            alt=""
-                            className=" w-[120px] cursor-pointer"
-                        />
+                    <div className=" order-2 md:order-1">
+                        <div className=" w-full">
+                            <input
+                                id="Step4_image"
+                                type="file"
+                                name="image"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    setimage_state(
+                                        event.currentTarget.files[0]
+                                    );
+                                }}
+                                ref={fileInputRef}
+                                // disabled={isSubmitting}
+                                className="hidden" // Hide the default file input button
+                            />
+                        </div>
+                        <div className="flex flex-col items-center gap-1">
+                            {user.profile_pic_link ? (
+                                <>
+                                    <img
+                                        src={
+                                            "http://localhost:3000/" +
+                                            user.profile_pic_link
+                                        }
+                                        alt="Profile Pic"
+                                        className=" w-[150px] h-[150px] object-cover rounded-full"
+                                    />
+                                    {imageDeleteLoading ? (
+                                        <span className="small-loader mt-5"></span>
+                                    ) : (
+                                        <div
+                                            className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                            onClick={() => {
+                                                Delete_Profile_Pic(
+                                                    setimageDeleteLoading,
+                                                    set_user,
+                                                    setimage_state
+                                                );
+                                            }}
+                                        >
+                                            {/* <IoClose /> */}
+                                            Remove
+                                        </div>
+                                    )}
+                                </>
+                            ) : image_state ? (
+                                <div className=" relative ">
+                                    <img
+                                        src={URL.createObjectURL(image_state)} // Create a URL for the selected image
+                                        alt="Selected Image"
+                                        // ref={fileInputRef}
+                                        className=" w-[150px] h-[150px]  object-cover rounded-full"
+                                    />
+                                    <div
+                                        className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                         bg-gray-400 cursor-pointer"
+                                        onClick={() => {
+                                            setimage_state(null);
+                                            // setimageChanged(false);
+                                            if (fileInputRef.current) {
+                                                fileInputRef.current.value = "";
+                                            }
+                                        }}
+                                    >
+                                        {/* <IoClose /> */}
+                                        Cancel
+                                    </div>
+                                </div>
+                            ) : (
+                                <div
+                                    className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
+                                    onClick={() =>
+                                        document
+                                            .getElementById("Step4_image")
+                                            .click()
+                                    }
+                                >
+                                    <FaRegImage className=" text-gray_v text-2xl" />
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className=" order-1  md:order-2">
                         {(!isProfileCompleted ||
@@ -31,8 +119,8 @@ function Step_1() {
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div>{user?.firstName}</div>
-                            <div>{user.lastName}</div>
-                            <div>{user.email}</div>
+                            <div>{user?.lastName}</div>
+                            <div>{user?.email}</div>
                         </div>
                     </div>
                 </div>
@@ -80,12 +168,12 @@ function Step_1() {
                             ) {
                                 delete values.facebook_Link;
                             }
-                            if (Object.keys(values).length >= 1)
+                            if (Object.keys(values).length >= 1 || imageChanged)
                                 handleEdite(
                                     values,
-                                    user,
                                     set_user,
                                     "/Freelancer/Profile",
+                                    imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
                                     }

@@ -1,7 +1,8 @@
+import React from "react";
 import Alert_Complete_Profile from "./Alerts/Alert_Complete_Profile";
 import { useAppContext } from "../../AppContext";
 
-function Client_Projects() {
+function Client_Process() {
     const { show_Alert_completeProfile } = useAppContext();
 
     return (
@@ -13,4 +14,4 @@ function Client_Projects() {
     );
 }
 
-export default Client_Projects;
+export default Client_Process;

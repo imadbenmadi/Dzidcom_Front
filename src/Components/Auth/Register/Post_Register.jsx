@@ -22,7 +22,6 @@ async function handleRegister(values, { setSubmitting }) {
                         validateStatus: () => true,
                     }
                 );
-                console.log("Login_response from register: ", Login_response);
                 if (Login_response.status == 200) {
                     if (Login_response.data.userType == "client") {
                         window.location.href = `/Client`;

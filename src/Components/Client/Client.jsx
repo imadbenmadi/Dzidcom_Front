@@ -9,6 +9,7 @@ import user_image from "../../../public/user2.png";
 import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
 import user_default from "../../../public/Profile/user_default.png";
+
 function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -23,9 +24,9 @@ function Client() {
         show_Alert_completeProfile,
         set_show_Alert_completeProfile,
     } = useAppContext();
-    // if (!isAuth || !userId || userType !== "client") {
     if (!isAuth || !userId) {
-        window.location.href = "/Login";
+        // window.location.href = "/Login";
+        Navigate("/Login");
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -45,12 +46,14 @@ function Client() {
                     set_user(response.data.User);
                 } else {
                     set_Auth(false);
-                    window.location.href = "/Login";
+                    // window.location.href = "/Login";
+                    Navigate("/Login");
                 }
             } catch (error) {
                 console.log("error from get user Profile :", error);
                 set_Auth(false);
-                window.location.href = "/Login";
+                // window.location.href = "/Login";
+                Navigate("/Login");
             }
         };
         const fetch_images = () => {
@@ -97,6 +100,8 @@ function Client() {
             !user.JobTitle ||
             !user.Skills ||
             user.Skills.length === 0
+            // ||
+            // !user.profile_pic_link
         ) {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);
@@ -108,7 +113,6 @@ function Client() {
             set_show_Alert_completeProfile(false);
         }
     }, [user]);
-
     if (loading)
         return (
             <div className=" w-screen h-screen flex items-center justify-center">

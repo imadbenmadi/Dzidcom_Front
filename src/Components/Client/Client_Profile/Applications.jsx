@@ -19,8 +19,8 @@ function Applications() {
                         className=" text-white font-semibold bg-perpol_v py-2 px-4  cursor-pointer text-center text-xl mt-6
                         rounded-md cursor-pointe"
                         onClick={() => {
-                            // window.location.href = "/Freelancer/Jobs";
-                            Navigate("/Freelancer/Jobs");
+                            // window.location.href = "/Client/Projects";
+                            Navigate("/Client/Projects");
                         }}
                     >
                         See work offers

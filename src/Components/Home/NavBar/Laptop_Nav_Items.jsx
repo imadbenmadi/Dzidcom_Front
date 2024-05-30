@@ -15,7 +15,7 @@ function Laptop_Nav_Items() {
             <div className="flex gap-6 lg:gap-12">
                 <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                     <a
-                        href={"/#Hero"}
+                        href={"/Home#Hero"}
                         className={
                             " md:hover:text-perpol_v transition-all duration-150 select-none"
                         }
@@ -25,7 +25,7 @@ function Laptop_Nav_Items() {
                 </div>
                 <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                     <a
-                        href={"/#Goal"}
+                        href={"/Home#Goal"}
                         className={
                             " md:hover:text-perpol_v transition-all duration-150 select-none"
                         }
@@ -35,7 +35,7 @@ function Laptop_Nav_Items() {
                 </div>
                 <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                     <a
-                        href={"/#Our_features"}
+                        href={"/Home#Our_features"}
                         className=" md:hover:text-perpol_v transition-all duration-150 select-none"
                     >
                         Our features
@@ -44,7 +44,7 @@ function Laptop_Nav_Items() {
 
                 <div className=" md:hover:text-perpol_v transition-all duration-150  cursor-pointer">
                     <a
-                        href={"/#Contact_us"}
+                        href={"/Home#Contact_us"}
                         className=" md:hover:text-perpol_v transition-all duration-150 select-none"
                     >
                         Contact us

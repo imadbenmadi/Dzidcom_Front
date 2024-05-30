@@ -32,7 +32,7 @@ function Step_3() {
 
         try {
             let response = await Axios.put(
-                `http://localhost:3000/Freelancers/${user.id}/Profile`,
+                `http://localhost:3000/Clients/${user.id}/Profile`,
                 { PortfolioItems: updatedPortfolioItems }, // Send the updated list to the backend
                 {
                     withCredentials: true,
@@ -215,7 +215,7 @@ function Step_3() {
                                         Add a Project
                                     </div>
                                     <a
-                                        href="/Freelancer/Complete_Profile/Step_4"
+                                        href="/Client/Complete_Profile/Step_4"
                                         className="text-sm font-semibold underline text-red-500 cursor-pointer pt-6"
                                     >
                                         Skip this Step
@@ -319,7 +319,7 @@ function Step_3() {
                                              font-semibold px-4 py-2 rounded-lg"
                                         onClick={() => {
                                             window.location.href =
-                                                "/Freelancer/Complete_Profile/Step_4";
+                                                "/Client/Complete_Profile/Step_4";
                                         }}
                                     >
                                         Continue

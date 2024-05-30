@@ -19,8 +19,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_1";
-                        Navigate("/Freelancer/Complete_Profile/Step_1");
+                        //     "/Client/Complete_Profile/Step_1";
+                        Navigate("/Client/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -58,8 +58,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_2";
-                        Navigate("/Freelancer/Complete_Profile/Step_2");
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_2");
                     }}
                 />{" "}
             </div>
@@ -82,8 +82,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_1";
-                        Navigate("/Freelancer/Complete_Profile/Step_1");
+                        //     "/Client/Complete_Profile/Step_1";
+                        Navigate("/Client/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -106,8 +106,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_1";
-                        Navigate("/Freelancer/Complete_Profile/Step_1");
+                        //     "/Client/Complete_Profile/Step_1";
+                        Navigate("/Client/Complete_Profile/Step_1");
                     }}
                 />{" "}
             </div>
@@ -142,8 +142,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_2";
-                        Navigate("/Freelancer/Complete_Profile/Step_2");
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_2");
                     }}
                 />{" "}
             </div>
@@ -173,8 +173,8 @@ function PersonalInformations() {
                     className=" w-8 h-8  cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_4";
-                        Navigate("/Freelancer/Complete_Profile/Step_4");
+                        //     "/Client/Complete_Profile/Step_4";
+                        Navigate("/Client/Complete_Profile/Step_4");
                     }}
                 />{" "}
             </div>
@@ -238,8 +238,8 @@ function PersonalInformations() {
                             className="flex items-center justify-center w-full gap-2 text-xl text-center text-perpol_v font-semibold cursor-pointer"
                             onClick={() => {
                                 // window.location.href =
-                                //     "/Freelancer/Complete_Profile/Step_3";
-                                Navigate("/Freelancer/Complete_Profile/Step_3");
+                                //     "/Client/Complete_Profile/Step_3";
+                                Navigate("/Client/Complete_Profile/Step_3");
                             }}
                         >
                             <IoIosAddCircle />
@@ -253,8 +253,8 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Freelancer/Complete_Profile/Step_3";
-                        Navigate("/Freelancer/Complete_Profile/Step_3");
+                        //     "/Client/Complete_Profile/Step_3";
+                        Navigate("/Client/Complete_Profile/Step_3");
                     }}
                 />{" "}
             </div>
@@ -294,8 +294,8 @@ function PersonalInformations() {
                         className=" w-8 h-8 cursor-pointer"
                         onClick={() => {
                             // window.location.href =
-                            //     "/Freelancer/Complete_Profile/Step_4";
-                            Navigate("/Freelancer/Complete_Profile/Step_4");
+                            //     "/Client/Complete_Profile/Step_4";
+                            Navigate("/Client/Complete_Profile/Step_4");
                         }}
                     />{" "}
                 </div>
