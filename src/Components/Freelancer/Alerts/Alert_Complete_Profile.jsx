@@ -10,8 +10,8 @@ function Alert_Complete_Profile() {
 
     return show_Alert_completeProfile ? (
         <div
-            className="w-full min-h-10 py-3 bg-perpol_v text-white text-lg md:text-center flex select-none
-        items-center justify-start pl-5 md:pl-0 md:justify-center  md:gap-12"
+            className="w-full min-h-10 py-3 bg-perpol_v text-white text-sm md:text-lg md:text-center flex select-none
+        items-center justify-start pl-5 md:pl-0 md:justify-center gap-4  md:gap-12"
         >
             <div>
                 Please complete your profile to unlock full platform access.{" "}

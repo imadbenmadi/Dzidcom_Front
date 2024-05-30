@@ -12,7 +12,7 @@ function PersonalInformations() {
     return (
         <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
             <div className=" text-3xl text-gray_v font-semibold flex items-center justify-between ">
-                {user?.JobTitle ? user.JobTitle : "Job Title"}
+                {user?.JobTitle ? user.JobTitle : "no job title"} 
                 <img
                     src={EditeIcon}
                     alt=""

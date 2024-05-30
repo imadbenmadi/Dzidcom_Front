@@ -9,7 +9,7 @@ function Hero() {
     const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
-        <div className="flex flex-row  items-center justify-around mt-8">
+        <div className="flex flex-row  items-start justify-around mt-8">
             <div className="  flex  justify-center max-w-[350px] gap-6 md:gap-12">
                 {user?.profile_pic_link ? (
                     <img
@@ -58,7 +58,7 @@ function Hero() {
                             Navigate("/Client/Projects");
                         }}
                     >
-                        See work offers
+                        See Your Work
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ function Hero() {
                     Navigate("/Client/Projects");
                 }}
             >
-                See work offers
+                See Your Work
             </div>
         </div>
     );
