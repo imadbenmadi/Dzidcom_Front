@@ -39,54 +39,7 @@ function PersonalInformations() {
                 </div>
                 {/* <img src={EditeIcon} alt="" className=" w-8 h-8 cursor-pointer" />{" "} */}
             </div>
-            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
-                    <div className=" text-xl underline font-semibold">
-                        Company Name:
-                    </div>
-                    <div>
-                        {user?.about ? (
-                            user.about
-                        ) : (
-                            <div className="text-sm">none</div>
-                        )}
-                    </div>
-                </div>
-                <img
-                    src={EditeIcon}
-                    alt=""
-                    className=" w-8 h-8 cursor-pointer"
-                    onClick={() => {
-                        // window.location.href =
-                        //     "/Client/Complete_Profile/Step_2";
-                        Navigate("/Client/Complete_Profile/Step_2");
-                    }}
-                />{" "}
-            </div>
-            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
-                    <div className=" text-xl underline font-semibold">
-                        About Company:
-                    </div>
-                    <div>
-                        {user?.about ? (
-                            user.about
-                        ) : (
-                            <div className="text-sm">none</div>
-                        )}
-                    </div>
-                </div>
-                <img
-                    src={EditeIcon}
-                    alt=""
-                    className=" w-8 h-8 cursor-pointer"
-                    onClick={() => {
-                        // window.location.href =
-                        //     "/Client/Complete_Profile/Step_2";
-                        Navigate("/Client/Complete_Profile/Step_2");
-                    }}
-                />{" "}
-            </div>
+
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
@@ -135,29 +88,23 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
-            <div className=" flex items-start justify-between ">
-                <div className="flex flex-col gap-6  ">
-                    <div className=" shrink-0 text-xl underline font-semibold text-gray_v">
-                        Skills :
+            <div className=" w-full bg-gray_white h-[1px]"> </div>
+            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
+                    <div className=" text-xl underline font-semibold">
+                        Company Name:
                     </div>
-                    {/* {console.log(user.Skills)} */}
-                    <div className="flex flex-wrap  gap-6">
-                        {user?.Skills ? (
-                            user.Skills.map((skill) => (
-                                <div key={skill.id}>
-                                    <div
-                                        className=" bg-perpol_v text-xl w-fit py-1
-                                                     px-2 text-white rounded-lg "
-                                    >
-                                        {skill.skill}
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p className=" text-sm font-semibold  text-gray_v">
-                                No skills found
-                            </p>
-                        )}
+                    <div>
+                        <div>
+                            {user?.company_Name ? (
+                                user.company_Name
+                            ) : (
+                                <div className="text-sm">none</div>
+                            )}
+                        </div>
+                        <div className=" text-sm font-normal">
+                            {user?.company_about ? user.company_about : null}
+                        </div>
                     </div>
                 </div>
                 <img
@@ -171,20 +118,18 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
-            <div className=" w-full bg-gray_white h-[1px]"> </div>
-
             <div className=" text-lg text-gray_v font-semibold flex  justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
-                        Portfolio Website :
+                        Website :
                     </div>
                     <div>
-                        {user?.portfolioWebsite ? (
+                        {user?.company_Website ? (
                             <a
                                 className=" text-purple-400 underline"
-                                href={user.portfolioWebsite}
+                                href={user.company_Website}
                             >
-                                {user.portfolioWebsite}
+                                {user.company_Website}
                             </a>
                         ) : (
                             <div className="text-sm">none</div>
@@ -202,73 +147,18 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
-            <div className=" flex items-start justify-between ">
-                <div className="flex flex-col gap-4 w-full  ">
-                    <div className=" shrink-0 text-xl underline font-semibold text-gray_v">
-                        Portfolio :
+
+            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
+                    <div className=" text-xl underline font-semibold">
+                        Adress :
                     </div>
-                    <div className="flex flex-wrap gap-6">
-                        {user?.PortfolioItems &&
-                            user.PortfolioItems.length > 0 &&
-                            user.PortfolioItems.map((project) => (
-                                <div
-                                    key={project.id}
-                                    className="w-full mx-auto md:mx-0 md:min-w-full break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
-                                >
-                                    <div className="font-semibold text-lg text-gray_v">
-                                        {project.title}
-                                    </div>
-                                    <div className="text-sm text-gray_v">
-                                        {project.description}
-                                    </div>
-                                    <div className="flex items-center gap-2 text-sm text-gray_v">
-                                        <div>
-                                            {new Date(
-                                                project.startDate
-                                            ).toLocaleDateString()}
-                                        </div>
-                                        <div className="flex gap-2">
-                                            <div> -</div>
-                                            {project.endDate && (
-                                                <div>
-                                                    {new Date(
-                                                        project.endDate
-                                                    ).toLocaleDateString()}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="font-semibold">
-                                            {project.stillWorking
-                                                ? "Still Working"
-                                                : ""}
-                                        </div>
-                                    </div>
-                                    {project.livePreviewLink && (
-                                        <div className="flex gap-2">
-                                            <div className="font-semibold text-gray_v">
-                                                Preview link:
-                                            </div>
-                                            <a
-                                                href={project.livePreviewLink}
-                                                className="underline text-perpol_v"
-                                            >
-                                                {project.livePreviewLink}
-                                            </a>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        <div
-                            className="flex items-center justify-center w-full gap-2 text-xl text-center text-perpol_v font-semibold cursor-pointer"
-                            onClick={() => {
-                                // window.location.href =
-                                //     "/Client/Complete_Profile/Step_3";
-                                Navigate("/Client/Complete_Profile/Step_3");
-                            }}
-                        >
-                            <IoIosAddCircle />
-                            Add item
-                        </div>
+                    <div>
+                        {user?.company_Adress ? (
+                            user.company_Adress
+                        ) : (
+                            <div className="text-sm">none</div>
+                        )}
                     </div>
                 </div>
                 <img
@@ -277,52 +167,83 @@ function PersonalInformations() {
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Client/Complete_Profile/Step_3";
-                        Navigate("/Client/Complete_Profile/Step_3");
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_2");
+                    }}
+                />{" "}
+            </div>
+            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
+                    <div className=" text-md  font-semibold">
+                        Created At:
+                    </div>
+                    <div>
+                        {user?.company_creationData ? (
+                            new Date(
+                                user.company_creationData
+                            ).toLocaleDateString()
+                        ) : (
+                            <div className="text-sm">none</div>
+                        )}
+                    </div>
+                </div>
+                <img
+                    src={EditeIcon}
+                    alt=""
+                    className=" w-8 h-8 cursor-pointer"
+                    onClick={() => {
+                        // window.location.href =
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_2");
                     }}
                 />{" "}
             </div>
             {user?.facebook_Link ||
             user?.instgram_Link ||
             user?.linkedIn_Link ? (
-                <div className=" flex justify-between">
-                    <div className=" flex gap-6">
-                        {user?.facebook_Link && (
-                            <FaFacebook
-                                className=" text-blue-500 text-5xl cursor-pointer  "
-                                onClick={() => {
-                                    window.location.href = user.facebook_Link;
-                                }}
-                            />
-                        )}
-                        {user?.instgram_Link && (
-                            <FaInstagram
-                                className=" text-red-500 text-5xl cursor-pointer  "
-                                onClick={() => {
-                                    window.location.href = user.instagram_Link;
-                                }}
-                            />
-                        )}
-                        {user?.linkedIn_Link && (
-                            <FaLinkedin
-                                className=" text-blue-500 text-5xl cursor-pointer  "
-                                onClick={() => {
-                                    window.location.href = user.linkedin_Link;
-                                }}
-                            />
-                        )}
+                <>
+                    <div className=" flex justify-between">
+                        <div className=" flex gap-6">
+                            {user?.facebook_Link && (
+                                <FaFacebook
+                                    className=" text-blue-500 text-5xl cursor-pointer  "
+                                    onClick={() => {
+                                        window.location.href =
+                                            user.facebook_Link;
+                                    }}
+                                />
+                            )}
+                            {user?.instgram_Link && (
+                                <FaInstagram
+                                    className=" text-red-500 text-5xl cursor-pointer  "
+                                    onClick={() => {
+                                        window.location.href =
+                                            user.instagram_Link;
+                                    }}
+                                />
+                            )}
+                            {user?.linkedIn_Link && (
+                                <FaLinkedin
+                                    className=" text-blue-500 text-5xl cursor-pointer  "
+                                    onClick={() => {
+                                        window.location.href =
+                                            user.linkedin_Link;
+                                    }}
+                                />
+                            )}
+                        </div>
+                        <img
+                            src={EditeIcon}
+                            alt=""
+                            className=" w-8 h-8 cursor-pointer"
+                            onClick={() => {
+                                // window.location.href =
+                                //     "/Client/Complete_Profile/Step_4";
+                                Navigate("/Client/Complete_Profile/Step_4");
+                            }}
+                        />{" "}
                     </div>
-                    <img
-                        src={EditeIcon}
-                        alt=""
-                        className=" w-8 h-8 cursor-pointer"
-                        onClick={() => {
-                            // window.location.href =
-                            //     "/Client/Complete_Profile/Step_4";
-                            Navigate("/Client/Complete_Profile/Step_4");
-                        }}
-                    />{" "}
-                </div>
+                </>
             ) : null}
 
             <div className=" w-full bg-gray_white h-[1px]"> </div>
@@ -349,10 +270,6 @@ function PersonalInformations() {
                             )}
                         </div>
                     </div>
-                    {/* <div className=" text-center text-md font-semibold text-gray_v pt-6">
-                        {" "}
-                        No Rattings yet
-                    </div> */}
                 </div>
             </div>
         </div>
