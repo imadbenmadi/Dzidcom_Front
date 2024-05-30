@@ -328,20 +328,21 @@ function PersonalInformations() {
             <div className=" w-full bg-gray_white h-[1px]"> </div>
             <div>
                 <div className="flex flex-col gap-4 w-full  ">
-                    <div className=" flex flex-col md:flex-row md:items-center gap-2 md:gap-10 shrink-0 text-2xl  font-semibold text-gray_v">
+                    <div className=" flex flex-row md:items-center gap-6 md:gap-10 shrink-0 text-2xl  font-semibold text-gray_v">
                         <div className=" underline">Reviews : </div>
                         <div className=" flex items-center justify-center gap-4 ">
                             {user?.Rate ? (
                                 <>
                                     <div className=" ">{user.Rate}</div>
-                                    <div className=" text-yellow-400 flex gap-1">
+                                    {/* <div className=" text-yellow-400 flex gap-1">
                                         {[...Array(Math.floor(user.Rate))].map(
                                             (_, index) => (
                                                 <FaStar key={index} />
                                             )
                                         )}
                                         {user.Rate % 1 !== 0 && <FaStarHalf />}
-                                    </div>
+                                    </div> */}
+                                    <FaStar className="text-yellow-400 " />
                                 </>
                             ) : (
                                 <div className=" text-sm">No ratings yet</div>
