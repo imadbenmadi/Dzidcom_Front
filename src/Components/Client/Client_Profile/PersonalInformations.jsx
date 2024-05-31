@@ -166,8 +166,8 @@ function PersonalInformations() {
                     className=" w-8 h-8  cursor-pointer"
                     onClick={() => {
                         // window.location.href =
-                        //     "/Client/Complete_Profile/Step_4";
-                        Navigate("/Client/Complete_Profile/Step_4");
+                        //     "/Client/Complete_Profile/Step_3";
+                        Navigate("/Client/Complete_Profile/Step_3");
                     }}
                 />{" "}
             </div>
@@ -262,8 +262,8 @@ function PersonalInformations() {
                             className=" w-8 h-8 cursor-pointer"
                             onClick={() => {
                                 // window.location.href =
-                                //     "/Client/Complete_Profile/Step_4";
-                                Navigate("/Client/Complete_Profile/Step_4");
+                                //     "/Client/Complete_Profile/Step_3";
+                                Navigate("/Client/Complete_Profile/Step_3");
                             }}
                         />{" "}
                     </div>

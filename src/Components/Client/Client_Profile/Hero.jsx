@@ -58,7 +58,7 @@ function Hero() {
                             Navigate("/Client/Projects");
                         }}
                     >
-                        See Your Work
+                        Your Projects
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@ function Hero() {
                     Navigate("/Client/Projects");
                 }}
             >
-                See Your Work
+                Your Projects
             </div>
         </div>
     );
