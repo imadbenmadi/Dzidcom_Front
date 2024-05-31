@@ -94,6 +94,9 @@ function Freelancer() {
     useEffect(() => {
         if (!user) return;
         else if (
+            !user.firstName ||
+            !user.lastName ||
+            !user.email ||
             !user.telephone ||
             !user.about ||
             !user.nationalCardNumber ||

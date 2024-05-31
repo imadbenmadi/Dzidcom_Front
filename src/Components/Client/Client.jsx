@@ -94,12 +94,13 @@ function Client() {
     useEffect(() => {
         if (!user) return;
         else if (
+            !user.firstName ||
+            !user.lastName ||
+            !user.email ||
             !user.telephone ||
-            !user.about ||
             !user.nationalCardNumber ||
-            !user.JobTitle ||
-            !user.Skills ||
-            user.Skills.length === 0
+            !user.company_Name ||
+            !user.company_WorkField
             // ||
             // !user.profile_pic_link
         ) {
