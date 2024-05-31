@@ -44,10 +44,12 @@ function Footer() {
             <a href="#Contact_us" className=" w-[12%] max-md:w-fit    my-auto">
               <div>Contact us </div>
             </a>
-            <div className="  w-[12%] ">
+            <Link to="/Login" className="  w-[12%] ">
               <div>Hire</div>
-            </div>
-            <div className=" w-[12%] max-md:w-fit my-auto">Work</div>
+            </Link>
+            <Link to="/Login" className=" w-[12%] max-md:w-fit my-auto">
+              Work
+            </Link>
           </div>
         </div>
         <hr className="h-[2px] my-2 max-md:hidden bg-gray-300"></hr>

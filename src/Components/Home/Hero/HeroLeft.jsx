@@ -10,7 +10,7 @@ function HeroLeft({ isChecked, setIsChecked }) {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex flex-col px-3 lg:px-16 pb-10 h-fit bg-white max-md:px-5">
+    <div className="flex flex-col px-3 lg:px-16 md:pb-10 h-fit bg-white max-md:px-5">
       <div className="flex   w-fit  max-md:ml-0 max-md:w-full">
         <div className="self-stretch max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
           {!isChecked ? "Be a freelancer" : "Be a company"}
