@@ -62,7 +62,7 @@ function Mobile_Nav_Items({
                             </Link>
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>
-                        <div className="text-center pt-7">
+                        {/* <div className="text-center pt-7">
                             <Link
                                 onClick={Toogle_Menu_Bar}
                                 to={"/Process"}
@@ -74,7 +74,7 @@ function Mobile_Nav_Items({
                             >
                                 Process
                             </Link>
-                        </div>
+                        </div> */}
                         <div className=" pt-8">
                             {LogoutClicked ? (
                                 <div className="w-full ">

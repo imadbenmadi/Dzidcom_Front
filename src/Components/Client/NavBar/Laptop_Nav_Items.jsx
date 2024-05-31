@@ -76,7 +76,7 @@ function Laptop_Nav_Items({
                     </Link>
                 </div>
 
-                <div
+                {/* <div
                     className={` ${
                         Active_nav == "Process"
                             ? "text-perpol_v"
@@ -86,7 +86,7 @@ function Laptop_Nav_Items({
                     <Link to={"/Client/Process"} className="  select-none">
                         Process
                     </Link>
-                </div>
+                </div> */}
             </div>
             <div className=" flex items center justify-center gap-5">
                 {isProfileCompleted ? (
