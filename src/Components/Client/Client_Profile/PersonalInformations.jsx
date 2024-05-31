@@ -92,7 +92,7 @@ function PersonalInformations() {
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
-                        Company Name:
+                        Company :
                     </div>
                     <div>
                         <div>
@@ -173,9 +173,9 @@ function PersonalInformations() {
                 />{" "}
             </div>
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
-                    <div className=" text-md  font-semibold">
-                        Created At:
+                <div className=" flex flex-row md:items-center justify-center gap-2 md:gap-6">
+                    <div className=" text-base  font-semibold">
+                        Created At :
                     </div>
                     <div>
                         {user?.company_creationData ? (
