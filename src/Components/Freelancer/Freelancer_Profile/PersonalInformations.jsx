@@ -14,15 +14,10 @@ function PersonalInformations() {
             <div className=" text-3xl text-gray_v font-semibold flex items-start justify-between ">
                 <div>
                     {user?.JobTitle ? user.JobTitle : "no job title"}
-                    
-                        <div className=" text-base font-normal pt-6">
-                            {user?.about ? (
-                                user.about
-                            ) : (
-                                null
-                            )}
-                        </div>
-                    
+
+                    <div className=" text-base font-normal pt-6">
+                        {user?.about ? user.about : null}
+                    </div>
                 </div>
                 <img
                     src={EditeIcon}
@@ -48,7 +43,16 @@ function PersonalInformations() {
                         )}
                     </div>
                 </div>
-                {/* <img src={EditeIcon} alt="" className=" w-8 h-8 cursor-pointer" />{" "} */}
+                <img
+                    src={EditeIcon}
+                    alt=""
+                    className=" w-8 h-8 cursor-pointer"
+                    onClick={() => {
+                        // window.location.href =
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_0");
+                    }}
+                />
             </div>
             {/* <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">

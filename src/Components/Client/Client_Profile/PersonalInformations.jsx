@@ -11,19 +11,6 @@ function PersonalInformations() {
     const { user } = useAppContext();
     return (
         <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
-            <div className=" text-3xl text-gray_v font-semibold flex items-center justify-between ">
-                {user?.JobTitle ? user.JobTitle : "Not Title Yet"}
-                <img
-                    src={EditeIcon}
-                    alt=""
-                    className=" w-8 h-8 cursor-pointer"
-                    onClick={() => {
-                        // window.location.href =
-                        //     "/Client/Complete_Profile/Step_1";
-                        Navigate("/Client/Complete_Profile/Step_1");
-                    }}
-                />{" "}
-            </div>
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
@@ -37,7 +24,16 @@ function PersonalInformations() {
                         )}
                     </div>
                 </div>
-                {/* <img src={EditeIcon} alt="" className=" w-8 h-8 cursor-pointer" />{" "} */}
+                <img
+                    src={EditeIcon}
+                    alt=""
+                    className=" w-8 h-8 cursor-pointer"
+                    onClick={() => {
+                        // window.location.href =
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_0");
+                    }}
+                />
             </div>
 
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
@@ -118,6 +114,32 @@ function PersonalInformations() {
                     }}
                 />{" "}
             </div>
+            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
+                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
+                    <div className=" text-xl underline font-semibold">
+                        Work Field :
+                    </div>
+                    <div>
+                        <div>
+                            {user?.company_WorkField ? (
+                                user.company_WorkField
+                            ) : (
+                                <div className="text-sm">none</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+                <img
+                    src={EditeIcon}
+                    alt=""
+                    className=" w-8 h-8 cursor-pointer"
+                    onClick={() => {
+                        // window.location.href =
+                        //     "/Client/Complete_Profile/Step_2";
+                        Navigate("/Client/Complete_Profile/Step_2");
+                    }}
+                />{" "}
+            </div>
             <div className=" text-lg text-gray_v font-semibold flex  justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">
@@ -178,9 +200,9 @@ function PersonalInformations() {
                         Created At :
                     </div>
                     <div>
-                        {user?.company_creationData ? (
+                        {user?.company_creationDate ? (
                             new Date(
-                                user.company_creationData
+                                user.company_creationDate
                             ).toLocaleDateString()
                         ) : (
                             <div className="text-sm">none</div>

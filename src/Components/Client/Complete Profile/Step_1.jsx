@@ -5,8 +5,8 @@ import { useAppContext } from "../../../AppContext";
 import { useState, useEffect, useRef } from "react";
 
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./API/Post_EditUser";
-import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
+import handleEdite from "./API/Client_Post_EditUser";
+import Delete_Profile_Pic from "./API/Client_Delete_Profile_Pic";
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user, isProfileCompleted } = useAppContext();
@@ -142,10 +142,9 @@ function Step_1() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
-                            telephone: user.telephone || "",
-                            nationalCardNumber: user.nationalCardNumber || "",
-                            JobTitle: user.JobTitle || "",
+                            userId: user?.id,
+                            telephone: user?.telephone || "",
+                            nationalCardNumber: user?.nationalCardNumber || "",
                         }}
                         validate={(values) => {
                             const errors = {};
@@ -172,16 +171,6 @@ function Step_1() {
                             else if (values.nationalCardNumber.length < 9)
                                 errors.nationalCardNumber =
                                     " At least 10 chars";
-                            if (!values.JobTitle) {
-                                errors.JobTitle = "Job Title is Required";
-                            } else if (values.JobTitle.length < 3)
-                                errors.JobTitle = "At least 3 chars";
-                            else if (values.JobTitle.length > 50)
-                                errors.JobTitle = "Max 50 chars";
-                            else if (!isNaN(Number(values.JobTitle))) {
-                                errors.JobTitle =
-                                    "Job title cannot be a number";
-                            }
 
                             return errors;
                         }}
@@ -201,6 +190,7 @@ function Step_1() {
                                     values,
                                     set_user,
                                     "/Client/Complete_Profile/Step_2",
+                                    // null,
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -250,26 +240,7 @@ function Step_1() {
                                         style={errorInputMessage}
                                     />
                                 </div>
-                                <div className=" relative">
-                                    <div className=" font-semibold text-sm pb-1">
-                                        Job Title{" "}
-                                    </div>
-                                    <div className=" flex items-center">
-                                        <Field
-                                            placeholder="Designer, Developer, Writer, etc."
-                                            type="text"
-                                            name="JobTitle"
-                                            disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
-                                        />
-                                    </div>
 
-                                    <ErrorMessage
-                                        name="JobTitle"
-                                        component="div"
-                                        style={errorInputMessage}
-                                    />
-                                </div>
                                 {isSubmitting ? (
                                     <span className="small-loader  w-full m-auto"></span>
                                 ) : (

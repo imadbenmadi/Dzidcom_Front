@@ -3,10 +3,10 @@ import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect, useRef } from "react";
-import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
+import Delete_Profile_Pic from "./API/Client_Delete_Profile_Pic";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./API/Post_EditUser";
+import handleEdite from "./API/Client_Post_EditUser";
 function Step_0() {
     const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);

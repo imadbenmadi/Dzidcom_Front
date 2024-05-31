@@ -186,8 +186,8 @@ function Step_2() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
-                            about: user.about || "",
+                            userId: user?.id,
+                            about: user?.about || "",
                             Skills: Skills_from_Server || [],
                         }}
                         validate={(values) => {
@@ -206,15 +206,8 @@ function Step_2() {
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             // console.log("values: ", values);
-                            if (values.telephone == user.telephone) {
-                                delete values.telephone;
-                            } else if (
-                                values.nationalCardNumber ==
-                                user.nationalCardNumber
-                            ) {
-                                delete values.nationalCardNumber;
-                            } else if (values.JobTitle == user.JobTitle) {
-                                delete values.JobTitle;
+                            if (values.about == user.about) {
+                                delete values.about;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
                                 handleEdite(

@@ -142,10 +142,10 @@ function Step_1() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
-                            telephone: user.telephone || "",
-                            nationalCardNumber: user.nationalCardNumber || "",
-                            JobTitle: user.JobTitle || "",
+                            userId: user?.id,
+                            telephone: user?.telephone || "",
+                            nationalCardNumber: user?.nationalCardNumber || "",
+                            JobTitle: user?.JobTitle || "",
                         }}
                         validate={(values) => {
                             const errors = {};

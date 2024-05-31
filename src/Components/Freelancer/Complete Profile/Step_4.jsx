@@ -140,14 +140,46 @@ function Step_1() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
-                            portfolioWebsite: user.portfolioWebsite || "",
-                            instgram_Link: user.instgram_Link || "",
-                            linkedIn_Link: user.linkedIn_Link || "",
-                            facebook_Link: user.facebook_Link || "",
+                            userId: user?.id,
+                            portfolioWebsite: user?.portfolioWebsite || "",
+                            instgram_Link: user?.instgram_Link || "",
+                            linkedIn_Link: user?.linkedIn_Link || "",
+                            facebook_Link: user?.facebook_Link || "",
                         }}
                         validate={(values) => {
                             const errors = {};
+                            if (
+                                values.portfolioWebsite &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.portfolioWebsite
+                                )
+                            ) {
+                                errors.portfolioWebsite = "Invalid URL";
+                            }
+                            if (
+                                values.instgram_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.instgram_Link
+                                )
+                            ) {
+                                errors.instgram_Link = "Invalid URL";
+                            }
+                            if (
+                                values.linkedIn_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.linkedIn_Link
+                                )
+                            ) {
+                                errors.linkedIn_Link = "Invalid URL";
+                            }
+                            if (
+                                values.facebook_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.facebook_Link
+                                )
+                            ) {
+                                errors.facebook_Link = "Invalid URL";
+                            }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {

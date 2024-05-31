@@ -1,67 +1,14 @@
 import React from "react";
+import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
+import handleEdite from "./API/Client_Post_EditUser";
 import { useState, useEffect, useRef } from "react";
-import Axios from "axios";
-import Swal from "sweetalert2";
-import { IoWarningOutline } from "react-icons/io5";
-import { IoMdAddCircleOutline } from "react-icons/io";
-
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./API/Post_EditUser";
-import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
-
-function Step_3() {
-    const [stillWorking, setstillWorking] = useState(false);
-    const [addProjectClicked, setAddProjectClicked] = useState(false);
-    function toogleAddProject() {
-        setAddProjectClicked(!addProjectClicked);
-    }
-    const [image_state, setimage_state] = useState(null);
+function Step_1() {
     const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
-
-    const [deltedProject_Loading, setdeltedProject_Loading] = useState(null);
-    const handleRemoveProject = async (projectId, user, set_user) => {
-        setdeltedProject_Loading(true);
-
-        // Filter out the project to be removed
-        const updatedPortfolioItems = user.PortfolioItems.filter(
-            (item) => item.id !== projectId
-        );
-
-        try {
-            let response = await Axios.put(
-                `http://localhost:3000/Clients/${user.id}/Profile`,
-                { PortfolioItems: updatedPortfolioItems }, // Send the updated list to the backend
-                {
-                    withCredentials: true,
-                }
-            );
-            console.log("response from edit: ", response);
-
-            if (response.status === 200) {
-                const updatedUser = {
-                    ...user,
-                    Skills: response.data.Skills,
-                    PortfolioItems: response.data.PortfolioItems,
-                };
-                console.log("updated user: ", updatedUser);
-                set_user(updatedUser);
-            } else {
-                Swal.fire("Error", `${response.data.message}`, "error");
-            }
-        } catch (error) {
-            console.log("response from register: ", error);
-            Swal.fire(
-                "Error!",
-                `Something went wrong, please try again later`,
-                "error"
-            );
-        }
-
-        setdeltedProject_Loading(false);
-    };
+    const [image_state, setimage_state] = useState(null);
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
     const [imageChanged, setimageChanged] = useState(false);
     const fileInputRef = useRef(null);
@@ -72,13 +19,13 @@ function Step_3() {
         else setimageChanged(false);
     }, [image_state]);
     return (
-        <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
-            <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
-                <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-4 md:gap-12 w-full ">
+        <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
+            <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
+                <div className=" flex items-center justify-start gap-12 w-full ">
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
                             <input
-                                id="Step3_image"
+                                id="Step4_image"
                                 type="file"
                                 name="image"
                                 accept="image/*"
@@ -150,7 +97,7 @@ function Step_3() {
                                     className="w-[150px] h-[150px]  bg-gray_white text-gray rounded-full flex items-center justify-center cursor-pointer"
                                     onClick={() =>
                                         document
-                                            .getElementById("Step3_image")
+                                            .getElementById("Step4_image")
                                             .click()
                                     }
                                 >
@@ -161,23 +108,19 @@ function Step_3() {
                     </div>
                     <div className=" order-1  md:order-2">
                         {(!isProfileCompleted ||
-                            !user?.PortfolioItems ||
-                            !user.PortfolioItems.length > 0) && (
+                            !user.instgram_Link ||
+                            !user.linkedIn_Link ||
+                            !user.facebook_Link ||
+                            !user.portfolioWebsite) && (
                             <div className=" font-semibold text-gray_v pt-6">
-                                Profil 60% Completed ✅
+                                Profil 80% Completed ✅
                             </div>
                         )}
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
-                            <div className=" break-all">
-                                {user?.firstName && user.firstName}
-                            </div>
-                            <div className=" break-all">
-                                {user?.lastName && user.lastName}
-                            </div>
-                            <div className=" break-all">
-                                {user?.email && user.email}{" "}
-                            </div>
+                            <div>{user?.firstName}</div>
+                            <div>{user?.lastName}</div>
+                            <div>{user?.email}</div>
                         </div>
                     </div>
                 </div>
@@ -186,422 +129,154 @@ function Step_3() {
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                     <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
-                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_v "></div>
+                    <div className=" w-[100px] h-2 rounded-lg bg-Rose_b_v "></div>
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        4 - Portfolio{" "}
-                        <span className=" text-sm font-semibold">
-                            Your past work and projects
+                        4 - Links and Social Media{" "}
+                        <span className=" text-sm font-semibold text-gray_v">
+                            (optional)
                         </span>
                     </div>
-                    <div>
-                        {!addProjectClicked ? (
-                            !user?.PortfolioItems ||
-                            user.PortfolioItems.length == 0 ? (
-                                <div className=" flex flex-col items-center justify-center gap-6">
-                                    <div className=" text-center flex items-center justify-center gap-2 text-gray_v ">
-                                        <div>
-                                            <IoWarningOutline className=" text-xl" />
-                                        </div>
-                                        <div>You have no Projects</div>
+                    <Formik
+                        initialValues={{
+                            userId: user?.id,
+                            instgram_Link: user?.instgram_Link || "",
+                            linkedIn_Link: user?.linkedIn_Link || "",
+                            facebook_Link: user?.facebook_Link || "",
+                        }}
+                        validate={(values) => {
+                            const errors = {};
+                            if (
+                                values.portfolioWebsite &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.portfolioWebsite
+                                )
+                            ) {
+                                errors.portfolioWebsite = "Invalid URL";
+                            }
+                            if (
+                                values.instgram_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.instgram_Link
+                                )
+                            ) {
+                                errors.instgram_Link = "Invalid URL";
+                            }
+                            if (
+                                values.linkedIn_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.linkedIn_Link
+                                )
+                            ) {
+                                errors.linkedIn_Link = "Invalid URL";
+                            }
+                            if (
+                                values.facebook_Link &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.facebook_Link
+                                )
+                            ) {
+                                errors.facebook_Link = "Invalid URL";
+                            }
+                            return errors;
+                        }}
+                        onSubmit={(values, { setSubmitting }) => {
+                            if (values.instgram_Link == user.instgram_Link) {
+                                delete values.instgram_Link;
+                            } else if (
+                                values.linkedIn_Link == user.linkedIn_Link
+                            ) {
+                                delete values.linkedIn_Link;
+                            } else if (
+                                values.facebook_Link == user.facebook_Link
+                            ) {
+                                delete values.facebook_Link;
+                            }
+                            if (Object.keys(values).length >= 1 || imageChanged)
+                                handleEdite(
+                                    values,
+                                    set_user,
+                                    "/Client/Profile",
+                                    imageChanged ? image_state : null,
+                                    {
+                                        setSubmitting,
+                                    }
+                                );
+                            else {
+                                setSubmitting(false);
+                                window.location.href("/Client/Profile");
+                            }
+                        }}
+                    >
+                        {({ isSubmitting, setFieldValue }) => (
+                            <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Instgram account Link
                                     </div>
-                                    <div
-                                        className=" text-center flex items-center justify-center gap-2 text-white font-semibold 
-                                        cursor-pointer bg-perpol_v px-4 py-2 rounded-lg"
-                                        onClick={toogleAddProject}
-                                    >
-                                        {/* <IoMdAddCircleOutline className=" font-bold text-2xl"/> */}
-                                        Add a Project
-                                    </div>
-                                    <a
-                                        href="/Client/Complete_Profile/Step_4"
-                                        className="text-sm font-semibold underline text-red-500 cursor-pointer pt-6"
-                                    >
-                                        Skip this Step
-                                    </a>
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="instgram_Link"
+                                        name="instgram_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="instgram_Link"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
                                 </div>
-                            ) : (
-                                <div>
-                                    <div
-                                        className=" flex items-center justify-center gap-1 cursor-pointer text-xl text-perpol_v underline font-semibold  pb-4"
-                                        onClick={toogleAddProject}
-                                    >
-                                        <IoMdAddCircleOutline className=" font-bold text-2xl" />
-                                        Add an item
+
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        LinkedIn account Link
                                     </div>
-                                    <div className=" flex flex-col gap-6">
-                                        {user?.PortfolioItems &&
-                                            user.PortfolioItems.map(
-                                                (project) => (
-                                                    <div
-                                                        key={project.id}
-                                                        className="w-[90%] mx-auto md:mx-0 md:max-w-[500px] break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
-                                                    >
-                                                        <div className=" font-semibold text-lg text-gray_v">
-                                                            {project?.title}
-                                                        </div>
-                                                        <div className=" text-sm text-gray_v">
-                                                            {
-                                                                project?.description
-                                                            }
-                                                        </div>
-                                                        <div className=" flex items-center gap-2 text-sm text-gray_v">
-                                                            <div>
-                                                                {new Date(
-                                                                    project.startDate
-                                                                ).toLocaleDateString()}
-                                                            </div>
-                                                            <div className=" flex gap-2">
-                                                                <div> -</div>
-                                                                {project.endDate &&
-                                                                    new Date(
-                                                                        project.endDate
-                                                                    ).toLocaleDateString()}
-                                                            </div>
-                                                            <div className="  font-semibold">
-                                                                {project.stillWorking
-                                                                    ? "Still Working"
-                                                                    : ""}
-                                                            </div>
-                                                        </div>
-                                                        {project.livePreviewLink && (
-                                                            <div className=" flex gap-2 ">
-                                                                <div className=" font-semibold text-gray_v">
-                                                                    preview link
-                                                                    :
-                                                                </div>
-
-                                                                <a
-                                                                    href={
-                                                                        project?.livePreviewLink
-                                                                    }
-                                                                    className=" underline text-perpol_v"
-                                                                >
-                                                                    {
-                                                                        project?.livePreviewLink
-                                                                    }
-                                                                </a>
-                                                            </div>
-                                                        )}
-
-                                                        <div>
-                                                            {deltedProject_Loading ? (
-                                                                <span className="small-loader"></span>
-                                                            ) : (
-                                                                <div className=" flex items-center gap-2">
-                                                                    <div
-                                                                        className=" text-white font-semibold
-                                                                         bg-red-600 px-4 py-2 rounded-lg cursor-pointer"
-                                                                        onClick={(
-                                                                            e
-                                                                        ) =>
-                                                                            handleRemoveProject(
-                                                                                project.id,
-                                                                                user,
-                                                                                set_user
-                                                                            )
-                                                                        }
-                                                                    >
-                                                                        Remove
-                                                                    </div>
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                )
-                                            )}
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="linkedIn_Link"
+                                        name="linkedIn_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="linkedIn_Link"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Facebook account Link
                                     </div>
-
-                                    <div
-                                        className=" bg-perpol_v gap-1 cursor-pointer text-xl text-white mt-6 
-                                        flex items-center justify-center 
-                                             font-semibold px-4 py-2 rounded-lg"
-                                        onClick={() => {
-                                            window.location.href =
-                                                "/Client/Complete_Profile/Step_4";
-                                        }}
+                                    <Field
+                                        placeholder="https://www.example.com"
+                                        type="facebook_Link"
+                                        name="facebook_Link"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="facebook_Link"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                {isSubmitting ? (
+                                    <span className="small-loader  w-full m-auto"></span>
+                                ) : (
+                                    <button
+                                        type="submit"
+                                        className=" bg-perpol_v py-2 rounded-2xl text-white font-semibold "
+                                        disabled={isSubmitting}
                                     >
                                         Continue
-                                    </div>
-                                </div>
-                            )
-                        ) : (
-                            <div>
-                                <Formik
-                                    initialValues={{
-                                        userId: user.id,
-                                        title: "",
-                                        description: "",
-                                        startDate: "",
-                                        endDate: "",
-                                        livePreviewLink: "",
-                                        stillWorking: false,
-                                    }}
-                                    validate={(values) => {
-                                        const errors = {};
-                                        if (!values.title) {
-                                            errors.title = "Title is required";
-                                        } else if (values.title.length < 5) {
-                                            errors.title =
-                                                "Title must be at least 5 characters";
-                                        } else if (values.title.length > 200) {
-                                            errors.title =
-                                                "Title cannot exceed 200 characters";
-                                        }
-
-                                        if (!values.description) {
-                                            errors.description =
-                                                "Description is required";
-                                        } else if (
-                                            values.description.length < 10
-                                        ) {
-                                            errors.description =
-                                                "Description must be at least 10 characters";
-                                        } else if (
-                                            values.description.length > 1500
-                                        ) {
-                                            errors.description =
-                                                "Description cannot exceed 1500 characters";
-                                        }
-
-                                        if (!values.startDate) {
-                                            errors.startDate =
-                                                "Start Date is required";
-                                        } else if (
-                                            new Date(values.startDate) >
-                                            new Date()
-                                        ) {
-                                            errors.startDate =
-                                                "Start Date cannot be in the future";
-                                        }
-
-                                        if (
-                                            !values.endDate &&
-                                            !values.stillWorking
-                                        ) {
-                                            errors.endDate =
-                                                "End Date is required";
-                                        } else if (
-                                            new Date(values.endDate) >
-                                            new Date()
-                                        ) {
-                                            errors.endDate =
-                                                "End Date cannot be in the future";
-                                        } else if (
-                                            !values.stillWorking &&
-                                            new Date(values.startDate) >
-                                                new Date(values.endDate)
-                                        ) {
-                                            errors.endDate =
-                                                "End Date must be after Start Date";
-                                        }
-                                        if (
-                                            values.livePreviewLink &&
-                                            !values.livePreviewLink.match(
-                                                /^(ftp|http|https):\/\/[^ "]+$/
-                                            )
-                                        ) {
-                                            errors.livePreviewLink =
-                                                "Invalid URL";
-                                        }
-
-                                        return errors;
-                                    }}
-                                    onSubmit={(values, { setSubmitting }) => {
-                                        console.log("values to send: ", values);
-                                        if (stillWorking) delete values.endDate;
-                                        const formattedData = {
-                                            userId: values.userId,
-                                            // PortfolioItems: [
-                                            //     values.title,
-                                            //     values.description,
-                                            //     values.startDate,
-                                            //     values.endDate,
-                                            //     values.livePreviewLink,
-                                            //     values.stillWorking,
-                                            // ],
-                                            PortfolioItems: [
-                                                ...user.PortfolioItems,
-                                                {
-                                                    title: values.title,
-                                                    description:
-                                                        values.description,
-                                                    startDate: values.startDate,
-                                                    endDate: values.endDate,
-                                                    livePreviewLink:
-                                                        values.livePreviewLink,
-                                                    stillWorking:
-                                                        values.stillWorking,
-                                                    ImageLink: values.ImageLink, // Include this if you have it in values
-                                                },
-                                            ],
-                                        };
-                                        handleEdite(
-                                            formattedData,
-                                            set_user,
-                                            null,
-                                            imageChanged ? image_state : null,
-                                            {
-                                                setSubmitting,
-                                            }
-                                        );
-                                        window.location.reload();
-                                        // setAddProjectClicked(false);
-                                    }}
-                                >
-                                    {({
-                                        isSubmitting,
-                                        setFieldValue,
-                                        values,
-                                        errors,
-                                    }) => (
-                                        <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
-                                            <div className=" relative">
-                                                <div className=" font-semibold text-sm pb-1">
-                                                    Title
-                                                </div>
-                                                <Field
-                                                    placeholder="Tell us title your self"
-                                                    type="text"
-                                                    name="title"
-                                                    disabled={isSubmitting}
-                                                    className="  border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                                />
-                                                <ErrorMessage
-                                                    name="title"
-                                                    component="div"
-                                                    style={errorInputMessage}
-                                                />
-                                            </div>
-                                            <div className=" relative">
-                                                <div className=" font-semibold text-sm pb-1">
-                                                    Description
-                                                </div>
-                                                <Field
-                                                    placeholder="add description "
-                                                    as="textarea"
-                                                    rows={7}
-                                                    name="description"
-                                                    disabled={isSubmitting}
-                                                    className=" resize-none border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                                />
-                                                <ErrorMessage
-                                                    name="description"
-                                                    component="div"
-                                                    style={errorInputMessage}
-                                                />
-                                            </div>
-                                            <div className=" relative">
-                                                <div className=" font-semibold text-sm pb-1">
-                                                    Start Date
-                                                </div>
-                                                <input
-                                                    type="date"
-                                                    onChange={(e) =>
-                                                        setFieldValue(
-                                                            "startDate",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    value={values.startDate}
-                                                    className=" border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                                />
-                                                <ErrorMessage
-                                                    name="startDate"
-                                                    component="div"
-                                                    style={errorInputMessage}
-                                                />
-                                            </div>
-                                            <div className=" relative">
-                                                <div className=" font-semibold text-sm pb-1">
-                                                    End Date
-                                                </div>
-                                                <input
-                                                    type="date"
-                                                    onChange={(e) =>
-                                                        setFieldValue(
-                                                            "endDate",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    disabled={
-                                                        stillWorking
-                                                            ? true
-                                                            : false
-                                                    }
-                                                    value={values.endDate}
-                                                    className=" border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                                />
-                                                <ErrorMessage
-                                                    name="endDate"
-                                                    component="div"
-                                                    style={errorInputMessage}
-                                                />
-                                            </div>
-                                            <div className=" flex items-center justify-start ml-4 gap-2 text-sm font-semibold">
-                                                <div>Still Working </div>
-                                                <input
-                                                    type="checkbox"
-                                                    onChange={(e) => {
-                                                        setFieldValue(
-                                                            "stillWorking",
-                                                            e.target.checked
-                                                        );
-                                                        setstillWorking(
-                                                            e.target.checked
-                                                        );
-                                                    }}
-                                                    value={values.stillWorking}
-                                                />
-                                            </div>
-                                            <div className=" relative">
-                                                <div className=" font-semibold text-sm pb-1">
-                                                    preview link
-                                                </div>
-                                                <Field
-                                                    placeholder="https://www.example.com"
-                                                    type="text"
-                                                    name="livePreviewLink"
-                                                    disabled={isSubmitting}
-                                                    className="  border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
-                                                />
-                                                <ErrorMessage
-                                                    name="livePreviewLink"
-                                                    component="div"
-                                                    style={errorInputMessage}
-                                                />
-                                            </div>
-                                            <div className=" flex items-center justify-center gap-12 ">
-                                                <div>
-                                                    {isSubmitting ? (
-                                                        <span className="small-loader  w-full m-auto"></span>
-                                                    ) : (
-                                                        <button
-                                                            type="submit"
-                                                            className=" bg-perpol_v w-[100px] py-2 rounded-xl text-white font-semibold "
-                                                            disabled={
-                                                                isSubmitting
-                                                            }
-                                                        >
-                                                            Save
-                                                        </button>
-                                                    )}
-                                                </div>
-                                                <div
-                                                    onClick={toogleAddProject}
-                                                    className=" bg-red-500 w-[100px] py-2 rounded-xl text-white font-semibold text-center cursor-pointer"
-                                                    disabled={isSubmitting}
-                                                >
-                                                    Cancel
-                                                </div>
-                                            </div>
-                                        </Form>
-                                    )}
-                                </Formik>
-                            </div>
+                                    </button>
+                                )}
+                            </Form>
                         )}
-                    </div>
+                    </Formik>
                 </div>
             </div>
         </div>
@@ -615,4 +290,4 @@ const errorInputMessage = {
     fontSize: "12px",
     color: "red",
 };
-export default Step_3;
+export default Step_1;

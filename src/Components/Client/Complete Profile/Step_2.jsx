@@ -5,8 +5,8 @@ import { useState, useEffect, useRef } from "react";
 
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
-import handleEdite from "./API/Post_EditUser";
-import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
+import handleEdite from "./API/Client_Post_EditUser";
+import Delete_Profile_Pic from "./API/Client_Delete_Profile_Pic";
 
 function Step_2() {
     const [image_state, setimage_state] = useState(null);
@@ -21,51 +21,7 @@ function Step_2() {
         else setimageChanged(false);
     }, [image_state]);
     if (!user || !set_user) return null;
-    const skillsOptions = [
-        "Social Media Marketing",
-        "Graphic Design",
-        "Logo Design",
-        "UI/UX Design",
-        "Web Design",
-        "Illustration",
-        "Typography Design",
-        "Motion Graphics",
-        "Video Editing",
-        "Animation",
-        "Content Creation",
-        "Copywriting",
-        "Creative Writing",
-        "Blog Writing",
-        "Article Writing",
-        "SEO Writing",
-        "Social Media Management",
-        "Content Strategy",
-        "Content Marketing",
-        "Search Engine Optimization (SEO)",
-        "Digital Marketing",
-    ];
-    const Skills_from_Server = user?.Skills
-        ? user.Skills.map((skill) => skill.skill)
-        : [];
-    const [selectedSkills, setSelectedSkills] = useState(Skills_from_Server);
-    const [availableSkills, setAvailableSkills] = useState(
-        skillsOptions.filter((skill) => !Skills_from_Server.includes(skill))
-    );
 
-    const handleSkillChange = (e) => {
-        const selectedValue = e.target.value;
-        if (!selectedSkills.includes(selectedValue) && selectedValue !== "") {
-            setSelectedSkills([...selectedSkills, selectedValue]);
-            setAvailableSkills(
-                availableSkills.filter((skill) => skill !== selectedValue)
-            );
-        }
-    };
-
-    const handleRemoveSkill = (skill) => {
-        setSelectedSkills(selectedSkills.filter((s) => s !== skill));
-        setAvailableSkills([...availableSkills, skill]);
-    };
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -182,40 +138,103 @@ function Step_2() {
                 </div>
                 <div className=" mb-6">
                     <div className=" font-semibold text-lg text-gray_v pb-6">
-                        3 - Areas of Expertise{" "}
+                        3 - Company Informations{" "}
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
-                            about: user.about || "",
-                            Skills: Skills_from_Server || [],
+                            userId: user?.id,
+                            company_Name: user?.company_Name || "",
+                            company_WorkField: user?.company_WorkField || "",
+                            company_about: user?.company_about || "",
+                            company_Website: user?.company_Website || "",
+                            company_Adress: user?.company_Adress || "",
+                            company_creationDate:
+                                user?.company_creationDate || "",
                         }}
                         validate={(values) => {
                             const errors = {};
-                            if (!values.about) {
-                                errors.about = "about is Required";
-                            } else if (values.about.length < 10)
-                                errors.about = "at least 10 chars";
-                            else if (values.about.length > 3000)
-                                errors.about = "max 3000 chars";
-
-                            if (values.Skills.length === 0) {
-                                errors.Skills = " At least add one skill ";
+                            if (!values.company_Name) {
+                                errors.company_Name =
+                                    "company Name is Required";
+                            } else if (values.company_Name.length > 100)
+                                errors.company_Name = "Max 100 chars";
+                            if (!values.company_WorkField) {
+                                errors.company_WorkField =
+                                    "company Work Field is Required";
+                            } else if (values.company_WorkField.length > 100)
+                                errors.company_WorkField = "Max 100 chars";
+                            if (
+                                values.company_Adress &&
+                                values.company_Adress.length < 10
+                            )
+                                errors.company_Adress = "at least 10 chars";
+                            else if (
+                                values.company_Adress &&
+                                values.company_Adress.length > 3000
+                            )
+                                errors.company_Adress = "max 3000 chars";
+                            if (
+                                values.company_about &&
+                                values.company_about.length < 10
+                            )
+                                errors.company_about = "at least 10 chars";
+                            else if (
+                                values.company_about &&
+                                values.company_about.length > 3000
+                            )
+                                errors.company_about = "max 3000 chars";
+                            if (
+                                values.company_Website &&
+                                !/^(ftp|http|https):\/\/[^ "]+$/.test(
+                                    values.company_Website
+                                )
+                            ) {
+                                errors.company_Website = "Invalid URL";
+                            }
+                            if (
+                                values.company_creationDate &&
+                                new Date(values.company_creationDate) >
+                                    new Date()
+                            ) {
+                                errors.company_creationDate = "Invalid Date";
                             }
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            // console.log("values: ", values);
-                            if (values.telephone == user.telephone) {
-                                delete values.telephone;
-                            } else if (
-                                values.nationalCardNumber ==
-                                user.nationalCardNumber
-                            ) {
-                                delete values.nationalCardNumber;
-                            } else if (values.JobTitle == user.JobTitle) {
-                                delete values.JobTitle;
-                            }
+                            if (
+                                values.company_Name &&
+                                values.company_Name == user.company_Name
+                            )
+                                delete values.company_Name;
+                            if (
+                                values.company_WorkField &&
+                                values.company_WorkField ==
+                                    user.company_WorkField
+                            )
+                                delete values.company_WorkField;
+                            if (
+                                values.company_Adress &&
+                                values.company_Adress == user.company_Adress
+                            )
+                                delete values.company_Adress;
+                            if (
+                                values.company_about &&
+                                values.company_about == user.company_about
+                            )
+                                delete values.company_about;
+                            if (
+                                values.company_Website &&
+                                values.company_Website == user.company_Website
+                            )
+                                delete values.company_Website;
+                            if (!values.company_creationDate)
+                                delete values.company_creationDate;
+                            else if (
+                                values.company_creationDate &&
+                                values.company_creationDate ==
+                                    user.company_creationDate
+                            )
+                                delete values.company_creationDate;
                             if (Object.keys(values).length >= 1 || imageChanged)
                                 handleEdite(
                                     values,
@@ -236,104 +255,109 @@ function Step_2() {
                         {({ isSubmitting, setFieldValue, values, errors }) => (
                             <Form className="  flex flex-col text-sm md:text-lg  gap-9 text-black_text">
                                 <div className=" relative">
-                                    <div className="relative">
-                                        <div className="font-semibold text-sm pb-1">
-                                            Skills
-                                        </div>
-
-                                        <select
-                                            name="Skills"
-                                            onChange={(e) => {
-                                                handleSkillChange(e);
-                                                setFieldValue("Skills", [
-                                                    ...selectedSkills,
-                                                    e.target.value,
-                                                ]);
-                                            }}
-                                            disabled={isSubmitting}
-                                            className="border border-gray_white px-4 py-2 rounded-lg text-sm w-full"
-                                        >
-                                            <option
-                                                value=""
-                                                className="text-sm font-semibold"
-                                            >
-                                                Select a skill
-                                            </option>
-                                            {availableSkills.map(
-                                                (skill, index) => (
-                                                    <option
-                                                        // key={skill.id}
-                                                        key={index}
-                                                        value={skill}
-                                                        className="text-sm  font-semibold"
-                                                    >
-                                                        {skill}
-                                                    </option>
-                                                )
-                                            )}
-                                        </select>
-
-                                        <ErrorMessage
-                                            name="Skills"
-                                            component="div"
-                                            style={errorInputMessage}
-                                        />
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Company Name
                                     </div>
-                                    <div>
-                                        <ul className=" pt-2 flex flex-wrap items-center justify-start gap-4">
-                                            {selectedSkills &&
-                                                selectedSkills.map(
-                                                    (skill, index) => (
-                                                        <li
-                                                            // key={skill.id}
-                                                            key={index}
-                                                            className="bg-perpol_v text-white px-2 py-1 rounded-lg flex items-center justify-center gap-1"
-                                                        >
-                                                            {skill}
-
-                                                            <button
-                                                                type="button"
-                                                                onClick={() => {
-                                                                    handleRemoveSkill(
-                                                                        skill
-                                                                    );
-                                                                    const updatedSkills =
-                                                                        selectedSkills.filter(
-                                                                            (
-                                                                                s
-                                                                            ) =>
-                                                                                s !==
-                                                                                skill
-                                                                        );
-                                                                    setFieldValue(
-                                                                        "Skills",
-                                                                        updatedSkills
-                                                                    );
-                                                                }}
-                                                                className="ml-1 text-sm font-semibold text-white rounded-full w-4 h-4 flex items-center justify-center"
-                                                            >
-                                                                <IoClose className="md:font-semibold md:text-xl" />
-                                                            </button>
-                                                        </li>
-                                                    )
-                                                )}
-                                        </ul>
-                                    </div>
+                                    <Field
+                                        placeholder=""
+                                        type="text"
+                                        name="company_Name"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="company_Name"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
                                 </div>
                                 <div className=" relative">
                                     <div className=" font-semibold text-sm pb-1">
-                                        Tell us About your Self{" "}
+                                        Work Field
                                     </div>
                                     <Field
-                                        placeholder="Tell us about your self"
-                                        as="textarea"
-                                        rows={7}
-                                        name="about"
+                                        placeholder="marketing, development, ..."
+                                        type="text"
+                                        name="company_WorkField"
                                         disabled={isSubmitting}
-                                        className=" resize-none border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
                                     />
                                     <ErrorMessage
-                                        name="about"
+                                        name="company_WorkField"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Company Website
+                                    </div>
+                                    <Field
+                                        placeholder="https://example.com"
+                                        type="text"
+                                        name="company_Website"
+                                        disabled={isSubmitting}
+                                        className="border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="company_Website"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Creation Date
+                                    </div>
+                                    <input
+                                        type="date"
+                                        onChange={(e) =>
+                                            setFieldValue(
+                                                "company_creationDate",
+                                                e.target.value
+                                            )
+                                        }
+                                        value={values.company_creationDate}
+                                        className=" border border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="company_creationDate"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Tell us about your Company{" "}
+                                    </div>
+                                    <Field
+                                        placeholder="Willaya , cité ..."
+                                        as="textarea"
+                                        rows={3}
+                                        name="company_Adress"
+                                        disabled={isSubmitting}
+                                        className=" resize-none border custom-overflow border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="company_Adress"
+                                        component="div"
+                                        style={errorInputMessage}
+                                    />
+                                </div>
+                                <div className=" relative">
+                                    <div className=" font-semibold text-sm pb-1">
+                                        Tell us about your Company{" "}
+                                    </div>
+                                    <Field
+                                        placeholder="description"
+                                        as="textarea"
+                                        rows={7}
+                                        name="company_about"
+                                        disabled={isSubmitting}
+                                        className=" resize-none border custom-overflow border-gray_white px-4 py-2 rounded-lg  text-sm  w-full"
+                                    />
+                                    <ErrorMessage
+                                        name="company_about"
                                         component="div"
                                         style={errorInputMessage}
                                     />
