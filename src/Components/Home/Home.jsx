@@ -43,6 +43,9 @@ import NavBar from "../../Components/Home/NavBar/NavBar";
 
 function Home() {
   const [loading, setLoading] = useState(true);
+  const [isChecked, setIsChecked] = useState(
+    localStorage.getItem("isChecked") === "true" ? true : false
+  );
   useEffect(() => {
     const fetch_images = () => {
       return new Promise((resolve, reject) => {
@@ -114,17 +117,17 @@ function Home() {
       <div className=" mt-[50px] md:mt-[60px] h-fit ">
         <div className="scroll-smooth  ">
           <div id="Hero" className=" max-w-[1200px] mx-auto h-fit">
-            <Hero />
+            <Hero isChecked={isChecked} setIsChecked={setIsChecked} />
             <Why_Choose_us />
           </div>
           <div id="Goal">
             <Ower_Goal />
           </div>
           <div id="Our_features" className=" max-w-[1200px] mx-auto">
-            <Services />
+            <Services isChecked={isChecked} />
           </div>
 
-          <Clients_said />
+          <Clients_said isChecked={isChecked} />
           <div id="Contact_us">
             <Contact />
           </div>

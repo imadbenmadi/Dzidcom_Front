@@ -14,7 +14,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 
-function Services() {
+function Services({ isChecked }) {
   const dataChoose = [
     {
       image: image1,
@@ -41,14 +41,14 @@ function Services() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 1, // delay between child animations
+        staggerChildren: 0.5, // delay between child animations
       },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
@@ -61,11 +61,14 @@ function Services() {
     >
       <motion.div variants={itemVariants}>
         <div className="text-5xl  leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
-          The services we provide
+          {!isChecked
+            ? "The services we provide"
+            : "Areas in which you can apply"}
         </div>
         <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
-          Discover services to help your company thrive with our freelance
-          platform.
+          {isChecked
+            ? "  Discover services to help your company thrive with our freelance platform."
+            : "Discover the jobs you can apply for as a freelancer on our website"}
         </div>
       </motion.div>
 

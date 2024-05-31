@@ -12,7 +12,7 @@ import CustomPagination from "./ClientsSaid/CustomPagination";
 import { Navigation, Autoplay } from "swiper/modules";
 import "./ClientsSaid/clientSaidStyle.css";
 import { useInView, motion } from "framer-motion";
-function ClientsSaid() {
+function ClientsSaid({ isChecked }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef(null);
   const ref = useRef(null);
@@ -76,12 +76,10 @@ function ClientsSaid() {
         initial="hidden"
         animate={isInView ? "visible" : ""}
       >
-        <div className="text-5xl leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
-          The services we provide
-        </div>
-        <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
-          Discover services to help your company thrive with our freelance
-          platform.
+        <div className="text-5xl leading-[72.8px] text-center text-zinc-800 max-md:max-w-full max-md:text-4xl">
+          {!isChecked
+            ? "What our client say about us"
+            : "What our freelancers say about us"}
         </div>
       </motion.div>
       <Swiper

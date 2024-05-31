@@ -2,7 +2,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import Arrow from "../../../../public/Home/Hero/Arrow.png";
 import search from "../../../../public/Home/Hero/search.png";
 import { useState } from "react";
-function HeroLeft() {
+import SwitcherContent from "./SwitcherContent";
+function HeroLeft({ isChecked, setIsChecked }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -12,19 +13,16 @@ function HeroLeft() {
     <div className="flex flex-col px-3 lg:px-16 pb-10 h-fit bg-white max-md:px-5">
       <div className="flex   w-fit  max-md:ml-0 max-md:w-full">
         <div className="self-stretch max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
-          Be a freelancer
+          {!isChecked ? "Be a freelancer" : "Be a company"}
         </div>
         <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
           <img
             src={Arrow}
-            className="grow  max-w-full aspect-[1.61] w-[179px] max-md:mt-3.5"
+            className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
           />
         </div>
-        <div className="flex flex-col ml-2  max-md:ml-0 max-md:w-full">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/4e082bccd5f644e6d54ddbaf5433c00520a351d7e5f2451c46486b49559a3ee0?"
-            className="grow  max-w-full aspect-[1.64] w-[186px] max-md:mt-3"
-          />
+        <div className=" flex  items-end mr-5 pb-5  max-md:ml-0 ">
+          <SwitcherContent isChecked={isChecked} setIsChecked={setIsChecked} />
         </div>
       </div>
       <div className="flex   max-sm:flex-col max-md:justify-start max-md:items-start  w-full  mt-5 items-center gap-1">
@@ -44,10 +42,14 @@ function HeroLeft() {
         </div>
       </div>
       <div className="mt-2 h-fit md:text-4xl max-md:text-5xl max-sm:text-2xl  leading-[75px] text-zinc-800 max-md:max-w-full  max-md:leading-[70px] max-sm:leading-[40px]">
-        Welcome to our Freelance Website!
+        {!isChecked
+          ? " Welcome to our Freelance Website!"
+          : "Welcome to Dzidcom our Freelance Website!"}
       </div>
       <div className="mt-2 lg:text-xl md:text-sm text-zinc-800 max-md:max-w-full">
-        Find the perfect freelancers or get hired for your next project.
+        {!isChecked
+          ? "Find the perfect freelancers or get hired for your next project."
+          : "Find a perfect job and get hired from successful companies."}
       </div>
       <div className="flex relative gap-5 justify-between  lg:pl-6 max-md:pl-2 mt-8 w-full text-base whitespace-nowrap border border-solid border-zinc-300 rounded-[48px] max-md:flex-wrap  max-md:max-w-full">
         <div className="flex w-full  max-md:w-[70%]  my-auto text-zinc-700">
@@ -60,7 +62,9 @@ function HeroLeft() {
           className="flex  relative  cursor-pointer p-2 gap-2 justify-center md:p-4 border border-solid border-zinc-300 rounded-[48px] text-zinc-800"
         >
           <div className="flex relative  justify-center   rounded-[48px] text-zinc-800">
-            <div className="max-md:hidden">Companies</div>
+            <div className="max-md:hidden">
+              {!isChecked ? "Companies" : "Talent"}
+            </div>
 
             <IoIosArrowDown
               style={{
@@ -73,39 +77,75 @@ function HeroLeft() {
           </div>
         </div>
 
-        <div
-          style={{
-            display: isOpen ? "block" : "hidden",
-            transform: isOpen ? "scale(1)" : "scale(0)",
-            transition: "transform 0.3s",
-          }}
-          className="absolute duration-500  z-30 -left-1  top-16 w-full bg-white rounded-md shadow-lg"
-        >
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+        {!isChecked ? (
+          <div
+            style={{
+              display: isOpen ? "block" : "hidden",
+              transform: isOpen ? "scale(1)" : "scale(0)",
+              transition: "transform 0.3s",
+            }}
+            className="absolute duration-500  z-30 -left-1  top-16 w-full bg-white rounded-md shadow-lg"
           >
-            Company A
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Company A
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Company B
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Company C
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Company D
+            </a>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: isOpen ? "block" : "hidden",
+              transform: isOpen ? "scale(1)" : "scale(0)",
+              transition: "transform 0.3s",
+            }}
+            className="absolute duration-500  z-30 -left-1  top-16 w-full bg-white rounded-md shadow-lg"
           >
-            Company B
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-          >
-            Company C
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-          >
-            Company D
-          </a>
-        </div>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Talent A
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Talent B
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Talent C
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+            >
+              Talent D
+            </a>
+          </div>
+        )}
       </div>
       {/* <div
         onClick={toggleDropdown}
