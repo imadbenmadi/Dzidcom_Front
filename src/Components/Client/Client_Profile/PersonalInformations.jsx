@@ -85,22 +85,24 @@ function PersonalInformations() {
                 />{" "}
             </div>
             <div className=" w-full bg-gray_white h-[1px]"> </div>
-            <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
-                <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
-                    <div className=" text-xl underline font-semibold">
-                        Company :
-                    </div>
-                    <div>
+            <div className=" text-lg text-gray_v font-semibold flex items-start justify-between ">
+                <div >
+                    <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
+                        <div className=" text-xl underline font-semibold">
+                            Company :
+                        </div>
                         <div>
-                            {user?.company_Name ? (
-                                user.company_Name
-                            ) : (
-                                <div className="text-sm">none</div>
-                            )}
+                            <div>
+                                {user?.company_Name ? (
+                                    user.company_Name
+                                ) : (
+                                    <div className="text-sm">none</div>
+                                )}
+                            </div>
                         </div>
-                        <div className=" text-sm font-normal">
-                            {user?.company_about ? user.company_about : null}
-                        </div>
+                    </div>
+                    <div className=" text-sm font-normal pt-4">
+                        {user?.company_about ? user.company_about : null}
                     </div>
                 </div>
                 <img

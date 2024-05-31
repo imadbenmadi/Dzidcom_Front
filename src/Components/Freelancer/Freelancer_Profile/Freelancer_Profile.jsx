@@ -10,7 +10,7 @@ function freelancer_Profile() {
         <div>
             {show_Alert_completeProfile && <Alert_Complete_Profile />}
             <Hero />
-            <Applications />
+            {/* <Applications /> */}
             <PersonalInformations />
         </div>
     );
