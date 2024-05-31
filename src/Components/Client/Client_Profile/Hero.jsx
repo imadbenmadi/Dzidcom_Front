@@ -19,7 +19,7 @@ function Hero() {
                             e.target.src = user_default;
                         }}
                         alt=""
-                        className=" w-[150px] h-[150px] rounded-full"
+                        className=" w-[150px] h-[150px] object-cover rounded-full"
                     />
                 ) : (
                     <img src={user_default} alt="" className=" w-32" />

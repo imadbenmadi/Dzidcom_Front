@@ -184,8 +184,8 @@ function Step_0() {
                                 handleEdite(
                                     values,
                                     set_user,
-                                    // "/Client/Complete_Profile/Step_1",
-                                    null,
+                                    "/Client/Complete_Profile/Step_1",
+                                    // null,
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -193,9 +193,9 @@ function Step_0() {
                                 );
                             else {
                                 setSubmitting(false);
-                                // window.location.href(
-                                //     "/Client/Complete_Profile/Step_1"
-                                // );
+                                window.location.href(
+                                    "/Client/Complete_Profile/Step_1"
+                                );
                             }
                             // }
                         }}
