@@ -88,7 +88,7 @@ function Step_2() {
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {user.profile_pic_link ? (
+                            {user?.profile_pic_link ? (
                                 <>
                                     <img
                                         src={

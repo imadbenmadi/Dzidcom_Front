@@ -20,11 +20,11 @@ function Step_0() {
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
-    // useEffect(() => {
-    //     console.log("image_state", image_state);
-    //     console.log("imageChanged", imageChanged);
-    //     console.log("--------------------");
-    // }, [image_state, imageChanged]);
+    useEffect(() => {
+        console.log("image_state", image_state);
+        console.log("imageChanged", imageChanged);
+        console.log("--------------------");
+    }, [image_state, imageChanged]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -47,7 +47,7 @@ function Step_0() {
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {user.profile_pic_link ? (
+                            {user?.profile_pic_link ? (
                                 <>
                                     <img
                                         src={
@@ -140,10 +140,10 @@ function Step_0() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
+                            userId: user?.id || null,
                             firstName: user?.firstName || "",
-                            lastName: user.lastName || "",
-                            email: user.email || "",
+                            lastName: user?.lastName || "",
+                            email: user?.email || "",
                         }}
                         validate={(values) => {
                             const errors = {};
@@ -184,8 +184,8 @@ function Step_0() {
                                 handleEdite(
                                     values,
                                     set_user,
-                                    "/Client/Complete_Profile/Step_1",
-                                    // null,
+                                    // "/Client/Complete_Profile/Step_1",
+                                    null,
                                     imageChanged ? image_state : null,
                                     {
                                         setSubmitting,
@@ -193,9 +193,9 @@ function Step_0() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Client/Complete_Profile/Step_1"
-                                );
+                                // window.location.href(
+                                //     "/Client/Complete_Profile/Step_1"
+                                // );
                             }
                             // }
                         }}

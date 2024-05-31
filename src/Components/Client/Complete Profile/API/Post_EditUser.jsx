@@ -53,12 +53,12 @@ async function handleEdite(
                 // validateStatus: () => true,
             }
         );
-        console.log("response from upload image: ", response);
+        console.log("response from edite profile: ", response);
         if (response.status == 200) {
             set_user(response.data.user);
-            if (Link) {
-                window.location.href = Link;
-            }
+            // if (Link) {
+            //     window.location.href = Link;
+            // }
         } else if (response.status == 400) {
             setSubmitting(false);
             Swal.fire("Error", `${response.data.message} `, "error");

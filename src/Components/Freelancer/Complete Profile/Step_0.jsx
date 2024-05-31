@@ -47,7 +47,7 @@ function Step_0() {
                             />
                         </div>
                         <div className="flex flex-col items-center gap-1">
-                            {user.profile_pic_link ? (
+                            {user?.profile_pic_link ? (
                                 <>
                                     <img
                                         src={
@@ -140,10 +140,10 @@ function Step_0() {
                     </div>
                     <Formik
                         initialValues={{
-                            userId: user.id,
+                            userId: user?.id || user,
                             firstName: user?.firstName || "",
-                            lastName: user.lastName || "",
-                            email: user.email || "",
+                            lastName: user?.lastName || "",
+                            email: user?.email || "",
                         }}
                         validate={(values) => {
                             const errors = {};
