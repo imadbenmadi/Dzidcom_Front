@@ -41,6 +41,7 @@ import Why_choose_us_image5 from "../../../public/Home/Why choose us/image5.png"
 import Why_choose_us_image6 from "../../../public/Home/Why choose us/image6.png";
 import NavBar from "../../Components/Home/NavBar/NavBar";
 
+import Logo from "../../../public/Logo.png";
 function Home() {
   const [loading, setLoading] = useState(true);
   const [isChecked, setIsChecked] = useState(
@@ -106,9 +107,10 @@ function Home() {
   }, []);
   if (loading) {
     return (
-      <div className=" w-screen h-screen flex items-center justify-center">
-        <span className="loader"></span>
-      </div>
+        <div className=" w-screen h-screen flex flex-col items-center justify-center">
+            <img src={Logo} alt="" />
+            <span className="loader"></span>
+        </div>
     );
   }
   return (
