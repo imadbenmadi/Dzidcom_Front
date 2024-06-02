@@ -49,32 +49,22 @@ function Mobile_Nav_Items({
                             >
                                 Profile
                             </Link>
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/Client/Projects"}
-                                className={`${
-                                    Active_nav == "Projects"
-                                        ? "text-perpol_v"
-                                        : "text-black_text"
-                                } select-none   `}
-                            >
-                                Projects
-                            </Link>
+                            {isProfileCompleted && (
+                                <Link
+                                    onClick={Toogle_Menu_Bar}
+                                    to={"/Client/Projects"}
+                                    className={`${
+                                        Active_nav == "Projects"
+                                            ? "text-perpol_v"
+                                            : "text-black_text"
+                                    } select-none   `}
+                                >
+                                    Projects
+                                </Link>
+                            )}
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>
-                        {/* <div className="text-center pt-7">
-                            <Link
-                                onClick={Toogle_Menu_Bar}
-                                to={"/Process"}
-                                className={`${
-                                    Active_nav == "Process"
-                                        ? "text-perpol_v"
-                                        : "text-black_text"
-                                } select-none   `}
-                            >
-                                Process
-                            </Link>
-                        </div> */}
+
                         <div className=" pt-8">
                             {LogoutClicked ? (
                                 <div className="w-full ">
