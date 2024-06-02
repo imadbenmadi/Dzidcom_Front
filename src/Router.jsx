@@ -29,6 +29,7 @@ import Client_Complete_Profile_Step_1 from "./Components/Client/Complete Profile
 import Client_Complete_Profile_Step_2 from "./Components/Client/Complete Profile/Step_2";
 import Client_Complete_Profile_Step_3 from "./Components/Client/Complete Profile/Step_3";
 
+import Privacy from "./Components/Privacy/Privacy";
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
 import ErrorElement from "./Components/ErrorElement";
@@ -55,6 +56,11 @@ const routes = createBrowserRouter([
             {
                 path: "/Register",
                 element: <Register />,
+                errorElement: <ErrorElement />,
+            },
+            {
+                path: "/Privacy",
+                element: <Privacy />,
                 errorElement: <ErrorElement />,
             },
             {
