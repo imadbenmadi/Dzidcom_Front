@@ -21,7 +21,7 @@ import Freelancer_Complete_Profile_Step_4 from "./Components/Freelancer/Complete
 import Client from "./Components/Client/Client";
 import Client_Default from "./Components/Client/Client_Default";
 import Client_Profile from "./Components/Client/Client_Profile/Client_Profile";
-import Client_Projects from "./Components/Client/Client_Projects";
+import Client_Projects from "./Components/Client/Client_Projects/Client_Projects";
 import Client_Complete_Profile from "./Components/Client/Complete Profile/Client_Complete_Profile";
 import Client_Complete_Profile_Default from "./Components/Client/Complete Profile/Default";
 import Client_Complete_Profile_Step_0 from "./Components/Client/Complete Profile/Step_0";
