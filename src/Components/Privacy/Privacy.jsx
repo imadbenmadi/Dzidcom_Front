@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Editor, EditorState, convertFromRaw } from "draft-js";
+import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 import "draft-js/dist/Draft.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
@@ -14,9 +14,26 @@ function Privacy() {
             .then((data) => {
                 try {
                     if (data.Content) {
-                        const contentState = convertFromRaw(
-                            JSON.parse(data.Content)
-                        );
+                        let contentState;
+                        const isDraftJSFormat = (str) => {
+                            try {
+                                const parsed = JSON.parse(str);
+                                return parsed.blocks && parsed.entityMap;
+                            } catch (e) {
+                                return false;
+                            }
+                        };
+
+                        if (isDraftJSFormat(data.Content)) {
+                            contentState = convertFromRaw(
+                                JSON.parse(data.Content)
+                            );
+                        } else {
+                            contentState = ContentState.createFromText(
+                                data.Content
+                            );
+                        }
+
                         setEditorState(
                             EditorState.createWithContent(contentState)
                         );
@@ -29,6 +46,7 @@ function Privacy() {
                 console.error("Error fetching initial content:", error)
             );
     }, []);
+
 
     return (
         <div className=" relative">
