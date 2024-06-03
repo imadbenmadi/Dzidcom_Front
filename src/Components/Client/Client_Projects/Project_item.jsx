@@ -144,7 +144,7 @@ function ProjectItem() {
                 {project?.status == "Accepted" && project?.FreelacnerId && (
                     <Link
                         to={`/Client/Projects/${project?.id}/Payment`}
-                        className=" bg-perpol_v py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                        className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
                     >
                         Pay the Project Fees
                     </Link>
