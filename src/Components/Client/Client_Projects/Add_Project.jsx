@@ -5,7 +5,7 @@ import { useAppContext } from "../../../AppContext";
 import Draft_Editor from "./Draft_Editor";
 import useEditorState from "./Hooks/useEditorState";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
-
+import handle_Add_Projects from "./API/Post_Project";
 function Add_Project() {
     const [editorState, setEditorState] = useEditorState(null);
     const { user, set_user } = useAppContext();
@@ -61,31 +61,13 @@ function Add_Project() {
                         return errors;
                     }}
                     onSubmit={async (values, { setSubmitting }) => {
-                        if (values.Title == user.Title) {
-                            delete values.Title;
-                        } else if (values.lastName == user.lastName) {
-                            delete values.lastName;
-                        } else if (values.Budget == user.Budget) {
-                            delete values.Budget;
-                        }
-                        if (Object.keys(values).length >= 1 || imageChanged)
-                            handleEdite(
-                                values,
-                                set_user,
-                                "/Client/Complete_Profile/Step_1",
-                                // null,
-                                imageChanged ? image_state : null,
-                                {
-                                    setSubmitting,
-                                }
-                            );
-                        else {
-                            setSubmitting(false);
-                            window.location.href(
-                                "/Client/Complete_Profile/Step_1"
-                            );
-                        }
-                        // }
+                        const contentState = editorState.getCurrentContent();
+                        const rawContentState = convertToRaw(contentState);
+                        
+                        values.Description = JSON.stringify(rawContentState);
+                        handle_Add_Projects(values, {
+                            setSubmitting,
+                        });
                     }}
                 >
                     {({ isSubmitting, setFieldValue, values }) => (
@@ -293,11 +275,11 @@ function Add_Project() {
                                 </div>
                             </div>
                             {isSubmitting ? (
-                                <span className="small-loader  w-full m-auto"></span>
+                                <span className="small-loader  w-full m-auto mb-6"></span>
                             ) : (
                                 <button
                                     type="submit"
-                                    className=" bg-perpol_v py-2 rounded-2xl text-white font-semibold "
+                                    className=" bg-perpol_v py-2 rounded-2xl mb-6 text-white font-semibold "
                                     disabled={isSubmitting}
                                 >
                                     Continue
