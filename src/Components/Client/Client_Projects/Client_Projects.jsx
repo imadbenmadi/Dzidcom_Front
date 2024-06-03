@@ -13,9 +13,9 @@ function Client_Projects() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [Projcets, setProjcets] = useState([]);
-    useEffect(() => {
-        console.log("Projects:", Projcets);
-    }, [Projcets]);
+    // useEffect(() => {
+    //     console.log("Projects:", Projcets);
+    // }, [Projcets]);
     useEffect(() => {
         setLoading(true);
         const FetchProjcets = async ({ setProjcets, setLoading, setError }) => {
@@ -107,7 +107,7 @@ function Client_Projects() {
                                                         Content creation
                                                     </div>
                                                 )}
-                                                {project?.Field_is_SEO_SMM && (
+                                                {project?.Field_is_SEO_SIM && (
                                                     <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
                                                         SEO/SIM
                                                     </div>

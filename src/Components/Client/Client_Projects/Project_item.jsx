@@ -191,7 +191,7 @@ function ProjectItem() {
                                 Content creation
                             </div>
                         )}
-                        {project?.Field_is_SEO_SMM && (
+                        {project?.Field_is_SEO_SIM && (
                             <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
                                 SEO/SIM
                             </div>

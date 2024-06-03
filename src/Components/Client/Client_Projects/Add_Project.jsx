@@ -63,7 +63,7 @@ function Add_Project() {
                     onSubmit={async (values, { setSubmitting }) => {
                         const contentState = editorState.getCurrentContent();
                         const rawContentState = convertToRaw(contentState);
-                        
+
                         values.Description = JSON.stringify(rawContentState);
                         handle_Add_Projects(values, {
                             setSubmitting,
@@ -119,7 +119,7 @@ function Add_Project() {
                                                 );
                                             }}
                                         />
-                                        <div>SEO/SMM</div>
+                                        <div>SEO/SIM</div>
                                     </div>
                                 </div>
                             </div>
