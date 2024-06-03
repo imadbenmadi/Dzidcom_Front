@@ -5,7 +5,7 @@ import { useAppContext } from "../../../AppContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosWarning } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
-
+import fetchProjcets from "./API/Get_Project.jsx";
 import Swal from "sweetalert2";
 function Client_Projects() {
     const Naviagte = useNavigate();
@@ -17,33 +17,7 @@ function Client_Projects() {
         console.log("Projects:", Projcets);
     }, [Projcets]);
     useEffect(() => {
-        const fetchProjcets = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get(
-                    `http://localhost:3000/Clients/${user.id}/Projects`,
-                    {
-                        withCredentials: true,
-                        validateStatus: () => true,
-                    }
-                );
-                console.log("response from get prjects", response);
-                if (response.status == 200) {
-                    const Projcets = response.data.Projects;
-                    setProjcets(Projcets);
-                } else if (response.status == 401) {
-                    Swal.fire("Error", "you should login again", "error");
-                    Naviagte("/Login");
-                } else {
-                    setError(response.data);
-                }
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProjcets();
+        fetchProjcets(setProjcets, setLoading, setError);
     }, []);
 
     if (loading) {
@@ -91,8 +65,25 @@ function Client_Projects() {
                                     className="flex flex-col items-center justify-center border  rounded-md p-4 my-4"
                                 >
                                     <div className="flex items-center justify-between w-full">
-                                        <div className="text-xl pb-6 font-semibold text-gray_v">
-                                            {project?.Title}
+                                        <div className="text-xl mb-6 font-semibold text-gray_v">
+                                            <div>{project?.Title}</div>
+                                            <div className=" flex gap-2">
+                                                {project?.Field_is_Graphic_design && (
+                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                        Graphic Design
+                                                    </div>
+                                                )}
+                                                {project?.Field_is_Content_creation && (
+                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                        Content creation
+                                                    </div>
+                                                )}
+                                                {project?.Field_is_SEO_SMM && (
+                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                        SEO/SIM
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
                                         <Link
                                             to={`/Client/Projects/${project.id}`}
@@ -133,13 +124,14 @@ function Client_Projects() {
                                                 </div>
                                             ) : project?.Status ===
                                                   "Accepted" &&
-                                                project?.FreelancerId ? (
+                                              project?.FreelancerId ? (
                                                 <div className="">
                                                     <span className="text-perpol_v">
                                                         Accepted:
                                                     </span>{" "}
                                                     <span className=" text-red-500">
-                                                        You have to pay the fees to start the project
+                                                        You have to pay the fees
+                                                        to start the project
                                                     </span>
                                                 </div>
                                             ) : project?.Status ===
@@ -163,8 +155,26 @@ function Client_Projects() {
                                             ) : null}
                                         </div>
                                     </div>
+                                    {project?.Frelancer_Experiance && (
+                                        <div className="flex items-center justify-between w-full">
+                                            <div className="text-sm pt-2 text-gray_v">
+                                                need the freelancer to be :{" "}
+                                                {project?.Frelancer_Experiance}
+                                            </div>
+                                        </div>
+                                    )}
+                                    {project?.Budget && (
+                                        <div className="flex items-center justify-between w-full">
+                                            <div className="text-sm pt-2 text-gray_v">
+                                                {project?.Budget}
+                                                {" DA"}
+                                            </div>
+                                        </div>
+                                    )}
+
                                     <div className="flex items-center justify-between w-full">
                                         <div className="text-sm pt-2 text-gray_v">
+                                            Created at :{" "}
                                             {new Date(
                                                 project?.createdAt
                                             ).toLocaleDateString()}

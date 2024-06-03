@@ -20,11 +20,11 @@ function Step_0() {
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
-    useEffect(() => {
-        console.log("image_state", image_state);
-        console.log("imageChanged", imageChanged);
-        console.log("--------------------");
-    }, [image_state, imageChanged]);
+    // useEffect(() => {
+    //     console.log("image_state", image_state);
+    //     console.log("imageChanged", imageChanged);
+    //     console.log("--------------------");
+    // }, [image_state, imageChanged]);
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
