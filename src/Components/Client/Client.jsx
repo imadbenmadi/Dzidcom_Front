@@ -9,7 +9,7 @@ import user_image from "../../../public/user2.png";
 import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
 import user_default from "../../../public/Profile/user_default.png";
-import Logo from "../../../public/Logo.png"
+import Logo from "../../../public/Logo.png";
 function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);

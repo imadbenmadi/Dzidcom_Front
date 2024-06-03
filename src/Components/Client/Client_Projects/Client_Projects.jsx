@@ -133,7 +133,7 @@ function Client_Projects() {
                                         <div
                                             className={`text-sm  font-semibold text-gray_v `}
                                         >
-                                            {project?.Status === "Payed" ? (
+                                            {project?.status === "Payed" ? (
                                                 <div className="">
                                                     <span className="text-green-500">
                                                         Payed:
@@ -141,7 +141,7 @@ function Client_Projects() {
                                                     Freelancer is working on
                                                     your project
                                                 </div>
-                                            ) : project?.Status ===
+                                            ) : project?.status ===
                                               "Rejected" ? (
                                                 <div className="">
                                                     <span className="text-red-600">
@@ -150,7 +150,7 @@ function Client_Projects() {
                                                     Your project has been
                                                     rejected
                                                 </div>
-                                            ) : project?.Status ===
+                                            ) : project?.status ===
                                               "Completed" ? (
                                                 <div className="">
                                                     <span className="text-green-500">
@@ -159,7 +159,7 @@ function Client_Projects() {
                                                     Your project has been
                                                     closed.
                                                 </div>
-                                            ) : project?.Status ===
+                                            ) : project?.status ===
                                                   "Accepted" &&
                                               project?.FreelancerId ? (
                                                 <div className="">
@@ -171,7 +171,7 @@ function Client_Projects() {
                                                         to start the project
                                                     </span>
                                                 </div>
-                                            ) : project?.Status ===
+                                            ) : project?.status ===
                                                   "Accepted" &&
                                               !project?.FreelancerId ? (
                                                 <div>
@@ -180,7 +180,7 @@ function Client_Projects() {
                                                     </span>{" "}
                                                     Searching For the Freelancer
                                                 </div>
-                                            ) : project?.Status ===
+                                            ) : project?.status ===
                                               "Pending" ? (
                                                 <div>
                                                     <span className="text-perpol_v">

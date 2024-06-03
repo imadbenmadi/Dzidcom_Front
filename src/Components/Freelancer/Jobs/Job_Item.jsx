@@ -44,6 +44,7 @@ function JobItem() {
             );
             console.log("response from get Jobs", response);
             if (response.status === 200) {
+                Swal.fire("Success", "Application Sent Seuccessfully", "success");
                 Navigate("/Freelancer/Jobs");
             } else if (response.status === 401) {
                 Swal.fire("Error", "You should log in again", "error");
