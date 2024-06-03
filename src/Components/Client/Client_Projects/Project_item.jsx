@@ -10,7 +10,7 @@ function ProjectItem() {
     const location = useLocation();
     const { user } = useAppContext();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
     const [Delete_Loading, SetDelete_Loading] = useState(false);
     const Delete_Project = async () => {
         SetDelete_Loading(true);
@@ -27,7 +27,7 @@ function ProjectItem() {
 
             if (response.status === 200) {
                 Swal.fire("Success", "Project Deleted Successfully", "success");
-                navigate("/Client/Projects");
+                Navigate("/Client/Projects");
             } else if (response.status === 401) {
                 Swal.fire(
                     "Unauthorized",
@@ -86,7 +86,7 @@ function ProjectItem() {
                     setEditorState(EditorState.createWithContent(contentState));
                 } else if (response.status === 401) {
                     Swal.fire("Error", "you should login again", "error");
-                    navigate("/Login");
+                    Navigate("/Login");
                 } else {
                     setError(response.data);
                 }

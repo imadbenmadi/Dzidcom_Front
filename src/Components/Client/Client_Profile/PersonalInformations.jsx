@@ -86,7 +86,7 @@ function PersonalInformations() {
             </div>
             <div className=" w-full bg-gray_white h-[1px]"> </div>
             <div className=" text-lg text-gray_v font-semibold flex items-start justify-between ">
-                <div >
+                <div>
                     <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                         <div className=" text-xl underline font-semibold">
                             Company :

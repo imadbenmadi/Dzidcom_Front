@@ -6,7 +6,7 @@ function Alert_Complete_Profile() {
     const { set_show_Alert_completeProfile, show_Alert_completeProfile } =
         useAppContext();
     const [show, setShow] = useState(true);
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
 
     return show_Alert_completeProfile ? (
         <div
@@ -18,7 +18,7 @@ function Alert_Complete_Profile() {
                 <span
                     className="underline cursor-pointer"
                     onClick={() => {
-                        navigate("/Client/Complete_Profile");
+                        Navigate("/Client/Complete_Profile");
                     }}
                 >
                     Complete Profile page

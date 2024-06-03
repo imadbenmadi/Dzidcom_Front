@@ -7,7 +7,7 @@ const useFetchJobs = (query) => {
     const [Jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    const Navigate = useNavigate();
 
     useEffect(() => {
         const fetchJobs = async () => {
@@ -25,7 +25,7 @@ const useFetchJobs = (query) => {
                     setJobs(response.data.Jobs);
                 } else if (response.status === 401) {
                     Swal.fire("Error", "You should log in again", "error");
-                    navigate("/Login");
+                    Navigate("/Login");
                 } else {
                     setError(response.data);
                 }
@@ -37,7 +37,7 @@ const useFetchJobs = (query) => {
         };
 
         fetchJobs();
-    }, [query, navigate]);
+    }, [query, Navigate]);
 
     return { Jobs, loading, error };
 };
