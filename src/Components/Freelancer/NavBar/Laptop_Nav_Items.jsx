@@ -83,16 +83,16 @@ function Laptop_Nav_Items({
 
                       <div
                           className={` ${
-                              Active_nav == "Applications"
+                              Active_nav == "Process"
                                   ? "text-perpol_v"
                                   : "text-black_text"
                           } md:hover:text-perpol_v transition-all duration-150  cursor-pointer`}
                       >
                           <Link
-                              to={"/Freelancer/Applications"}
+                              to={"/Freelancer/Process"}
                               className="  select-none"
                           >
-                              Applications
+                              Process
                           </Link>
                       </div>
                   </>
