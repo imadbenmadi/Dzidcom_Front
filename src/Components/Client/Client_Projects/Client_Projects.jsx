@@ -91,21 +91,23 @@ function Client_Projects() {
                                     className="flex flex-col items-center justify-center border  rounded-md p-4 my-4"
                                 >
                                     <div className="flex items-center justify-between w-full">
-                                        <div className="text-xl mb-6 font-semibold text-gray_v">
-                                            <div>{project?.Title}</div>
+                                        <div className="text-sm  mb-6 font-semibold text-white">
+                                            <div className=" text-gray_v text-lg">
+                                                {project?.Title}
+                                            </div>
                                             <div className=" flex gap-2">
                                                 {project?.Field_is_Graphic_design && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
                                                         Graphic Design
                                                     </div>
                                                 )}
                                                 {project?.Field_is_Content_creation && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
                                                         Content creation
                                                     </div>
                                                 )}
                                                 {project?.Field_is_SEO_SMM && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-2 mt-2 px-3 ">
+                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
                                                         SEO/SIM
                                                     </div>
                                                 )}
@@ -175,8 +177,10 @@ function Client_Projects() {
                                                     <span className="text-perpol_v">
                                                         Pending:
                                                     </span>{" "}
-                                                    Dzidcom team is reviewing
-                                                    your project
+                                                    <span className=" text-gray-500">
+                                                        Ower team is reviewing
+                                                        your project
+                                                    </span>
                                                 </div>
                                             ) : null}
                                         </div>
@@ -184,22 +188,25 @@ function Client_Projects() {
                                     {project?.Frelancer_Experiance && (
                                         <div className="flex items-center justify-between w-full">
                                             <div className="text-sm pt-2 text-gray_v">
-                                                need the freelancer to be :{" "}
-                                                {project?.Frelancer_Experiance}
+                                                frelancer experiance :{" "}
+                                                <span className=" font-semibold">
+                                                    {
+                                                        project?.Frelancer_Experiance
+                                                    }
+                                                </span>
                                             </div>
                                         </div>
                                     )}
                                     {project?.Budget && (
-                                        <div className="flex items-center justify-between w-full">
-                                            <div className="text-sm pt-2 text-gray_v">
+                                        <div className="flex items-center justify-between w-full text-sm font-semibold">
+                                            <div className="text-sm pt-4 text-gray_v">
                                                 {project?.Budget}
-                                                {" DA"}
                                             </div>
                                         </div>
                                     )}
 
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="text-sm pt-2 text-gray_v">
+                                    <div className="flex items-center justify-between w-full font-semibold">
+                                        <div className="text-sm pt-1 text-gray_v">
                                             Created at :{" "}
                                             {new Date(
                                                 project?.createdAt
