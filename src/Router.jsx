@@ -29,7 +29,8 @@ import Client_Complete_Profile_Step_1 from "./Components/Client/Complete Profile
 import Client_Complete_Profile_Step_2 from "./Components/Client/Complete Profile/Step_2";
 import Client_Complete_Profile_Step_3 from "./Components/Client/Complete Profile/Step_3";
 
-import Client_Add_Project from "./Components/Client/Client_Projects/Add_Project"
+import Client_Add_Project from "./Components/Client/Client_Projects/Add_Project";
+import Client_Project_item from "./Components/Client/Client_Projects/Project_item";
 
 import Privacy from "./Components/Privacy/Privacy";
 import Not_Found from "./Components/Not_Found";
@@ -170,6 +171,10 @@ const routes = createBrowserRouter([
                     {
                         path: "/Client/Projects/Add",
                         element: <Client_Add_Project />,
+                    },
+                    {
+                        path: "/Client/Projects/:projectId",
+                        element: <Client_Project_item />,
                     },
                     // {
                     //     path: "/Client/Messages",
