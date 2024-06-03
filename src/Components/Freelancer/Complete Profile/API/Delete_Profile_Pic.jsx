@@ -27,6 +27,9 @@ async function Delete_Profile_Pic(
                 profile_pic_link: null,
             }));
             setimage_state(null);
+        } else if (Image_Response.status == 401) {
+            // Swal.fire("Error", `${Image_Response.data.message} `, "error");
+            window.location.href = "/Login";
         } else if (Image_Response.status == 400) {
             Swal.fire("Error", `${Image_Response.data.message} `, "error");
         } else if (Image_Response.status == 409) {

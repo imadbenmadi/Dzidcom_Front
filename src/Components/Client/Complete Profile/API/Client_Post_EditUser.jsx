@@ -25,6 +25,9 @@ async function handleEdite(
                 // set_user({
                 //     profile_pic_link: Image_Response.data.profile_pic_link,
                 // });
+            } else if (Image_Response.status == 401) {
+                // Swal.fire("Error", `${Image_Response.data.message} `, "error");
+                window.location.href = "/Login";
             } else if (Image_Response.status == 400) {
                 Swal.fire("Error", `${Image_Response.data.message} `, "error");
             } else if (Image_Response.status == 409) {
