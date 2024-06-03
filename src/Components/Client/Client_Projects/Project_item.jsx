@@ -130,7 +130,8 @@ function ProjectItem() {
             </div>
             <div className=" flex  items-center gap-3">
                 {(project?.status == "Pending" ||
-                    project?.status == "Rejected") &&
+                    project?.status == "Rejected" ||
+                    project?.status == "Completed") &&
                     (Delete_Loading ? (
                         <div className=" small-loader mt-3"></div>
                     ) : (
@@ -141,7 +142,7 @@ function ProjectItem() {
                             Delete
                         </div>
                     ))}
-                {project?.status == "Accepted" && project?.FreelacnerId && (
+                {project?.status == "Accepted" && project?.FreelancerId && (
                     <Link
                         to={`/Client/Projects/${project?.id}/Payment`}
                         className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
