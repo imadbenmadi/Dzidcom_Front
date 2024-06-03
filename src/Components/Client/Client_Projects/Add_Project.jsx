@@ -65,6 +65,17 @@ function Add_Project() {
                         const rawContentState = convertToRaw(contentState);
 
                         values.Description = JSON.stringify(rawContentState);
+                        // if (values.Field_is_Content_creation)
+                        //     values.Field_is_Content_creation = true;
+                        // if (values.Field_is_Graphic_design)
+                        //     values.Field_is_Graphic_design = true;
+                        // if (values.Field_is_SEO_SIM)
+                        //     values.Field_is_SEO_SIM = true;
+                        values.Field_is_Content_creation =
+                            !!values.Field_is_Content_creation;
+                        values.Field_is_Graphic_design =
+                            !!values.Field_is_Graphic_design;
+                        values.Field_is_SEO_SIM = !!values.Field_is_SEO_SIM;
                         handle_Add_Projects(values, {
                             setSubmitting,
                         });
