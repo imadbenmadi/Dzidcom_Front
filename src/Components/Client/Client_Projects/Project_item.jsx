@@ -115,8 +115,14 @@ function ProjectItem() {
                 <span className="loader"></span>
             </div>
         );
-    }
-
+    } else if (error)
+        return (
+            <div className=" w-screen h-screen flex items-center justify-center">
+                <div className="text-red-600 font-semibold">
+                    {error.message}
+                </div>
+            </div>
+        );
     return (
         <div className="w-[90%] mx-auto max-w-[900px] mt-6">
             <div className="font-semibold text-gray_v text-2xl">

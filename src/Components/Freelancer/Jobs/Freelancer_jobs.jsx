@@ -23,7 +23,7 @@ function Freelancer_jobs() {
 
     return (
         <div className="flex">
-            <div className="w-[250px] shrink-0 pt-6 pl-3 text-gray_v pr-2 border-r h-[calc(100vh-60px)]">
+            <div className="w-[250px] shrink-0 pt-6 pl-3 text-gray_v pr-2  h-[calc(100vh-60px)]">
                 <div>
                     <div className="border rounded-xl flex items-center gap-2 px-2 py-2">
                         <img
@@ -88,7 +88,7 @@ function Freelancer_jobs() {
                     Filter
                 </div>
             </div>
-            <div className="w-full px-6 py-6">
+            <div className="w-full px-6 py-6 min-h-[calc(100vh-60px)] border-l">
                 <JobsList jobs={Jobs} loading={loading} />
             </div>
         </div>

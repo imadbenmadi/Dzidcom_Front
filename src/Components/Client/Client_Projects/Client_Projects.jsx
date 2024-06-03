@@ -53,7 +53,15 @@ function Client_Projects() {
                 <span className="loader"></span>
             </div>
         );
-    } else
+    } else if (error)
+        return (
+            <div className=" w-screen h-screen flex items-center justify-center">
+                <div className="text-red-600 font-semibold">
+                    {error.message}
+                </div>
+            </div>
+        );
+    else
         return (
             <div>
                 {!Projcets || Projcets?.length == 0 ? (
@@ -222,33 +230,5 @@ function Client_Projects() {
             </div>
         );
 }
-const Filter_Jobs = async () => {
-    setLoading(true);
-    try {
-        const query = buildQuery();
 
-        const response = await axios.get(
-            `http://localhost:3000/Freelancers/Jobs?${query}`,
-            {
-                withCredentials: true,
-                validateStatus: () => true,
-            }
-        );
-        console.log("response from get Jobs", response);
-        if (response.status === 200) {
-            const jobs = response.data.Jobs;
-            setJobs(jobs);
-        } else if (response.status === 401) {
-            Swal.fire("Error", "you should login again", "error");
-            navigate("/Login");
-        } else {
-            setError(response.data);
-        }
-    } catch (error) {
-        setError(error);
-    } finally {
-        setLoading(false);
-    }
-};
-    
 export default Client_Projects;

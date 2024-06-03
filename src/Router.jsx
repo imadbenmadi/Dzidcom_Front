@@ -9,6 +9,7 @@ import Freelancer from "./Components/Freelancer/Freelancer";
 import Freelancer_Default from "./Components/Freelancer/Freelancer_Default";
 import Freelancer_Profile from "./Components/Freelancer/Freelancer_Profile/Freelancer_Profile";
 import Freelancer_Jobs from "./Components/Freelancer/Jobs/Freelancer_jobs";
+import FreelancerJobItem from "./Components/Freelancer/Jobs/Job_Item";
 import Freelancer_Process from "./Components/Freelancer/Freelancer_Process";
 import Freelancer_Complete_Profile from "./Components/Freelancer/Complete Profile/Freelancer_Complete_Profile";
 import Freelancer_Complete_Profile_Default from "./Components/Freelancer/Complete Profile/Default";
@@ -112,6 +113,10 @@ const routes = createBrowserRouter([
                     {
                         path: "/Freelancer/Jobs",
                         element: <Freelancer_Jobs />,
+                    },
+                    {
+                        path: "/Freelancer/Jobs/:jobId",
+                        element: <FreelancerJobItem />,
                     },
                     {
                         path: "/Freelancer/Process",
