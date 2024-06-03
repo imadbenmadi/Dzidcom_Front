@@ -67,7 +67,7 @@ function ProjectItem() {
                         validateStatus: () => true,
                     }
                 );
-
+                console.log("response from prject item : ", response.data);
                 if (response.status === 200) {
                     const project = response.data.Project;
                     setProject(project);
@@ -98,7 +98,7 @@ function ProjectItem() {
         };
 
         fetchProject();
-    }, [location.pathname, user.id, navigate]);
+    }, []);
 
     const isDraftJSFormat = (str) => {
         try {
@@ -128,39 +128,53 @@ function ProjectItem() {
             <div className="font-semibold text-gray_v text-2xl">
                 {project?.Title}
             </div>
-            {project?.Status == "Pending" &&
-                (Delete_Loading ? (
-                    <div className=" small-loader mt-3"></div>
-                ) : (
-                    <div
-                        className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
-                        onClick={Delete_Project}
+            <div className=" flex  items-center gap-3">
+                {project?.status == "Pending"
+                    // ||
+                    // project?.status == "Rejected")
+                    &&
+                    (Delete_Loading ? (
+                        <div className=" small-loader mt-3"></div>
+                    ) : (
+                        <div
+                            className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                            onClick={Delete_Project}
+                        >
+                            Delete
+                        </div>
+                    ))}
+                {project?.status == "Accepted" && project?.FreelancerId && (
+                    <Link
+                        to={`/Client/Projects/${project?.id}/Payment`}
+                        className=" bg-perpol_v py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
                     >
-                        Delete
-                    </div>
-                ))}
+                        Pay the Project Fees
+                    </Link>
+                )}
+            </div>
+
             <div className=" border my-6 p-4 rounded-lg">
                 <div className=" flex gap-2 text-sm font-semibold">
                     <div>Project Status : </div>
                     <div>
-                        {project?.Status === "Payed" ? (
+                        {project?.status === "Payed" ? (
                             <div className="">
                                 <span className="text-green-500">Payed</span>{" "}
                                 Freelancer is working on your project
                             </div>
-                        ) : project?.Status === "Rejected" ? (
+                        ) : project?.status === "Rejected" ? (
                             <div className="">
                                 <span className="text-red-600">Rejected</span>{" "}
                                 Your project has been rejected
                             </div>
-                        ) : project?.Status === "Completed" ? (
+                        ) : project?.status === "Completed" ? (
                             <div className="">
                                 <span className="text-green-500">
                                     Completed
                                 </span>{" "}
                                 Your project has been closed.
                             </div>
-                        ) : project?.Status === "Accepted" &&
+                        ) : project?.status === "Accepted" &&
                           project?.FreelancerId ? (
                             <div className="">
                                 <span className="text-perpol_v">Accepted</span>{" "}
@@ -169,13 +183,13 @@ function ProjectItem() {
                                     project
                                 </span>
                             </div>
-                        ) : project?.Status === "Accepted" &&
+                        ) : project?.status === "Accepted" &&
                           !project?.FreelancerId ? (
                             <div>
                                 <span className="text-perpol_v">Accepted</span>{" "}
                                 Searching For the Freelancer
                             </div>
-                        ) : project?.Status === "Pending" ? (
+                        ) : project?.status === "Pending" ? (
                             <div>
                                 <span className="text-perpol_v">Pending</span>{" "}
                                 <span className=" text-gray-500">

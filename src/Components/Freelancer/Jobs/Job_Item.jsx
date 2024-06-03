@@ -44,15 +44,7 @@ function JobItem() {
             );
             console.log("response from get Jobs", response);
             if (response.status === 200) {
-                const job = response.data.project;
-                setJob(job);
-                let contentState;
-                if (isDraftJSFormat(job.Description)) {
-                    contentState = convertFromRaw(JSON.parse(job.Description));
-                } else {
-                    contentState = ContentState.createFromText(job.Description);
-                }
-                setEditorState(EditorState.createWithContent(contentState));
+                Navigate("/Freelancer/Jobs");
             } else if (response.status === 401) {
                 Swal.fire("Error", "You should log in again", "error");
                 Navigate("/Login");
@@ -68,7 +60,7 @@ function JobItem() {
         }
     };
     useEffect(() => {
-        const fetchJobs = async () => {
+        const fetchJob = async () => {
             setLoading(true);
             // console.log("hjii");
             try {
@@ -106,7 +98,7 @@ function JobItem() {
                 setLoading(false);
             }
         };
-        fetchJobs();
+        fetchJob();
     }, []);
     if (loading)
         return (
