@@ -11,7 +11,37 @@ function ProjectItem() {
     const { user } = useAppContext();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const navigate = useNavigate();
+    const [Delete_Loading, SetDelete_Loading] = useState(false);
+    const Delete_Project = async () => {
+        SetDelete_Loading(true);
+        try {
+            const response = await axios.delete(
+                `http://localhost:3000/Clients/${user.id}/Projects/${
+                    location.pathname.split("/")[3]
+                }`,
+                {
+                    withCredentials: true,
+                    validateStatus: () => true,
+                }
+            );
 
+            if (response.status === 200) {
+                Swal.fire("Success", "Project Deleted Successfully", "success");
+                navigate("/Client/Projects");
+            } else if (response.status === 401) {
+                Swal.fire(
+                    "Unauthorized",
+                    "Please You have to Loginn Again",
+                    "error"
+                );
+                Navigate("/Login");
+            } else Swal.fire("Error", "Somthing went wrong", "error");
+        } catch (err) {
+            Swal.fire("Error", "Somthing went wrong", "error");
+        } finally {
+            SetDelete_Loading(false);
+        }
+    };
     if (!location.pathname.split("/")[3]) {
         return <Navigate to="/Client/Projects" />;
     }
@@ -92,6 +122,17 @@ function ProjectItem() {
             <div className="font-semibold text-gray_v text-2xl">
                 {project?.Title}
             </div>
+            {project?.Status == "Pending" &&
+                (Delete_Loading ? (
+                    <div className=" small-loader mt-3"></div>
+                ) : (
+                    <div
+                        className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                        onClick={Delete_Project}
+                    >
+                        Delete
+                    </div>
+                ))}
             <div className=" border my-6 p-4 rounded-lg">
                 <div className=" flex gap-2 text-sm font-semibold">
                     <div>Project Status : </div>
