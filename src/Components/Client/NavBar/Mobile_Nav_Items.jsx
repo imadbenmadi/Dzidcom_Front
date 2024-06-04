@@ -49,18 +49,32 @@ function Mobile_Nav_Items({
                             >
                                 Profile
                             </Link>
+
                             {isProfileCompleted && (
-                                <Link
-                                    onClick={Toogle_Menu_Bar}
-                                    to={"/Client/Projects"}
-                                    className={`${
-                                        Active_nav == "Projects"
-                                            ? "text-perpol_v"
-                                            : "text-black_text"
-                                    } select-none   `}
-                                >
-                                    Projects
-                                </Link>
+                                <>
+                                    <Link
+                                        onClick={Toogle_Menu_Bar}
+                                        to={"/Client/Projects"}
+                                        className={`${
+                                            Active_nav == "Projects"
+                                                ? "text-perpol_v"
+                                                : "text-black_text"
+                                        } select-none   `}
+                                    >
+                                        Projects
+                                    </Link>
+                                    {/* <Link
+                                        onClick={Toogle_Menu_Bar}
+                                        to={"/Client/Profile"}
+                                        className={`${
+                                            Active_nav == "Process"
+                                                ? "text-perpol_v"
+                                                : "text-black_text"
+                                        } select-none   `}
+                                    >
+                                        Process
+                                    </Link> */}
+                                </>
                             )}
                         </div>
                         <div className=" w-screen h-[2px] bg-gray_white "></div>

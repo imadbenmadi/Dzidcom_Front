@@ -162,18 +162,18 @@ function ProjectItem() {
                     <div>
                         {project?.status === "Payed" ? (
                             <div className="">
-                                <span className="text-green-500">Payed</span>{" "}
-                                Freelancer is working on your project
+                                <span className="text-green-500">Payed :</span>{" "}
+                                a Freelancer is working on your project
                             </div>
                         ) : project?.status === "Rejected" ? (
                             <div className="">
-                                <span className="text-red-600">Rejected</span>{" "}
+                                <span className="text-red-600">Rejected :</span>{" "}
                                 Your project has been rejected
                             </div>
                         ) : project?.status === "Completed" ? (
                             <div className="">
                                 <span className="text-green-500">
-                                    Completed
+                                    Completed :
                                 </span>{" "}
                                 Your project has been closed.
                             </div>
@@ -181,7 +181,9 @@ function ProjectItem() {
                           project?.status === "Accepted" &&
                           project?.FreelancerId ? (
                             <div className="">
-                                <span className="text-perpol_v">Accepted</span>{" "}
+                                <span className="text-perpol_v">
+                                    Accepted :
+                                </span>{" "}
                                 <span className=" text-red-500">
                                     You have to pay the fees to start the
                                     project
@@ -191,7 +193,9 @@ function ProjectItem() {
                           project?.status === "Accepted" &&
                           project?.FreelancerId ? (
                             <div className="">
-                                <span className="text-perpol_v">Accepted</span>{" "}
+                                <span className="text-perpol_v">
+                                    Accepted :
+                                </span>{" "}
                                 <span className=" text-red-500">
                                     Waiting Dashboard to accept the payment
                                 </span>
@@ -199,12 +203,14 @@ function ProjectItem() {
                         ) : project?.status === "Accepted" &&
                           !project?.FreelancerId ? (
                             <div>
-                                <span className="text-perpol_v">Accepted</span>{" "}
+                                <span className="text-perpol_v">
+                                    Accepted :
+                                </span>{" "}
                                 Searching For the Freelancer
                             </div>
                         ) : project?.status === "Pending" ? (
                             <div>
-                                <span className="text-perpol_v">Pending</span>{" "}
+                                <span className="text-perpol_v">Pending :</span>{" "}
                                 <span className=" text-gray-500">
                                     Ower team is reviewing your project
                                 </span>

@@ -139,7 +139,7 @@ function Client_Projects() {
                                                         <span className="text-green-500">
                                                             Payed
                                                         </span>{" "}
-                                                        Freelancer is working on
+                                                        a Freelancer is working on
                                                         your project now
                                                     </div>
                                                 ) : project?.status ===
