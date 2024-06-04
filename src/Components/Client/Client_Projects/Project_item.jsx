@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../../AppContext.jsx";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
-import Accepted_Icon from "../../../../public/Project/Accepted_Icon.png";
-import Waiting_Icon from "../../../../public/Project/WaitingIcon.png";
+import Accepted_Icon from "../../../../public/Project/Project_Accpted.png";
+import Waiting_Icon from "../../../../public/Project/Project_Waiting.png";
 function ProjectItem() {
     const location = useLocation();
     const { user } = useAppContext();

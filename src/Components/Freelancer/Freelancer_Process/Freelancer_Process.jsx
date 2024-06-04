@@ -123,10 +123,10 @@ function Freelancer_Process() {
                                                             </span>{" "}
                                                             <br />
                                                             <span className=" text-gray_v">
-                                                                Upload the Work
+                                                                Upload the Files
                                                                 as soon as you
                                                                 finished the
-                                                                work
+                                                                Work
                                                             </span>
                                                         </div>
                                                     ) : project?.status ===
