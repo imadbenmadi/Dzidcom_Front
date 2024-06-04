@@ -169,7 +169,7 @@ function Client_Projects() {
                                                       "Accepted" &&
                                                   project?.FreelancerId ? (
                                                     <div className="">
-                                                        <span className="text-perpol_v">
+                                                        <span className="text-gray_v">
                                                             Accepted :
                                                         </span>{" "}
                                                         <span className=" text-red-500">
@@ -186,7 +186,7 @@ function Client_Projects() {
                                                         <span className="text-perpol_v">
                                                             Accepted :
                                                         </span>{" "}
-                                                        <span className=" text-red-500">
+                                                        <span className=" text-gray_v">
                                                             Waiting Dashboard to
                                                             accept the payment
                                                         </span>

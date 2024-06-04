@@ -166,9 +166,9 @@ function JobItem() {
                     </div>
                     <div className="flex items-center justify-between w-full">
                         {job?.Description && (
-                            <div className="text-sm pt-6 text-gray_v ">
+                            <div className="text-sm py-6 text-gray_v ">
                                 {/* {job?.Description} */}
-                                <div className=" text-sm font-semibold">
+                                <div className=" text-sm pb-6 font-semibold">
                                     <span className=" underline">
                                         Project Description
                                     </span>
