@@ -33,9 +33,9 @@ function Add_Project() {
                         Field_is_Graphic_design: false,
                         Field_is_SEO_SIM: false,
                         Title: "",
-                        Description: null,
-                        Expected_Time: null,
-                        Budget: null,
+                        Description: "",
+                        Expected_Time: "",
+                        Budget: "",
                         Frelancer_Experiance: "",
                     }}
                     validate={(values) => {

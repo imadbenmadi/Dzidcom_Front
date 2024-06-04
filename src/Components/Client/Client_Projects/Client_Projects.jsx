@@ -133,65 +133,84 @@ function Client_Projects() {
                                         <div
                                             className={`text-sm  font-semibold text-gray_v `}
                                         >
-                                            {project?.status === "Payed" ? (
-                                                <div className="">
-                                                    <span className="text-green-500">
-                                                        Payed:
-                                                    </span>{" "}
-                                                    Freelancer is working on
-                                                    your project
-                                                </div>
-                                            ) : project?.status ===
-                                              "Rejected" ? (
-                                                <div className="">
-                                                    <span className="text-red-600">
-                                                        Rejected:
-                                                    </span>{" "}
-                                                    Your project has been
-                                                    rejected
-                                                </div>
-                                            ) : project?.status ===
-                                              "Completed" ? (
-                                                <div className="">
-                                                    <span className="text-green-500">
-                                                        Completed:
-                                                    </span>{" "}
-                                                    Your project has been
-                                                    closed.
-                                                </div>
-                                            ) : project?.status ===
-                                                  "Accepted" &&
-                                              project?.FreelancerId ? (
-                                                <div className="">
-                                                    <span className="text-perpol_v">
-                                                        Accepted:
-                                                    </span>{" "}
-                                                    <span className=" text-red-500">
-                                                        You have to pay the fees
-                                                        to start the project
-                                                    </span>
-                                                </div>
-                                            ) : project?.status ===
-                                                  "Accepted" &&
-                                              !project?.FreelancerId ? (
-                                                <div>
-                                                    <span className="text-perpol_v">
-                                                        Accepted:
-                                                    </span>{" "}
-                                                    Searching For the Freelancer
-                                                </div>
-                                            ) : project?.status ===
-                                              "Pending" ? (
-                                                <div>
-                                                    <span className="text-perpol_v">
-                                                        Pending:
-                                                    </span>{" "}
-                                                    <span className=" text-gray-500">
-                                                        Ower team is reviewing
+                                            <div>
+                                                {project?.status === "Payed" ? (
+                                                    <div className="">
+                                                        <span className="text-green-500">
+                                                            Payed
+                                                        </span>{" "}
+                                                        Freelancer is working on
                                                         your project
-                                                    </span>
-                                                </div>
-                                            ) : null}
+                                                    </div>
+                                                ) : project?.status ===
+                                                  "Rejected" ? (
+                                                    <div className="">
+                                                        <span className="text-red-600">
+                                                            Rejected
+                                                        </span>{" "}
+                                                        Your project has been
+                                                        rejected
+                                                    </div>
+                                                ) : project?.status ===
+                                                  "Completed" ? (
+                                                    <div className="">
+                                                        <span className="text-green-500">
+                                                            Completed
+                                                        </span>{" "}
+                                                        Your project has been
+                                                        closed.
+                                                    </div>
+                                                ) : !project?.isPayment_ScreenShot_uploaded &&
+                                                  project?.status ===
+                                                      "Accepted" &&
+                                                  project?.FreelancerId ? (
+                                                    <div className="">
+                                                        <span className="text-perpol_v">
+                                                            Accepted
+                                                        </span>{" "}
+                                                        <span className=" text-red-500">
+                                                            You have to pay the
+                                                            fees to start the
+                                                            project
+                                                        </span>
+                                                    </div>
+                                                ) : project?.isPayment_ScreenShot_uploaded &&
+                                                  project?.status ===
+                                                      "Accepted" &&
+                                                  project?.FreelancerId ? (
+                                                    <div className="">
+                                                        <span className="text-perpol_v">
+                                                            Accepted
+                                                        </span>{" "}
+                                                        <span className=" text-red-500">
+                                                            Waiting Dashboard to
+                                                            accept the payment
+                                                        </span>
+                                                    </div>
+                                                ) : project?.status ===
+                                                      "Accepted" &&
+                                                  !project?.FreelancerId ? (
+                                                    <div>
+                                                        <span className="text-perpol_v">
+                                                            Accepted
+                                                        </span>{" "}
+                                                        Searching For the
+                                                        Freelancer
+                                                    </div>
+                                                ) : project?.status ===
+                                                  "Pending" ? (
+                                                    <div>
+                                                        <span className="text-perpol_v">
+                                                            Pending
+                                                        </span>{" "}
+                                                        <span className=" text-gray-500">
+                                                            Ower team is
+                                                            reviewing your
+                                                            project
+                                                        </span>
+                                                    </div>
+                                                ) : null}
+                                            </div>
                                         </div>
                                     </div>
                                     {project?.Frelancer_Experiance && (

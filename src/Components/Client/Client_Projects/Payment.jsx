@@ -15,11 +15,14 @@ function Payment() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [project, setProject] = useState(null);
-
+    useEffect(() => {
+        console.log("project : ", project);
+    }, [project]);
     const { user, set_user } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
     const fileInputRef = useRef(null);
+
     useEffect(() => {
         const fetchProject = async () => {
             setLoading(true);
@@ -58,7 +61,47 @@ function Payment() {
         if (image_state) setimageChanged(true);
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
+        // console.log("image_state: ", image_state);
     }, [image_state]);
+    const handle_post_payment = async (values, { setSubmitting }) => {
+        setSubmitting(true);
+        let formData = new FormData();
+        console.log(image_state, values.CCP_number);
+        formData.append("CCP_number", values.CCP_number);
+        formData.append("image", image_state);
+        formData.append("projectId", project.id);
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ": " + pair[1]); // Debug each formData entry
+        }
+        try {
+            const response = await axios.post(
+                `http://localhost:3000/upload/Payment`,
+                formData,
+                {
+                    withCredentials: true,
+                    validateStatus: () => true,
+                }
+            );
+            console.log("response from uploading payment : ", response.data);
+            if (response.status === 200) {
+                Swal.fire(
+                    "Success",
+                    "Payment has been sent, ower team gonna validate your payment and contact you soon. ",
+                    "success"
+                );
+                Navigate("/Client/Projects");
+            } else if (response.status === 401) {
+                Swal.fire("Error", "you should login again", "error");
+                Navigate("/Login");
+            } else {
+                Swal.fire("Error", response.data, "error");
+            }
+        } catch (error) {
+            Swal.fire("Error", error, "error");
+        } finally {
+            setSubmitting(false);
+        }
+    };
     return (
         <div className=" w-[90%] mx-auto max-w-[900px] py-12">
             <div className=" text-lg pb-2 font-semibold">
@@ -93,8 +136,10 @@ function Payment() {
                         const errors = {};
 
                         if (!values.CCP_number) {
-                            errors.CCP_number = "first Name is Required";
-                        } else if (values.CCP_number.length < 3)
+                            errors.CCP_number = "CCP number is Required";
+                        } else if (!/^\d+$/.test(values.CCP_number))
+                            errors.CCP_number = "CCP number must be a number";
+                        else if (values.CCP_number.length < 3)
                             errors.CCP_number = "at least 3 chars";
                         else if (values.CCP_number.length > 50)
                             errors.CCP_number = "Max 50 chars";
@@ -102,16 +147,18 @@ function Payment() {
                         return errors;
                     }}
                     onSubmit={async (values, { setSubmitting }) => {
-                        handleEdite(
-                            values,
-                            set_user,
-                            "/Client/Complete_Profile/Step_1",
-                            // null,
-                            imageChanged ? image_state : null,
-                            {
-                                setSubmitting,
-                            }
-                        );
+                        if (!image_state) {
+                            Swal.fire(
+                                "Error",
+                                "Please upload a payment screenshot",
+                                "error"
+                            );
+                            setSubmitting(false);
+                            return;
+                        }
+                        handle_post_payment(values, {
+                            setSubmitting,
+                        });
                     }}
                 >
                     {({ isSubmitting, setFieldValue }) => (

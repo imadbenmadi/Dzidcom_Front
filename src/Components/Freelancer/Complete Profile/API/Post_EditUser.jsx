@@ -53,7 +53,7 @@ async function handleEdite(
             values,
             {
                 withCredentials: true,
-                // validateStatus: () => true,
+                validateStatus: () => true,
             }
         );
         console.log("response from upload image: ", response);
@@ -62,6 +62,8 @@ async function handleEdite(
             if (Link) {
                 window.location.href = Link;
             }
+        } else if (response.status == 401) {
+            window.location.href = "/Login";
         } else if (response.status == 400) {
             setSubmitting(false);
             Swal.fire("Error", `${response.data.message} `, "error");

@@ -142,14 +142,16 @@ function ProjectItem() {
                             Delete
                         </div>
                     ))}
-                {project?.status == "Accepted" && project?.FreelancerId && (
-                    <Link
-                        to={`/Client/Projects/${project?.id}/Payment`}
-                        className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
-                    >
-                        Pay the Project Fees
-                    </Link>
-                )}
+                {!project?.isPayment_ScreenShot_uploaded &&
+                    project?.status == "Accepted" &&
+                    project?.FreelancerId && (
+                        <Link
+                            to={`/Client/Projects/${project?.id}/Payment`}
+                            className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                        >
+                            Pay the Project Fees
+                        </Link>
+                    )}
             </div>
 
             <div className=" border my-6 p-4 rounded-lg">
@@ -173,13 +175,23 @@ function ProjectItem() {
                                 </span>{" "}
                                 Your project has been closed.
                             </div>
-                        ) : project?.status === "Accepted" &&
+                        ) : !project?.isPayment_ScreenShot_uploaded &&
+                          project?.status === "Accepted" &&
                           project?.FreelancerId ? (
                             <div className="">
                                 <span className="text-perpol_v">Accepted</span>{" "}
                                 <span className=" text-red-500">
                                     You have to pay the fees to start the
                                     project
+                                </span>
+                            </div>
+                        ) : project?.isPayment_ScreenShot_uploaded &&
+                          project?.status === "Accepted" &&
+                          project?.FreelancerId ? (
+                            <div className="">
+                                <span className="text-perpol_v">Accepted</span>{" "}
+                                <span className=" text-red-500">
+                                    Waiting Dashboard to accept the payment
                                 </span>
                             </div>
                         ) : project?.status === "Accepted" &&
