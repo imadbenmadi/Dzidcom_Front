@@ -140,25 +140,29 @@ function Client_Projects() {
                                                             Payed
                                                         </span>{" "}
                                                         Freelancer is working on
-                                                        your project
+                                                        your project now
                                                     </div>
                                                 ) : project?.status ===
                                                   "Rejected" ? (
                                                     <div className="">
                                                         <span className="text-red-600">
-                                                            Rejected
+                                                            Rejected :
                                                         </span>{" "}
-                                                        Your project has been
-                                                        rejected
+                                                        <span className=" text-gray_v">
+                                                            Your project has
+                                                            been rejected.
+                                                        </span>
                                                     </div>
                                                 ) : project?.status ===
                                                   "Completed" ? (
                                                     <div className="">
                                                         <span className="text-green-500">
-                                                            Completed
+                                                            Completed :
                                                         </span>{" "}
-                                                        Your project has been
-                                                        closed.
+                                                        <span className=" text-gray_v">
+                                                            Your project has
+                                                            been closed.
+                                                        </span>
                                                     </div>
                                                 ) : !project?.isPayment_ScreenShot_uploaded &&
                                                   project?.status ===
@@ -166,7 +170,7 @@ function Client_Projects() {
                                                   project?.FreelancerId ? (
                                                     <div className="">
                                                         <span className="text-perpol_v">
-                                                            Accepted
+                                                            Accepted :
                                                         </span>{" "}
                                                         <span className=" text-red-500">
                                                             You have to pay the
@@ -180,12 +184,31 @@ function Client_Projects() {
                                                   project?.FreelancerId ? (
                                                     <div className="">
                                                         <span className="text-perpol_v">
-                                                            Accepted
+                                                            Accepted :
                                                         </span>{" "}
                                                         <span className=" text-red-500">
                                                             Waiting Dashboard to
                                                             accept the payment
                                                         </span>
+                                                    </div>
+                                                ) : project?.isPayment_ScreenShot_uploaded &&
+                                                  project?.status ===
+                                                      "Accepted" &&
+                                                  project?.FreelancerId &&
+                                                  project?.isPayment_ScreenShot_Rejected ? (
+                                                    <div className="">
+                                                        <span className=" text-red-500">
+                                                            your payment has
+                                                            been rejected :{" "}
+                                                        </span>
+                                                        <span className="text-gray_v">
+                                                            Please verify your
+                                                            payment details and
+                                                            try again. If the
+                                                            issue persists,
+                                                            contact our support
+                                                            team for assistance.
+                                                        </span>{" "}
                                                     </div>
                                                 ) : project?.status ===
                                                       "Accepted" &&

@@ -130,8 +130,8 @@ function ProjectItem() {
             </div>
             <div className=" flex  items-center gap-3">
                 {(project?.status == "Pending" ||
-                    project?.status == "Rejected" ||
-                    project?.status == "Completed") &&
+                    project?.status == "Rejected") &&
+                    // ||project?.status == "Completed"
                     (Delete_Loading ? (
                         <div className=" small-loader mt-3"></div>
                     ) : (
@@ -142,7 +142,9 @@ function ProjectItem() {
                             Delete
                         </div>
                     ))}
-                {!project?.isPayment_ScreenShot_uploaded &&
+                {(!project?.isPayment_ScreenShot_uploaded ||
+                    (project?.isPayment_ScreenShot_uploaded &&
+                        project?.isPayment_ScreenShot_Rejected)) &&
                     project?.status == "Accepted" &&
                     project?.FreelancerId && (
                         <Link
