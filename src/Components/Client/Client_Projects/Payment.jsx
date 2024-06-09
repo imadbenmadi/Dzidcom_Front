@@ -40,8 +40,8 @@ function Payment() {
                 if (response.status === 200) {
                     const project = response.data.Project;
                     setProject(project);
-                    if (!response.data.Payment_Authorization)
-                        Navigate("/Client/Projects");
+                    // if (!response.data.Payment_Authorization)
+                        // Navigate("/Client/Projects");
                 } else if (response.status === 401) {
                     Swal.fire("Error", "you should login again", "error");
                     Navigate("/Login");

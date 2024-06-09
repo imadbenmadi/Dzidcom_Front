@@ -22,8 +22,8 @@ function Freelancer_jobs() {
     const { Jobs, loading } = useFetchJobs(query);
 
     return (
-        <div className="flex">
-            <div className="w-[250px] shrink-0 pt-6 pl-3 text-gray_v pr-2  h-[calc(100vh-60px)]">
+        <div className="flex flex-col md:flex-row">
+            <div className="w-full md:w-[250px] shrink-0 pt-6 pl-3 pb-2 md:pb-0 text-gray_v pr-2  h-fit border-b md:border-b-0  md:h-[calc(100vh-60px)]">
                 <div>
                     <div className="border rounded-xl flex items-center gap-2 px-2 py-2">
                         <img
@@ -38,7 +38,7 @@ function Freelancer_jobs() {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
-                    <div className="text-gray_v pt-8">
+                    <div className="text-gray_v pt-4 md:pt-8">
                         <div className="text-lg font-semibold">Filter</div>
                         <div className="text-sm pt-4">
                             <div className="font-semibold">Job Title</div>
@@ -82,7 +82,7 @@ function Freelancer_jobs() {
                     </div>
                 </div>
                 <div
-                    className="bg-perpol_v w-fit mx-auto py-1 px-2 rounded-lg text-white font-semibold cursor-pointer text-lg"
+                    className="hidden md:block bg-perpol_v w-fit mx-auto py-1 px-2 rounded-lg text-white font-semibold cursor-pointer text-lg"
                     onClick={() => setSearch(search)}
                 >
                     Filter
