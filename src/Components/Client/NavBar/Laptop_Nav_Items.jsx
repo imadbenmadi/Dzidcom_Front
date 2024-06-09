@@ -44,12 +44,21 @@ function Laptop_Nav_Items({
                         to={"/Client/Complete_Profile"}
                         className={"select-none"}
                     >
-                        <span className=" relative">
-                            Modify profile{" "}
-                            {!isProfileCompleted ? (
+                        {isProfileCompleted ? (
+                            <span className=" relative">
+                                Edite profile{" "}
+                                {/* {!isProfileCompleted ? (
+                                    <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                                ) : null} */}
+                            </span>
+                        ) : (
+                            <span className=" relative">
+                                Complete profile{" "}
+                                {/* {!isProfileCompleted ? ( */}
                                 <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
-                            ) : null}
-                        </span>
+                                {/* ) : null} */}
+                            </span>
+                        )}
                     </Link>
                 </div>
 

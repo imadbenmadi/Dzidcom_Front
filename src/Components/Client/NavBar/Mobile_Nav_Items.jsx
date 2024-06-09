@@ -31,12 +31,26 @@ function Mobile_Nav_Items({
                                         : "text-black_text"
                                 } select-none    `}
                             >
-                                <span className=" relative">
-                                    Modify profile
-                                    {!isProfileCompleted && (
-                                        <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                                <Link
+                                    to={"/Client/Complete_Profile"}
+                                    className={"select-none"}
+                                >
+                                    {isProfileCompleted ? (
+                                        <span className=" relative">
+                                            Edite profile
+                                            {/* {!isProfileCompleted && (
+                                            <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                                        )} */}
+                                        </span>
+                                    ) : (
+                                        <span className=" relative">
+                                            Complete profile
+                                            {/* {!isProfileCompleted && ( */}
+                                            <span className=" absolute top-[-3px] right-[-9px] h-3 w-3 rounded-full bg-red-500 "></span>
+                                            {/* )} */}
+                                        </span>
                                     )}
-                                </span>
+                                </Link>
                             </Link>
                             <Link
                                 onClick={Toogle_Menu_Bar}

@@ -4,10 +4,9 @@ import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 import user_default from "../../../../public/Profile/user_default2.png";
 import { useNavigate } from "react-router";
-
 function Hero() {
     const Navigate = useNavigate();
-    const { user } = useAppContext();
+    const { user, isProfileCompleted } = useAppContext();
     return (
         <div className="flex flex-row  items-start justify-around mt-8">
             <div className="  flex  justify-center max-w-[350px] gap-6 md:gap-12">
@@ -50,28 +49,32 @@ function Hero() {
                             </>
                         ) : null}
                     </div>
-                    <div
-                        className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
+                    {isProfileCompleted && (
+                        <div
+                            className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
                                 rounded-md cursor-pointer "
-                        onClick={() => {
-                            // window.location.href = "/Freelancer/Jobs";
-                            Navigate("/Freelancer/Jobs");
-                        }}
-                    >
-                        See work offers
-                    </div>
+                            onClick={() => {
+                                // window.location.href = "/Freelancer/Jobs";
+                                Navigate("/Freelancer/Jobs");
+                            }}
+                        >
+                            See work offers
+                        </div>
+                    )}
                 </div>
             </div>
-            <div
-                className=" hidden md:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
-            rounded-md cursor-pointer "
-                onClick={() => {
-                    // window.location.href = "/Freelancer/Jobs";
-                    Navigate("/Freelancer/Jobs");
-                }}
-            >
-                See work offers
-            </div>
+            {isProfileCompleted && (
+                <div
+                    className=" hidden md:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
+                  rounded-md cursor-pointer "
+                    onClick={() => {
+                        // window.location.href = "/Freelancer/Jobs";
+                        Navigate("/Freelancer/Jobs");
+                    }}
+                >
+                    See work offers
+                </div>
+            )}
         </div>
     );
 }
