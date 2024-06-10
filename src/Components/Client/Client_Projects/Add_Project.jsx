@@ -35,7 +35,7 @@ function Add_Project() {
                         Title: "",
                         Description: "",
                         Expected_Time: "",
-                        Budget: "",
+                        Client_Budget: "",
                         Frelancer_Experiance: "",
                     }}
                     validate={(values) => {
@@ -53,9 +53,9 @@ function Add_Project() {
                         else if (values.Expected_Time.length > 50)
                             errors.Expected_Time = "Max 50 chars";
 
-                        if (!values.Budget) {
-                            errors.Budget = "Budget is Required";
-                        } else if (values.Budget.length > 200)
+                        if (!values.Client_Budget) {
+                            errors.Client_Budget = "Budget is Required";
+                        } else if (values.Client_Budget.length > 200)
                             errors.Title = "Max 50 chars";
 
                         return errors;
@@ -181,14 +181,14 @@ function Add_Project() {
                                     <Field
                                         placeholder="15000 DA"
                                         type="text"
-                                        name="Budget"
+                                        name="Client_Budget"
                                         disabled={isSubmitting}
                                         className="border border-gray_white px-4 py-2  rounded-lg text-sm  w-full"
                                     />
                                 </div>
 
                                 <ErrorMessage
-                                    name="Budget"
+                                    name="Client_Budget"
                                     component="div"
                                     style={errorInputMessage}
                                 />

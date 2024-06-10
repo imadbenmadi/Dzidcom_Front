@@ -139,8 +139,8 @@ function Client_Projects() {
                                                         <span className="text-green-500">
                                                             Payed
                                                         </span>{" "}
-                                                        a Freelancer is working on
-                                                        your project now
+                                                        a Freelancer is working
+                                                        on your project now
                                                     </div>
                                                 ) : project?.status ===
                                                   "Rejected" ? (
@@ -248,10 +248,10 @@ function Client_Projects() {
                                             </div>
                                         </div>
                                     )}
-                                    {project?.Budget && (
+                                    {project?.Client_Budget && (
                                         <div className="flex items-center justify-between w-full text-sm font-semibold">
-                                            <div className="text-sm pt-4 text-gray_v">
-                                                {project?.Budget}
+                                            <div className="text-sm pt-4 text-gray_v flex gap-2 items-center">
+                                                Budget: {project?.Client_Budget}
                                             </div>
                                         </div>
                                     )}

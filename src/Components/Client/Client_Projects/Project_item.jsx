@@ -5,8 +5,11 @@ import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../../AppContext.jsx";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
-import Accepted_Icon from "../../../../public/Project/Project_Accpted.png";
-import Waiting_Icon from "../../../../public/Project/Project_Waiting.png";
+import Project_Accpted from "../../../../public/Project/Project_Accpted.png";
+import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
+import Project_Done from "../../../../public/Project/Project_Done.png";
+import Project_Waiting2 from "../../../../public/Project/Project_Waiting2.png";
+import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
 function ProjectItem() {
     const location = useLocation();
     const { user } = useAppContext();
@@ -60,7 +63,13 @@ function ProjectItem() {
 
         const fetch_images = () => {
             return new Promise((resolve, reject) => {
-                const images = [Accepted_Icon, Waiting_Icon];
+                const images = [
+                    Project_Accpted,
+                    Project_Waiting,
+                    Project_Done,
+                    Project_Waiting2,
+                    Project_Rejected,
+                ];
                 let loadedCount = 0;
                 if (images.length === 0) resolve();
                 images.forEach((imageSrc) => {
@@ -158,18 +167,33 @@ function ProjectItem() {
             </div>
             <div className="mx-auto w-fit">
                 <div className="">
-                    {project?.status === "Accepted" ||
-                    project?.status === "Payed" ||
-                    project?.status === "Completed" ? (
+                    {project?.status === "Accepted" &&
+                    !project?.FreelancerId ? (
                         <img
-                            src={Accepted_Icon}
-                            className=" w-[250px] "
+                            src={Project_Accpted}
+                            className="w-[250px]"
                             alt=""
                         />
                     ) : project?.status === "Pending" ? (
                         <img
-                            src={Waiting_Icon}
-                            className=" w-[250px] "
+                            src={Project_Waiting}
+                            className="w-[250px]"
+                            alt=""
+                        />
+                    ) : project?.status === "Rejected" ? (
+                        <img
+                            src={Project_Rejected}
+                            className="w-[250px]"
+                            alt=""
+                        />
+                    ) : project?.status === "Completed" ? (
+                        <img src={Project_Done} className="w-[250px]" alt="" />
+                    ) : project?.status === "Payed" ||
+                      (project?.status === "Accepted" &&
+                          project?.FreelancerId) ? (
+                        <img
+                            src={Project_Waiting2}
+                            className="w-[250px]"
                             alt=""
                         />
                     ) : null}
@@ -417,10 +441,10 @@ function ProjectItem() {
                             </div>
                         </div>
                     )}
-                    {project?.Budget && (
+                    {project?.Client_Budget && (
                         <div className="flex items-center justify-between w-full text-sm font-semibold">
-                            <div className="text-sm pt-4 text-gray_v">
-                                {project?.Budget}
+                            <div className="text-sm pt-4 text-gray_v flex items-center gap-2">
+                                Budget: {project?.Client_Budget}
                             </div>
                         </div>
                     )}
