@@ -26,7 +26,7 @@ function Freelancer_Process() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get prjects", response);
+                console.log("response from get Process", response);
                 if (response.status == 200) {
                     const Projcets = response.data.Projects;
                     setProjcets(Projcets);

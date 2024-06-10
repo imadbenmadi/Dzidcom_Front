@@ -7,32 +7,59 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosWarning } from "react-icons/io";
 import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
+import Project_Accpted from "../../../../public/Project/Project_Accpted.png";
+import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
+import Project_Done from "../../../../public/Project/Project_Done.png";
+import Project_Waiting2 from "../../../../public/Project/Project_Waiting2.png";
+import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
+import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
+import { MdOutlineFileDownload } from "react-icons/md";
+import { MdOutlineFileUpload } from "react-icons/md";
+
 function Freelancer_Process_item() {
     const location = useLocation();
+    const projectId = location.pathname.split("/")[3];
     const Naviagte = useNavigate();
     const { user } = useAppContext();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [Project, setProject] = useState([]);
+    const [project, setProject] = useState([]);
     const { show_Alert_completeProfile } = useAppContext();
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const isDraftJSFormat = (str) => {
+        try {
+            const parsed = JSON.parse(str);
+            return parsed.blocks && parsed.entityMap;
+        } catch (e) {
+            return false;
+        }
+    };
     useEffect(() => {
         setLoading(true);
         const FetchProject = async ({ setProject, setLoading, setError }) => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/Process/${
-                        location.pathname.split("/")[3]
-                    }`,
+                    `http://localhost:3000/Freelancers/${user.id}/Process/${projectId}`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get prject", response);
+                console.log("response from get process", response);
                 if (response.status == 200) {
                     const Project = response.data.Project;
                     setProject(Project);
+                    let contentState;
+                    if (isDraftJSFormat(project.Description)) {
+                        contentState = convertFromRaw(
+                            JSON.parse(project.Description)
+                        );
+                    } else {
+                        contentState = ContentState.createFromText(
+                            project.Description
+                        );
+                    }
                 } else if (response.status == 401) {
                     Swal.fire("Error", "you should login again", "error");
                     Naviagte("/Login");
@@ -47,149 +74,177 @@ function Freelancer_Process_item() {
         };
         FetchProject({ setProject, setLoading, setError });
     }, []);
-
     if (loading) {
         return (
             <div className=" w-screen h-[80vh] flex flex-col items-center justify-center">
                 <span className="loader"></span>
             </div>
         );
-    } else if (error)
-        return (
-            <div className=" w-screen h-screen flex items-center justify-center">
-                <div className="text-red-600 font-semibold">
-                    {error.message}
-                </div>
-            </div>
-        );
+    }
+    // else if (error)
+    //     return (
+    //         <div className=" w-screen h-screen flex items-center justify-center">
+    //             <div className="text-red-600 font-semibold">
+    //                 {error.message}
+    //             </div>
+    //         </div>
+    //     );
     else
         return (
-            <div>
+            <>
                 {show_Alert_completeProfile && <Alert_Complete_Profile />}
-                <div>
-                    {!Project ? (
-                        <div className=" flex flex-col items-center justify-center">
-                            <div className="pt-24 flex justify-center items-center gap-2 text-gray-500 text-base font-semibold">
-                                <IoIosWarning />
-                                <h1>No Projects Found</h1>
-                            </div>
+                <div className="w-[90%] mx-auto max-w-[900px] mt-6">
+                    <div className="font-semibold text-gray_v text-2xl">
+                        {project?.Title}
+                    </div>
+                    <div className="mx-auto w-fit">
+                        <div className="">
+                            {project?.status === "Accepted" ? (
+                                <img
+                                    src={Project_Accpted}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Completed" ? (
+                                <img
+                                    src={Project_Done}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Payed" ||
+                              (project?.status === "Accepted" &&
+                                  project?.FreelancerId) ? (
+                                <img
+                                    src={Project_Waiting2}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : null}
                         </div>
-                    ) : (
-                        <div className=" flex flex-col items-center justify-center">
-                            <div className=" w-[90%] mx-auto">
-                                {/* {Project.map((Project) => ( */}
-                                <div
-                                    // key={Project.id}
-                                    className="flex flex-col items-center justify-center border  rounded-md p-4 my-4"
-                                >
-                                    <div className="flex items-center justify-between w-full">
-                                        <div className="text-sm  mb-6 font-semibold text-white">
-                                            <div className=" text-gray_v text-lg">
-                                                {Project?.Title}
-                                            </div>
-                                            <div className=" flex gap-2">
-                                                {Project?.Field_is_Graphic_design && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                                        Graphic Design
-                                                    </div>
-                                                )}
-                                                {Project?.Field_is_Content_creation && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                                        Content creation
-                                                    </div>
-                                                )}
-                                                {Project?.Field_is_SEO_SIM && (
-                                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                                        SEO/SIM
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                        <Link
-                                            to={`/Freelancer/Process/${Project.id}`}
-                                            className="bg-perpol_v px-3 py-2 rounded-md cursor-pointer text-white font-semibold text-base"
-                                        >
-                                            View
-                                        </Link>
+                        <div className=" max-w-[300px] font-semibold text-gray_v py-2">
+                            {project?.status === "Payed" ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green-500">
+                                            Client is waiting for your work :
+                                        </span>{" "}
+                                        please upload the files as soon as you
+                                        finished working on the project
                                     </div>
-                                    <div className="flex items-center justify-between w-full">
+                                    <div className="w-full flex flex-col items-center justify-center">
                                         <div
-                                            className={`text-sm  font-semibold text-gray_v `}
+                                            className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                            cursor-pointer bg-perpol_v flex items-center gap-2 "
                                         >
-                                            <div>
-                                                {Project?.status === "Payed" ? (
-                                                    <div className="">
-                                                        <span className="text-green-500">
-                                                            Client Payed the
-                                                            Project fees
-                                                        </span>{" "}
-                                                        <br />
-                                                        <span className=" text-gray_v">
-                                                            Upload the Files as
-                                                            soon as you finished
-                                                            the Work
-                                                        </span>
-                                                    </div>
-                                                ) : Project?.status ===
-                                                  "Completed" ? (
-                                                    <div className="">
-                                                        <span className="text-green-500">
-                                                            Completed :
-                                                        </span>{" "}
-                                                        <span className=" text-gray_v">
-                                                            the Project has been
-                                                            closed.
-                                                        </span>
-                                                    </div>
-                                                ) : Project?.status ===
-                                                  "Accepted" ? (
-                                                    <div className="">
-                                                        <span className="text-green-500">
-                                                            Accepted :
-                                                        </span>{" "}
-                                                        <span className=" text-gray_v">
-                                                            Waiting for the
-                                                            Client Payment
-                                                        </span>
-                                                    </div>
-                                                ) : null}
-                                            </div>
+                                            <MdOutlineFileUpload /> Upload Files
                                         </div>
                                     </div>
-                                    {Project?.Frelancer_Experiance && (
-                                        <div className="flex items-center justify-between w-full">
-                                            <div className="text-sm pt-2 text-gray_v">
-                                                frelancer experiance :{" "}
-                                                <span className=" font-semibold">
-                                                    {
-                                                        Project?.Frelancer_Experiance
-                                                    }
-                                                </span>
-                                            </div>
+                                </>
+                            ) : project?.status === "Completed" ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green-500">
+                                            Completed :
+                                        </span>{" "}
+                                        the project has been closed.
+                                    </div>
+                                    <div className="w-full flex items-center justify-center">
+                                        <div
+                                            to={`/Client/Projects/${project?.id}/Process`}
+                                            className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                            cursor-pointer bg-perpol_v flex items-center gap-2"
+                                        >
+                                            <MdOutlineFileDownload />
+                                            Download your Work
+                                        </div>
+                                    </div>
+                                </>
+                            ) : project?.status === "Accepted" ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green_v">
+                                            Accepted :
+                                        </span>{" "}
+                                        <span className=" text-gray-500">
+                                            waiting for the client to pay the
+                                            project fees
+                                        </span>
+                                    </div>
+                                </>
+                            ) : null}
+                        </div>
+                    </div>
+                    <div className=" my-6 ">
+                        <div className=" pb-2 font-semibold text-gray_v">
+                            Project Details
+                        </div>
+                        <div className=" border p-4 rounded-lg">
+                            <div className=" flex gap-2 text-sm font-semibold">
+                                <div>Project Title : </div>
+                                <div className=" text-gray_v">
+                                    {project?.Title}
+                                </div>
+                            </div>
+                            <div className="text-sm  mb-2 font-semibold text-white">
+                                <div className=" flex gap-2">
+                                    {project?.Field_is_Graphic_design && (
+                                        <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                            Graphic Design
                                         </div>
                                     )}
-                                    {/* {Project?.Client_Budget && (
-                                        <div className="flex items-center justify-between w-full text-sm font-semibold">
-                                            <div className="text-sm pt-4 text-gray_v">
-                                                {Project?.Client_Budget}
-                                            </div>
+                                    {project?.Field_is_Content_creation && (
+                                        <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                            Content creation
                                         </div>
-                                    )} */}
-
-                                    <div className="flex items-center justify-between w-full font-semibold">
-                                        <div className="text-sm pt-1 text-gray_v">
-                                            Created at :{" "}
-                                            {new Date(
-                                                Project?.createdAt
-                                            ).toLocaleDateString()}
+                                    )}
+                                    {project?.Field_is_SEO_SIM && (
+                                        <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                            SEO/SIM
                                         </div>
+                                    )}
+                                </div>
+                            </div>
+                            {project?.Frelancer_Experiance && (
+                                <div className="flex items-center justify-between w-full">
+                                    <div className="text-sm pt-2 text-gray_v">
+                                        frelancer experiance :{" "}
+                                        <span className=" font-semibold">
+                                            {project?.Frelancer_Experiance}
+                                        </span>
                                     </div>
+                                </div>
+                            )}
+                            {project?.Client_Budget && (
+                                <div className="flex items-center justify-between w-full text-sm font-semibold">
+                                    <div className="text-sm pt-4 text-gray_v flex items-center gap-2">
+                                        Budget: {project?.Client_Budget}
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="flex items-center justify-between w-full font-semibold">
+                                <div className="text-sm pt-1 text-gray_v">
+                                    Created at :{" "}
+                                    {new Date(
+                                        project?.createdAt
+                                    ).toLocaleDateString()}
                                 </div>
                             </div>
                         </div>
-                    )}
+                        <div>
+                            <div className="text-sm font-semibold pt-4">
+                                Project Description
+                            </div>
+                            <div className="text-sm font-semibold pl-6 py-6 text-gray_v">
+                                <Editor
+                                    editorState={editorState}
+                                    readOnly={true}
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </>
         );
 }
 

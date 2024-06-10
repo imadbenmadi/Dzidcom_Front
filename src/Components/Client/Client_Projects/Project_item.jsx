@@ -258,7 +258,7 @@ function ProjectItem() {
                       project?.FreelancerId ? (
                         <>
                             <div className="">
-                                <span className="text-gra_v">Accepted :</span>{" "}
+                                <span className="text-gray_v">Accepted :</span>{" "}
                                 <span className=" text-red-500">
                                     You have to pay the fees to start the
                                     project
