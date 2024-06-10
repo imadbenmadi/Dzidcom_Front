@@ -167,7 +167,11 @@ function Freelancer_Process() {
                                                 </div>
                                             </div>
                                         )}
-                                        
+                                        <div className="flex items-center justify-between w-full py-2 font-semibold">
+                                            <div className="text-sm pt-1 text-gray_v">
+                                                Deadline : {project?.DeadLine}
+                                            </div>
+                                        </div>
 
                                         <div className="flex items-center justify-between w-full font-semibold">
                                             <div className="text-sm pt-1 text-gray_v">
