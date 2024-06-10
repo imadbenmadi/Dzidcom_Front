@@ -226,7 +226,7 @@ function Payment() {
                                                                 "http://localhost:3000/" +
                                                                 project.Pyament_ScreenShot_Link
                                                             }
-                                                            alt="Profile Pic"
+                                                            alt="Payment screen shot"
                                                             className=" w-[300px] h-[300px] object-cover rounded-lg"
                                                         />
                                                         {/* {imageDeleteLoading ? (
@@ -311,7 +311,16 @@ function Payment() {
                         )}
                     </Formik>
                 ) : (
-                    <div>hi</div>
+                    <div className=" flex justify-center w-full">
+                        <img
+                            src={
+                                "http://localhost:3000/" +
+                                project.Pyament_ScreenShot_Link
+                            }
+                            alt="Payment screen shot"
+                            className=" w-[300px] h-[300px] object-cover rounded-lg"
+                        />
+                    </div>
                 )}
             </div>
         </div>
