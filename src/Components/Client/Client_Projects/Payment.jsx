@@ -233,7 +233,7 @@ function Payment() {
                                                 />
                                             </div>
 
-                                            <div className="flex flex-col items-center justify-center gap-1 mt-3 border rounded-lg">
+                                            <div className="flex flex-col items-center justify-center gap-1 mt-3  rounded-lg">
                                                 {project?.Pyament_ScreenShot_Link ? (
                                                     <>
                                                         <img
