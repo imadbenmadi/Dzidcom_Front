@@ -10,6 +10,7 @@ import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
 import Project_Done from "../../../../public/Project/Project_Done.png";
 import Project_Waiting2 from "../../../../public/Project/Project_Waiting2.png";
 import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
+import Alert_icon from "../../../../public//Project/Alert.png";
 function ProjectItem() {
     const location = useLocation();
     const { user } = useAppContext();
@@ -69,6 +70,7 @@ function ProjectItem() {
                     Project_Done,
                     Project_Waiting2,
                     Project_Rejected,
+                    Alert_icon,
                 ];
                 let loadedCount = 0;
                 if (images.length === 0) resolve();

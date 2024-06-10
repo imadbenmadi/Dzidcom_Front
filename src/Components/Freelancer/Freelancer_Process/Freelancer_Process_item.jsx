@@ -15,8 +15,15 @@ import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { MdOutlineFileUpload } from "react-icons/md";
+import Alert_icon from "../../../../public//Project/Alert.png";
 
 function Freelancer_Process_item() {
+    const [openUpload, setOpenUpload] = useState(false);
+    const [uploadLoading, setUploadLoading] = useState(false);
+    const toogle_upload = () => {
+        if (openUpload) window.scrollTo(0, 0);
+        setOpenUpload(!openUpload);
+    };
     const location = useLocation();
     const projectId = location.pathname.split("/")[3];
     const Naviagte = useNavigate();
@@ -91,14 +98,50 @@ function Freelancer_Process_item() {
     //     );
     else
         return (
-            <>
+            <div className=" w-full h-full relative">
+                {openUpload && (
+                    <div
+                        className=" bg-gray_v bg-opacity-10 z-10 absolute top-0 left-0
+                      w-full h-full  flex flex-col pt-10  items-center"
+                    >
+                        <div className=" w-fit mx-auto ">
+                            <img src={Alert_icon} className=" w-20" alt="" />
+                        </div>
+                        <div
+                            className=" w-[600px] h-[400px] bg-white text-gray_v
+                         rounded-lg py-5 px-10 flex flex-col justify-between   "
+                        >
+                            <div className=" text-sm font-semibold text-grayè_v">
+                                Please choose a single file that contains all
+                                the project files.
+                            </div>
+                            <div></div>
+                            <div className=" flex items-center justify-center gap-6">
+                                <div
+                                    className=" bg-green_v text-white py-2 
+                                px-4 rounded-xl cursor-pointer "
+                                >
+                                    Upload
+                                </div>
+                                <div
+                                    onClick={toogle_upload}
+                                    className="  bg-red-600 text-white py-2 
+                                px-4 rounded-xl cursor-pointer"
+                                >
+                                    Cancel
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {show_Alert_completeProfile && <Alert_Complete_Profile />}
-                <div className="w-[90%] mx-auto max-w-[900px] mt-6">
+                <div className="w-[90%] mx-auto max-w-[900px] pt-6">
                     <div className="font-semibold text-gray_v text-2xl">
                         {project?.Title}
                     </div>
-                    <div className="mx-auto w-fit">
-                        <div className="">
+                    <div className="mx-auto w-fit max-w-[300px] md:max-w-[500px]">
+                        <div className=" flex justify-center">
                             {project?.status === "Accepted" ? (
                                 <img
                                     src={Project_Accpted}
@@ -121,7 +164,7 @@ function Freelancer_Process_item() {
                                 />
                             ) : null}
                         </div>
-                        <div className=" max-w-[300px] font-semibold text-gray_v py-2">
+                        <div className=" max-w-[300px] md:max-w-[500px] font-semibold text-gray_v py-2">
                             {project?.status === "Payed" ? (
                                 <>
                                     <div className="">
@@ -131,13 +174,25 @@ function Freelancer_Process_item() {
                                         please upload the files as soon as you
                                         finished working on the project
                                     </div>
-                                    <div className="w-full flex flex-col items-center justify-center">
+                                    <div className="w-full flex gap-2  items-center justify-center">
                                         <div
+                                            onClick={toogle_upload}
                                             className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                             cursor-pointer bg-perpol_v flex items-center gap-2 "
                                         >
-                                            <MdOutlineFileUpload /> Upload Files
+                                            <MdOutlineFileUpload className=" text-xl  shrink-0" />{" "}
+                                            Upload Files
                                         </div>
+                                        {project?.isWorkUploaded && (
+                                            <div
+                                                className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                                cursor-pointer bg-green_v  flex items-center gap-2 "
+                                            >
+                                                <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                                Download Work
+                                            </div>
+                                        )}
+                                        <div></div>
                                     </div>
                                 </>
                             ) : project?.status === "Completed" ? (
@@ -242,7 +297,7 @@ function Freelancer_Process_item() {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
 }
 
