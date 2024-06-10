@@ -214,13 +214,7 @@ function Freelancer_Process_item() {
                                     </div>
                                 </div>
                             )}
-                            {project?.Client_Budget && (
-                                <div className="flex items-center justify-between w-full text-sm font-semibold">
-                                    <div className="text-sm pt-4 text-gray_v flex items-center gap-2">
-                                        Budget: {project?.Client_Budget}
-                                    </div>
-                                </div>
-                            )}
+                            
 
                             <div className="flex items-center justify-between w-full font-semibold">
                                 <div className="text-sm pt-1 text-gray_v">
