@@ -123,7 +123,15 @@ function Payment() {
                         <div>
                             Project fees :{" "}
                             <span className=" font-semibold">
-                                {project?.Money}
+                                {project?.Money ? project?.Money : "non set"}
+                            </span>
+                        </div>
+                        <div>
+                            DeadLine :{" "}
+                            <span className=" font-semibold">
+                                {project?.DeadLine
+                                    ? project?.DeadLine
+                                    : "non set"}
                             </span>
                         </div>
                         <div>
@@ -136,6 +144,13 @@ function Payment() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className=" flex flex-col text-center gap-2 pt-6">
+                Contact Dzidcom :{" "}
+                <span className=" font-semibold flex flex-col gap-1 ">
+                    <a href="mailto:dziidcom@gmail.com">dziidcom@gmail.com</a>
+                    <a href="tel:+213784321399">0784321399</a>
+                </span>
             </div>
             <div className=" pt-8">
                 {!only_see ? (
