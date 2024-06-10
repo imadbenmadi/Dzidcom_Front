@@ -203,7 +203,8 @@ function ProjectItem() {
                         <>
                             <div className="">
                                 <span className="text-green-500">Payed :</span>{" "}
-                                a Freelancer is working on your project
+                                Your payment accepted. <br />a Freelancer is
+                                working on your project
                             </div>
                             <div className="w-full flex items-center justify-center">
                                 <Link
@@ -350,7 +351,7 @@ function ProjectItem() {
                                 <div className="">
                                     <span className="text-green-500">
                                         Payed :
-                                    </span>{" "}
+                                    </span>{" "}Your payment accepted. <br />
                                     a Freelancer is working on your project
                                 </div>
                             ) : project?.status === "Rejected" ? (
