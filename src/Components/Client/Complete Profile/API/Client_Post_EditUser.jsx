@@ -34,13 +34,7 @@ async function handleEdite(
                 Swal.fire("Error!", `${Image_Response.data.message} `, "error");
             } else if (Image_Response.status == 500) {
                 Swal.fire("Error!", `Internal Server Error   `, "error");
-            } else if (Image_Response.status == 429) {
-                Swal.fire(
-                    "Error!",
-                    `Too many requests ,try again latter\n  `,
-                    "error"
-                );
-            } else {
+            }  else {
                 Swal.fire(
                     "Error!",
                     `Something Went Wrong ,please trye again latter, ${Image_Response.data.message} `,
@@ -73,14 +67,7 @@ async function handleEdite(
         } else if (response.status == 500) {
             setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        } else if (response.status == 429) {
-            setSubmitting(false);
-            Swal.fire(
-                "Error!",
-                `Too many requests ,try again latter\n  `,
-                "error"
-            );
-        } else {
+        }  else {
             setSubmitting(false);
             Swal.fire(
                 "Error!",

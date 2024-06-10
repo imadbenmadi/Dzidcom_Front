@@ -22,14 +22,7 @@ async function handleLogin(values, { setSubmitting }) {
         } else if (response.status == 500) {
             setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        } else if (response.status == 429) {
-            setSubmitting(false);
-            Swal.fire(
-                "Error!",
-                `Too many requests ,try again latter\n  `,
-                "error"
-            );
-        } else {
+        }  else {
             setSubmitting(false);
             Swal.fire("Error!", `Something Went Wrong ,`, "error");
         }

@@ -16,14 +16,26 @@ import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 import { MdOutlineFileDownload } from "react-icons/md";
 import { MdOutlineFileUpload } from "react-icons/md";
 import Alert_icon from "../../../../public//Project/Alert.png";
-
+import { FaUpload } from "react-icons/fa";
+import Axios from "axios";
 function Freelancer_Process_item() {
+    const [fileName, setFileName] = useState("");
+    const [file, setFile] = useState(null);
     const [openUpload, setOpenUpload] = useState(false);
     const [uploadLoading, setUploadLoading] = useState(false);
     const toogle_upload = () => {
-        if (openUpload) window.scrollTo(0, 0);
-        setOpenUpload(!openUpload);
+        // if (openUpload) window.scrollTo(0, 0);
+        // setOpenUpload(!openUpload);
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 0);
     };
+    useEffect(() => {
+        if (openUpload) {
+            // window.scrollTo({ top: 0, behavior: "smooth" });
+            window.scrollTo(0, 0);
+        }
+    }, [openUpload]);
     const location = useLocation();
     const projectId = location.pathname.split("/")[3];
     const Naviagte = useNavigate();
@@ -39,6 +51,47 @@ function Freelancer_Process_item() {
             return parsed.blocks && parsed.entityMap;
         } catch (e) {
             return false;
+        }
+    };
+    const uploadFile = async () => {
+        setOpenUpload(true);
+        try {
+            let formData = new FormData();
+            formData.append("files", file);
+            formData.append("projectId", projectId);
+            let Image_Response = await Axios.post(
+                `http://localhost:3000/upload/Work`,
+                formData,
+                {
+                    withCredentials: true,
+                    validateStatus: () => true,
+                }
+            );
+            console.log("Image_Response from upload image: ", Image_Response);
+            if (Image_Response.status == 200) {
+                Swal.fire("Success", "File uploaded successfully", "success");
+                setOpenUpload(false);
+            } else if (Image_Response.status == 401) {
+                // Swal.fire("Error", `${Image_Response.data.message} `, "error");
+                window.location.href = "/Login";
+            } else if (Image_Response.status == 400) {
+                Swal.fire("Error", `${Image_Response.data.message} `, "error");
+            } else if (Image_Response.status == 409) {
+                Swal.fire("Error!", `${Image_Response.data.message} `, "error");
+            } else if (Image_Response.status == 500) {
+                Swal.fire("Error!", `Internal Server Error   `, "error");
+            } else {
+                Swal.fire(
+                    "Error!",
+                    `Something Went Wrong ,please trye again latter, ${Image_Response.data} `,
+                    "error"
+                );
+            }
+        } catch (error) {
+            console.log("error from upload image: ", error);
+            Swal.fire("Error", "Something went wrong", "error");
+        } finally {
+            setOpenUpload(false);
         }
     };
     useEffect(() => {
@@ -57,15 +110,24 @@ function Freelancer_Process_item() {
                 if (response.status == 200) {
                     const Project = response.data.Project;
                     setProject(Project);
+                    console.log("project description : ", Project.Description);
                     let contentState;
-                    if (isDraftJSFormat(project.Description)) {
-                        contentState = convertFromRaw(
-                            JSON.parse(project.Description)
+                    if (Project.Description) {
+                        // Ensure project.Description is defined
+                        if (isDraftJSFormat(Project.Description)) {
+                            contentState = convertFromRaw(
+                                JSON.parse(Project.Description)
+                            );
+                        } else {
+                            contentState = ContentState.createFromText(
+                                Project.Description
+                            );
+                        }
+                        setEditorState(
+                            EditorState.createWithContent(contentState)
                         );
                     } else {
-                        contentState = ContentState.createFromText(
-                            project.Description
-                        );
+                        setEditorState(EditorState.createEmpty());
                     }
                 } else if (response.status == 401) {
                     Swal.fire("Error", "you should login again", "error");
@@ -81,6 +143,7 @@ function Freelancer_Process_item() {
         };
         FetchProject({ setProject, setLoading, setError });
     }, []);
+
     if (loading) {
         return (
             <div className=" w-screen h-[80vh] flex flex-col items-center justify-center">
@@ -100,33 +163,102 @@ function Freelancer_Process_item() {
         return (
             <div className=" w-full h-full relative">
                 {openUpload && (
-                    <div
-                        className=" bg-gray_v bg-opacity-10 z-10 absolute top-0 left-0
-                      w-full h-full  flex flex-col pt-10  items-center"
-                    >
-                        <div className=" w-fit mx-auto ">
-                            <img src={Alert_icon} className=" w-20" alt="" />
+                    <div className="bg-gray_v bg-opacity-10 z-10 absolute top-0 left-0 w-full h-full flex flex-col pt-10 items-center">
+                        <div className="w-fit mx-auto">
+                            <img src={Alert_icon} className="w-20" alt="" />
                         </div>
-                        <div
-                            className=" w-[600px] h-[400px] bg-white text-gray_v
-                         rounded-lg py-5 px-10 flex flex-col justify-between   "
-                        >
-                            <div className=" text-sm font-semibold text-grayè_v">
-                                Please choose a single file that contains all
-                                the project files.
+                        <div className="w-[600px] h-[400px] bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
+                            <div>
+                                <div className="mb-2 font-semibold">
+                                    Please upload a single file that contains
+                                    all the project files.
+                                </div>
+                                <div className="text-gray_v text-xs">
+                                    <div className="mb-2">
+                                        To do this, you can compress all your
+                                        project documents into a single ZIP
+                                        file:
+                                    </div>
+                                    <ul className="list-disc pl-5">
+                                        <li className="mb-1">
+                                            Gather all the necessary project
+                                            files into one folder on your
+                                            computer.
+                                        </li>
+                                        <li className="mb-1">
+                                            Right-click on the folder and select
+                                            "Compress" or "Send to Compressed
+                                            (zipped) folder" (Windows) or
+                                            "Compress [folder name]" (Mac).
+                                        </li>
+                                        <li className="mb-1">
+                                            Ensure the ZIP file contains all
+                                            required documents and is named
+                                            appropriately.
+                                        </li>
+                                        <li className="mb-1">
+                                            Upload the resulting ZIP file using
+                                            the upload button below.
+                                        </li>
+                                    </ul>
+                                    <div className="mt-2 font-semibold">
+                                        This helps ensure that all your files
+                                        are submitted together and can be easily
+                                        accessed.
+                                    </div>
+                                </div>
                             </div>
-                            <div></div>
-                            <div className=" flex items-center justify-center gap-6">
+                            <div
+                                className=" mt-3 w-fit mx-auto rounded-lg py-4 px-8 cursor-pointer
+                                      border-2 border-perpol_v flex flex-col items-center justify-center"
+                                onClick={() => {
+                                    document
+                                        .getElementById("input_file")
+                                        .click();
+                                }}
+                            >
+                                <FaUpload className=" text-perpol_v text-2xl " />
+                                <div className=" text-sm pt-2 font-semibold text-gray_v max-w-[300px] text-center">
+                                    {fileName || "No file chosen"}{" "}
+                                </div>
+                            </div>
+
+                            <input
+                                type="file"
+                                className=" "
+                                id="input_file"
+                                onChange={(event) => {
+                                    if (event.target.files.length > 0) {
+                                        setFileName(event.target.files[0].name);
+                                        setFile(event.target.files[0]);
+                                    }
+                                }}
+                            />
+                            <div
+                                className=" flex justify-center items-center
+                             gap-6  my-4"
+                            >
                                 <div
-                                    className=" bg-green_v text-white py-2 
-                                px-4 rounded-xl cursor-pointer "
+                                    onClick={() => {
+                                        if (!file)
+                                            Swal.fire(
+                                                "Error",
+                                                "Please choose a file to upload",
+                                                "error"
+                                            );
+                                        else {
+                                            uploadFile();
+                                        }
+                                    }}
+                                    className=" cursor-pointer text-white bg-green_v font-semibold py-3 px-5 rounded-lg "
                                 >
                                     Upload
                                 </div>
                                 <div
-                                    onClick={toogle_upload}
-                                    className="  bg-red-600 text-white py-2 
-                                px-4 rounded-xl cursor-pointer"
+                                    onClick={() => {
+                                        setOpenUpload(false);
+                                    }}
+                                    className=" cursor-pointer text-white bg-red-500 font-semibold py-3 px-5 rounded-lg "
                                 >
                                     Cancel
                                 </div>
@@ -176,7 +308,9 @@ function Freelancer_Process_item() {
                                     </div>
                                     <div className="w-full flex gap-2  items-center justify-center">
                                         <div
-                                            onClick={toogle_upload}
+                                            onClick={() => {
+                                                setOpenUpload(true);
+                                            }}
                                             className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                             cursor-pointer bg-perpol_v flex items-center gap-2 "
                                         >
@@ -184,13 +318,15 @@ function Freelancer_Process_item() {
                                             Upload Files
                                         </div>
                                         {project?.isWorkUploaded && (
-                                            <div
+                                            <a
+                                                download={true}
+                                                href={`http://localhost:3000${project?.work_Link}`}
                                                 className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-green_v  flex items-center gap-2 "
                                             >
                                                 <MdOutlineFileDownload className=" text-xl  shrink-0" />
                                                 Download Work
-                                            </div>
+                                            </a>
                                         )}
                                         <div></div>
                                     </div>
