@@ -43,7 +43,7 @@ function NavBar({ isProfileCompleted }) {
     };
     return (
         <div
-            className={` fixed  h-[60px] md:h-[60px] m-0  z-40 w-full bg-white border-b  `}
+            className={` fixed  h-[60px] m-0  z-40 w-full bg-white border-b  `}
         >
             <Laptop_Nav_Items
                 isProfileCompleted={isProfileCompleted}

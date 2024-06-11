@@ -17,6 +17,14 @@ import Project_Waiting2 from "../../../public/Project/Project_Waiting2.png";
 import Project_Rejected from "../../../public/Project/Project_Rejected.png";
 import Alert_icon from "../../../public//Project/Alert.png";
 import EditeIcon from "../../../public/Profile/EditeIcon.png";
+
+import Project_Accepted_Notification from "../../../public/Notifications/Project_Accepted.png";
+import Projet_refused_Notification from "../../../public/Notifications/Projet_refused.png";
+import Freelancer_found_Notification from "../../../public/Notifications/Freelancer_found.png";
+import payment_accepted_Notification from "../../../public/Notifications/payment_accepted.png";
+import payment_rejected_Notification from "../../../public/Notifications/payment_rejected.png";
+import Freelancer_uploaded_work_Notification from "../../../public/Notifications/Freelancer_uploaded_work.png";
+
 function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -30,6 +38,7 @@ function Client() {
         set_Profile_Completed,
         show_Alert_completeProfile,
         set_show_Alert_completeProfile,
+        set_Notifications,
     } = useAppContext();
     if (!isAuth || !userId) {
         // window.location.href = "/Login";
@@ -63,6 +72,29 @@ function Client() {
                 Navigate("/Login");
             }
         };
+        const fetchNotifications = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:3000/Clients/${userId}/Notifications`,
+                    {
+                        withCredentials: true,
+                        // validateStatus: () => true,
+                    }
+                );
+                console.log(
+                    "response from get Notifications :",
+                    response.data.Notifications
+                );
+                if (response.status == 200) {
+                    set_Notifications(response.data.Notifications);
+                } else {
+                    set_Notifications([]);
+                }
+            } catch (error) {
+                console.log("error from get user Profile :", error);
+                set_Notifications([]);
+            }
+        };
         const fetch_images = () => {
             return new Promise((resolve, reject) => {
                 const images = [
@@ -77,6 +109,12 @@ function Client() {
                     Project_Rejected,
                     Alert_icon,
                     Project_Waiting,
+                    Project_Accepted_Notification,
+                    Projet_refused_Notification,
+                    payment_accepted_Notification,
+                    payment_rejected_Notification,
+                    Freelancer_uploaded_work_Notification,
+                    Freelancer_found_Notification,
                 ];
                 let loadedCount = 0;
                 if (images.length === 0) resolve();
@@ -96,7 +134,7 @@ function Client() {
             });
         };
         // Promise.all([fetchData()]);
-        Promise.all([fetch_images(), fetchData()])
+        Promise.all([fetch_images(), fetchData(), fetchNotifications()])
             .then(() => {
                 setLoading(false);
             })

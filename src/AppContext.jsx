@@ -13,6 +13,7 @@ const initialState = {
     user: null,
     isProfileCompleted: false,
     show_Alert_completeProfile: false,
+    Notifications: null,
 };
 const reducer = (state, action) => {
     switch (action.type) {
@@ -52,6 +53,11 @@ const reducer = (state, action) => {
                 ...state,
                 show_Alert_completeProfile: action.payload,
             };
+        case "SET_NOTIFICATIONS":
+            return {
+                ...state,
+                Notifications: action.payload,
+            };
         default:
             return state;
     }
@@ -90,9 +96,16 @@ export const AppProvider = ({ children }) => {
             payload: show_Alert_completeProfile,
         });
     };
+    const set_Notifications = (Notifications) => {
+        dispatch({
+            type: "SET_NOTIFICATIONS",
+            payload: Notifications,
+        });
+    };
     const AppContextValue = {
         ...state,
         store_login,
+        set_Notifications,
         store_logout,
         set_Auth,
         set_user,
