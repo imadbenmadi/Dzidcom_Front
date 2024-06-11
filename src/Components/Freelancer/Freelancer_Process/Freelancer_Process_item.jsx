@@ -22,6 +22,7 @@ function Freelancer_Process_item() {
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState(null);
     const [openUpload, setOpenUpload] = useState(false);
+    const [Rejections, SetRejections] = useState([]);
     const [uploadLoading, setUploadLoading] = useState(false);
     const toogle_upload = () => {
         // if (openUpload) window.scrollTo(0, 0);
@@ -138,10 +139,41 @@ function Freelancer_Process_item() {
             } catch (error) {
                 setError(error);
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         };
-        FetchProject({ setProject, setLoading, setError });
+        const fetchRejections = async ({ SetRejections }) => {
+            setLoading(true);
+            try {
+                const response = await axios.get(
+                    `http://localhost:3000/Freelancers/${user.id}/${projectId}/Rejections`,
+                    {
+                        withCredentials: true,
+                        validateStatus: () => true,
+                    }
+                );
+                console.log("response from get rejections", response);
+                if (response.status == 200) {
+                    const rejections = response.data.Rejection_Resons;
+                    SetRejections(rejections);
+                } else if (response.status == 401) {
+                    Swal.fire("Error", "you should login again", "error");
+                    Naviagte("/Login");
+                } else {
+                    // setError(response.data);
+                }
+            } catch (error) {
+                // setError(error);
+            } finally {
+                // setLoading(false);
+            }
+        };
+
+        FetchProject({ setProject, setLoading, setError }).then(() => {
+            fetchRejections({ SetRejections }).then(() => {
+                setLoading(false);
+            });
+        });
     }, []);
 
     if (loading) {
@@ -167,7 +199,7 @@ function Freelancer_Process_item() {
                         <div className="w-fit mx-auto">
                             <img src={Alert_icon} className="w-20" alt="" />
                         </div>
-                        <div className="w-[600px] h-[400px] bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
+                        <div className="w-[90%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
                             <div>
                                 <div className="mb-2 font-semibold">
                                     Please upload a single file that contains
@@ -225,7 +257,7 @@ function Freelancer_Process_item() {
 
                             <input
                                 type="file"
-                                className=" "
+                                className=" hidden "
                                 id="input_file"
                                 onChange={(event) => {
                                     if (event.target.files.length > 0) {
@@ -238,22 +270,26 @@ function Freelancer_Process_item() {
                                 className=" flex justify-center items-center
                              gap-6  my-4"
                             >
-                                <div
-                                    onClick={() => {
-                                        if (!file)
-                                            Swal.fire(
-                                                "Error",
-                                                "Please choose a file to upload",
-                                                "error"
-                                            );
-                                        else {
-                                            uploadFile();
-                                        }
-                                    }}
-                                    className=" cursor-pointer text-white bg-green_v font-semibold py-3 px-5 rounded-lg "
-                                >
-                                    Upload
-                                </div>
+                                {uploadLoading ? (
+                                    <span className="small-loader mr-8  w-fit"></span>
+                                ) : (
+                                    <div
+                                        onClick={() => {
+                                            if (!file)
+                                                Swal.fire(
+                                                    "Error",
+                                                    "Please choose a file to upload",
+                                                    "error"
+                                                );
+                                            else {
+                                                uploadFile();
+                                            }
+                                        }}
+                                        className=" cursor-pointer text-white bg-green_v font-semibold py-3 px-5 rounded-lg "
+                                    >
+                                        Upload
+                                    </div>
+                                )}
                                 <div
                                     onClick={() => {
                                         setOpenUpload(false);
@@ -297,8 +333,9 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                         <div className=" max-w-[300px] md:max-w-[500px] font-semibold text-gray_v py-2">
-                            {project?.status === "Payed" &&
-                            !project?.isWorkUploaded ? (
+                            {1 ||
+                            (project?.status === "Payed" &&
+                                !project?.isWorkUploaded) ? (
                                 //  &&!project?.isWorkRejected
                                 <>
                                     <div className="">
@@ -308,7 +345,7 @@ function Freelancer_Process_item() {
                                         please upload the files as soon as you
                                         finished working on the project
                                     </div>
-                                    <div className="w-full flex gap-2  items-center justify-center">
+                                    <div className="w-full flex  flex-col md:flex-row gap-2  items-center justify-center">
                                         <div
                                             onClick={() => {
                                                 setOpenUpload(true);
@@ -344,7 +381,7 @@ function Freelancer_Process_item() {
                                         please check the rejections history to
                                         view the reason
                                     </div>
-                                    <div className="w-full flex gap-2  items-center justify-center">
+                                    <div className="w-full flex  flex-col md:flex-row gap-2  items-center justify-center">
                                         <div
                                             onClick={() => {
                                                 setOpenUpload(true);
@@ -379,7 +416,7 @@ function Freelancer_Process_item() {
                                             work
                                         </span>{" "}
                                     </div>
-                                    <div className="w-full flex gap-2  items-center justify-center">
+                                    <div className="w-full flex  flex-col md:flex-row gap-2  items-center justify-center">
                                         {/* <div
                                             onClick={() => {
                                                 setOpenUpload(true);
@@ -438,6 +475,15 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                     </div>
+                    {Rejections.length == 0 ? (
+                        <div>
+                            <div className=" text-xl text-red-500  font-semibold">
+                                Rejections History
+                            </div>
+                        </div>
+                    ) : (
+                        <div>no</div>
+                    )}
                     <div className=" my-6 ">
                         <div className=" pb-2 font-semibold text-gray_v">
                             Project Details
