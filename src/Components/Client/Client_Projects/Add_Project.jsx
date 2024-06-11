@@ -130,7 +130,7 @@ function Add_Project() {
                                                 );
                                             }}
                                         />
-                                        <div>SEO/SIM</div>
+                                        <div>SEO/SMM</div>
                                     </div>
                                 </div>
                             </div>
