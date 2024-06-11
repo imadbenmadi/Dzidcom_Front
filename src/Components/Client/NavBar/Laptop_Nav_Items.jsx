@@ -109,9 +109,9 @@ function Laptop_Nav_Items({
             <div className=" flex items center justify-center gap-5">
                 {isProfileCompleted ? (
                     <div className="flex items-center justify-center gap-6 ">
-                        <div>
+                        {/* <div>
                             <img src={message_icon} alt="" />
-                        </div>
+                        </div> */}
                         <div>
                             <img src={notification_icon} alt="" />
                         </div>

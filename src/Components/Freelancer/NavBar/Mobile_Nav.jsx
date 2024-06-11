@@ -26,9 +26,9 @@ function Mobile_Nav({ isProfileCompleted, Active_nav, handleLogout, LogoutClicke
                 <div className=" flex items-center justify-center gap-4 md:gap-6">
                     {isProfileCompleted && (
                         <>
-                            <div>
+                            {/* <div>
                                 <img src={message_icon} alt="" />
-                            </div>
+                            </div> */}
                             <div>
                                 <img src={notification_icon} alt="" />
                             </div>
