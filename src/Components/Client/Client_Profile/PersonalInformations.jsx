@@ -26,7 +26,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -51,7 +51,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -75,7 +75,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -107,7 +107,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -133,7 +133,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -162,7 +162,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8  cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -187,7 +187,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -213,7 +213,7 @@ function PersonalInformations() {
                 </div>
                 <img
                     src={EditeIcon}
-                    alt=""
+                    alt="EditeIcon"
                     className=" w-8 h-8 cursor-pointer"
                     onClick={() => {
                         // window.location.href =
@@ -258,7 +258,7 @@ function PersonalInformations() {
                         </div>
                         <img
                             src={EditeIcon}
-                            alt=""
+                            alt="EditeIcon"
                             className=" w-8 h-8 cursor-pointer"
                             onClick={() => {
                                 // window.location.href =

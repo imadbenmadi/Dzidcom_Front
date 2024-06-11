@@ -18,7 +18,7 @@ function Hero() {
                             e.target.onerror = null;
                             e.target.src = user_default;
                         }}
-                        alt=""
+                        alt="Logo"
                         className=" w-[150px]  object-cover rounded-full"
                     />
                 ) : (

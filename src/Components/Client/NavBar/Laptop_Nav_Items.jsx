@@ -127,14 +127,14 @@ function Laptop_Nav_Items({
                                 e.target.onerror = null;
                                 e.target.src = user_default;
                             }}
-                            alt=""
+                            alt="pic"
                             className=" w-8 cursor-pointer"
                             onClick={toogleProfile}
                         />
                     ) : (
                         <img
                             src={user_default}
-                            alt=""
+                            alt="pic"
                             className=" w-8 cursor-pointer"
                             onClick={toogleProfile}
                         />
