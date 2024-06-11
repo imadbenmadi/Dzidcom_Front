@@ -297,7 +297,9 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                         <div className=" max-w-[300px] md:max-w-[500px] font-semibold text-gray_v py-2">
-                            {project?.status === "Payed" ? (
+                            {project?.status === "Payed" &&
+                            !project?.isWorkUploaded ? (
+                                //  &&!project?.isWorkRejected
                                 <>
                                     <div className="">
                                         <span className="text-green-500">
@@ -331,6 +333,77 @@ function Freelancer_Process_item() {
                                         <div></div>
                                     </div>
                                 </>
+                            ) : project?.status === "Payed" &&
+                              project?.isWorkRejected &&
+                              project?.isWorkUploaded ? (
+                                <div>
+                                    <div className="">
+                                        <span className="text-red-500">
+                                            Client Rejected Your work :
+                                        </span>{" "}
+                                        please check the rejections history to
+                                        view the reason
+                                    </div>
+                                    <div className="w-full flex gap-2  items-center justify-center">
+                                        <div
+                                            onClick={() => {
+                                                setOpenUpload(true);
+                                            }}
+                                            className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                            cursor-pointer bg-perpol_v flex items-center gap-2 "
+                                        >
+                                            <MdOutlineFileUpload className=" text-xl  shrink-0" />{" "}
+                                            reUpload Files
+                                        </div>
+                                        {project?.isWorkUploaded && (
+                                            <a
+                                                download={true}
+                                                href={`http://localhost:3000${project?.work_Link}`}
+                                                className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                                cursor-pointer bg-green_v  flex items-center gap-2 "
+                                            >
+                                                <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                                Download previous Work
+                                            </a>
+                                        )}
+                                        <div></div>
+                                    </div>
+                                </div>
+                            ) : project?.status === "Payed" &&
+                              !project?.isWorkRejected &&
+                              project?.isWorkUploaded ? (
+                                <div>
+                                    <div className="">
+                                        <span className="text-gray_v">
+                                            Waiting the Client to review your
+                                            work
+                                        </span>{" "}
+                                    </div>
+                                    <div className="w-full flex gap-2  items-center justify-center">
+                                        {/* <div
+                                            onClick={() => {
+                                                setOpenUpload(true);
+                                            }}
+                                            className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                            cursor-pointer bg-perpol_v flex items-center gap-2 "
+                                        >
+                                            <MdOutlineFileUpload className=" text-xl  shrink-0" />{" "}
+                                            Upload Files
+                                        </div> */}
+                                        {project?.isWorkUploaded && (
+                                            <a
+                                                download={true}
+                                                href={`http://localhost:3000${project?.work_Link}`}
+                                                className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                                cursor-pointer bg-green_v  flex items-center gap-2 "
+                                            >
+                                                <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                                Download Work
+                                            </a>
+                                        )}
+                                        <div></div>
+                                    </div>
+                                </div>
                             ) : project?.status === "Completed" ? (
                                 <>
                                     <div className="">
