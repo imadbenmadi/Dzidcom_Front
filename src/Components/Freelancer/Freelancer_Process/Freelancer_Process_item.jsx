@@ -18,6 +18,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import Alert_icon from "../../../../public//Project/Alert.png";
 import { FaUpload } from "react-icons/fa";
 import Axios from "axios";
+
 function Freelancer_Process_item() {
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState(null);

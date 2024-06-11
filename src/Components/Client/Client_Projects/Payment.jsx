@@ -16,6 +16,7 @@ function Payment() {
     const [error, setError] = useState(null);
     const [project, setProject] = useState(null);
     const [only_see, set_only_see] = useState(false);
+    const [deletLoading, setDeleteLoading] = useState(false);
     useEffect(() => {
         console.log("project : ", project);
     }, [project]);
@@ -23,6 +24,7 @@ function Payment() {
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
     const fileInputRef = useRef(null);
+    const [image_from_server, setimage_from_server] = useState(null);
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -42,6 +44,7 @@ function Payment() {
                     const project = response.data.Project;
                     setProject(project);
                     set_only_see(response.data.only_see);
+                    setimage_from_server(project?.Pyament_ScreenShot_Link);
                     if (
                         !response.data.Payment_Authorization &&
                         !response.data.only_see
@@ -107,6 +110,43 @@ function Payment() {
             setSubmitting(false);
         }
     };
+    // const handle_Delete_payment = async () => {
+    //     setDeleteLoading(true);
+    //     let formData = new FormData();
+    //     // console.log(image_state, values.CCP_number);
+    //     // formData.append("CCP_number", values.CCP_number);
+    //     // formData.append("image", image_state);
+    //     formData.append("projectId", project.id);
+    //     for (let pair of formData.entries()) {
+    //         console.log(pair[0] + ": " + pair[1]); // Debug each formData entry
+    //     }
+    //     console.log("prject id : ", project.id);
+    //     try {
+    //         const response = await axios.delete(
+    //             `http://localhost:3000/upload/Payment`,
+    //             formData,
+    //             {
+    //                 withCredentials: true,
+    //                 validateStatus: () => true,
+    //             }
+    //         );
+    //         console.log("response from deleting payment : ", response.data);
+    //         if (response.status === 200) {
+    //             Swal.fire("Success", "Payment has been Deleted. ", "success");
+    //             // Navigate("/Client/Projects");
+    //         } else if (response.status === 401) {
+    //             Swal.fire("Error", "you should login again", "error");
+    //             Navigate("/Login");
+    //         } else {
+    //             Swal.fire("Error", response.data, "error");
+    //         }
+    //     } catch (error) {
+    //         console.log("response from deleting payment : ", error);
+    //         Swal.fire("Error", error, "error");
+    //     } finally {
+    //         setDeleteLoading(false);
+    //     }
+    // };
     return (
         <div className=" w-[90%] mx-auto max-w-[900px] py-12">
             <div className=" text-lg pb-2 font-semibold">
@@ -234,16 +274,50 @@ function Payment() {
                                             </div>
 
                                             <div className="flex flex-col items-center justify-center gap-1 mt-3  rounded-lg">
-                                                {project?.Pyament_ScreenShot_Link ? (
+                                                {image_from_server ? (
                                                     <>
                                                         <img
                                                             src={
                                                                 "http://localhost:3000/" +
                                                                 project.Pyament_ScreenShot_Link
                                                             }
+                                                            id="img_from_server"
                                                             alt="Payment screen shot"
                                                             className=" w-[300px] h-[300px] object-cover rounded-lg"
                                                         />
+                                                        {deletLoading ? (
+                                                            <div className=" small-loader mt-2"></div>
+                                                        ) : (
+                                                            <div
+                                                                className="  mt-2 text-white w-fit mx-auto rounded-lg px-3 font-semibold text-lg
+                                                              bg-gray-400 cursor-pointer"
+                                                                onClick={() => {
+                                                                    setimage_state(
+                                                                        null
+                                                                    );
+                                                                    // setimageChanged(false);
+                                                                    if (
+                                                                        fileInputRef.current
+                                                                    ) {
+                                                                        fileInputRef.current.value =
+                                                                            "";
+                                                                    }
+                                                                    // handle_Delete_payment();
+                                                                    document.getElementById(
+                                                                        "img_from_server"
+                                                                    ).src = "";
+                                                                    setimage_from_server(
+                                                                        null
+                                                                    );
+                                                                    // project?.Pyament_ScreenShot_Link="";
+                                                                }}
+                                                            >
+                                                                {/* <IoClose /> */}
+                                                                Delete
+                                                                Screenshot
+                                                            </div>
+                                                        )}
+
                                                         {/* {imageDeleteLoading ? (
                                         <span className="small-loader mt-5"></span>
                                     ) : (

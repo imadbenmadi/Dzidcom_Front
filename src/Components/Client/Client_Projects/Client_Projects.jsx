@@ -214,7 +214,8 @@ function Client_Projects() {
                                                 ) : project?.isPayment_ScreenShot_uploaded &&
                                                   project?.status ===
                                                       "Accepted" &&
-                                                  project?.FreelancerId ? (
+                                                  project?.FreelancerId &&
+                                                  !project?.isPayment_ScreenShot_Rejected ? (
                                                     <div className="">
                                                         <span className="text-perpol_v">
                                                             Accepted :
@@ -222,6 +223,23 @@ function Client_Projects() {
                                                         <span className=" text-gray_v">
                                                             Waiting Dashboard to
                                                             accept the payment
+                                                        </span>
+                                                    </div>
+                                                ) : project?.isPayment_ScreenShot_uploaded &&
+                                                  project?.status ===
+                                                      "Accepted" &&
+                                                  project?.FreelancerId &&
+                                                  project?.isPayment_ScreenShot_Rejected ? (
+                                                    <div className="">
+                                                        <span className="text-red-500">
+                                                            Payment Rejected :
+                                                        </span>{" "}
+                                                        <span className=" text-gray_v">
+                                                            Ower Team rejecteed
+                                                            Your payment. please
+                                                            reupload the Payment
+                                                            screenshot , or
+                                                            contact ower support
                                                         </span>
                                                     </div>
                                                 ) : project?.isPayment_ScreenShot_uploaded &&

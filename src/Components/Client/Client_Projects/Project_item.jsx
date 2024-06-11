@@ -7,7 +7,12 @@ import { useAppContext } from "../../../AppContext.jsx";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 
 import { MdOutlineFileDownload } from "react-icons/md";
-
+import Project_Accpted from "../../../../public/Project/Project_Accpted.png";
+import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
+import Project_Done from "../../../../public/Project/Project_Done.png";
+import Project_Waiting2 from "../../../../public/Project/Project_Waiting2.png";
+import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
+import Alert_icon from "../../../../public//Project/Alert.png";
 function ProjectItem() {
     const [Accept_Loading, setAccept_Loading] = useState(false);
     const [Reject_Loading, setReject_Loading] = useState(false);
@@ -44,17 +49,17 @@ function ProjectItem() {
                     validateStatus: () => true,
                 }
             );
-
+            console.log("response from delete project : ", response.data);
             if (response.status === 200) {
                 Swal.fire("Success", "Project Deleted Successfully", "success");
                 Navigate("/Client/Projects");
             } else if (response.status === 401) {
                 Swal.fire(
                     "Unauthorized",
-                    "Please You have to Loginn Again",
+                    "Please You have to Login Again",
                     "error"
                 );
-                Navigate("/Login");
+                // Navigate("/Login");
             } else Swal.fire("Error", "Somthing went wrong", "error");
         } catch (err) {
             Swal.fire("Error", "Somthing went wrong", "error");
@@ -487,7 +492,8 @@ function ProjectItem() {
                                 </>
                             ) : project?.isPayment_ScreenShot_uploaded &&
                               project?.status === "Accepted" &&
-                              project?.FreelancerId ? (
+                              project?.FreelancerId &&
+                              !project?.isPayment_ScreenShot_Rejected ? (
                                 <div className="">
                                     <span className="text-perpol_v">
                                         Accepted :
@@ -496,6 +502,30 @@ function ProjectItem() {
                                         Waiting Dashboard to accept the payment
                                     </span>
                                 </div>
+                            ) : project?.isPayment_ScreenShot_uploaded &&
+                              project?.status === "Accepted" &&
+                              project?.FreelancerId &&
+                              project?.isPayment_ScreenShot_Rejected ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-red-500">
+                                            Payment Rejected :
+                                        </span>{" "}
+                                        <span className=" text-gray_v">
+                                            Ower Team rejecteed Your payment.
+                                            please reupload the Payment
+                                            screenshot , or contact ower support
+                                        </span>
+                                    </div>
+                                    <div className=" w-full flex justify-center">
+                                        <Link
+                                            to={`/Client/Projects/${project?.id}/Payment`}
+                                            className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                                        >
+                                            Pay the Project Fees
+                                        </Link>
+                                    </div>
+                                </>
                             ) : project?.status === "Accepted" &&
                               !project?.FreelancerId ? (
                                 <div>
