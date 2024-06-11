@@ -3,13 +3,16 @@ import { useState } from "react";
 const SwitcherContent = ({ isChecked, setIsChecked }) => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+
+    document.body.classList.toggle("dark");
+
     localStorage.setItem("isChecked", !isChecked);
   };
 
   return (
     <label className="relative inline-flex cursor-pointer items-center">
       <input
-        checked={isChecked}
+        checked={!isChecked}
         onChange={handleCheckboxChange}
         id="switch"
         type="checkbox"

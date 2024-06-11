@@ -24,14 +24,14 @@ const itemVariantsRight = {
 function Hero({ isChecked, setIsChecked }) {
   return (
     <motion.div
-      className="flex lg:min-h-fit md:min-h-screen justify-between w-full max-md:flex-col mt-10 h-full items-center mx-auto max-w-[1200px]"
+      className="flex lg:min-h-fit   md:min-h-screen justify-between w-full max-md:flex-col mt-10 h-full items-center mx-auto max-w-[1200px]"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.div
         variants={itemVariantsLeft}
-        className="md:w-[50%] lg:w-[55%] h-fit"
+        className="md:w-[50%]  lg:w-[55%] h-fit"
       >
         <HeroLeft isChecked={isChecked} setIsChecked={setIsChecked} />
       </motion.div>

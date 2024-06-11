@@ -5,7 +5,7 @@ import stars from "../../../public/Home/ower goal/stars.png";
 import OurGOoalItem from "./OurGoal/OurGOoalItem";
 import { motion, useInView } from "framer-motion";
 
-function Ower_Goal() {
+function Ower_Goal({ isCheaked }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -51,13 +51,13 @@ function Ower_Goal() {
               />
               <motion.div
                 variants={itemVariantsCard}
-                className="flex  flex-col z-30 grow md:px-8 max-md:px-2 py-5 mt-10 w-full text-base bg-white rounded-[31.045px] text-zinc-800 max-md:mt-10 max-lg:max-w-96 max-md:mx-auto"
+                className="flex  flex-col z-30 grow md:px-8 max-md:px-2 py-5 mt-10 w-full text-base bg-white dark:bg-black  rounded-[31.045px] text-zinc-800 max-md:mt-10 max-lg:max-w-96 max-md:mx-auto"
               >
                 <motion.div variants={itemVariants}>
-                  <div className="text-4xl max-md:text-3xl   leading-[55.9px] max-md:max-w-full">
+                  <div className="text-4xl max-md:text-3xl  dark:text-white   leading-[55.9px] max-md:max-w-full">
                     Our Goals
                   </div>
-                  <div className="mt-3 leading-[130%] max-md:max-w-full">
+                  <div className="mt-3 leading-[130%]  dark:text-white  max-md:max-w-full">
                     The economic advantages of our project
                   </div>
                 </motion.div>
@@ -71,7 +71,7 @@ function Ower_Goal() {
                   <OurGOoalItem />
                 </motion.div>
                 <motion.div variants={itemVariantsItem}>
-                  <OurGOoalItem />
+                  <OurGOoalItem isChecked={isCheaked} />
                 </motion.div>
               </motion.div>
             </div>

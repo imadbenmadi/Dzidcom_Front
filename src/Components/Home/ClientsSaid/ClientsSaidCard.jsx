@@ -4,7 +4,7 @@ import start from "../../../../public/Home/Client said/start.png";
 import user from "../../../../public/Home/Client said/user.png";
 function ClientsSaidCard({ image, user, text }) {
   return (
-    <div className=" slide w-[100%] my-5 px-5 py-4 bg-white rounded-3xl shadow flex-col justify-start items-start gap-5 inline-flex">
+    <div className=" text-black slide w-[100%] my-5 px-5 py-4 bg-white rounded-3xl shadow flex-col justify-start items-start gap-5 inline-flex">
       <div className="flex justify-start items-center gap-4">
         <div className="w-20 h-20 rounded-full">
           <img className="w-full h-ful" src={image} alt="" />

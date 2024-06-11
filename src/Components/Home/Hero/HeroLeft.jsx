@@ -1,5 +1,7 @@
 import { IoIosArrowDown } from "react-icons/io";
 import Arrow from "../../../../public/Home/Hero/Arrow.png";
+import ArrowWhite from "../../../../public/Home/Hero/ArrowWite.svg";
+
 import search from "../../../../public/Home/Hero/search.png";
 import { useState } from "react";
 import SwitcherContent from "./SwitcherContent";
@@ -10,16 +12,23 @@ function HeroLeft({ isChecked, setIsChecked }) {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="flex flex-col px-3 lg:px-16 md:pb-10 h-fit bg-white max-md:px-5">
+    <div className="flex flex-col dark:text-white px-3 lg:px-16 md:pb-10 h-fit  max-md:px-5">
       <div className="flex   w-fit  max-md:ml-0 max-md:w-full">
-        <div className="self-stretch max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
+        <div className="self-stretch dark:text-white max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
           {!isChecked ? "Be a freelancer" : "Be a company"}
         </div>
         <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
-          <img
-            src={Arrow}
-            className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
-          />
+          {!isChecked ? (
+            <img
+              src={Arrow}
+              className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
+            />
+          ) : (
+            <img
+              src={ArrowWhite}
+              className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
+            />
+          )}
         </div>
         <div className=" flex  items-end mr-5 pb-5  max-md:ml-0 ">
           <SwitcherContent isChecked={isChecked} setIsChecked={setIsChecked} />
@@ -41,12 +50,12 @@ function HeroLeft({ isChecked, setIsChecked }) {
           Content creation
         </div>
       </div>
-      <div className="mt-2 h-fit md:text-4xl max-md:text-5xl max-sm:text-2xl  leading-[75px] text-zinc-800 max-md:max-w-full  max-md:leading-[70px] max-sm:leading-[40px]">
+      <div className="mt-2 dark:text-white h-fit md:text-4xl max-md:text-5xl max-sm:text-2xl  leading-[75px] text-zinc-800 max-md:max-w-full  max-md:leading-[70px] max-sm:leading-[40px]">
         {!isChecked
           ? " Welcome to our Freelance Website!"
           : "Welcome to Dzidcom our Freelance Website!"}
       </div>
-      <div className="mt-2 lg:text-xl md:text-sm text-zinc-800 max-md:max-w-full">
+      <div className="mt-2 dark:text-white lg:text-xl md:text-sm text-zinc-800 max-md:max-w-full">
         {!isChecked
           ? "Find the perfect freelancers or get hired for your next project."
           : "Find a perfect job and get hired from successful companies."}

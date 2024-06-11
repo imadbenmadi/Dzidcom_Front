@@ -57,15 +57,15 @@ function Services({ isChecked }) {
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : ""}
-      className=" lg:px-16 max-md:px-5 px-5  mt-10"
+      className=" lg:px-16 max-md:px-5 px-5 dark:text-white  mt-10"
     >
       <motion.div variants={itemVariants}>
-        <div className="text-5xl  leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
+        <div className="text-5xl  dark:text-white  leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
           {!isChecked
             ? "The services we provide"
             : "Areas in which you can apply"}
         </div>
-        <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
+        <div className="mt-2 text-xl dark:text-white max-md:text-xs text-zinc-800 max-md:max-w-full">
           {isChecked
             ? "  Discover services to help your company thrive with our freelance platform."
             : "Discover the jobs you can apply for as a freelancer on our website"}

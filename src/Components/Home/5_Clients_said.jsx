@@ -69,14 +69,14 @@ function ClientsSaid({ isChecked }) {
     }
   };
   return (
-    <div className="lg:px-16 max-md:px-5 px-5 mt-10 max-w-[1200px] mx-auto">
+    <div className="lg:px-16  max-md:px-5 px-5 mt-10 max-w-[1200px] mx-auto">
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : ""}
       >
-        <div className="text-5xl leading-[72.8px] text-center text-zinc-800 max-md:max-w-full max-md:text-4xl">
+        <div className="text-5xl dark:text-white leading-[72.8px] text-center text-zinc-800 max-md:max-w-full max-md:text-4xl">
           {!isChecked
             ? "What our client say about us"
             : "What our freelancers say about us"}

@@ -107,14 +107,14 @@ function Home() {
   }, []);
   if (loading) {
     return (
-        <div className=" w-screen h-screen flex flex-col items-center justify-center">
-            <img src={Logo} alt="" />
-            <span className="loader"></span>
-        </div>
+      <div className=" w-screen h-screen flex flex-col items-center justify-center">
+        <img src={Logo} alt="" />
+        <span className="loader"></span>
+      </div>
     );
   }
   return (
-    <div className=" scroll-smooth duration-500 scroll-d relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
+    <div className=" dark:bg-black dark:text-white scroll-smooth duration-500 scroll-d relative min-h-h-screen overflow-y-auto custom-overflow overflow-x-hidden ">
       <NavBar />
       <div className=" mt-[50px] md:mt-[60px] h-fit ">
         <div className="scroll-smooth  ">
@@ -123,7 +123,7 @@ function Home() {
             <Why_Choose_us />
           </div>
           <div id="Goal">
-            <Ower_Goal />
+            <Ower_Goal isCheaked={isChecked} />
           </div>
           <div id="Our_features" className=" max-w-[1200px] mx-auto">
             <Services isChecked={isChecked} />

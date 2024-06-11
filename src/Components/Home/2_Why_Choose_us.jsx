@@ -71,10 +71,10 @@ function Why_Choose_us() {
       className=" lg:px-16 max-md:px-5  mt-10"
     >
       <motion.div variants={itemVariants}>
-        <div className="text-5xl  leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
+        <div className="text-5xl  leading-[72.8px] dark:text-white text-zinc-800 max-md:max-w-full max-md:text-4xl">
           Why choose us?
         </div>
-        <div className="mt-2 text-xl max-md:text-xs text-zinc-800 max-md:max-w-full">
+        <div className="mt-2 text-xl dark:text-white  max-md:text-xs text-zinc-800 max-md:max-w-full">
           Discover the difference and elevate your expectations with us.
         </div>
       </motion.div>
