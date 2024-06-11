@@ -333,9 +333,8 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                         <div className=" max-w-[300px] md:max-w-[500px] font-semibold text-gray_v py-2">
-                            {1 ||
-                            (project?.status === "Payed" &&
-                                !project?.isWorkUploaded) ? (
+                            {project?.status === "Payed" &&
+                            !project?.isWorkUploaded ? (
                                 //  &&!project?.isWorkRejected
                                 <>
                                     <div className="">
@@ -450,14 +449,15 @@ function Freelancer_Process_item() {
                                         the project has been closed.
                                     </div>
                                     <div className="w-full flex items-center justify-center">
-                                        <div
-                                            to={`/Client/Projects/${project?.id}/Process`}
+                                        <a
+                                            download={true}
+                                            href={`http://localhost:3000${project?.work_Link}`}
                                             className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
-                                            cursor-pointer bg-perpol_v flex items-center gap-2"
+                                                cursor-pointer bg-perpol_v  flex items-center gap-2 "
                                         >
-                                            <MdOutlineFileDownload />
-                                            Download your Work
-                                        </div>
+                                            <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                            Download Work
+                                        </a>
                                     </div>
                                 </>
                             ) : project?.status === "Accepted" ? (
