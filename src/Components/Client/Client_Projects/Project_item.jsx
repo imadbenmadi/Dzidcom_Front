@@ -5,12 +5,7 @@ import Swal from "sweetalert2";
 import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../../AppContext.jsx";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
-import Project_Accpted from "../../../../public/Project/Project_Accpted.png";
-import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
-import Project_Done from "../../../../public/Project/Project_Done.png";
-import Project_Waiting2 from "../../../../public/Project/Project_Waiting2.png";
-import Project_Rejected from "../../../../public/Project/Project_Rejected.png";
-import Alert_icon from "../../../../public//Project/Alert.png";
+
 import { MdOutlineFileDownload } from "react-icons/md";
 
 function ProjectItem() {
@@ -154,33 +149,6 @@ function ProjectItem() {
     useEffect(() => {
         setLoading(true);
 
-        const fetch_images = () => {
-            return new Promise((resolve, reject) => {
-                const images = [
-                    Project_Accpted,
-                    Project_Waiting,
-                    Project_Done,
-                    Project_Waiting2,
-                    Project_Rejected,
-                    Alert_icon,
-                ];
-                let loadedCount = 0;
-                if (images.length === 0) resolve();
-                images.forEach((imageSrc) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        loadedCount++;
-                        if (loadedCount === images.length) {
-                            resolve(); // Resolve promise when all images are loaded
-                        }
-                    };
-                    img.onerror = () => {
-                        resolve(); // Reject if any image fails to load
-                    };
-                    img.src = imageSrc;
-                });
-            });
-        };
         const fetchProject = async () => {
             try {
                 const response = await axios.get(
@@ -248,7 +216,7 @@ function ProjectItem() {
                 // setLoading(false);
             }
         };
-        Promise.all([fetch_images(), fetchProject(), fetchRejections()])
+        Promise.all([fetchProject(), fetchRejections()])
             .then(() => {
                 setLoading(false);
             })

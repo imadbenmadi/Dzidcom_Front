@@ -1,4 +1,4 @@
-import image1 from "../../..//public/Home/Services/image1.png";
+import image1 from "../../../public/Home/Services/image1.png";
 import image2 from "../../../public/Home/Services/image2.png";
 import image3 from "../../../public/Home/Services/image3.png";
 

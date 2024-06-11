@@ -10,6 +10,13 @@ import message_icon from "../../../public/Profile/message.png";
 import notification_icon from "../../../public/Profile/Notification.png";
 import user_default from "../../../public/Profile/user_default.png";
 import Logo from "../../../public/Logo.png";
+import Project_Accpted from "../../../public/Project/Project_Accpted.png";
+import Project_Waiting from "../../../public/Project/Project_Waiting.png";
+import Project_Done from "../../../public/Project/Project_Done.png";
+import Project_Waiting2 from "../../../public/Project/Project_Waiting2.png";
+import Project_Rejected from "../../../public/Project/Project_Rejected.png";
+import Alert_icon from "../../../public//Project/Alert.png";
+import EditeIcon from "../../../public/Profile/EditeIcon.png";
 function Client() {
     const Navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -59,10 +66,17 @@ function Client() {
         const fetch_images = () => {
             return new Promise((resolve, reject) => {
                 const images = [
+                    EditeIcon,
                     user_image,
                     message_icon,
                     notification_icon,
                     user_default,
+                    Project_Accpted,
+                    Project_Done,
+                    Project_Waiting2,
+                    Project_Rejected,
+                    Alert_icon,
+                    Project_Waiting,
                 ];
                 let loadedCount = 0;
                 if (images.length === 0) resolve();

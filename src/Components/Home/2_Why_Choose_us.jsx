@@ -1,6 +1,6 @@
 import ChooseUsCard from "./WhyChooseUs/ChooseUsCard";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import image1 from "../../..//public/Home/Why choose us/image1.png";
+import image1 from "../../../public/Home/Why choose us/image1.png";
 import image2 from "../../../public/Home/Why choose us/image2.png";
 import image3 from "../../../public/Home/Why choose us/image3.png";
 import image4 from "../../../public/Home/Why choose us/image4.png";
