@@ -199,7 +199,7 @@ function Freelancer_Process_item() {
                         <div className="w-fit mx-auto">
                             <img src={Alert_icon} className="w-20" alt="" />
                         </div>
-                        <div className="w-[90%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
+                        <div className="w-[90%] mx-auto md:mx-0  md:w-[600px] h-fit bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
                             <div>
                                 <div className="mb-2 font-semibold">
                                     Please upload a single file that contains

@@ -14,6 +14,16 @@ import Alert_icon from "../../../../public//Project/Alert.png";
 import { MdOutlineFileDownload } from "react-icons/md";
 
 function ProjectItem() {
+    const [Accept_Loading, setAccept_Loading] = useState(false);
+    const [Reject_Loading, setReject_Loading] = useState(false);
+    const [Reason, SetReason] = useState("");
+    const handle_reason_chanege = (e) => {
+        SetReason(e.target.value);
+    };
+    useEffect(() => {
+        console.log(Reason);
+    }, [Reason]);
+    const [OpenRejection, setOpenRejection] = useState(false);
     const location = useLocation();
     const { user } = useAppContext();
     const [Rejections, setRejections] = useState([]);
@@ -53,7 +63,84 @@ function ProjectItem() {
     if (!location.pathname.split("/")[3]) {
         return <Navigate to="/Client/Projects" />;
     }
-
+    const handle_Accept = async () => {
+        setAccept_Loading(true);
+        try {
+            let response = await axios.post(
+                `http://localhost:3000/Clients/${user.id}/Projects/${
+                    location.pathname.split("/")[3]
+                }/Accept_work`,
+                {},
+                // Reason,
+                {
+                    withCredentials: true,
+                    // validateStatus: () => true,
+                }
+            );
+            console.log("response from accept project : ", response);
+            if (response.status == 200) {
+                Swal.fire("Success", "Project Updated Successfully", "success");
+                Navigate("/Client/Projects");
+            } else if (response.status == 401) window.location.href = "Login";
+            else {
+                Swal.fire(
+                    "Error!",
+                    `Something Went Wrong ,please trye again latter, ${response.data.message} `,
+                    "error"
+                );
+            }
+        } catch (error) {
+            console.log("response from register: ", error);
+            Swal.fire(
+                "Error!",
+                `Something Went Wrong ,please trye again latter`,
+                "error"
+            );
+        } finally {
+            setAccept_Loading(false);
+        }
+    };
+    const handle_Reject = async () => {
+        if (!Reason) {
+            Swal.fire("Error", "please fill your Rejection Reason", "error");
+            return;
+        }
+        setAccept_Loading(true);
+        try {
+            let response = await axios.post(
+                `http://localhost:3000/Clients/${user.id}/Projects/${
+                    location.pathname.split("/")[3]
+                }/Accept_work`,
+                {},
+                // Reason,
+                {
+                    withCredentials: true,
+                    // validateStatus: () => true,
+                }
+            );
+            console.log("response from accept project : ", response);
+            if (response.status == 200) {
+                Swal.fire("Success", "Project Updated Successfully", "success");
+                Navigate("/Client/Projects");
+            } else if (response.status == 401) window.location.href = "Login";
+            else {
+                Swal.fire(
+                    "Error!",
+                    `Something Went Wrong ,please trye again latter, ${response.data.message} `,
+                    "error"
+                );
+            }
+        } catch (error) {
+            console.log("response from register: ", error);
+            Swal.fire(
+                "Error!",
+                `Something Went Wrong ,please trye again latter`,
+                "error"
+            );
+        } finally {
+            setAccept_Loading(false);
+        }
+    };
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [project, setProject] = useState(null);
@@ -193,322 +280,405 @@ function ProjectItem() {
             </div>
         );
     return (
-        <div className="w-[90%] mx-auto max-w-[900px] mt-6">
-            <div className="font-semibold text-gray_v text-2xl">
-                {project?.Title}
-            </div>
-            <div className=" flex flex-col md:flex-row  items-center md:items-start md:justify-center  md:gap-12 gap-6">
-                <div className=" w-fit">
-                    <div className="">
-                        {project?.status === "Accepted" &&
-                        !project?.FreelancerId ? (
-                            <img
-                                src={Project_Accpted}
-                                className="w-[250px]"
-                                alt=""
-                            />
-                        ) : project?.status === "Pending" ? (
-                            <img
-                                src={Project_Waiting}
-                                className="w-[250px]"
-                                alt=""
-                            />
-                        ) : project?.status === "Rejected" ? (
-                            <img
-                                src={Project_Rejected}
-                                className="w-[250px]"
-                                alt=""
-                            />
-                        ) : project?.status === "Completed" ? (
-                            <img
-                                src={Project_Done}
-                                className="w-[250px]"
-                                alt=""
-                            />
-                        ) : project?.status === "Payed" ||
-                          (project?.status === "Accepted" &&
-                              project?.FreelancerId) ? (
-                            <img
-                                src={Project_Waiting2}
-                                className="w-[250px]"
-                                alt=""
-                            />
-                        ) : null}
+        <div className=" relative">
+            {OpenRejection && (
+                <div
+                    className="bg-gray_v bg-opacity-50 z-10 absolute top-0 left-0 w-full h-full
+                 flex flex-col pt-10 items-center"
+                >
+                    <div className="w-fit mx-auto">
+                        <img src={Alert_icon} className="w-20" alt="" />
                     </div>
-                    <div className=" max-w-[300px] font-semibold text-gray_v py-2">
-                        {project?.status === "Payed" &&
-                        !project?.isWorkUploaded ? (
-                            <>
-                                <div className="">
-                                    <span className="text-green-500">
-                                        Payed :
-                                    </span>{" "}
-                                    Your payment accepted. <br />a Freelancer is
-                                    working on your project
+                    <div
+                        className="w-[95%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white
+                         text-gray_v 
+                    rounded-lg py-5 px-4 md:px-10 flex flex-col justify-between "
+                    >
+                        <div className=" text-sm font-semibold pb-2">
+                            You Can send a rejection to the freelancer if you
+                            did not liked the work.
+                        </div>
+                        <textarea
+                            name=""
+                            rows={6}
+                            className=" border resize-none p-3 rounded-lg"
+                            placeholder="Please write the reason of rejection"
+                            onChange={(e) => {
+                                SetReason(e.target.value);
+                            }}
+                            id=""
+                        ></textarea>
+
+                        <div
+                            className=" flex justify-center items-center
+                             gap-6  my-4"
+                        >
+                            {Reject_Loading ? (
+                                <span className="small-loader mr-8  w-fit"></span>
+                            ) : (
+                                <div
+                                    onClick={() => {
+                                        if (Reason.length == 0)
+                                            Swal.fire(
+                                                "Error",
+                                                "Please Fill the Rejection Reason",
+                                                "error"
+                                            );
+                                        else {
+                                            handle_Reject();
+                                        }
+                                    }}
+                                    className=" cursor-pointer text-white bg-red-500 font-semibold py-3 px-5 rounded-lg "
+                                >
+                                    Send
                                 </div>
-                                {/* <div className="w-full flex items-center justify-center">
-                                    <Link
-                                        to={`/Client/Projects/${project?.id}/Process`}
-                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
-                                    cursor-pointer bg-perpol_v"
-                                    >
-                                        Track Project
-                                    </Link>
-                                </div> */}
-                            </>
-                        ) : project?.status === "Payed" &&
-                          project?.isWorkUploaded &&
-                          !project?.isWorkRejected ? (
-                            <>
-                                <div className="">
-                                    <span className="text-green-500">
-                                        Uploaded :
-                                    </span>{" "}
-                                    The Freelancer Upload the files of your
-                                    project .
-                                    <br />
-                                    please validate the work
-                                </div>
-                                {/* <div className="w-full flex items-center justify-center">
-                                    <Link
-                                        to={`/Client/Projects/${project?.id}/Process`}
-                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
-                                    cursor-pointer bg-perpol_v"
-                                    >
-                                        Track Project
-                                    </Link>
-                                </div> */}
-                            </>
-                        ) : project?.status === "Payed" &&
-                          project?.isWorkUploaded &&
-                          project?.isWorkRejected ? (
-                            <>
-                                <div className="">
-                                    <span className="text-red-500">
-                                        Rejection Sent to the Freelancer :
-                                    </span>{" "}
-                                    please wait till the freelancer correct the
-                                    mentioned pointes .
-                                </div>
-                                {/* <div className="w-full flex items-center justify-center">
-                                    <Link
-                                        to={`/Client/Projects/${project?.id}/Process`}
-                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
-                                    cursor-pointer bg-perpol_v"
-                                    >
-                                        Track Project
-                                    </Link>
-                                </div> */}
-                            </>
-                        ) : project?.status === "Rejected" ? (
-                            <>
-                                <div className="">
-                                    <span className="text-red-600">
-                                        Rejected :
-                                    </span>{" "}
-                                    Your project has been rejected
-                                </div>
-                                <div className=" w-full flex justify-center">
-                                    {Delete_Loading ? (
-                                        <div className=" small-loader mt-3"></div>
-                                    ) : (
-                                        <div
-                                            className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
-                                            onClick={Delete_Project}
-                                        >
-                                            Delete Project
-                                        </div>
-                                    )}
-                                </div>
-                            </>
-                        ) : project?.status === "Completed" ? (
-                            <>
-                                <div className="">
-                                    <span className="text-green-500">
-                                        Completed :
-                                    </span>{" "}
-                                    Your project has been closed.
-                                </div>
-                                <div className="w-full flex items-center justify-center">
-                                    <Link
-                                        to={`/Client/Projects/${project?.id}/Process`}
-                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
-                                    cursor-pointer bg-perpol_v"
-                                    >
-                                        View Work
-                                    </Link>
-                                </div>
-                            </>
-                        ) : !project?.isPayment_ScreenShot_uploaded &&
-                          project?.status === "Accepted" &&
-                          project?.FreelancerId ? (
-                            <>
-                                <div className="">
-                                    <span className="text-gray_v">
-                                        Accepted :
-                                    </span>{" "}
-                                    <span className=" text-red-500">
-                                        You have to pay the fees to start the
-                                        project
-                                    </span>
-                                </div>
-                                <div className=" w-full flex justify-center">
-                                    <Link
-                                        to={`/Client/Projects/${project?.id}/Payment`}
-                                        className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
-                                    >
-                                        Pay the Project Fees
-                                    </Link>
-                                </div>
-                            </>
-                        ) : project?.isPayment_ScreenShot_uploaded &&
-                          project?.status === "Accepted" &&
-                          project?.FreelancerId ? (
-                            <div className="">
-                                <span className="text-perpol_v">
-                                    Accepted :
-                                </span>{" "}
-                                <span className=" text-gray_v">
-                                    Waiting Dashboard to accept the payment
-                                </span>
+                            )}
+                            <div
+                                onClick={() => {
+                                    setOpenRejection(false);
+                                }}
+                                className=" cursor-pointer text-white bg-blue-500 font-semibold py-3 px-5 rounded-lg "
+                            >
+                                Cancel
                             </div>
-                        ) : project?.status === "Accepted" &&
-                          !project?.FreelancerId ? (
-                            <div>
-                                <span className="text-perpol_v">
-                                    Accepted :
-                                </span>{" "}
-                                Searching For the Freelancer
-                            </div>
-                        ) : project?.status === "Pending" ? (
-                            <>
-                                <div>
-                                    <span className="text-perpol_v">
-                                        Pending :
-                                    </span>{" "}
-                                    <span className=" text-gray_v">
-                                        Ower team is reviewing your project
-                                    </span>
-                                </div>
-                                <div className=" w-full flex justify-center">
-                                    {Delete_Loading ? (
-                                        <div className=" small-loader mt-3"></div>
-                                    ) : (
-                                        <div
-                                            className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
-                                            onClick={Delete_Project}
-                                        >
-                                            Delete Project
-                                        </div>
-                                    )}
-                                </div>
-                            </>
-                        ) : null}
+                        </div>
                     </div>
                 </div>
-                <div>
-                    {project?.status === "Payed" &&
-                        project?.isWorkUploaded &&
-                        !project?.isWorkRejected && (
-                            <div className=" pt-6">
-                                <div className="text-lg font-semibold text-gray_v text-center">
-                                    Work Uploaded
-                                </div>
-                                <a
-                                    download={true}
-                                    href={`http://localhost:3000${project?.work_Link}`}
-                                    className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+            )}
+            <div className="px-4 max-w-[900px] md:mx-auto pt-6 relative">
+                <div className="font-semibold text-gray_v text-2xl">
+                    {project?.Title}
+                </div>
+                <div className=" flex flex-col md:flex-row  items-center md:items-start md:justify-center  md:gap-12 gap-6">
+                    <div className=" w-fit">
+                        <div className="">
+                            {project?.status === "Accepted" &&
+                            !project?.FreelancerId ? (
+                                <img
+                                    src={Project_Accpted}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Pending" ? (
+                                <img
+                                    src={Project_Waiting}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Rejected" ? (
+                                <img
+                                    src={Project_Rejected}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Completed" ? (
+                                <img
+                                    src={Project_Done}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : project?.status === "Payed" ||
+                              (project?.status === "Accepted" &&
+                                  project?.FreelancerId) ? (
+                                <img
+                                    src={Project_Waiting2}
+                                    className="w-[250px]"
+                                    alt=""
+                                />
+                            ) : null}
+                        </div>
+                        <div className=" max-w-[300px] font-semibold text-gray_v py-2">
+                            {project?.status === "Payed" &&
+                            !project?.isWorkUploaded ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green-500">
+                                            Payed :
+                                        </span>{" "}
+                                        Your payment accepted. <br />a
+                                        Freelancer is working on your project
+                                    </div>
+                                    {/* <div className="w-full flex items-center justify-center">
+                                    <Link
+                                        to={`/Client/Projects/${project?.id}/Process`}
+                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                    cursor-pointer bg-perpol_v"
+                                    >
+                                        Track Project
+                                    </Link>
+                                </div> */}
+                                </>
+                            ) : project?.status === "Payed" &&
+                              project?.isWorkUploaded &&
+                              !project?.isWorkRejected ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green-500">
+                                            Uploaded :
+                                        </span>{" "}
+                                        The Freelancer Upload the files of your
+                                        project .
+                                        <br />
+                                        please validate the work
+                                    </div>
+                                    {/* <div className="w-full flex items-center justify-center">
+                                    <Link
+                                        to={`/Client/Projects/${project?.id}/Process`}
+                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                    cursor-pointer bg-perpol_v"
+                                    >
+                                        Track Project
+                                    </Link>
+                                </div> */}
+                                </>
+                            ) : project?.status === "Payed" &&
+                              project?.isWorkUploaded &&
+                              project?.isWorkRejected ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-red-500">
+                                            Rejection Sent to the Freelancer :
+                                        </span>{" "}
+                                        please wait till the freelancer correct
+                                        the mentioned pointes .
+                                    </div>
+                                    {/* <div className="w-full flex items-center justify-center">
+                                    <Link
+                                        to={`/Client/Projects/${project?.id}/Process`}
+                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                    cursor-pointer bg-perpol_v"
+                                    >
+                                        Track Project
+                                    </Link>
+                                </div> */}
+                                </>
+                            ) : project?.status === "Rejected" ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-red-600">
+                                            Rejected :
+                                        </span>{" "}
+                                        Your project has been rejected
+                                    </div>
+                                    <div className=" w-full flex justify-center">
+                                        {Delete_Loading ? (
+                                            <div className=" small-loader mt-3"></div>
+                                        ) : (
+                                            <div
+                                                className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                                                onClick={Delete_Project}
+                                            >
+                                                Delete Project
+                                            </div>
+                                        )}
+                                    </div>
+                                </>
+                            ) : project?.status === "Completed" ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-green-500">
+                                            Completed :
+                                        </span>{" "}
+                                        Your project has been closed.
+                                    </div>
+                                    <div className=" pt-4">
+                                        <a
+                                            download={true}
+                                            href={`http://localhost:3000${project?.work_Link}`}
+                                            className=" mt-4 py-1 px-2 w-fit rounded-md text-white mx-auto
                                                 cursor-pointer bg-perpol_v  flex items-center gap-2 "
-                                >
-                                    <MdOutlineFileDownload className=" text-xl  shrink-0" />
-                                    Download Work
-                                </a>
-                                <div className=" flex gap-4 items-center justify-center pt-8">
-                                    <div
-                                        className=" text-white font-semibold py-2 px-4 rounded-lg
+                                        >
+                                            <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                            Download Work
+                                        </a>
+                                    </div>
+                                </>
+                            ) : !project?.isPayment_ScreenShot_uploaded &&
+                              project?.status === "Accepted" &&
+                              project?.FreelancerId ? (
+                                <>
+                                    <div className="">
+                                        <span className="text-gray_v">
+                                            Accepted :
+                                        </span>{" "}
+                                        <span className=" text-red-500">
+                                            You have to pay the fees to start
+                                            the project
+                                        </span>
+                                    </div>
+                                    <div className=" w-full flex justify-center">
+                                        <Link
+                                            to={`/Client/Projects/${project?.id}/Payment`}
+                                            className=" bg-perpol_v font-semibold py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                                        >
+                                            Pay the Project Fees
+                                        </Link>
+                                    </div>
+                                </>
+                            ) : project?.isPayment_ScreenShot_uploaded &&
+                              project?.status === "Accepted" &&
+                              project?.FreelancerId ? (
+                                <div className="">
+                                    <span className="text-perpol_v">
+                                        Accepted :
+                                    </span>{" "}
+                                    <span className=" text-gray_v">
+                                        Waiting Dashboard to accept the payment
+                                    </span>
+                                </div>
+                            ) : project?.status === "Accepted" &&
+                              !project?.FreelancerId ? (
+                                <div>
+                                    <span className="text-perpol_v">
+                                        Accepted :
+                                    </span>{" "}
+                                    Searching For the Freelancer
+                                </div>
+                            ) : project?.status === "Pending" ? (
+                                <>
+                                    <div>
+                                        <span className="text-perpol_v">
+                                            Pending :
+                                        </span>{" "}
+                                        <span className=" text-gray_v">
+                                            Ower team is reviewing your project
+                                        </span>
+                                    </div>
+                                    <div className=" w-full flex justify-center">
+                                        {Delete_Loading ? (
+                                            <div className=" small-loader mt-3"></div>
+                                        ) : (
+                                            <div
+                                                className=" bg-red-500 py-1 px-2 text-white rounded-lg cursor-pointer w-fit mt-4"
+                                                onClick={Delete_Project}
+                                            >
+                                                Delete Project
+                                            </div>
+                                        )}
+                                    </div>
+                                </>
+                            ) : null}
+                        </div>
+                    </div>
+                    <div>
+                        {project?.status === "Payed" &&
+                            project?.isWorkUploaded &&
+                            !project?.isWorkRejected && (
+                                <div className=" pt-6">
+                                    <div className="text-lg font-semibold text-gray_v text-center">
+                                        Work Uploaded
+                                    </div>
+                                    <a
+                                        download={true}
+                                        href={`http://localhost:3000${project?.work_Link}`}
+                                        className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
+                                                cursor-pointer bg-perpol_v  flex items-center gap-2 "
+                                    >
+                                        <MdOutlineFileDownload className=" text-xl  shrink-0" />
+                                        Download Work
+                                    </a>
+                                    <div className=" flex gap-4 items-center justify-center pt-8">
+                                        {Accept_Loading ? (
+                                            <span className="small-loader  w-full m-auto"></span>
+                                        ) : (
+                                            <div
+                                                className=" text-white font-semibold py-2 px-4 rounded-lg
                                      bg-green_v cursor-pointer "
-                                    >
-                                        Accept
-                                    </div>
-                                    <div
-                                        className=" text-white font-semibold py-2 px-4 rounded-lg
+                                                onClick={handle_Accept}
+                                            >
+                                                Accept
+                                            </div>
+                                        )}
+                                        {Reject_Loading ? (
+                                            <span className="small-loader  w-full m-auto"></span>
+                                        ) : (
+                                            <div
+                                                className=" text-white font-semibold py-2 px-4 rounded-lg
                                      bg-red-500 cursor-pointer "
-                                    >
-                                        Reject
+                                                onClick={() => {
+                                                    setOpenRejection(true);
+                                                }}
+                                            >
+                                                Reject
+                                            </div>
+                                        )}
                                     </div>
+                                </div>
+                            )}
+                    </div>
+                </div>
+
+                {Rejections?.length == 0 ? (
+                    <div>
+                        <div className=" text-xl text-red-500  font-semibold">
+                            Rejections History
+                        </div>
+                    </div>
+                ) : (
+                    <div>no</div>
+                )}
+                <div className=" my-6 ">
+                    <div className=" pb-2 font-semibold text-gray_v">
+                        Project Details
+                    </div>
+                    <div className=" border p-4 rounded-lg">
+                        <div className=" flex gap-2 text-sm font-semibold">
+                            <div>Project Title : </div>
+                            <div className=" text-gray_v">{project?.Title}</div>
+                        </div>
+                        <div className="text-sm  mb-2 font-semibold text-white">
+                            <div className=" flex gap-2">
+                                {project?.Field_is_Graphic_design && (
+                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                        Graphic Design
+                                    </div>
+                                )}
+                                {project?.Field_is_Content_creation && (
+                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                        Content creation
+                                    </div>
+                                )}
+                                {project?.Field_is_SEO_SIM && (
+                                    <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
+                                        SEO/SIM
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        {project?.Frelancer_Experiance && (
+                            <div className="flex items-center justify-between w-full">
+                                <div className="text-sm pt-2 text-gray_v">
+                                    frelancer experiance :{" "}
+                                    <span className=" font-semibold">
+                                        {project?.Frelancer_Experiance}
+                                    </span>
                                 </div>
                             </div>
                         )}
-                </div>
-            </div>
-            {Rejections?.length == 0 ? (
-                <div>
-                    <div className=" text-xl text-red-500  font-semibold">
-                        Rejections History
-                    </div>
-                </div>
-            ) : (
-                <div>no</div>
-            )}
-            <div className=" my-6 ">
-                <div className=" pb-2 font-semibold text-gray_v">
-                    Project Details
-                </div>
-                <div className=" border p-4 rounded-lg">
-                    <div className=" flex gap-2 text-sm font-semibold">
-                        <div>Project Title : </div>
-                        <div className=" text-gray_v">{project?.Title}</div>
-                    </div>
-                    <div className="text-sm  mb-2 font-semibold text-white">
-                        <div className=" flex gap-2">
-                            {project?.Field_is_Graphic_design && (
-                                <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                    Graphic Design
+                        {project?.Client_Budget && (
+                            <div className="flex items-center justify-between w-full text-sm font-semibold">
+                                <div className="text-sm pt-4 text-gray_v flex items-center gap-2">
+                                    Budget: {project?.Client_Budget}
                                 </div>
-                            )}
-                            {project?.Field_is_Content_creation && (
-                                <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                    Content creation
-                                </div>
-                            )}
-                            {project?.Field_is_SEO_SIM && (
-                                <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3 ">
-                                    SEO/SIM
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    {project?.Frelancer_Experiance && (
-                        <div className="flex items-center justify-between w-full">
-                            <div className="text-sm pt-2 text-gray_v">
-                                frelancer experiance :{" "}
-                                <span className=" font-semibold">
-                                    {project?.Frelancer_Experiance}
-                                </span>
                             </div>
-                        </div>
-                    )}
-                    {project?.Client_Budget && (
-                        <div className="flex items-center justify-between w-full text-sm font-semibold">
-                            <div className="text-sm pt-4 text-gray_v flex items-center gap-2">
-                                Budget: {project?.Client_Budget}
-                            </div>
-                        </div>
-                    )}
+                        )}
 
-                    <div className="flex items-center justify-between w-full font-semibold">
-                        <div className="text-sm pt-1 text-gray_v">
-                            Created at :{" "}
-                            {new Date(project?.createdAt).toLocaleDateString()}
+                        <div className="flex items-center justify-between w-full font-semibold">
+                            <div className="text-sm pt-1 text-gray_v">
+                                Created at :{" "}
+                                {new Date(
+                                    project?.createdAt
+                                ).toLocaleDateString()}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div className="text-sm font-semibold pt-4">
-                        Project Description
-                    </div>
-                    <div className="text-sm font-semibold pl-6 py-6 text-gray_v">
-                        <Editor editorState={editorState} readOnly={true} />
+                    <div>
+                        <div className="text-sm font-semibold pt-4">
+                            Project Description
+                        </div>
+                        <div className="text-sm font-semibold pl-6 py-6 text-gray_v">
+                            <Editor editorState={editorState} readOnly={true} />
+                        </div>
                     </div>
                 </div>
             </div>
