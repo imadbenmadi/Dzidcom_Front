@@ -17,16 +17,23 @@ function ProjectItem() {
     const [Accept_Loading, setAccept_Loading] = useState(false);
     const [Reject_Loading, setReject_Loading] = useState(false);
     const [Reason, SetReason] = useState("");
-    const handle_reason_chanege = (e) => {
-        SetReason(e.target.value);
-    };
-    useEffect(() => {
-        console.log(Reason);
-    }, [Reason]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [project, setProject] = useState(null);
+
+    // useEffect(() => {
+    //     console.log(Reason);
+    // }, [Reason]);
     const [OpenRejection, setOpenRejection] = useState(false);
     const location = useLocation();
     const { user } = useAppContext();
     const [Rejections, setRejections] = useState([]);
+    if (!location.pathname.split("/")[3]) {
+        return <Navigate to="/Client/Projects" />;
+    }
+    useEffect(() => {
+        console.log(Rejections);
+    }, [Rejections]);
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const Navigate = useNavigate();
     const [Delete_Loading, SetDelete_Loading] = useState(false);
@@ -60,9 +67,7 @@ function ProjectItem() {
             SetDelete_Loading(false);
         }
     };
-    if (!location.pathname.split("/")[3]) {
-        return <Navigate to="/Client/Projects" />;
-    }
+
     const handle_Accept = async () => {
         setAccept_Loading(true);
         try {
@@ -79,7 +84,7 @@ function ProjectItem() {
             );
             console.log("response from accept project : ", response);
             if (response.status == 200) {
-                Swal.fire("Success", "Project Updated Successfully", "success");
+                Swal.fire("Success", "Work Accepteed Successfully", "success");
                 Navigate("/Client/Projects");
             } else if (response.status == 401) window.location.href = "Login";
             else {
@@ -105,22 +110,22 @@ function ProjectItem() {
             Swal.fire("Error", "please fill your Rejection Reason", "error");
             return;
         }
-        setAccept_Loading(true);
+        setReject_Loading(true);
         try {
             let response = await axios.post(
                 `http://localhost:3000/Clients/${user.id}/Projects/${
                     location.pathname.split("/")[3]
-                }/Accept_work`,
-                {},
+                }/Reject_work`,
+                { Reason },
                 // Reason,
                 {
                     withCredentials: true,
                     // validateStatus: () => true,
                 }
             );
-            console.log("response from accept project : ", response);
+            console.log("response from reject work : ", response);
             if (response.status == 200) {
-                Swal.fire("Success", "Project Updated Successfully", "success");
+                Swal.fire("Success", "Work Rejected Successfully", "success");
                 Navigate("/Client/Projects");
             } else if (response.status == 401) window.location.href = "Login";
             else {
@@ -138,12 +143,9 @@ function ProjectItem() {
                 "error"
             );
         } finally {
-            setAccept_Loading(false);
+            setReject_Loading(false);
         }
     };
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [project, setProject] = useState(null);
 
     // useEffect(() => {
     //     console.log("Project : ", project);
@@ -232,8 +234,8 @@ function ProjectItem() {
                 );
                 console.log("response from get rejections : ", response.data);
                 if (response.status === 200) {
-                    const project = response.data.Project;
-                    setRejections(project);
+                    const Rejection_Resons = response.data.Rejection_Resons;
+                    setRejections(Rejection_Resons);
                 } else if (response.status === 401) {
                     Swal.fire("Error", "you should login again", "error");
                     Navigate("/Login");
@@ -608,15 +610,38 @@ function ProjectItem() {
                     </div>
                 </div>
 
-                {Rejections?.length == 0 ? (
-                    <div>
+                {Rejections?.length > 0 ? (
+                    <div className=" py-6">
                         <div className=" text-xl text-red-500  font-semibold">
                             Rejections History
                         </div>
+                        <div>
+                            {Rejections.map((rejection, index) => (
+                                <div
+                                    key={index}
+                                    className=" border p-4 rounded-lg my-6"
+                                >
+                                    <div className=" flex justify-between items-center pb-6">
+                                        <div className="text-lg font-semibold text-gray_v">
+                                            Rejection Reason
+                                            <div className=" text-sm font-normal">
+                                                {rejection.Reason}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className=" flex justify-between items-center">
+                                        <div className="text-sm font-semibold text-gray_v">
+                                            Rejected at :{" "}
+                                            {new Date(
+                                                rejection.createdAt
+                                            ).toLocaleDateString()}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                ) : (
-                    <div>no</div>
-                )}
+                ) : null}
                 <div className=" my-6 ">
                     <div className=" pb-2 font-semibold text-gray_v">
                         Project Details

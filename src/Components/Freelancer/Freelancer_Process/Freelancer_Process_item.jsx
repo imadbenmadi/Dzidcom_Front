@@ -475,15 +475,38 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                     </div>
-                    {Rejections.length == 0 ? (
-                        <div>
+                    {Rejections?.length > 0 ? (
+                        <div className=" py-6">
                             <div className=" text-xl text-red-500  font-semibold">
                                 Rejections History
                             </div>
+                            <div>
+                                {Rejections.map((rejection, index) => (
+                                    <div
+                                        key={index}
+                                        className=" border p-4 rounded-lg my-6"
+                                    >
+                                        <div className=" flex justify-between items-center pb-6">
+                                            <div className="text-lg font-semibold text-gray_v">
+                                                Rejection Reason
+                                                <div className=" text-sm font-normal">
+                                                    {rejection.Reason}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className=" flex justify-between items-center">
+                                            <div className="text-sm font-semibold text-gray_v">
+                                                Rejected at :{" "}
+                                                {new Date(
+                                                    rejection.createdAt
+                                                ).toLocaleDateString()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    ) : (
-                        <div>no</div>
-                    )}
+                    ) : null}
                     <div className=" my-6 ">
                         <div className=" pb-2 font-semibold text-gray_v">
                             Project Details
