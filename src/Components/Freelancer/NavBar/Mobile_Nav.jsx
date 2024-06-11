@@ -13,6 +13,8 @@ import Freelancer_found_Notification from "../../../../public/Notifications/Free
 import payment_accepted_Notification from "../../../../public/Notifications/payment_accepted.png";
 import payment_rejected_Notification from "../../../../public/Notifications/payment_rejected.png";
 import Freelancer_uploaded_work_Notification from "../../../../public/Notifications/Freelancer_uploaded_work.png";
+import { IoMdNotificationsOutline } from "react-icons/io";
+
 import axios from "axios";
 import { useAppContext } from "../../../AppContext";
 
