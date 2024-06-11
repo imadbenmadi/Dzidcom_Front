@@ -47,7 +47,7 @@ const JobsList = ({ jobs, loading }) => {
                                 )}
                                 {job?.Field_is_SEO_SIM && (
                                     <div className="bg-perpol_v text-md rounded-lg py-1 mt-2 px-3">
-                                        SEO/SIM
+                                        SEO/SMM
                                     </div>
                                 )}
                             </div>
