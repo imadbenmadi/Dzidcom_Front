@@ -134,13 +134,46 @@ function Client_Projects() {
                                             className={`text-sm  font-semibold text-gray_v `}
                                         >
                                             <div>
-                                                {project?.status === "Payed" ? (
+                                                {project?.status === "Payed" &&
+                                                !project?.isWorkUploaded ? (
+                                                    <>
+                                                        <div className="">
+                                                            <span className="text-green-500">
+                                                                Payed :
+                                                            </span>{" "}
+                                                            Your payment
+                                                            accepted. <br />a
+                                                            Freelancer is
+                                                            working on your
+                                                            project
+                                                        </div>
+                                                    </>
+                                                ) : project?.status ===
+                                                      "Payed" &&
+                                                  project?.isWorkUploaded &&
+                                                  !project?.isWorkRejected ? (
                                                     <div className="">
                                                         <span className="text-green-500">
-                                                            Payed
+                                                            Uploaded :
                                                         </span>{" "}
-                                                        a Freelancer is working
-                                                        on your project now
+                                                        The Freelancer Upload
+                                                        the files of your
+                                                        project .
+                                                        <br />
+                                                        please validate the work
+                                                    </div>
+                                                ) : project?.status ===
+                                                      "Payed" &&
+                                                  project?.isWorkUploaded &&
+                                                  project?.isWorkRejected ? (
+                                                    <div className="">
+                                                        <span className="text-red-500">
+                                                            Rejection Sent to
+                                                            the Freelancer :
+                                                        </span>{" "}
+                                                        please wait till the
+                                                        freelancer correct the
+                                                        mentioned pointes .
                                                     </div>
                                                 ) : project?.status ===
                                                   "Rejected" ? (

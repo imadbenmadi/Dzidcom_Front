@@ -115,19 +115,53 @@ function Freelancer_Process() {
                                             >
                                                 <div>
                                                     {project?.status ===
-                                                    "Payed" ? (
-                                                        <div className="">
-                                                            <span className="text-green-500">
-                                                                Client Payed the
-                                                                project fees
-                                                            </span>{" "}
-                                                            <br />
-                                                            <span className=" text-gray_v">
-                                                                Upload the Files
-                                                                as soon as you
-                                                                finished the
-                                                                Work
-                                                            </span>
+                                                        "Payed" &&
+                                                    !project?.isWorkUploaded ? (
+                                                        //  &&!project?.isWorkRejected
+                                                        <>
+                                                            <div className="">
+                                                                <span className="text-green-500">
+                                                                    Client is
+                                                                    waiting for
+                                                                    your work :
+                                                                </span>{" "}
+                                                                please upload
+                                                                the files as
+                                                                soon as you
+                                                                finished working
+                                                                on the project
+                                                            </div>
+                                                        </>
+                                                    ) : project?.status ===
+                                                          "Payed" &&
+                                                      project?.isWorkRejected &&
+                                                      project?.isWorkUploaded ? (
+                                                        <div>
+                                                            <div className="">
+                                                                <span className="text-red-500">
+                                                                    Client
+                                                                    Rejected
+                                                                    Your work :
+                                                                </span>{" "}
+                                                                please check the
+                                                                rejections
+                                                                history to view
+                                                                the reason
+                                                            </div>
+                                                        </div>
+                                                    ) : project?.status ===
+                                                          "Payed" &&
+                                                      !project?.isWorkRejected &&
+                                                      project?.isWorkUploaded ? (
+                                                        <div>
+                                                            <div className="">
+                                                                <span className="text-gray_v">
+                                                                    Waiting the
+                                                                    Client to
+                                                                    review your
+                                                                    work
+                                                                </span>{" "}
+                                                            </div>
                                                         </div>
                                                     ) : project?.status ===
                                                       "Completed" ? (
