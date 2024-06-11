@@ -42,7 +42,7 @@ function Mobile_Nav({
         console.log("data to be sent in delete notifications :", user.id, id);
         axios
             .delete(
-                `http://localhost:3000/Clients/${user.id}/Notifications/${id}`,
+                `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
 
                 {
                     withCredentials: true,

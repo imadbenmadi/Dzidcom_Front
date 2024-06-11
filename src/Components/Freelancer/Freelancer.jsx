@@ -37,6 +37,7 @@ function Freelancer() {
         set_Profile_Completed,
         show_Alert_completeProfile,
         set_show_Alert_completeProfile,
+        set_Notifications,
     } = useAppContext();
     if (!isAuth || !userId) {
         // window.location.href = "/Login";
@@ -68,6 +69,29 @@ function Freelancer() {
                 set_Auth(false);
                 // window.location.href = "/Login";
                 Navigate("/Login");
+            }
+        };
+        const fetchNotifications = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:3000/Freelancers/${userId}/Notifications`,
+                    {
+                        withCredentials: true,
+                        // validateStatus: () => true,
+                    }
+                );
+                console.log(
+                    "response from get Notifications :",
+                    response.data.Notifications
+                );
+                if (response.status == 200) {
+                    set_Notifications(response.data.Notifications);
+                } else {
+                    set_Notifications([]);
+                }
+            } catch (error) {
+                console.log("error from get user Profile :", error);
+                set_Notifications([]);
             }
         };
         const fetch_images = () => {
@@ -109,7 +133,7 @@ function Freelancer() {
             });
         };
         // Promise.all([fetchData()]);
-        Promise.all([fetch_images(), fetchData()])
+        Promise.all([fetch_images(), fetchData(), fetchNotifications()])
             .then(() => {
                 setLoading(false);
             })
