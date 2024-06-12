@@ -86,7 +86,6 @@ function ProjectItem() {
                     // validateStatus: () => true,
                 }
             );
-            console.log("response from accept project : ", response);
             if (response.status == 200) {
                 Swal.fire("Success", "Work Accepteed Successfully", "success");
                 Navigate("/Client/Projects");
@@ -99,7 +98,6 @@ function ProjectItem() {
                 );
             }
         } catch (error) {
-            console.log("response from register: ", error);
             Swal.fire(
                 "Error!",
                 `Something Went Wrong ,please trye again latter`,
@@ -165,7 +163,6 @@ function ProjectItem() {
                     // validateStatus: () => true,
                 }
             );
-            console.log("response from send FeedBack : ", response);
             if (response.status == 200) {
                 Swal.fire("Success", "Feedback Sended Successfully", "success");
                 Navigate("/Client/Projects");
@@ -174,15 +171,12 @@ function ProjectItem() {
                 Swal.fire("Error!", `${response.data.message} `, "error");
             }
         } catch (error) {
-            console.log("response from register: ", error);
             Swal.fire("Error!", `${error}`, "error");
         } finally {
             setFeedback_Loading(false);
         }
     };
-    // useEffect(() => {
-    //     console.log("Project : ", project);
-    // }, [project]);
+
 
     useEffect(() => {
         setLoading(true);

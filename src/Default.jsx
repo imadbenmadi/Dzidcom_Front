@@ -5,7 +5,6 @@ import { useAppContext } from "./AppContext";
 
 function Default() {
     const { isAuth, userType, userId } = useAppContext();
-    console.log("data from default", isAuth, userType);
     const Navigate = useNavigate();
     useEffect(() => {
         if (!isAuth || !userType) Navigate("/Home");

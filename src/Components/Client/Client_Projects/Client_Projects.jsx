@@ -13,9 +13,7 @@ function Client_Projects() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [Projcets, setProjcets] = useState([]);
-    // useEffect(() => {
-    //     console.log("Projects:", Projcets);
-    // }, [Projcets]);
+
     useEffect(() => {
         setLoading(true);
         const FetchProjcets = async ({ setProjcets, setLoading, setError }) => {
@@ -28,7 +26,6 @@ function Client_Projects() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get prjects", response);
                 if (response.status == 200) {
                     const Projcets = response.data.Projects;
                     setProjcets(Projcets);

@@ -54,10 +54,7 @@ function Client() {
                         // validateStatus: () => true,
                     }
                 );
-                console.log(
-                    "response from get user Profile :",
-                    response.data.User
-                );
+                
                 if (response.status == 200) {
                     set_user(response.data.User);
                 } else {
@@ -66,7 +63,6 @@ function Client() {
                     Navigate("/Login");
                 }
             } catch (error) {
-                console.log("error from get user Profile :", error);
                 set_Auth(false);
                 // window.location.href = "/Login";
                 Navigate("/Login");
@@ -81,17 +77,13 @@ function Client() {
                         // validateStatus: () => true,
                     }
                 );
-                console.log(
-                    "response from get Notifications :",
-                    response.data.Notifications
-                );
+                
                 if (response.status == 200) {
                     set_Notifications(response.data.Notifications);
                 } else {
                     set_Notifications([]);
                 }
             } catch (error) {
-                console.log("error from get user Profile :", error);
                 set_Notifications([]);
             }
         };

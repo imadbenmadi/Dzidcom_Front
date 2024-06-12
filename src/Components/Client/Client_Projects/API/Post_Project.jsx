@@ -4,7 +4,6 @@ import Axios from "axios";
 async function handle_Add_Projects(values, { setSubmitting }) {
     // const Navigate = useNavigate();
     try {
-        console.log("values to send in Edite: ", values);
         let response = await Axios.post(
             `http://localhost:3000/Clients/${values.userId}/Projects`,
             values,
@@ -13,7 +12,6 @@ async function handle_Add_Projects(values, { setSubmitting }) {
                 validateStatus: () => true,
             }
         );
-        console.log("response from add project : ", response);
         if (response.status == 200) {
             // Swal.fire("Success", "Project Updated Successfully", "success");
             window.location.href = "/Client/Projects";
@@ -37,7 +35,6 @@ async function handle_Add_Projects(values, { setSubmitting }) {
             );
         }
     } catch (error) {
-        console.log("response from register: ", error);
         setSubmitting(false);
         Swal.fire(
             "Error!",

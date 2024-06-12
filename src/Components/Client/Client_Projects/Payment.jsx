@@ -17,9 +17,7 @@ function Payment() {
     const [project, setProject] = useState(null);
     const [only_see, set_only_see] = useState(false);
     const [deletLoading, setDeleteLoading] = useState(false);
-    useEffect(() => {
-        console.log("project : ", project);
-    }, [project]);
+
     const { user, set_user } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
@@ -39,7 +37,6 @@ function Payment() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from payment status : ", response.data);
                 if (response.status === 200) {
                     const project = response.data.Project;
                     setProject(project);
@@ -69,18 +66,14 @@ function Payment() {
         if (image_state) setimageChanged(true);
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
-        // console.log("image_state: ", image_state);
     }, [image_state]);
     const handle_post_payment = async (values, { setSubmitting }) => {
         setSubmitting(true);
         let formData = new FormData();
-        console.log(image_state, values.CCP_number);
         formData.append("CCP_number", values.CCP_number);
         formData.append("image", image_state);
         formData.append("projectId", project.id);
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]); // Debug each formData entry
-        }
+        
         try {
             const response = await axios.post(
                 `http://localhost:3000/upload/Payment`,
@@ -90,7 +83,6 @@ function Payment() {
                     validateStatus: () => true,
                 }
             );
-            console.log("response from uploading payment : ", response.data);
             if (response.status === 200) {
                 Swal.fire(
                     "Success",

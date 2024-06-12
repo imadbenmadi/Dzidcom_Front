@@ -20,10 +20,6 @@ function App() {
                         validateStatus: () => true,
                     }
                 );
-                console.log(
-                    "response from app.jsx check_auth :",
-                    response.data
-                );
                 if (response.status == 200) {
                     store_login(response.data.userId, response.data.userType);
                     // setUserType(response.data.userType);
@@ -32,7 +28,6 @@ function App() {
                     set_Auth(false);
                 }
             } catch (error) {
-                // console.log("error from app.jsx check_auth :", error);
                 set_Auth(false);
             }
         };
