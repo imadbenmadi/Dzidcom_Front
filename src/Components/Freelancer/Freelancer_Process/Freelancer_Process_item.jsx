@@ -18,20 +18,18 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import Alert_icon from "../../../../public//Project/Alert.png";
 import { FaUpload } from "react-icons/fa";
 import Axios from "axios";
-
+import { IoIosStar } from "react-icons/io";
 function Freelancer_Process_item() {
+    const Navigate = useNavigate();
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState(null);
     const [openUpload, setOpenUpload] = useState(false);
     const [Rejections, SetRejections] = useState([]);
     const [uploadLoading, setUploadLoading] = useState(false);
-    const toogle_upload = () => {
-        // if (openUpload) window.scrollTo(0, 0);
-        // setOpenUpload(!openUpload);
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 0);
-    };
+    const [openRate, setOpenRate] = useState(false);
+    const [Rate, setRate] = useState(0);
+    const [Comment, setComment] = useState("");
+
     useEffect(() => {
         if (openUpload) {
             // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -47,12 +45,44 @@ function Freelancer_Process_item() {
     const [project, setProject] = useState([]);
     const { show_Alert_completeProfile } = useAppContext();
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [Feedback_Loading, setFeedback_Loading] = useState(false);
+
     const isDraftJSFormat = (str) => {
         try {
             const parsed = JSON.parse(str);
             return parsed.blocks && parsed.entityMap;
         } catch (e) {
             return false;
+        }
+    };
+    const handle_send_Feedback = async () => {
+        setFeedback_Loading(true);
+        try {
+            let response = await axios.post(
+                `http://localhost:3000/Freelancers/${user.id}/Rate/${project.ClientId}`,
+                {
+                    Rate,
+                    Comment,
+                    ProjectId: project.id,
+                },
+                {
+                    withCredentials: true,
+                    // validateStatus: () => true,
+                }
+            );
+            console.log("response from send FeedBack : ", response);
+            if (response.status == 200) {
+                Swal.fire("Success", "Feedback Sended Successfully", "success");
+                Navigate("/Freelancer/Process");
+            } else if (response.status == 401) window.location.href = "Login";
+            else {
+                Swal.fire("Error!", `${response.data.message} `, "error");
+            }
+        } catch (error) {
+            console.log("response from register: ", error);
+            Swal.fire("Error!", `${error}`, "error");
+        } finally {
+            setFeedback_Loading(false);
         }
     };
     const uploadFile = async () => {
@@ -303,7 +333,134 @@ function Freelancer_Process_item() {
                         </div>
                     </div>
                 )}
+                {openRate && (
+                    <div
+                        className="bg-gray_v bg-opacity-70 z-10 absolute top-0 left-0 w-full h-full
+                 flex flex-col pt-3 items-center"
+                    >
+                        <div className="w-fit mx-auto">
+                            <img src={Alert_icon} className="w-20" alt="" />
+                        </div>
+                        <div
+                            className="w-[95%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white
+                         text-gray_v 
+                    rounded-lg py-5 px-4 md:px-10 flex flex-col justify-between "
+                        >
+                            <div className=" text-md font-semibold pb-2">
+                                Give us a feedback.
+                            </div>
+                            <div className=" flex gap-1 items-center justify-center py-2  text-2xl">
+                                <IoIosStar
+                                    className={` cursor-pointer ${
+                                        Rate >= 1
+                                            ? "text-yallow_v"
+                                            : "text-gray_white"
+                                    }`}
+                                    onClick={() => {
+                                        setRate(1);
+                                    }}
+                                />
+                                <IoIosStar
+                                    className={`  cursor-pointer ${
+                                        Rate >= 2
+                                            ? "text-yallow_v"
+                                            : "text-gray_white"
+                                    }`}
+                                    onClick={() => {
+                                        setRate(2);
+                                    }}
+                                />
+                                <IoIosStar
+                                    className={`  cursor-pointer ${
+                                        Rate >= 3
+                                            ? "text-yallow_v"
+                                            : "text-gray_white"
+                                    }`}
+                                    onClick={() => {
+                                        setRate(3);
+                                    }}
+                                />
+                                <IoIosStar
+                                    className={`  cursor-pointer ${
+                                        Rate >= 4
+                                            ? "text-yallow_v"
+                                            : "text-gray_white"
+                                    }`}
+                                    onClick={() => {
+                                        setRate(4);
+                                    }}
+                                />
+                                <IoIosStar
+                                    className={`  cursor-pointer ${
+                                        Rate == 5
+                                            ? "text-yallow_v"
+                                            : "text-gray_white"
+                                    }`}
+                                    onClick={() => {
+                                        setRate(5);
+                                    }}
+                                />
+                            </div>
+                            <div className=" py-3 text-xs text-gray_v">
+                                Your feedback is important to us! Please take a
+                                moment to share your thoughts about your
+                                experience working with us. We appreciate your
+                                input and use it to continually improve our
+                                services. Thank you for your time!
+                            </div>
+                            <textarea
+                                name=""
+                                rows={6}
+                                className=" border resize-none p-3 rounded-lg  placeholder:text-sm"
+                                placeholder="Add Comment Here"
+                                onChange={(e) => {
+                                    setComment(e.target.value);
+                                }}
+                                id=""
+                            ></textarea>
 
+                            <div
+                                className=" flex justify-center items-center
+                             gap-6  my-4"
+                            >
+                                {Feedback_Loading ? (
+                                    <span className="small-loader mr-8  w-fit"></span>
+                                ) : (
+                                    <div
+                                        onClick={() => {
+                                            if (Rate == 0)
+                                                Swal.fire(
+                                                    "Error",
+                                                    "Select a rate please",
+                                                    "error"
+                                                );
+                                            else if (Comment == "")
+                                                Swal.fire(
+                                                    "Error",
+                                                    "Write a comment Please",
+                                                    "error"
+                                                );
+                                            else {
+                                                handle_send_Feedback();
+                                            }
+                                        }}
+                                        className=" cursor-pointer text-white bg-green_v font-semibold py-3 px-5 rounded-lg "
+                                    >
+                                        Send
+                                    </div>
+                                )}
+                                <div
+                                    onClick={() => {
+                                        setOpenRate(false);
+                                    }}
+                                    className=" cursor-pointer text-white bg-blue-500 font-semibold py-3 px-5 rounded-lg "
+                                >
+                                    Cancel
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {show_Alert_completeProfile && <Alert_Complete_Profile />}
                 <div className="w-[90%] mx-auto max-w-[900px] pt-6">
                     <div className="font-semibold text-gray_v text-2xl">
@@ -339,7 +496,7 @@ function Freelancer_Process_item() {
                                 //  &&!project?.isWorkRejected
                                 <>
                                     <div className="">
-                                        <span className="text-green-500">
+                                        <span className="text-green_v">
                                             Client is waiting for your work :
                                         </span>{" "}
                                         please upload the files as soon as you
@@ -444,12 +601,12 @@ function Freelancer_Process_item() {
                             ) : project?.status === "Completed" ? (
                                 <>
                                     <div className="">
-                                        <span className="text-green-500">
+                                        <span className="text-green_v">
                                             Completed :
                                         </span>{" "}
                                         the project has been closed.
                                     </div>
-                                    <div className="w-full flex items-center justify-center">
+                                    <div className="w-full flex items-center justify-center flex-col gap-6">
                                         <a
                                             download={true}
                                             href={`http://localhost:3000${project?.work_Link}`}
@@ -459,6 +616,17 @@ function Freelancer_Process_item() {
                                             <MdOutlineFileDownload className=" text-xl  shrink-0" />
                                             Download Work
                                         </a>
+                                        {!project?.isFreelancer_send_Feedback && (
+                                            <div
+                                                className=" bg-green_v   py-1 px-2 w-fit rounded-md text-white mx-auto
+                                                cursor-pointer  flex items-center gap-2 "
+                                                onClick={() => {
+                                                    setOpenRate(true);
+                                                }}
+                                            >
+                                                Rate The Client
+                                            </div>
+                                        )}
                                     </div>
                                 </>
                             ) : project?.status === "Accepted" ? (

@@ -218,11 +218,13 @@ function Add_Project() {
                                                 )
                                             }
                                         />
-                                        <div>Less than 1 year</div>
+                                        <label htmlFor="less_than_1">
+                                            Less than 1 year{" "}
+                                        </label>
                                     </div>
                                     <div className=" flex gap-2  ">
                                         <input
-                                            id="less_than_1"
+                                            id="1-3-years"
                                             type="radio"
                                             // checked={
                                             //     values.Field_is_Graphic_design
@@ -239,7 +241,9 @@ function Add_Project() {
                                                 )
                                             }
                                         />
-                                        <div>1 - 3 years</div>
+                                        <label htmlFor="1-3-years">
+                                            1 - 3 years{" "}
+                                        </label>
                                     </div>
                                     <div className="flex gap-2">
                                         <input

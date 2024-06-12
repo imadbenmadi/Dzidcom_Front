@@ -120,7 +120,7 @@ function Freelancer_Process() {
                                                         //  &&!project?.isWorkRejected
                                                         <>
                                                             <div className="">
-                                                                <span className="text-green-500">
+                                                                <span className="text-green_v">
                                                                     Client is
                                                                     waiting for
                                                                     your work :
@@ -166,7 +166,7 @@ function Freelancer_Process() {
                                                     ) : project?.status ===
                                                       "Completed" ? (
                                                         <div className="">
-                                                            <span className="text-green-500">
+                                                            <span className="text-green_v">
                                                                 Completed :
                                                             </span>{" "}
                                                             <span className=" text-gray_v">
@@ -177,7 +177,7 @@ function Freelancer_Process() {
                                                     ) : project?.status ===
                                                       "Accepted" ? (
                                                         <div className="">
-                                                            <span className="text-green-500">
+                                                            <span className="text-green_v">
                                                                 Accepted :
                                                             </span>{" "}
                                                             <span className=" text-gray_v">

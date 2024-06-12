@@ -138,7 +138,7 @@ function Client_Projects() {
                                                 !project?.isWorkUploaded ? (
                                                     <>
                                                         <div className="">
-                                                            <span className="text-green-500">
+                                                            <span className="text-green_v">
                                                                 Payed :
                                                             </span>{" "}
                                                             Your payment
@@ -153,7 +153,7 @@ function Client_Projects() {
                                                   project?.isWorkUploaded &&
                                                   !project?.isWorkRejected ? (
                                                     <div className="">
-                                                        <span className="text-green-500">
+                                                        <span className="text-green_v">
                                                             Uploaded :
                                                         </span>{" "}
                                                         The Freelancer Upload
@@ -189,7 +189,7 @@ function Client_Projects() {
                                                 ) : project?.status ===
                                                   "Completed" ? (
                                                     <div className="">
-                                                        <span className="text-green-500">
+                                                        <span className="text-green_v">
                                                             Completed :
                                                         </span>{" "}
                                                         <span className=" text-gray_v">

@@ -24,13 +24,7 @@ function Freelancer_Process_item() {
     const [openUpload, setOpenUpload] = useState(false);
     const [Rejections, SetRejections] = useState([]);
     const [uploadLoading, setUploadLoading] = useState(false);
-    const toogle_upload = () => {
-        // if (openUpload) window.scrollTo(0, 0);
-        // setOpenUpload(!openUpload);
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 0);
-    };
+    
     useEffect(() => {
         if (openUpload) {
             // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -339,7 +333,7 @@ function Freelancer_Process_item() {
                                 //  &&!project?.isWorkRejected
                                 <>
                                     <div className="">
-                                        <span className="text-green-500">
+                                        <span className="text-green_v">
                                             Client is waiting for your work :
                                         </span>{" "}
                                         please upload the files as soon as you
@@ -444,7 +438,7 @@ function Freelancer_Process_item() {
                             ) : project?.status === "Completed" ? (
                                 <>
                                     <div className="">
-                                        <span className="text-green-500">
+                                        <span className="text-green_v">
                                             Completed :
                                         </span>{" "}
                                         the project has been closed.
