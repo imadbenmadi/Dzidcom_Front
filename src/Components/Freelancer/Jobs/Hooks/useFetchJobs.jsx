@@ -20,7 +20,6 @@ const useFetchJobs = (query) => {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get Jobs", response);
                 if (response.status === 200) {
                     setJobs(response.data.Jobs);
                 } else if (response.status === 401) {

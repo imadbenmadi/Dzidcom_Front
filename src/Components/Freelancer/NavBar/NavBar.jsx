@@ -27,7 +27,6 @@ function NavBar({ isProfileCompleted }) {
                     validateStatus: () => true,
                 }
             );
-            console.log("response from Logout : ", response);
             if (response.status == 204) {
                 // Successfully logged out, you may want to redirect to the login page or update the UI accordingly
                 store_logout();

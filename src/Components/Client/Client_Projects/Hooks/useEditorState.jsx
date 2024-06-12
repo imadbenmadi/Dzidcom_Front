@@ -12,12 +12,6 @@ const useEditorState = (initialContent) => {
         }
     });
 
-    // useEffect(() => {
-    //     const contentState = editorState.getCurrentContent();
-    //     const rawContentState = convertToRaw(contentState);
-    //     console.log("Current content:", JSON.stringify(rawContentState));
-    // }, [editorState]);
-
     return [editorState, setEditorState];
 };
 

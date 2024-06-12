@@ -42,7 +42,6 @@ function JobItem() {
                     validateStatus: () => true,
                 }
             );
-            console.log("response from get Jobs", response);
             if (response.status === 200) {
                 Swal.fire(
                     "Success",
@@ -67,7 +66,6 @@ function JobItem() {
     useEffect(() => {
         const fetchJob = async () => {
             setLoading(true);
-            // console.log("hjii");
             try {
                 const response = await axios.get(
                     `http://localhost:3000/Freelancers/Jobs/${job_id}`,
@@ -76,7 +74,6 @@ function JobItem() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get Jobs", response);
                 if (response.status === 200) {
                     const job = response.data.project;
                     setJob(job);

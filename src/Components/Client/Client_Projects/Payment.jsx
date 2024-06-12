@@ -105,14 +105,10 @@ function Payment() {
     // const handle_Delete_payment = async () => {
     //     setDeleteLoading(true);
     //     let formData = new FormData();
-    //     // console.log(image_state, values.CCP_number);
     //     // formData.append("CCP_number", values.CCP_number);
     //     // formData.append("image", image_state);
     //     formData.append("projectId", project.id);
-    //     for (let pair of formData.entries()) {
-    //         console.log(pair[0] + ": " + pair[1]); // Debug each formData entry
-    //     }
-    //     console.log("prject id : ", project.id);
+    //     
     //     try {
     //         const response = await axios.delete(
     //             `http://localhost:3000/upload/Payment`,
@@ -122,7 +118,6 @@ function Payment() {
     //                 validateStatus: () => true,
     //             }
     //         );
-    //         console.log("response from deleting payment : ", response.data);
     //         if (response.status === 200) {
     //             Swal.fire("Success", "Payment has been Deleted. ", "success");
     //             // Navigate("/Client/Projects");
@@ -133,7 +128,6 @@ function Payment() {
     //             Swal.fire("Error", response.data, "error");
     //         }
     //     } catch (error) {
-    //         console.log("response from deleting payment : ", error);
     //         Swal.fire("Error", error, "error");
     //     } finally {
     //         setDeleteLoading(false);

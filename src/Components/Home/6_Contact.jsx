@@ -26,7 +26,6 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(firstName, lastName, email, message);
     if (!firstName || !lastName || !email || !message) {
       Swal.fire({
         icon: "warning",
@@ -56,7 +55,6 @@ function Contact() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         setLoading(false);
         Swal.fire({
           icon: "success",
@@ -70,7 +68,6 @@ function Contact() {
         setMessage("");
       })
       .catch((error) => {
-        console.error("Error:", error);
         setLoading(false);
         Swal.fire({
           icon: "error",

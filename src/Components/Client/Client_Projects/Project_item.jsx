@@ -25,9 +25,7 @@ function ProjectItem() {
     const [Rate, setRate] = useState(0);
     const [Comment, setComment] = useState("");
     const [Feedback_Loading, setFeedback_Loading] = useState(false);
-    // useEffect(() => {
-    //     console.log(Reason);
-    // }, [Reason]);
+
     const [OpenRejection, setOpenRejection] = useState(false);
     const location = useLocation();
     const { user } = useAppContext();
@@ -35,9 +33,7 @@ function ProjectItem() {
     if (!location.pathname.split("/")[3]) {
         return <Navigate to="/Client/Projects" />;
     }
-    useEffect(() => {
-        console.log(Rejections);
-    }, [Rejections]);
+
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const Navigate = useNavigate();
     const [Delete_Loading, SetDelete_Loading] = useState(false);
@@ -53,7 +49,6 @@ function ProjectItem() {
                     validateStatus: () => true,
                 }
             );
-            console.log("response from delete project : ", response.data);
             if (response.status === 200) {
                 Swal.fire("Success", "Project Deleted Successfully", "success");
                 Navigate("/Client/Projects");
@@ -125,7 +120,6 @@ function ProjectItem() {
                     // validateStatus: () => true,
                 }
             );
-            console.log("response from reject work : ", response);
             if (response.status == 200) {
                 Swal.fire("Success", "Work Rejected Successfully", "success");
                 Navigate("/Client/Projects");
@@ -138,7 +132,6 @@ function ProjectItem() {
                 );
             }
         } catch (error) {
-            console.log("response from register: ", error);
             Swal.fire(
                 "Error!",
                 `Something Went Wrong ,please trye again latter`,
@@ -192,7 +185,6 @@ function ProjectItem() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from prject item : ", response.data);
                 if (response.status === 200) {
                     const project = response.data.Project;
                     setProject(project);
@@ -232,7 +224,6 @@ function ProjectItem() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get rejections : ", response.data);
                 if (response.status === 200) {
                     const Rejection_Resons = response.data.Rejection_Resons;
                     setRejections(Rejection_Resons);

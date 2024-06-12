@@ -205,7 +205,6 @@ function Step_2() {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            // console.log("values: ", values);
                             if (values.about == user.about) {
                                 delete values.about;
                             }

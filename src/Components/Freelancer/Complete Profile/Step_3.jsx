@@ -38,7 +38,6 @@ function Step_3() {
                     withCredentials: true,
                 }
             );
-            console.log("response from edit: ", response);
 
             if (response.status === 200) {
                 const updatedUser = {
@@ -46,13 +45,11 @@ function Step_3() {
                     Skills: response.data.Skills,
                     PortfolioItems: response.data.PortfolioItems,
                 };
-                console.log("updated user: ", updatedUser);
                 set_user(updatedUser);
             } else {
                 Swal.fire("Error", `${response.data.message}`, "error");
             }
         } catch (error) {
-            console.log("response from register: ", error);
             Swal.fire(
                 "Error!",
                 `Something went wrong, please try again later`,
@@ -409,7 +406,6 @@ function Step_3() {
                                         return errors;
                                     }}
                                     onSubmit={(values, { setSubmitting }) => {
-                                        console.log("values to send: ", values);
                                         if (stillWorking) delete values.endDate;
                                         const formattedData = {
                                             userId: values.userId,

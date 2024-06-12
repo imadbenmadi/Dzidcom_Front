@@ -70,7 +70,6 @@ function Freelancer_Process_item() {
                     // validateStatus: () => true,
                 }
             );
-            console.log("response from send FeedBack : ", response);
             if (response.status == 200) {
                 Swal.fire("Success", "Feedback Sended Successfully", "success");
                 Navigate("/Freelancer/Process");
@@ -79,7 +78,6 @@ function Freelancer_Process_item() {
                 Swal.fire("Error!", `${response.data.message} `, "error");
             }
         } catch (error) {
-            console.log("response from register: ", error);
             Swal.fire("Error!", `${error}`, "error");
         } finally {
             setFeedback_Loading(false);
@@ -99,7 +97,6 @@ function Freelancer_Process_item() {
                     validateStatus: () => true,
                 }
             );
-            console.log("Image_Response from upload image: ", Image_Response);
             if (Image_Response.status == 200) {
                 Swal.fire("Success", "File uploaded successfully", "success");
                 setOpenUpload(false);
@@ -120,7 +117,6 @@ function Freelancer_Process_item() {
                 );
             }
         } catch (error) {
-            console.log("error from upload image: ", error);
             Swal.fire("Error", "Something went wrong", "error");
         } finally {
             setOpenUpload(false);
@@ -138,11 +134,9 @@ function Freelancer_Process_item() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get process", response);
                 if (response.status == 200) {
                     const Project = response.data.Project;
                     setProject(Project);
-                    console.log("project description : ", Project.Description);
                     let contentState;
                     if (Project.Description) {
                         // Ensure project.Description is defined
@@ -183,7 +177,6 @@ function Freelancer_Process_item() {
                         validateStatus: () => true,
                     }
                 );
-                console.log("response from get rejections", response);
                 if (response.status == 200) {
                     const rejections = response.data.Rejection_Resons;
                     SetRejections(rejections);

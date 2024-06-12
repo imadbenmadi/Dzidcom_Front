@@ -40,7 +40,6 @@ function Laptop_Nav_Items({
             (notification) => notification.id !== id
         );
         set_Notifications(newNotifications);
-        console.log("data to be sent in delete notifications :", user.id, id);
         axios
             .delete(
                 `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
@@ -51,7 +50,6 @@ function Laptop_Nav_Items({
                 }
             )
             .then((res) => {
-                console.log("respose from delete notifications", res);
             })
             .catch((err) => {
                 console.log(err);

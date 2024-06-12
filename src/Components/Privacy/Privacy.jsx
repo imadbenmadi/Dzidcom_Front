@@ -39,7 +39,6 @@ function Privacy() {
                         );
                     }
                 } catch (error) {
-                    console.error("Error parsing content:", error);
                 }
             })
             .catch((error) =>

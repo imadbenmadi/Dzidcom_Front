@@ -8,7 +8,6 @@ async function handleEdite(
     { setSubmitting }
 ) {
     try {
-        console.log("values to send in Edite: ", values);
         if (image_state) {
             let formData = new FormData();
             formData.append("ProfilePic", image_state);
@@ -20,7 +19,6 @@ async function handleEdite(
                     validateStatus: () => true,
                 }
             );
-            console.log("Image_Response from upload image: ", Image_Response);
             if (Image_Response.status == 200) {
                 // set_user({
                 //     profile_pic_link: Image_Response.data.profile_pic_link,
@@ -50,7 +48,6 @@ async function handleEdite(
                 validateStatus: () => true,
             }
         );
-        console.log("response from edite profile: ", response);
         if (response.status == 200) {
             set_user(response.data.user);
             if (Link) {
@@ -76,7 +73,6 @@ async function handleEdite(
             );
         }
     } catch (error) {
-        console.log("response from register: ", error);
         setSubmitting(false);
         Swal.fire(
             "Error!",

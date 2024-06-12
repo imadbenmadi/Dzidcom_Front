@@ -131,7 +131,6 @@ function PersonalInformations() {
                     <div className=" shrink-0 text-xl underline font-semibold text-gray_v">
                         Skills :
                     </div>
-                    {/* {console.log(user.Skills)} */}
                     <div className="flex flex-wrap  gap-6">
                         {user?.Skills ? (
                             user.Skills.map((skill) => (

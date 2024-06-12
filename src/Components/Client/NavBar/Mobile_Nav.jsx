@@ -50,10 +50,8 @@ function Mobile_Nav({
                 }
             )
             .then((res) => {
-                console.log("respose from delete notifications", res);
             })
             .catch((err) => {
-                console.log(err);
             });
     };
     return (
