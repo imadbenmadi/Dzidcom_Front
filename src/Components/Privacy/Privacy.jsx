@@ -38,14 +38,12 @@ function Privacy() {
                             EditorState.createWithContent(contentState)
                         );
                     }
-                } catch (error) {
-                }
+                } catch (error) {}
             })
             .catch((error) =>
                 console.error("Error fetching initial content:", error)
             );
     }, []);
-
 
     return (
         <div className=" relative">

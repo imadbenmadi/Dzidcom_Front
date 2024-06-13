@@ -10,7 +10,7 @@ function PersonalInformations() {
     const Navigate = useNavigate();
     const { user } = useAppContext();
     return (
-        <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
+        <div className="  py-4 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
             <div className=" text-lg text-gray_v font-semibold flex items-center justify-between ">
                 <div className=" flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-6">
                     <div className=" text-xl underline font-semibold">

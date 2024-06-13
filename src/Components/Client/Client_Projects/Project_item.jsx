@@ -170,7 +170,6 @@ function ProjectItem() {
         }
     };
 
-
     useEffect(() => {
         setLoading(true);
 

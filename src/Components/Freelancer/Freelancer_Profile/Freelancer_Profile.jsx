@@ -4,6 +4,7 @@ import Alert_Complete_Profile from "../Alerts/Alert_Complete_Profile";
 import Hero from "./Hero";
 import Applications from "./Applications";
 import PersonalInformations from "./PersonalInformations";
+import Reviews from "./Reviews";
 function freelancer_Profile() {
     const { show_Alert_completeProfile } = useAppContext();
     return (
@@ -12,6 +13,7 @@ function freelancer_Profile() {
             <Hero />
             {/* <Applications /> */}
             <PersonalInformations />
+            <Reviews />
         </div>
     );
 }
