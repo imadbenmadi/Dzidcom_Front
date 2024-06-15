@@ -25,6 +25,17 @@ function ClientsSaid({ isChecked }) {
     useEffect(() => {
         console.log(Feedbacks);
     }, [Feedbacks]);
+    const handlePrevClick = () => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slidePrev();
+        }
+    };
+
+    const handleNextClick = () => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slideNext();
+        }
+    };
     useEffect(() => {
         setLoading(true);
         const fetchFeedbacks = async () => {
@@ -63,15 +74,22 @@ function ClientsSaid({ isChecked }) {
 
         fetchFeedbacks();
     }, []);
-    if (loading) {
-        return (
-            <div className="w-screen h-[50vh] flex flex-col items-center justify-center">
-                <span className="loader"></span>
-            </div>
-        );
-    } else if (error) {
-        return null;
-    }
+    const dataChoose = Feedbacks;
+    const [activeSlide, setActiveSlide] = useState(0);
+    const swiperRef = useRef(null);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    const containerVariants = {
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                staggerChildren: 1, // delay between child animations
+            },
+        },
+    };
 
     // const dataChoose = [
     //     {
@@ -101,36 +119,15 @@ function ClientsSaid({ isChecked }) {
     //     },
     //     // Add more data objects as needed
     // ];
-    const dataChoose = Feedbacks;
-    const [activeSlide, setActiveSlide] = useState(0);
-    const swiperRef = useRef(null);
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-
-    const containerVariants = {
-        hidden: { opacity: 0, scale: 0.5 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                staggerChildren: 1, // delay between child animations
-            },
-        },
-    };
-
-    const handlePrevClick = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
-            swiperRef.current.swiper.slidePrev();
-        }
-    };
-
-    const handleNextClick = () => {
-        if (swiperRef.current && swiperRef.current.swiper) {
-            swiperRef.current.swiper.slideNext();
-        }
-    };
-
-    if (!Feedbacks || Feedbacks.length === 0) return null;
+    if (loading) {
+        return (
+            <div className="w-screen h-[60vh] flex flex-col items-center justify-center">
+                <span className="loader"></span>
+            </div>
+        );
+    } else if (error) {
+        return null;
+    } else if (!Feedbacks || Feedbacks.length === 0) return null;
     else
         return (
             <div className="lg:px-16  max-md:px-5 px-5  max-w-[1200px] mx-auto">
