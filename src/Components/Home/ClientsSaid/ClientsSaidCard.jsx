@@ -6,7 +6,7 @@ import { IoIosStar } from "react-icons/io";
 
 function ClientsSaidCard({ image, user, text, Rate }) {
     return (
-        <div className=" text-black slide w-[100%] my-5 px-5 py-4 bg-white rounded-3xl shadow flex-col justify-start items-start gap-5 inline-flex">
+        <div className=" text-black slide w-[100%] min-h-[250px] my-5 px-5 py-4 bg-white rounded-3xl shadow flex-col justify-start items-start gap-5 inline-flex">
             <div className="flex justify-start items-center gap-4">
                 <div className="w-20 h-20 rounded-full">
                     <img
