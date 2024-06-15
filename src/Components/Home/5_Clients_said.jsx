@@ -133,7 +133,7 @@ function ClientsSaid({ isChecked }) {
     if (!Feedbacks || Feedbacks.length === 0) return null;
     else
         return (
-            <div className="lg:px-16  max-md:px-5 px-5 mt-10 max-w-[1200px] mx-auto">
+            <div className="lg:px-16  max-md:px-5 px-5  max-w-[1200px] mx-auto">
                 <motion.div
                     ref={ref}
                     variants={containerVariants}

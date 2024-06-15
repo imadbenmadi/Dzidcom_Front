@@ -57,7 +57,7 @@ function Services({ isChecked }) {
       variants={containerVariants}
       initial="hidden"
       animate={isInView ? "visible" : ""}
-      className=" lg:px-16 max-md:px-5 px-5 dark:text-white  mt-10"
+      className=" lg:px-16 max-md:px-5 px-5 dark:text-white  mt-10 min-h-[calc(100vh-120px)]"
     >
       <motion.div variants={itemVariants}>
         <div className="text-5xl  dark:text-white  leading-[72.8px] text-zinc-800 max-md:max-w-full max-md:text-4xl">
