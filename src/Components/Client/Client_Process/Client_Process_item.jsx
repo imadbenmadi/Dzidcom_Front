@@ -24,7 +24,7 @@ function Freelancer_Process_item() {
     const [openUpload, setOpenUpload] = useState(false);
     const [Rejections, SetRejections] = useState([]);
     const [uploadLoading, setUploadLoading] = useState(false);
-    
+
     useEffect(() => {
         if (openUpload) {
             // window.scrollTo({ top: 0, behavior: "smooth" });
@@ -146,12 +146,15 @@ function Freelancer_Process_item() {
                     const rejections = response.data.Rejection_Resons;
                     SetRejections(rejections);
                 } else if (response.status == 401) {
+                    SetRejections([]);
                     Swal.fire("Error", "you should login again", "error");
                     Naviagte("/Login");
                 } else {
                     // setError(response.data);
+                    SetRejections([]);
                 }
             } catch (error) {
+                SetRejections([]);
                 // setError(error);
             } finally {
                 // setLoading(false);
@@ -464,15 +467,38 @@ function Freelancer_Process_item() {
                             ) : null}
                         </div>
                     </div>
-                    {Rejections.length == 0 ? (
-                        <div>
+                    {Rejections?.length > 0 ? (
+                        <div className=" py-6">
                             <div className=" text-xl text-red-500  font-semibold">
                                 Rejections History
                             </div>
+                            <div>
+                                {Rejections.map((rejection, index) => (
+                                    <div
+                                        key={index}
+                                        className=" border p-4 rounded-lg my-6"
+                                    >
+                                        <div className=" flex justify-between items-center pb-6">
+                                            <div className="text-lg font-semibold text-gray_v">
+                                                Rejection Reason
+                                                <div className=" text-sm font-normal">
+                                                    {rejection.Reason}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className=" flex justify-between items-center">
+                                            <div className="text-sm font-semibold text-gray_v">
+                                                Rejected at :{" "}
+                                                {new Date(
+                                                    rejection.createdAt
+                                                ).toLocaleDateString()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    ) : (
-                        <div>no</div>
-                    )}
+                    ) : null}
                     <div className=" my-6 ">
                         <div className=" pb-2 font-semibold text-gray_v">
                             Project Details

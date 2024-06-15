@@ -6,61 +6,64 @@ import search from "../../../../public/Home/Hero/search.png";
 import { useState } from "react";
 import SwitcherContent from "./SwitcherContent";
 function HeroLeft({ isChecked, setIsChecked }) {
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-  return (
-    <div className="flex flex-col dark:text-white px-3 lg:px-16 md:pb-10 h-fit  max-md:px-5">
-      <div className="flex   w-fit  max-md:ml-0 max-md:w-full">
-        <div className="self-stretch dark:text-white max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
-          {!isChecked ? "Be a freelancer" : "Be a company"}
-        </div>
-        <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
-          {!isChecked ? (
-            <img
-              src={Arrow}
-              className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
-            />
-          ) : (
-            <img
-              src={ArrowWhite}
-              className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
-            />
-          )}
-        </div>
-        <div className=" flex  items-end mr-5 pb-5  max-md:ml-0 ">
-          <SwitcherContent isChecked={isChecked} setIsChecked={setIsChecked} />
-        </div>
-      </div>
-      <div className="flex   max-sm:flex-col max-md:justify-start max-md:items-start  w-full  mt-5 items-center gap-1">
-        {/* <div className="w-fit h-11  justify-center items-center gap-2 inline-flex"> */}
-        <div className="flex">
-          <div className="text-zinc-800  w-fit mx-1 px-2 py-3 bg-blue-100 rounded-3xl   lg:text-sm md:text-xs max-md:text-[10px]  font-normal font-['Poppins']">
-            Graphic designer
-          </div>
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+    return (
+        <div className="flex flex-col dark:text-white px-3 lg:px-16 md:pb-10 h-fit  max-md:px-5">
+            <div className="flex   w-fit  max-md:ml-0 max-md:w-full">
+                <div className="self-stretch dark:text-white max-lg:text-sm  my-auto text-lg font-medium text-zinc-800 max-md:mt-10">
+                    {!isChecked ? "Be a freelancer" : "Be a company"}
+                </div>
+                <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
+                    {!isChecked ? (
+                        <img
+                            src={ArrowWhite}
+                            className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
+                        />
+                    ) : (
+                        <img
+                            src={Arrow}
+                            className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
+                        />
+                    )}
+                </div>
+                <div className=" flex  items-end mr-5 pb-5  max-md:ml-0 ">
+                    <SwitcherContent
+                        isChecked={isChecked}
+                        setIsChecked={setIsChecked}
+                    />
+                </div>
+            </div>
+            <div className="flex   max-sm:flex-col max-md:justify-start max-md:items-start  w-full  mt-5 items-center gap-1">
+                {/* <div className="w-fit h-11  justify-center items-center gap-2 inline-flex"> */}
+                <div className="flex">
+                    <div className="text-zinc-800  w-fit mx-1 px-2 py-3 bg-blue-100 rounded-3xl   lg:text-sm md:text-xs max-md:text-[10px]  font-normal font-['Poppins']">
+                        Graphic designer
+                    </div>
 
-          <div className="text-zinc-800 max-md:text-[10px] w-fit text-center mx-1 px-2 py-3 bg-blue-100 rounded-3xl lg:text-sm md:text-xs  font-normal font-['Poppins']">
-            Ceo / SEO
-          </div>
-        </div>
+                    <div className="text-zinc-800 max-md:text-[10px] w-fit text-center mx-1 px-2 py-3 bg-blue-100 rounded-3xl lg:text-sm md:text-xs  font-normal font-['Poppins']">
+                        Ceo / SEO
+                    </div>
+                </div>
 
-        <div className="text-zinc-800 max-md:text-[10px] mx-1 px-2 py-3 bg-blue-100 rounded-3xl w-fit lg:text-sm md:text-xs  font-normal font-['Poppins']">
-          Content creation
-        </div>
-      </div>
-      <div className="mt-2 dark:text-white h-fit md:text-4xl max-md:text-5xl max-sm:text-2xl  leading-[75px] text-zinc-800 max-md:max-w-full  max-md:leading-[70px] max-sm:leading-[40px]">
-        {!isChecked
-          ? " Welcome to our Freelance Website!"
-          : "Welcome to Dzidcom our Freelance Website!"}
-      </div>
-      <div className="mt-2 dark:text-white lg:text-xl md:text-sm text-zinc-800 max-md:max-w-full">
-        {!isChecked
-          ? "Find the perfect freelancers or get hired for your next project."
-          : "Find a perfect job and get hired from successful companies."}
-      </div>
-      {/* <div className="flex relative gap-5 justify-between  lg:pl-6 max-md:pl-2 mt-8 w-full text-base whitespace-nowrap border border-solid border-zinc-300 rounded-[48px] max-md:flex-wrap  max-md:max-w-full">
+                <div className="text-zinc-800 max-md:text-[10px] mx-1 px-2 py-3 bg-blue-100 rounded-3xl w-fit lg:text-sm md:text-xs  font-normal font-['Poppins']">
+                    Content creation
+                </div>
+            </div>
+            <div className="mt-2 dark:text-white h-fit md:text-4xl max-md:text-5xl max-sm:text-2xl  leading-[75px] text-zinc-800 max-md:max-w-full  max-md:leading-[70px] max-sm:leading-[40px]">
+                {!isChecked
+                    ? " Welcome to our Freelance Website!"
+                    : "Welcome to Dzidcom our Freelance Website!"}
+            </div>
+            <div className="mt-2 dark:text-white lg:text-xl md:text-sm text-zinc-800 max-md:max-w-full">
+                {!isChecked
+                    ? "Find the perfect freelancers or get hired for your next project."
+                    : "Find a perfect job and get hired from successful companies."}
+            </div>
+            {/* <div className="flex relative gap-5 justify-between  lg:pl-6 max-md:pl-2 mt-8 w-full text-base whitespace-nowrap border border-solid border-zinc-300 rounded-[48px] max-md:flex-wrap  max-md:max-w-full">
         <div className="flex w-full  max-md:w-[70%]  my-auto text-zinc-700">
           <img src={search} className=" w-6 py-2  " />
           <input type="text" placeholder="Search" className="py-2 w-full " />
@@ -156,7 +159,7 @@ function HeroLeft({ isChecked, setIsChecked }) {
           </div>
         )}
       </div> */}
-      {/* <div
+            {/* <div
         onClick={toggleDropdown}
         className="flex md:hidden relative cursor-pointer gap-2 justify-center mt-2 p-2 border border-solid border-zinc-300 rounded-[48px] text-zinc-800"
       >
@@ -173,7 +176,7 @@ function HeroLeft({ isChecked, setIsChecked }) {
         </div>
       </div> */}
 
-      {/* <div className="mt-16 max-md:mt-10 max-md:max-w-full">
+            {/* <div className="mt-16 max-md:mt-10 max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex flex-col  max-md:ml-0 max-md:w-full">
             <div className="flex flex-col max-md:mt-8 max-md:max-w-full">
@@ -199,8 +202,8 @@ function HeroLeft({ isChecked, setIsChecked }) {
           </div>
         </div>
       </div> */}
-    </div>
-  );
+        </div>
+    );
 }
 
 export default HeroLeft;
