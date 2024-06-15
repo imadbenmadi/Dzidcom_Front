@@ -137,8 +137,8 @@ function ClientsSaid({ isChecked }) {
                 <motion.div
                     ref={ref}
                     variants={containerVariants}
-                    initial="hidden"
-                    animate={isInView ? "visible" : ""}
+                    // initial="hidden"
+                    // animate={isInView ? "visible" : ""}
                 >
                     <div
                         className="text-5xl dark:text-white leading-[72.8px] 
