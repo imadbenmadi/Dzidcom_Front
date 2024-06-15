@@ -67,7 +67,7 @@ function Freelancer_Process() {
                 <div>
                     {!Projcets || Projcets?.length == 0 ? (
                         <div className=" flex flex-col items-center justify-center">
-                            <div className="pt-24 flex justify-center items-center gap-2 text-gray-500 text-base font-semibold">
+                            <div className="pt-24 flex justify-center items-center gap-2 text-gray_v text-base font-semibold">
                                 <IoIosWarning />
                                 <h1>No Projects Found</h1>
                             </div>

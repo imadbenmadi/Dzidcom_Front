@@ -65,7 +65,7 @@ function Client_Projects() {
             <div>
                 {!Projcets || Projcets?.length == 0 ? (
                     <div className=" flex flex-col items-center justify-center">
-                        <div className="pt-24 flex justify-center items-center gap-2 text-gray-500 text-base font-semibold">
+                        <div className="pt-24 flex justify-center items-center gap-2 text-gray_v text-base font-semibold">
                             <IoIosWarning />
                             <h1>No Projects Found</h1>
                         </div>
@@ -276,7 +276,7 @@ function Client_Projects() {
                                                         <span className="text-perpol_v">
                                                             Pending
                                                         </span>{" "}
-                                                        <span className=" text-gray-500">
+                                                        <span className=" text-gray_v">
                                                             Ower team is
                                                             reviewing your
                                                             project

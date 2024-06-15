@@ -631,7 +631,7 @@ function Freelancer_Process_item() {
                                         <span className="text-green_v">
                                             Accepted :
                                         </span>{" "}
-                                        <span className=" text-gray-500">
+                                        <span className=" text-gray_v">
                                             waiting for the client to pay the
                                             project fees
                                         </span>
