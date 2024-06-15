@@ -2,7 +2,9 @@ import { useAppContext } from "../../../AppContext";
 import EditeIcon from "../../../../public/Profile/EditeIcon.png";
 import { IoIosAddCircle } from "react-icons/io";
 import { useNavigate } from "react-router";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import { FaFacebook, FaStar, FaStarHalf } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -203,9 +205,12 @@ function PersonalInformations() {
                     </div>
                     <div>
                         {user?.company_creationDate ? (
-                            new Date(
-                                user.company_creationDate
-                            ).toLocaleDateString()
+                            // new Date(
+                            //     user.company_creationDate
+                            // ).toLocaleDateString()
+                            dayjs(user?.company_creationDate).format(
+                                "DD MMMM YYYY"
+                            )
                         ) : (
                             <div className="text-sm">none</div>
                         )}

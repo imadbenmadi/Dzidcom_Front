@@ -1,7 +1,9 @@
 import React from "react";
 import { IoIosWarning } from "react-icons/io";
 import { Link } from "react-router-dom";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 const JobsList = ({ jobs, loading }) => {
     if (loading) {
         return (
@@ -72,7 +74,8 @@ const JobsList = ({ jobs, loading }) => {
                     <div className="flex items-center justify-between w-full font-semibold">
                         <div className="text-sm pt-1 text-gray_v">
                             Created at:{" "}
-                            {new Date(job?.createdAt).toLocaleDateString()}
+                            {/* {new Date(job?.createdAt).toLocaleDateString()} */}
+                            {dayjs(job?.createdAt).format("DD MMMM YYYY")}
                         </div>
                     </div>
                 </div>

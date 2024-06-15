@@ -6,7 +6,9 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 import { IoWarningOutline } from "react-icons/io5";
 import { IoMdAddCircleOutline } from "react-icons/io";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
 import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
@@ -245,16 +247,27 @@ function Step_3() {
                                                         </div>
                                                         <div className=" flex items-center gap-2 text-sm text-gray_v">
                                                             <div>
-                                                                {new Date(
+                                                                {/* {new Date(
                                                                     project.startDate
-                                                                ).toLocaleDateString()}
+                                                                ).toLocaleDateString()} */}
+                                                                {dayjs(
+                                                                    project?.startDate
+                                                                ).format(
+                                                                    "DD MMMM YYYY"
+                                                                )}
                                                             </div>
                                                             <div className=" flex gap-2">
                                                                 <div> -</div>
-                                                                {project.endDate &&
+                                                                {/* {project.endDate &&
                                                                     new Date(
                                                                         project.endDate
-                                                                    ).toLocaleDateString()}
+                                                                    ).toLocaleDateString()} */}
+                                                                {project.endDate &&
+                                                                    dayjs(
+                                                                        project?.endDate
+                                                                    ).format(
+                                                                        "DD MMMM YYYY"
+                                                                    )}
                                                             </div>
                                                             <div className="  font-semibold">
                                                                 {project.stillWorking

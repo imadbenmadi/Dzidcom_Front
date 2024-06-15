@@ -15,6 +15,9 @@ import payment_rejected_Notification from "../../../../public/Notifications/paym
 import Freelancer_uploaded_work_Notification from "../../../../public/Notifications/Freelancer_uploaded_work.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import axios from "axios";
 import { useAppContext } from "../../../AppContext";
 
@@ -183,9 +186,12 @@ function Mobile_Nav({
                                                 {notification?.text}
                                             </div>
                                             <div className="text-gray_v text-xs pt-1">
-                                                {new Date(
+                                                {/* {new Date(
                                                     notification?.createdAt
-                                                ).toLocaleDateString()}
+                                                ).toLocaleDateString()} */}
+                                                {dayjs(
+                                                    notification?.createdAt
+                                                ).format("DD MMMM YYYY")}
                                             </div>
                                         </div>
                                     </div>

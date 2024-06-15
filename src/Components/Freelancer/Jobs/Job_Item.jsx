@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 function JobItem() {
     const { user } = useAppContext();
     const Navigate = useNavigate();
@@ -158,7 +161,8 @@ function JobItem() {
                     <div className="flex items-center justify-between w-full font-semibold">
                         <div className="text-sm pt-1 text-gray_v">
                             Created at :{" "}
-                            {new Date(job?.createdAt).toLocaleDateString()}
+                            {/* {new Date(job?.createdAt).toLocaleDateString()} */}
+                            {dayjs(job?.createdAt).format("DD MMMM YYYY")}
                         </div>
                     </div>
                     <div className="flex items-center justify-between w-full">

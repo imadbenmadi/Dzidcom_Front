@@ -2,7 +2,9 @@ import { useAppContext } from "../../../AppContext";
 import EditeIcon from "../../../../public/Profile/EditeIcon.png";
 import { IoIosAddCircle } from "react-icons/io";
 import { useNavigate } from "react-router";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import { FaFacebook, FaStar, FaStarHalf } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -213,17 +215,23 @@ function PersonalInformations() {
                                     </div>
                                     <div className="flex items-center gap-2 text-sm text-gray_v">
                                         <div>
-                                            {new Date(
+                                            {/* {new Date(
                                                 project.startDate
-                                            ).toLocaleDateString()}
+                                            ).toLocaleDateString()} */}
+                                            {dayjs(project?.startDate).format(
+                                                "DD MMMM YYYY"
+                                            )}
                                         </div>
                                         <div className="flex gap-2">
                                             <div> -</div>
                                             {project.endDate && (
                                                 <div>
-                                                    {new Date(
+                                                    {/* {new Date(
                                                         project.endDate
-                                                    ).toLocaleDateString()}
+                                                    ).toLocaleDateString()} */}
+                                                    {dayjs(
+                                                        project?.endDate
+                                                    ).format("DD MMMM YYYY")}
                                                 </div>
                                             )}
                                         </div>

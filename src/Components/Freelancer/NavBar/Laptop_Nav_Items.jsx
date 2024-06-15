@@ -15,6 +15,9 @@ import payment_accepted_Notification from "../../../../public/Notifications/paym
 import payment_rejected_Notification from "../../../../public/Notifications/payment_rejected.png";
 import Freelancer_uploaded_work_Notification from "../../../../public/Notifications/Freelancer_uploaded_work.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import axios from "axios";
 
 function Laptop_Nav_Items({
@@ -317,9 +320,14 @@ function Laptop_Nav_Items({
                                                         {notification?.text}
                                                     </div>
                                                     <div className="text-gray_v text-xs pt-1">
-                                                        {new Date(
+                                                        {/* {new Date(
                                                             notification?.createdAt
-                                                        ).toLocaleDateString()}
+                                                        ).toLocaleDateString()} */}
+                                                        {dayjs(
+                                                            notification?.createdAt
+                                                        ).format(
+                                                            "DD MMMM YYYY"
+                                                        )}
                                                     </div>
                                                 </div>
                                             </div>

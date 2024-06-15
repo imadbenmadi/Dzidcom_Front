@@ -18,6 +18,9 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import Alert_icon from "../../../../public//Project/Alert.png";
 import { FaUpload } from "react-icons/fa";
 import Axios from "axios";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 function Freelancer_Process_item() {
     const [fileName, setFileName] = useState("");
     const [file, setFile] = useState(null);
@@ -489,9 +492,12 @@ function Freelancer_Process_item() {
                                         <div className=" flex justify-between items-center">
                                             <div className="text-sm font-semibold text-gray_v">
                                                 Rejected at :{" "}
-                                                {new Date(
+                                                {/* {new Date(
                                                     rejection.createdAt
-                                                ).toLocaleDateString()}
+                                                ).toLocaleDateString()} */}
+                                                {dayjs(
+                                                    rejection?.createdAt
+                                                ).format("DD MMMM YYYY")}
                                             </div>
                                         </div>
                                     </div>
@@ -548,9 +554,12 @@ function Freelancer_Process_item() {
                             <div className="flex items-center justify-between w-full font-semibold">
                                 <div className="text-sm pt-1 text-gray_v">
                                     Created at :{" "}
-                                    {new Date(
+                                    {/* {new Date(
                                         project?.createdAt
-                                    ).toLocaleDateString()}
+                                    ).toLocaleDateString()} */}
+                                    {dayjs(project?.createdAt).format(
+                                        "DD MMMM YYYY"
+                                    )}
                                 </div>
                             </div>
                         </div>

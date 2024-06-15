@@ -6,7 +6,9 @@ import { useLocation } from "react-router-dom";
 import { useAppContext } from "../../../AppContext.jsx";
 import { Editor, EditorState, convertFromRaw, ContentState } from "draft-js";
 import { IoIosStar } from "react-icons/io";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 import { MdOutlineFileDownload } from "react-icons/md";
 import Project_Accpted from "../../../../public/Project/Project_Accpted.png";
 import Project_Waiting from "../../../../public/Project/Project_Waiting.png";
@@ -786,9 +788,12 @@ function ProjectItem() {
                                     <div className=" flex justify-between items-center">
                                         <div className="text-sm font-semibold text-gray_v">
                                             Rejected at :{" "}
-                                            {new Date(
+                                            {/* {new Date(
                                                 rejection.createdAt
-                                            ).toLocaleDateString()}
+                                            ).toLocaleDateString()} */}
+                                            {dayjs(rejection?.createdAt).format(
+                                                "DD MMMM YYYY"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -845,9 +850,12 @@ function ProjectItem() {
                         <div className="flex items-center justify-between w-full font-semibold">
                             <div className="text-sm pt-1 text-gray_v">
                                 Created at :{" "}
-                                {new Date(
+                                {/* {new Date(
                                     project?.createdAt
-                                ).toLocaleDateString()}
+                                ).toLocaleDateString()} */}
+                                {dayjs(project?.createdAt).format(
+                                    "DD MMMM YYYY"
+                                )}
                             </div>
                         </div>
                     </div>

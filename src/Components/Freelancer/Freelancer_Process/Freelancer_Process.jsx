@@ -6,7 +6,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { IoIosWarning } from "react-icons/io";
 import Swal from "sweetalert2";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 function Freelancer_Process() {
     const Naviagte = useNavigate();
     const { user } = useAppContext();
@@ -209,9 +211,12 @@ function Freelancer_Process() {
                                         <div className="flex items-center justify-between w-full font-semibold">
                                             <div className="text-sm pt-1 text-gray_v">
                                                 Created at :{" "}
-                                                {new Date(
+                                                {/* {new Date(
                                                     project?.createdAt
-                                                ).toLocaleDateString()}
+                                                ).toLocaleDateString()} */}
+                                                {dayjs(
+                                                    project?.createdAt
+                                                ).format("DD MMMM YYYY")}
                                             </div>
                                         </div>
                                     </div>

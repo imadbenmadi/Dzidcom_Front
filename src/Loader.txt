@@ -20,6 +20,17 @@
 <span className="small-loader  w-full m-auto"></span>
 
 
+
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
+
+{dayjs(rejection?.createdAt).format(
+    "DD MMMM YYYY"
+)}
+
+
+
 {new Date(
     project.createdAt
 ).toLocaleDateString()}

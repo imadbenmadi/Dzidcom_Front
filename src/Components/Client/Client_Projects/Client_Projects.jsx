@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosWarning } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
-
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+dayjs.extend(customParseFormat);
 function Client_Projects() {
     const Naviagte = useNavigate();
     const { user } = useAppContext();
@@ -307,9 +309,12 @@ function Client_Projects() {
                                     <div className="flex items-center justify-between w-full font-semibold">
                                         <div className="text-sm pt-1 text-gray_v">
                                             Created at :{" "}
-                                            {new Date(
+                                            {/* {new Date(
                                                 project?.createdAt
-                                            ).toLocaleDateString()}
+                                            ).toLocaleDateString()} */}
+                                            {dayjs(project?.createdAt).format(
+                                                "DD MMMM YYYY"
+                                            )}
                                         </div>
                                     </div>
                                 </div>
