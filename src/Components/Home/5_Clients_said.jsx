@@ -22,9 +22,7 @@ function ClientsSaid({ isChecked }) {
     const [Feedbacks, setFeedbacks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    useEffect(() => {
-        console.log(Feedbacks);
-    }, [Feedbacks]);
+
     const handlePrevClick = () => {
         if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slidePrev();
@@ -47,7 +45,6 @@ function ClientsSaid({ isChecked }) {
                         // validateStatus: () => true,
                     }
                 );
-                console.log("response from get Feedbacks : ", response.data);
                 if (response.status === 200) {
                     // setFeedbacks(response.data.Feedbacks);
                     const transformedFeedbacks = response.data.map(

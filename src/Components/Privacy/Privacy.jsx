@@ -39,10 +39,8 @@ function Privacy() {
                         );
                     }
                 } catch (error) {}
-            })
-            .catch((error) =>
-                console.error("Error fetching initial content:", error)
-            );
+            });
+            
     }, []);
 
     return (

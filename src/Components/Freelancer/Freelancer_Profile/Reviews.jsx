@@ -8,7 +8,6 @@ function Reviews() {
     const [Loading, setLoading] = useState(false);
     const [Feedbacks, setFeedbacks] = useState([]);
     useEffect(() => {
-        console.log("start loading");
         setLoading(true);
         const fetchData = async () => {
             try {
@@ -19,10 +18,7 @@ function Reviews() {
                         // validateStatus: () => true,
                     }
                 );
-                console.log(
-                    "response from get Feedbacks",
-                    response.data.Feedbacks
-                );
+
                 if (response.status == 200) {
                     setFeedbacks(response.data.Feedbacks);
                 } else {

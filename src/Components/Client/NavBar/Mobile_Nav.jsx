@@ -41,7 +41,6 @@ function Mobile_Nav({
             (notification) => notification.id !== id
         );
         set_Notifications(newNotifications);
-        console.log("data to be sent in delete notifications :", user.id, id);
         axios
             .delete(
                 `http://localhost:3000/Clients/${user.id}/Notifications/${id}`,
@@ -51,10 +50,7 @@ function Mobile_Nav({
                     validateStatus: () => true,
                 }
             )
-            .then((res) => {
-            })
-            .catch((err) => {
-            });
+            
     };
     return (
         <div className=" md:hidden relative h-[60px] ">

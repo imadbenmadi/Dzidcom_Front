@@ -52,11 +52,7 @@ function Laptop_Nav_Items({
                     validateStatus: () => true,
                 }
             )
-            .then((res) => {
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            
     };
 
     return (

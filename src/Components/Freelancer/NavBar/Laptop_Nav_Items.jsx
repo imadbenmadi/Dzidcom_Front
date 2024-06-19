@@ -52,11 +52,7 @@ function Laptop_Nav_Items({
                     validateStatus: () => true,
                 }
             )
-            .then((res) => {
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            
     };
     return (
         <div className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12  md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 ">
