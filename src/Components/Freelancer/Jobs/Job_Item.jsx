@@ -34,7 +34,7 @@ function JobItem() {
         setSubmitting(true);
         try {
             const response = await axios.post(
-                `http://localhost:3000/Freelancers/Jobs/${job_id}/Apply`,
+                `https://dzidcom-back.skate.dz/Freelancers/Jobs/${job_id}/Apply`,
                 {
                     // freelancerId: user.id,
                     Freelancer_Time_Needed: values.Freelancer_Time_Needed,
@@ -71,7 +71,7 @@ function JobItem() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/Jobs/${job_id}`,
+                    `https://dzidcom-back.skate.dz/Freelancers/Jobs/${job_id}`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

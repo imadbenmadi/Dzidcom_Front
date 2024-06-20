@@ -12,7 +12,7 @@ async function handleEdite(
             let formData = new FormData();
             formData.append("ProfilePic", image_state);
             let Image_Response = await Axios.post(
-                `http://localhost:3000/upload/Client/ProfilePic`,
+                `https://dzidcom-back.skate.dz/upload/Client/ProfilePic`,
                 formData,
                 {
                     withCredentials: true,
@@ -32,7 +32,7 @@ async function handleEdite(
                 Swal.fire("Error!", `${Image_Response.data.message} `, "error");
             } else if (Image_Response.status == 500) {
                 Swal.fire("Error!", `Internal Server Error   `, "error");
-            }  else {
+            } else {
                 Swal.fire(
                     "Error!",
                     `Something Went Wrong ,please trye again latter, ${Image_Response.data.message} `,
@@ -41,7 +41,7 @@ async function handleEdite(
             }
         }
         let response = await Axios.put(
-            `http://localhost:3000/Clients/${values.userId}/Profile`,
+            `https://dzidcom-back.skate.dz/Clients/${values.userId}/Profile`,
             values,
             {
                 withCredentials: true,
@@ -64,7 +64,7 @@ async function handleEdite(
         } else if (response.status == 500) {
             setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        }  else {
+        } else {
             setSubmitting(false);
             Swal.fire(
                 "Error!",

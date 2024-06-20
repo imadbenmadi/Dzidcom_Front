@@ -43,16 +43,14 @@ function Laptop_Nav_Items({
             (notification) => notification.id !== id
         );
         set_Notifications(newNotifications);
-        axios
-            .delete(
-                `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
+        axios.delete(
+            `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Notifications/${id}`,
 
-                {
-                    withCredentials: true,
-                    validateStatus: () => true,
-                }
-            )
-            
+            {
+                withCredentials: true,
+                validateStatus: () => true,
+            }
+        );
     };
     return (
         <div className="hidden  md:flex  items-center justify-between mx-2 lg:mx-12  md:text-md lg:text-lg  font-[500] text-black_text h-full p-2 ">

@@ -3,7 +3,7 @@ import Axios from "axios";
 async function handleRegister(values, { setSubmitting }) {
     try {
         let response = await Axios.post(
-            "http://localhost:3000/Register",
+            "https://dzidcom-back.skate.dz/Register",
             values,
             {
                 withCredentials: true,
@@ -13,7 +13,7 @@ async function handleRegister(values, { setSubmitting }) {
         if (response.status == 200) {
             try {
                 let Login_response = await Axios.post(
-                    "http://localhost:3000/Login",
+                    "https://dzidcom-back.skate.dz/Login",
                     values,
                     {
                         withCredentials: true,
@@ -43,7 +43,7 @@ async function handleRegister(values, { setSubmitting }) {
         } else if (response.status == 500) {
             setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        }  else {
+        } else {
             setSubmitting(false);
             Swal.fire(
                 "Error!",

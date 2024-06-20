@@ -34,7 +34,7 @@ function Step_3() {
 
         try {
             let response = await Axios.put(
-                `http://localhost:3000/Freelancers/${user.id}/Profile`,
+                `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Profile`,
                 { PortfolioItems: updatedPortfolioItems }, // Send the updated list to the backend
                 {
                     withCredentials: true,
@@ -96,7 +96,7 @@ function Step_3() {
                                 <>
                                     <img
                                         src={
-                                            "http://localhost:3000/" +
+                                            "https://dzidcom-back.skate.dz/" +
                                             user.profile_pic_link
                                         }
                                         alt="Profile Pic"

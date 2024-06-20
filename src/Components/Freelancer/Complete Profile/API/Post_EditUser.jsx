@@ -12,7 +12,7 @@ async function handleEdite(
             let formData = new FormData();
             formData.append("ProfilePic", image_state);
             let Image_Response = await Axios.post(
-                `http://localhost:3000/upload/Freelancer/ProfilePic`,
+                `https://dzidcom-back.skate.dz/upload/Freelancer/ProfilePic`,
                 formData,
                 {
                     withCredentials: true,
@@ -41,7 +41,7 @@ async function handleEdite(
             }
         }
         let response = await Axios.put(
-            `http://localhost:3000/Freelancers/${values.userId}/Profile`,
+            `https://dzidcom-back.skate.dz/Freelancers/${values.userId}/Profile`,
             values,
             {
                 withCredentials: true,
@@ -64,7 +64,7 @@ async function handleEdite(
         } else if (response.status == 500) {
             setSubmitting(false);
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        }else {
+        } else {
             setSubmitting(false);
             Swal.fire(
                 "Error!",

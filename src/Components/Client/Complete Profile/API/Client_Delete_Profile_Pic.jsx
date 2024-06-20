@@ -8,7 +8,7 @@ async function Delete_Profile_Pic(
     setimageDeleteLoading(true);
     try {
         let Image_Response = await Axios.delete(
-            `http://localhost:3000/upload/Client/ProfilePic`,
+            `https://dzidcom-back.skate.dz/upload/Client/ProfilePic`,
             // {},
             {
                 withCredentials: true,
@@ -35,7 +35,7 @@ async function Delete_Profile_Pic(
             Swal.fire("Error!", `${Image_Response.data.message} `, "error");
         } else if (Image_Response.status == 500) {
             Swal.fire("Error!", `Internal Server Error   `, "error");
-        }  else {
+        } else {
             Swal.fire(
                 "Error!",
                 `Something Went Wrong ,please trye again latter, ${Image_Response.data.message} `,

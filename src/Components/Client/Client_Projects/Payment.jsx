@@ -29,7 +29,7 @@ function Payment() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${user.id}/Payment/${
+                    `https://dzidcom-back.skate.dz/Clients/${user.id}/Payment/${
                         location.pathname.split("/")[3]
                     }/status`,
                     {
@@ -76,7 +76,7 @@ function Payment() {
         
         try {
             const response = await axios.post(
-                `http://localhost:3000/upload/Payment`,
+                `https://dzidcom-back.skate.dz/upload/Payment`,
                 formData,
                 {
                     withCredentials: true,
@@ -111,7 +111,7 @@ function Payment() {
     //     
     //     try {
     //         const response = await axios.delete(
-    //             `http://localhost:3000/upload/Payment`,
+    //             `https://dzidcom-back.skate.dz/upload/Payment`,
     //             formData,
     //             {
     //                 withCredentials: true,
@@ -264,7 +264,7 @@ function Payment() {
                                                     <>
                                                         <img
                                                             src={
-                                                                "http://localhost:3000/" +
+                                                                "https://dzidcom-back.skate.dz/" +
                                                                 project.Pyament_ScreenShot_Link
                                                             }
                                                             id="img_from_server"
@@ -389,7 +389,7 @@ function Payment() {
                     <div className=" flex justify-center w-full">
                         <img
                             src={
-                                "http://localhost:3000/" +
+                                "https://dzidcom-back.skate.dz/" +
                                 project.Pyament_ScreenShot_Link
                             }
                             alt="Payment screen shot"

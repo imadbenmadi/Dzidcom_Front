@@ -62,7 +62,7 @@ function Freelancer_Process_item() {
         setFeedback_Loading(true);
         try {
             let response = await axios.post(
-                `http://localhost:3000/Freelancers/${user.id}/Rate/${project.ClientId}`,
+                `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Rate/${project.ClientId}`,
                 {
                     Rate,
                     Comment,
@@ -93,7 +93,7 @@ function Freelancer_Process_item() {
             formData.append("files", file);
             formData.append("projectId", projectId);
             let Image_Response = await Axios.post(
-                `http://localhost:3000/upload/Work`,
+                `https://dzidcom-back.skate.dz/upload/Work`,
                 formData,
                 {
                     withCredentials: true,
@@ -131,7 +131,7 @@ function Freelancer_Process_item() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/Process/${projectId}`,
+                    `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Process/${projectId}`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,
@@ -174,7 +174,7 @@ function Freelancer_Process_item() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/${projectId}/Rejections`,
+                    `https://dzidcom-back.skate.dz/Freelancers/${user.id}/${projectId}/Rejections`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,
@@ -512,7 +512,7 @@ function Freelancer_Process_item() {
                                         {project?.isWorkUploaded && (
                                             <a
                                                 download={true}
-                                                href={`http://localhost:3000${project?.work_Link}`}
+                                                href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
                                                 className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-green_v  flex items-center gap-2 "
                                             >
@@ -548,7 +548,7 @@ function Freelancer_Process_item() {
                                         {project?.isWorkUploaded && (
                                             <a
                                                 download={true}
-                                                href={`http://localhost:3000${project?.work_Link}`}
+                                                href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
                                                 className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-green_v  flex items-center gap-2 "
                                             >
@@ -583,7 +583,7 @@ function Freelancer_Process_item() {
                                         {project?.isWorkUploaded && (
                                             <a
                                                 download={true}
-                                                href={`http://localhost:3000${project?.work_Link}`}
+                                                href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
                                                 className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-green_v  flex items-center gap-2 "
                                             >
@@ -605,7 +605,7 @@ function Freelancer_Process_item() {
                                     <div className="w-full flex items-center justify-center flex-col gap-6">
                                         <a
                                             download={true}
-                                            href={`http://localhost:3000${project?.work_Link}`}
+                                            href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
                                             className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-perpol_v  flex items-center gap-2 "
                                         >

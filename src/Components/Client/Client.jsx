@@ -48,13 +48,13 @@ function Client() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${userId}/Profile`,
+                    `https://dzidcom-back.skate.dz/Clients/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
                     }
                 );
-                
+
                 if (response.status == 200) {
                     set_user(response.data.User);
                 } else {
@@ -71,13 +71,13 @@ function Client() {
         const fetchNotifications = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${userId}/Notifications`,
+                    `https://dzidcom-back.skate.dz/Clients/${userId}/Notifications`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
                     }
                 );
-                
+
                 if (response.status == 200) {
                     set_Notifications(response.data.Notifications);
                 } else {

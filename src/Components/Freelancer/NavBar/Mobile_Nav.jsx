@@ -44,17 +44,15 @@ function Mobile_Nav({
         set_Notifications(newNotifications);
         axios
             .delete(
-                `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
+                `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Notifications/${id}`,
 
                 {
                     withCredentials: true,
                     validateStatus: () => true,
                 }
             )
-            .then((res) => {
-            })
-            .catch((err) => {
-            });
+            .then((res) => {})
+            .catch((err) => {});
     };
     return (
         <div className=" md:hidden relative h-[60px] border-b">

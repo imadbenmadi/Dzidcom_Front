@@ -41,16 +41,14 @@ function Mobile_Nav({
             (notification) => notification.id !== id
         );
         set_Notifications(newNotifications);
-        axios
-            .delete(
-                `http://localhost:3000/Clients/${user.id}/Notifications/${id}`,
+        axios.delete(
+            `https://dzidcom-back.skate.dz/Clients/${user.id}/Notifications/${id}`,
 
-                {
-                    withCredentials: true,
-                    validateStatus: () => true,
-                }
-            )
-            
+            {
+                withCredentials: true,
+                validateStatus: () => true,
+            }
+        );
     };
     return (
         <div className=" md:hidden relative h-[60px] ">
