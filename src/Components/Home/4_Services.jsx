@@ -22,7 +22,7 @@ function Services({ isChecked }) {
         },
         {
             image: image2,
-            text: "CEO / SEO",
+            text: "SMM / SEO",
         },
         {
             image: image3,
@@ -30,7 +30,7 @@ function Services({ isChecked }) {
         },
         {
             image: image2,
-            text: "CEO / SEO",
+            text: "SMM / SEO",
         },
     ];
     const ref = useRef(null);

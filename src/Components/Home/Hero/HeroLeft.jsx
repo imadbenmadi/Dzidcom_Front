@@ -190,7 +190,7 @@ function HeroLeft({ isChecked, setIsChecked }) {
                   Graphic designer
                 </div>
                 <div className="justify-center px-6 py-3 bg-blue-100 rounded-[48px] max-md:px-5">
-                  Ceo / SEO
+                  SMM / SEO
                 </div>
                 <div className="justify-center px-6 py-3 bg-blue-100 rounded-[48px] max-md:px-5">
                   Content creation
