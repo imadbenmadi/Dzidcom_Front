@@ -88,6 +88,7 @@ function Freelancer_Process_item() {
     };
     const uploadFile = async () => {
         setOpenUpload(true);
+        setUploadLoading(true);
         try {
             let formData = new FormData();
             formData.append("files", file);
@@ -122,6 +123,7 @@ function Freelancer_Process_item() {
         } catch (error) {
             Swal.fire("Error", "Something went wrong", "error");
         } finally {
+            setUploadLoading(false);
             setOpenUpload(false);
         }
     };
@@ -220,11 +222,15 @@ function Freelancer_Process_item() {
     //     );
     else
         return (
-            <div className=" w-full h-full relative">
+            <div className=" w-full h-full relative  min-h-[calc(100vh-60px)]">
                 {openUpload && (
                     <div className="bg-gray_v bg-opacity-10 z-10 absolute top-0 left-0 w-full h-full flex flex-col pt-10 items-center">
                         <div className="w-fit mx-auto">
-                            <img src={Alert_icon} className="w-20" alt="" />
+                            <img
+                                src={Alert_icon}
+                                className="w-20  object-cover"
+                                alt=""
+                            />
                         </div>
                         <div className="w-[90%] mx-auto md:mx-0  md:w-[600px] h-fit bg-white text-gray_v rounded-lg py-5 px-10 flex flex-col justify-between">
                             <div>
@@ -335,7 +341,11 @@ function Freelancer_Process_item() {
                  flex flex-col pt-3 items-center"
                     >
                         <div className="w-fit mx-auto">
-                            <img src={Alert_icon} className="w-20" alt="" />
+                            <img
+                                src={Alert_icon}
+                                className="w-20  object-cover"
+                                alt=""
+                            />
                         </div>
                         <div
                             className="w-[95%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white
@@ -467,13 +477,13 @@ function Freelancer_Process_item() {
                             {project?.status === "Accepted" ? (
                                 <img
                                     src={Project_Accpted}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Completed" ? (
                                 <img
                                     src={Project_Done}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Payed" ||
@@ -481,7 +491,7 @@ function Freelancer_Process_item() {
                                   project?.FreelancerId) ? (
                                 <img
                                     src={Project_Waiting2}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : null}

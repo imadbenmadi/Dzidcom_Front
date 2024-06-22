@@ -73,7 +73,7 @@ function Payment() {
         formData.append("CCP_number", values.CCP_number);
         formData.append("image", image_state);
         formData.append("projectId", project.id);
-        
+
         try {
             const response = await axios.post(
                 `https://dzidcom-back.skate.dz/upload/Payment`,
@@ -108,7 +108,7 @@ function Payment() {
     //     // formData.append("CCP_number", values.CCP_number);
     //     // formData.append("image", image_state);
     //     formData.append("projectId", project.id);
-    //     
+    //
     //     try {
     //         const response = await axios.delete(
     //             `https://dzidcom-back.skate.dz/upload/Payment`,
@@ -143,7 +143,11 @@ function Payment() {
                 <span className=" text-xs">CCP</span>
             </div>
             <div className=" text-gray_v flex justify-center md:justify-start flex-col md:flex-row items-start gap-3 md:gap-12 ">
-                <img src={CCP_icon} alt="" className=" w-[170px]" />
+                <img
+                    src={CCP_icon}
+                    alt=""
+                    className=" w-[170px]  object-cover"
+                />
                 <div>
                     <div className=" flex flex-col gap-4">
                         <div>

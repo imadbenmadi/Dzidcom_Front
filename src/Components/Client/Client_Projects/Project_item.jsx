@@ -274,14 +274,18 @@ function ProjectItem() {
             </div>
         );
     return (
-        <div className=" relative">
+        <div className=" relative min-h-[calc(100vh-60px)]">
             {OpenRejection && (
                 <div
                     className="bg-gray_v bg-opacity-50 z-10 absolute top-0 left-0 w-full h-full
                  flex flex-col pt-10 items-center"
                 >
                     <div className="w-fit mx-auto">
-                        <img src={Alert_icon} className="w-20" alt="" />
+                        <img
+                            src={Alert_icon}
+                            className="w-20  object-cover"
+                            alt=""
+                        />
                     </div>
                     <div
                         className="w-[95%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white
@@ -345,7 +349,11 @@ function ProjectItem() {
                  flex flex-col pt-3 items-center"
                 >
                     <div className="w-fit mx-auto">
-                        <img src={Alert_icon} className="w-20" alt="" />
+                        <img
+                            src={Alert_icon}
+                            className="w-20  object-cover"
+                            alt=""
+                        />
                     </div>
                     <div
                         className="w-[95%] mx-auto md:mx-0 md:w-[600px] h-fit bg-white
@@ -478,25 +486,25 @@ function ProjectItem() {
                             !project?.FreelancerId ? (
                                 <img
                                     src={Project_Accpted}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Pending" ? (
                                 <img
                                     src={Project_Waiting}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Rejected" ? (
                                 <img
                                     src={Project_Rejected}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Completed" ? (
                                 <img
                                     src={Project_Done}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : project?.status === "Payed" ||
@@ -504,7 +512,7 @@ function ProjectItem() {
                                   project?.FreelancerId) ? (
                                 <img
                                     src={Project_Waiting2}
-                                    className="w-[250px]"
+                                    className="w-[250px]  object-cover"
                                     alt=""
                                 />
                             ) : null}

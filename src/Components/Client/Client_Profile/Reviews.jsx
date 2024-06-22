@@ -48,7 +48,9 @@ function Reviews() {
         return (
             <div>
                 {!Feedbacks || Feedbacks?.length == 0 ? (
-                    <div>No feedbacks</div>
+                    <div className=" text-center text-sm font-semibold text-gray_v pb-6">
+                        No feedbacks
+                    </div>
                 ) : (
                     <div className=" max-w-[90%] mx-auto pb-12">
                         {Feedbacks?.length > 0 &&

@@ -7,6 +7,7 @@ async function handleEdite(
     image_state,
     { setSubmitting }
 ) {
+    setSubmitting(true);
     try {
         if (image_state) {
             let formData = new FormData();

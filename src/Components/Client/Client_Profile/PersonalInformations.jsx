@@ -29,7 +29,7 @@ function PersonalInformations() {
                 <img
                     src={EditeIcon}
                     alt="EditeIcon"
-                    className=" w-8 h-8 cursor-pointer"
+                    className=" w-8 h-8 cursor-pointer "
                     onClick={() => {
                         // window.location.href =
                         //     "/Client/Complete_Profile/Step_2";

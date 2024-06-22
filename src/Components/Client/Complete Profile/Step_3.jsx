@@ -21,7 +21,7 @@ function Step_1() {
     return (
         <div className=" flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px]  flex flex-col gap-6  ">
-                <div className=" flex items-center justify-start gap-12 w-full ">
+                <div className=" flex flex-col md:flex-row items-center justify-start gap-12 w-full ">
                     <div className=" order-2 md:order-1">
                         <div className=" w-full">
                             <input

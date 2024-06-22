@@ -25,7 +25,11 @@ function Hero() {
                         className=" w-[150px]  object-cover rounded-full"
                     />
                 ) : (
-                    <img src={user_default} alt="" className=" w-32" />
+                    <img
+                        src={user_default}
+                        alt=""
+                        className=" w-32  object-cover"
+                    />
                 )}
                 <div className=" flex items-center justify-center flex-col mb-6">
                     <div className=" text-xl font-semibold mb-4 text-gray_v">
