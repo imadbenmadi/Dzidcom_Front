@@ -40,11 +40,12 @@ function Client() {
         set_show_Alert_completeProfile,
         set_Notifications,
     } = useAppContext();
-    if (!isAuth || !userId) {
-        // window.location.href = "/Login";
-        Navigate("/Login");
-    }
+   
     useEffect(() => {
+         if (!isAuth || !userId) {
+             // window.location.href = "/Login";
+             Navigate("/Login");
+         }
         const fetchData = async () => {
             try {
                 const response = await axios.get(
