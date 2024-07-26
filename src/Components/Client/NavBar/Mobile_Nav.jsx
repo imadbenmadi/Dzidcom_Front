@@ -68,9 +68,9 @@ function Mobile_Nav({
                 <div className=" flex items-center justify-center gap-4 md:gap-6">
                     {isProfileCompleted && (
                         <>
-                            {/* <div>
+                            <Link to={"/Client/chats"}>
                                 <img src={message_icon} alt="" />
-                            </div> */}
+                            </Link>
                             <div>
                                 <img
                                     src={notification_icon}

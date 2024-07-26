@@ -141,9 +141,9 @@ function Laptop_Nav_Items({
             <div className=" flex items center justify-center gap-5">
                 {isProfileCompleted ? (
                     <div className="flex items-center justify-center gap-6 ">
-                        {/* <div>
+                        <Link to={"/Freelancer/chats"}>
                             <img src={message_icon} alt="" />
-                        </div> */}
+                        </Link>
                         <div className="relative">
                             {Notifications?.length > 0 && (
                                 <div className=" w-2 h-2 rounded-full bg-red-500 absolute top-0 right-0 "></div>

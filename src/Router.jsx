@@ -35,6 +35,11 @@ import Client_Payment from "./Components/Client/Client_Projects/Payment";
 import Client_Add_Project from "./Components/Client/Client_Projects/Add_Project";
 import Client_Project_item from "./Components/Client/Client_Projects/Project_item";
 
+import Client_chatList from "./Components/Client/Chat/ChatList";
+import Client_chatRoom from "./Components/Client/Chat/Chatroom";
+import Freelancer_chatList from "./Components/Freelancer/Chat/ChatList";
+import Freelancer_chatRoom from "./Components/Freelancer/Chat/Chatroom";
+
 import Privacy from "./Components/Privacy/Privacy";
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -69,6 +74,7 @@ const routes = createBrowserRouter([
                 element: <Privacy />,
                 errorElement: <ErrorElement />,
             },
+
             {
                 path: "/Freelancer",
                 element: <Freelancer />,
@@ -133,6 +139,16 @@ const routes = createBrowserRouter([
                     //     element: <Freelancer_Messages />,
                     // },
                     {
+                        path: "/Freelancer/chats",
+                        element: <Freelancer_chatList />,
+                        errorElement: <ErrorElement />,
+                    },
+                    {
+                        path: "/Freelancer/chats/:chatId",
+                        element: <Freelancer_chatRoom />,
+                        errorElement: <ErrorElement />,
+                    },
+                    {
                         path: "*",
                         element: <Not_Found />,
                     },
@@ -190,6 +206,16 @@ const routes = createBrowserRouter([
                     {
                         path: "/Client/Projects/:projectId/Payment",
                         element: <Client_Payment />,
+                    },
+                    {
+                        path: "/Client/chats",
+                        element: <Client_chatList />,
+                        errorElement: <ErrorElement />,
+                    },
+                    {
+                        path: "/Client/chats/:chatId",
+                        element: <Client_chatRoom />,
+                        errorElement: <ErrorElement />,
                     },
                     // {
                     //     path: "/Client/Process",
