@@ -44,7 +44,7 @@ function Mobile_Nav({
         set_Notifications(newNotifications);
         axios
             .delete(
-                `https://dzidcom-back.skate.dz/Freelancers/${user.id}/Notifications/${id}`,
+                `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
 
                 {
                     withCredentials: true,

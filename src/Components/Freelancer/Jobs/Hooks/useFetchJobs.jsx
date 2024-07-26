@@ -14,7 +14,7 @@ const useFetchJobs = (query) => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Freelancers/Jobs?${query}`,
+                    `http://localhost:3000/Freelancers/Jobs?${query}`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

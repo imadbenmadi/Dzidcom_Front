@@ -44,7 +44,7 @@ function Laptop_Nav_Items({
         );
         set_Notifications(newNotifications);
         axios.delete(
-            `https://dzidcom-back.skate.dz/Clients/${user.id}/Notifications/${id}`,
+            `http://localhost:3000/Clients/${user.id}/Notifications/${id}`,
 
             {
                 withCredentials: true,

@@ -14,7 +14,7 @@ function App() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "https://dzidcom-back.skate.dz/Check_Auth",
+                    "http://localhost:3000/Check_Auth",
                     {
                         withCredentials: true,
                         validateStatus: () => true,

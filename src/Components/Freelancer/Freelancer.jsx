@@ -47,7 +47,7 @@ function Freelancer() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Freelancers/${userId}/Profile`,
+                    `http://localhost:3000/Freelancers/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
@@ -70,7 +70,7 @@ function Freelancer() {
         const fetchNotifications = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Freelancers/${userId}/Notifications`,
+                    `http://localhost:3000/Freelancers/${userId}/Notifications`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,

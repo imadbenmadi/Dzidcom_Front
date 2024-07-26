@@ -41,7 +41,7 @@ function Contact() {
             });
         }
         setLoading(true);
-        fetch("https://dzidcom-back.skate.dz/Contact", {
+        fetch("http://localhost:3000/Contact", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

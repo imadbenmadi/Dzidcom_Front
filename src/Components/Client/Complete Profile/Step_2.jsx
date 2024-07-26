@@ -48,7 +48,7 @@ function Step_2() {
                                 <>
                                     <img
                                         src={
-                                            "https://dzidcom-back.skate.dz/" +
+                                            "http://localhost:3000/" +
                                             user.profile_pic_link
                                         }
                                         alt="Profile Pic"

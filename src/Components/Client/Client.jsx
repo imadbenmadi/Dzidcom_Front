@@ -40,16 +40,16 @@ function Client() {
         set_show_Alert_completeProfile,
         set_Notifications,
     } = useAppContext();
-   
+
     useEffect(() => {
-         if (!isAuth || !userId) {
-             // window.location.href = "/Login";
-             Navigate("/Login");
-         }
+        if (!isAuth || !userId) {
+            // window.location.href = "/Login";
+            Navigate("/Login");
+        }
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${userId}/Profile`,
+                    `http://localhost:3000/Clients/${userId}/Profile`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
@@ -72,7 +72,7 @@ function Client() {
         const fetchNotifications = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${userId}/Notifications`,
+                    `http://localhost:3000/Clients/${userId}/Notifications`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,

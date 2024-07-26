@@ -24,7 +24,7 @@ function Card({ feedback, Feedbacks, setFeedbacks }) {
                     <div className="text-lg font-semibold">
                         <img
                             src={
-                                "https://dzidcom-back.skate.dz" +
+                                "http://localhost:3000" +
                                 feedback?.Freelancer?.profile_pic_link
                             }
                             className=" w-20 h-20 rounded-full  object-cover"

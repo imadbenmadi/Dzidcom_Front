@@ -10,7 +10,7 @@ function ClientsSaidCard({ image, user, text, Rate }) {
             <div className="flex justify-start items-center gap-4">
                 <div className="w-20 h-20 rounded-full">
                     <img
-                        src={"https://dzidcom-back.skate.dz" + image}
+                        src={"http://localhost:3000" + image}
                         alt=""
                         className="w-full h-full rounded-full"
                     />

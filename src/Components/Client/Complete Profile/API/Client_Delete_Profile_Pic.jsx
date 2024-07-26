@@ -8,7 +8,7 @@ async function Delete_Profile_Pic(
     setimageDeleteLoading(true);
     try {
         let Image_Response = await Axios.delete(
-            `https://dzidcom-back.skate.dz/upload/Client/ProfilePic`,
+            `http://localhost:3000/upload/Client/ProfilePic`,
             // {},
             {
                 withCredentials: true,

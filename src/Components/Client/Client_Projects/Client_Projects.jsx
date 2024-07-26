@@ -22,7 +22,7 @@ function Client_Projects() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${user.id}/Projects`,
+                    `http://localhost:3000/Clients/${user.id}/Projects`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

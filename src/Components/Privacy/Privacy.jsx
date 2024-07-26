@@ -9,7 +9,7 @@ function Privacy() {
     const prevPage = new URLSearchParams(location.search).get("prev");
 
     useEffect(() => {
-        fetch("https://dzidcom-back.skate.dz/privacy")
+        fetch("http://localhost:3000/privacy")
             .then((response) => response.json())
             .then((data) => {
                 try {

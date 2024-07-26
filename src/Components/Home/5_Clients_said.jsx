@@ -39,7 +39,7 @@ function ClientsSaid({ isChecked }) {
         const fetchFeedbacks = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Home_Feedbacks`,
+                    `http://localhost:3000/Home_Feedbacks`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,

@@ -13,7 +13,7 @@ async function handleEdite(
             let formData = new FormData();
             formData.append("ProfilePic", image_state);
             let Image_Response = await Axios.post(
-                `https://dzidcom-back.skate.dz/upload/Freelancer/ProfilePic`,
+                `http://localhost:3000/upload/Freelancer/ProfilePic`,
                 formData,
                 {
                     withCredentials: true,
@@ -42,7 +42,7 @@ async function handleEdite(
             }
         }
         let response = await Axios.put(
-            `https://dzidcom-back.skate.dz/Freelancers/${values.userId}/Profile`,
+            `http://localhost:3000/Freelancers/${values.userId}/Profile`,
             values,
             {
                 withCredentials: true,

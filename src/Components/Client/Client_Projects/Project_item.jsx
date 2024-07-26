@@ -43,7 +43,7 @@ function ProjectItem() {
         SetDelete_Loading(true);
         try {
             const response = await axios.delete(
-                `https://dzidcom-back.skate.dz/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user.id}/Projects/${
                     location.pathname.split("/")[3]
                 }`,
                 {
@@ -73,7 +73,7 @@ function ProjectItem() {
         setAccept_Loading(true);
         try {
             let response = await axios.post(
-                `https://dzidcom-back.skate.dz/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user.id}/Projects/${
                     location.pathname.split("/")[3]
                 }/Accept_work`,
                 {},
@@ -112,7 +112,7 @@ function ProjectItem() {
         setReject_Loading(true);
         try {
             let response = await axios.post(
-                `https://dzidcom-back.skate.dz/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user.id}/Projects/${
                     location.pathname.split("/")[3]
                 }/Reject_work`,
                 { Reason },
@@ -147,7 +147,7 @@ function ProjectItem() {
         setFeedback_Loading(true);
         try {
             let response = await axios.post(
-                `https://dzidcom-back.skate.dz/Clients/${user.id}/Rate/${project.FreelancerId}`,
+                `http://localhost:3000/Clients/${user.id}/Rate/${project.FreelancerId}`,
                 {
                     Rate,
                     Comment,
@@ -178,9 +178,9 @@ function ProjectItem() {
         const fetchProject = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${
-                        user.id
-                    }/Projects/${location.pathname.split("/")[3]}`,
+                    `http://localhost:3000/Clients/${user.id}/Projects/${
+                        location.pathname.split("/")[3]
+                    }`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,
@@ -217,7 +217,7 @@ function ProjectItem() {
         const fetchRejections = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${user.id}/${
+                    `http://localhost:3000/Clients/${user.id}/${
                         location.pathname.split("/")[3]
                     }/Rejections`,
                     {
@@ -614,7 +614,7 @@ function ProjectItem() {
                                     <div className=" pt-4 flex flex-col justify-center items-center gap-6">
                                         <a
                                             download={true}
-                                            href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
+                                            href={`http://localhost:3000${project?.work_Link}`}
                                             className=" mt-4 py-1 px-2 w-fit rounded-md text-white mx-auto
                                                 cursor-pointer bg-perpol_v  flex items-center gap-2 "
                                         >
@@ -736,7 +736,7 @@ function ProjectItem() {
                                     </div>
                                     <a
                                         download={true}
-                                        href={`https://dzidcom-back.skate.dz${project?.work_Link}`}
+                                        href={`http://localhost:3000${project?.work_Link}`}
                                         className=" mt-4 py-1 px-2 rounded-md text-white mx-auto
                                                 cursor-pointer bg-perpol_v  flex items-center gap-2 "
                                     >

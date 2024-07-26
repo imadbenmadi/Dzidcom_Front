@@ -12,7 +12,7 @@ function Reviews() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `https://dzidcom-back.skate.dz/Clients/${user.id}/Feedbacks`,
+                    `http://localhost:3000/Clients/${user.id}/Feedbacks`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,

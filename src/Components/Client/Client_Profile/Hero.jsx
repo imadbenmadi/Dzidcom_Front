@@ -13,10 +13,7 @@ function Hero() {
             <div className="  flex  justify-center max-w-[350px] gap-6 md:gap-12">
                 {user?.profile_pic_link ? (
                     <img
-                        src={
-                            "https://dzidcom-back.skate.dz/" +
-                            user.profile_pic_link
-                        }
+                        src={"http://localhost:3000/" + user.profile_pic_link}
                         onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = user_default;
