@@ -20,6 +20,7 @@ const ChatList = ({ userId }) => {
                     withCredentials: true,
                     validateStatus: () => true,
                 });
+                console.log(response.data);
                 if (response.status === 200) {
                     setChats(response.data.rooms);
                 } else {
@@ -65,13 +66,13 @@ const ChatList = ({ userId }) => {
                             className="p-4 bg-gray-100 rounded-lg shadow"
                         >
                             <Link
-                                to={`/Freelancer/${userId}/chat/${chat.clientId}`}
+                                to={`/Freelancer/${user.id}/chats/${chat.id}`}
                             >
                                 <h3 className="text-lg font-semibold">
-                                    {/* {`${chat?.client?.firstName} ${chat.client.lastName}`} */}
+                                    {`${chat?.Clinet?.firstName} ${chat?.Client?.lastName}`}
                                 </h3>
                                 <p className="text-sm text-gray-600">
-                                    {/* {chat?.lastMessage} */}
+                                    {chat?.lastMessage[0]?.message}
                                 </p>
                             </Link>
                         </li>
