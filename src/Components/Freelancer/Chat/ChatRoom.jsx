@@ -8,9 +8,10 @@ const ChatRoom = ({ userId, userType }) => {
     const { chatId } = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const chatApiUrl = `http://localhost:3000/Messages/freelancer/${userId}/chats/${chatId}`;
 
-    const postApiUrl = `http://localhost:3000/Messagess/freelancer/${userId}/chat/${chatId}`;
+    const chatApiUrl = `http://localhost:3000/${userType}/${userId}/chats/${chatId}`;
+
+    const postApiUrl = `http://localhost:3000/${userType}/${userId}/chats/${chatId}`;
 
     useEffect(() => {
         const fetchMessages = async () => {

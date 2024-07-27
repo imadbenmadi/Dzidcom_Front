@@ -36,9 +36,9 @@ import Client_Add_Project from "./Components/Client/Client_Projects/Add_Project"
 import Client_Project_item from "./Components/Client/Client_Projects/Project_item";
 
 import Client_chatList from "./Components/Client/Chat/ChatList";
-import Client_chatRoom from "./Components/Client/Chat/Chatroom";
+import Client_chatRoom from "./Components/Client/Chat/ChatRoom";
 import Freelancer_chatList from "./Components/Freelancer/Chat/ChatList";
-import Freelancer_chatRoom from "./Components/Freelancer/Chat/Chatroom";
+import Freelancer_chatRoom from "./Components/Freelancer/Chat/ChatRoom";
 
 import Privacy from "./Components/Privacy/Privacy";
 import Not_Found from "./Components/Not_Found";

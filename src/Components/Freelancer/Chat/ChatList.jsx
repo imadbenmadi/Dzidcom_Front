@@ -6,7 +6,8 @@ import axios from "axios";
 
 const ChatList = ({ userId, userType }) => {
     const [chats, setChats] = useState([]);
-    const apiUrl = `http://localhost:3000/Messages/freelancer/${userId}/chats`;
+
+    const apiUrl = `http://localhost:3000/${userType}/${userId}/chats`;
 
     useEffect(() => {
         const fetchChats = async () => {
@@ -35,18 +36,18 @@ const ChatList = ({ userId, userType }) => {
                         >
                             <Link
                                 to={`/${userType}/${userId}/chat/${
-                                    chat.receiverId === userId
-                                        ? chat.senderId
-                                        : chat.receiverId
+                                    userType === "freelancer"
+                                        ? chat.clientId
+                                        : chat.freelancerId
                                 }`}
                             >
                                 <h3 className="text-lg font-semibold">
-                                    {chat.senderId === userId
-                                        ? chat.receiver.name
-                                        : chat.sender.name}
+                                    {userType === "freelancer"
+                                        ? chat.client.name
+                                        : chat.freelancer.name}
                                 </h3>
                                 <p className="text-sm text-gray-600">
-                                    {chat.message}
+                                    {chat.lastMessage}
                                 </p>
                             </Link>
                         </li>
