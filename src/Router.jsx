@@ -39,7 +39,7 @@ import Client_chatList from "./Components/Client/Chat/ChatList";
 import Client_chatRoom from "./Components/Client/Chat/ChatRoom";
 import Freelancer_chatList from "./Components/Freelancer/Chat/ChatList";
 import Freelancer_chatRoom from "./Components/Freelancer/Chat/ChatRoom";
-
+import Freelancer_chatList_default from "./Components/Freelancer/Chat/Default";
 import Privacy from "./Components/Privacy/Privacy";
 import Not_Found from "./Components/Not_Found";
 import Not_Finished from "./Components/Not_Finished";
@@ -142,12 +142,23 @@ const routes = createBrowserRouter([
                         path: "/Freelancer/chats",
                         element: <Freelancer_chatList />,
                         errorElement: <ErrorElement />,
+                        children: [
+                            {
+                                index: true,
+                                element: <Freelancer_chatList_default />,
+                            },
+                            {
+                                path: "/Freelancer/chats/:chatId",
+                                element: <Freelancer_chatRoom />,
+                                errorElement: <ErrorElement />,
+                            },
+                        ],
                     },
-                    {
-                        path: "/Freelancer/chats/:chatId",
-                        element: <Freelancer_chatRoom />,
-                        errorElement: <ErrorElement />,
-                    },
+                    // {
+                    //     path: "/Freelancer/chats/:chatId",
+                    //     element: <Freelancer_chatRoom />,
+                    //     errorElement: <ErrorElement />,
+                    // },
                     {
                         path: "*",
                         element: <Not_Found />,

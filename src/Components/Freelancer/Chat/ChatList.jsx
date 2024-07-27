@@ -1,10 +1,9 @@
 // src/components/ChatList.jsx
-
+import { Outlet } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAppContext } from "../../../AppContext";
-import chat_icon from "../../../../public/chat.png";
 const ChatList = ({ userId }) => {
     const { user } = useAppContext();
     const [chats, setChats] = useState([]);
@@ -83,11 +82,7 @@ const ChatList = ({ userId }) => {
                             ))}
                         </ul>
                     </div>
-                        <div className=" w-[70%]  flex-col items-center
-                        pt-12  h-screen hidden md:flex gap-6">
-                        <div className=" text-gray_v font-semibold">please select a room to start chat</div>
-                        <img src={chat_icon} className=" w-32" alt="" />
-                    </div>
+                    <Outlet />
                 </div>
             )}
         </div>
