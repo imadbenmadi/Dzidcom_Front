@@ -61,22 +61,27 @@ const ChatList = ({ userId }) => {
             ) : (
                 <div className=" flex ">
                     {" "}
-                    <div className=" w-full md:w-[30%] shrink-0">
+                    <div className=" w-full md:w-[30%] min-h-screen shrink-0 border-r border-r-gray_white">
                         <ul className="space-y-4 w-full">
                             {chats.map((chat) => (
-                                <li
-                                    key={chat.id}
-                                    className="p-4 bg-gray-100 rounded-lg shadow"
-                                >
+                                <li key={chat.id} className="">
                                     <Link
-                                        to={`/Freelancer/${user.id}/chats/${chat.id}`}
+                                        className="p-4  flex items-center
+                                         gap-x-4 border-y border-y-gray_white"
+                                        to={`/Freelancer/chats/${chat.id}`}
                                     >
-                                        <h3 className="text-lg font-semibold">
-                                            {`${chat?.Clinet?.firstName} ${chat?.Client?.lastName}`}
+                                        <img
+                                            className=" rounded-full w-12 h-12 object-cover"
+                                            src={`http://localhost:3000/${chat?.Client?.profile_pic_link}`}
+                                            alt=""
+                                        />
+                                        <h3 className="text-xs text-gray_v font-semibold ">
+                                            {`${chat?.Client?.lastName}`}
+
                                         </h3>
-                                        <p className="text-sm text-gray-600">
+                                        {/* <p className="text-sm text-gray-600">
                                             {chat?.lastMessage[0]?.message}
-                                        </p>
+                                        </p> */}
                                     </Link>
                                 </li>
                             ))}
