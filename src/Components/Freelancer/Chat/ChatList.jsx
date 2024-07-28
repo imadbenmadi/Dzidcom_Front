@@ -1,9 +1,9 @@
-// src/components/ChatList.jsx
 import { Outlet } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAppContext } from "../../../AppContext";
+
 const ChatList = ({ userId }) => {
     const { user } = useAppContext();
     const [chats, setChats] = useState([]);
@@ -34,7 +34,7 @@ const ChatList = ({ userId }) => {
         };
 
         fetchChats();
-    }, []);
+    }, [apiUrl]);
 
     if (loading) {
         return (
@@ -59,35 +59,35 @@ const ChatList = ({ userId }) => {
                     No chats available.
                 </p>
             ) : (
-                <div className=" flex ">
-                    {" "}
-                    <div className=" w-full md:w-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
-                        <ul className="space-y-4 w-full">
-                            {chats.map((chat) => (
-                                <li key={chat.id} className="">
-                                    <Link
-                                        className="p-4  flex items-center
-                                         gap-x-4 border-y border-y-gray_white"
-                                        to={`/Freelancer/rooms/${chat.id}`}
-                                    >
-                                        <img
-                                            className=" rounded-full w-12 h-12 object-cover"
-                                            src={`http://localhost:3000/${chat?.Client?.profile_pic_link}`}
-                                            alt=""
-                                        />
-                                        <h3 className="text-xs text-gray_v font-semibold ">
-                                            {`${chat?.Client?.lastName}`}
-                                        </h3>
-                                        {/* <p className="text-sm text-gray-600">
-                                            {chat?.lastMessage[0]?.message}
-                                        </p> */}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                <>
+                    <div className="hidden md:flex">
+                        <div className="w-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
+                            <ul className="space-y-4 w-full">
+                                {chats.map((chat) => (
+                                    <li key={chat.id} className="">
+                                        <Link
+                                            className="p-4 flex items-center gap-x-4 border-y border-y-gray_white"
+                                            to={`/Freelancer/rooms/${chat.id}`}
+                                        >
+                                            <img
+                                                className="rounded-full w-12 h-12 object-cover"
+                                                src={`http://localhost:3000/${chat?.Client?.profile_pic_link}`}
+                                                alt=""
+                                            />
+                                            <h3 className="text-xs text-gray_v font-semibold">
+                                                {`${chat?.Client?.lastName}`}
+                                            </h3>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <Outlet context={{ chats }} />
                     </div>
-                    <Outlet />
-                </div>
+                    <div className="block md:hidden">
+                        <Outlet context={{ chats }} />
+                    </div>
+                </>
             )}
         </div>
     );

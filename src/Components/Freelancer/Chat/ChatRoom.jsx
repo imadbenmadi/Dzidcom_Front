@@ -108,13 +108,15 @@ const ChatRoom = () => {
     }
 
     return (
-        <div className="h-[calc(100vh-60px)] flex flex-col 
-        justify-between w-full">
+        <div
+            className="h-[calc(100vh-60px)]  flex flex-col 
+        justify-between w-full"
+        >
             <div
                 ref={chatContainerRef}
                 className="mb-2  flex-grow overflow-y-auto
                  h-[calc(100vh-60px-70px)] px-6 py-3 flex flex-col
-                  gap-y-2"
+                  gap-y-2 custom-overflow"
             >
                 {!messages || messages.length === 0 ? (
                     <div className="text-center pt-12">
