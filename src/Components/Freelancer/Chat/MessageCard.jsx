@@ -16,7 +16,7 @@ const MessageCard = ({
     return (
         <div
             key={index}
-            className={`rounded-lg transition-transform duration-300 flex text-sm  ${
+            className={`rounded-lg transition-transform duration-300 flex text-sm  font-semibold ${
                 msg.senderId === userId ? "justify-end" : "justify-start"
             } ${
                 isNewMessage && index === totalMessages - 1
@@ -33,7 +33,7 @@ const MessageCard = ({
                 className={`rounded-lg ${
                     msg.senderId === userId
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-600 text-white"
+                        : "bg-gray-100 text-black_text"
                 }`}
             >
                 <p className="break-words p-2 text-xs" style={breakTheWordStyle}>
