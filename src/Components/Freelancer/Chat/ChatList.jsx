@@ -9,7 +9,7 @@ const ChatList = ({ userId }) => {
     const [chats, setChats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const apiUrl = `http://localhost:3000/Messages/freelancer/${user.id}/chats`;
+    const apiUrl = `http://localhost:3000/Messages/freelancer/${user.id}/rooms`;
 
     useEffect(() => {
         const fetchChats = async () => {

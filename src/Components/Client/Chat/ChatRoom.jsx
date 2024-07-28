@@ -5,12 +5,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const ChatRoom = ({ userId, userType }) => {
-    const { chatId } = useParams();
+    const { roomId } = useParams();
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const chatApiUrl = `http://localhost:3000/Messages/client/${userId}/chats/${chatId}`;
+    const chatApiUrl = `http://localhost:3000/Messages/client/${userId}/rooms/${roomId}`;
 
-    const postApiUrl = `http://localhost:3000/Messagess/client/${userId}/chat/${chatId}`;
+    const postApiUrl = `http://localhost:3000/Messagess/client/${userId}/rooms/${roomId}`;
 
     useEffect(() => {
         const fetchMessages = async () => {

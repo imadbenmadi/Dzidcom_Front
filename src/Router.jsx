@@ -148,14 +148,14 @@ const routes = createBrowserRouter([
                                 element: <Freelancer_chatList_default />,
                             },
                             {
-                                path: "/Freelancer/chats/:chatId",
+                                path: "/Freelancer/chats/:roomId",
                                 element: <Freelancer_chatRoom />,
                                 errorElement: <ErrorElement />,
                             },
                         ],
                     },
                     // {
-                    //     path: "/Freelancer/chats/:chatId",
+                    //     path: "/Freelancer/chats/:roomId",
                     //     element: <Freelancer_chatRoom />,
                     //     errorElement: <ErrorElement />,
                     // },
@@ -224,7 +224,7 @@ const routes = createBrowserRouter([
                         errorElement: <ErrorElement />,
                     },
                     {
-                        path: "/Client/chats/:chatId",
+                        path: "/Client/chats/:roomId",
                         element: <Client_chatRoom />,
                         errorElement: <ErrorElement />,
                     },
