@@ -40,13 +40,13 @@ const ChatRoom = ({ userId, userType }) => {
     };
 
     return (
-        <div className="p-4">
+        <div className="">
             <h2 className="text-2xl font-bold mb-4">Chat Room</h2>
             <div className="space-y-4 mb-4">
                 {messages.map((msg, index) => (
                     <div
                         key={index}
-                        className={`p-4 rounded-lg shadow ${
+                        className={` rounded-lg shadow ${
                             msg.senderId === userId
                                 ? "bg-blue-100"
                                 : "bg-gray-100"

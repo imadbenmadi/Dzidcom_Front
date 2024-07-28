@@ -75,8 +75,12 @@ const ChatRoom = () => {
                 }
             );
             console.log("response from post message", response.data);
-
-            setMessages((prevMessages) => [...prevMessages, response.data]);
+            const newMsg = {
+                ...response.data,
+                senderId: user.id,
+            };
+            console.log("new message", newMsg);
+            setMessages((prevMessages) => [...prevMessages, newMsg]);
             setNewMessage("");
             setIsNewMessage(true);
             setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
@@ -104,10 +108,13 @@ const ChatRoom = () => {
     }
 
     return (
-        <div className="h-[calc(100vh-60px)] flex flex-col justify-between w-full">
+        <div className="h-[calc(100vh-60px)] flex flex-col 
+        justify-between w-full">
             <div
                 ref={chatContainerRef}
-                className="space-y-4 mb-4 pt-2 flex-grow overflow-y-auto h-[calc(100vh-60px-70px)] px-6"
+                className="mb-2  flex-grow overflow-y-auto
+                 h-[calc(100vh-60px-70px)] px-6 py-3 flex flex-col
+                  gap-y-2"
             >
                 {!messages || messages.length === 0 ? (
                     <div className="text-center pt-12">
@@ -136,8 +143,9 @@ const ChatRoom = () => {
             <div className="flex items-center space-x-4 w-full h-[70px] overflow-auto bg-white border-t px-6">
                 <textarea
                     rows={1}
-                    className="text-gray outline-0 placeholder:font-light text-start
-                                    resize-none overflow-auto max-h-[50px] w-full border px-2 py-2 shadow-md"
+                    className="text-gray outline-0  text-start rounded-lg
+                                    resize-none overflow-auto max-h-[50px]
+                                     w-full border px-2 py-2 shadow-md"
                     placeholder="Type a message..."
                     value={newMessage}
                     onChange={(e) => {

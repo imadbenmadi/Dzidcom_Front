@@ -22,7 +22,7 @@ const ChatList = ({ userId, userType }) => {
     }, []);
 
     return (
-        <div className="p-4">
+        <div className="">
             <h2 className="text-2xl font-bold mb-4">Chat List</h2>
             {chats.length === 0 ? (
                 <p>No chats available.</p>
@@ -31,7 +31,7 @@ const ChatList = ({ userId, userType }) => {
                     {chats.map((chat, index) => (
                         <li
                             key={index}
-                            className="p-4 bg-gray-100 rounded-lg shadow"
+                            className=" bg-gray-100 rounded-lg shadow"
                         >
                             <Link
                                 to={`/${userType}/${userId}/chat/${
