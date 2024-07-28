@@ -6,7 +6,7 @@ import axios from "axios";
 
 const ChatList = ({ userId, userType }) => {
     const [chats, setChats] = useState([]);
-    const apiUrl = `http://localhost:3000/Messages/client/${userId}/chats`;
+    const apiUrl = `http://localhost:3000/Messages/client/${userId}/rooms`;
 
     useEffect(() => {
         const fetchChats = async () => {
@@ -19,7 +19,7 @@ const ChatList = ({ userId, userType }) => {
         };
 
         fetchChats();
-    }, [apiUrl]);
+    }, []);
 
     return (
         <div className="p-4">

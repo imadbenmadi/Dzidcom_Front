@@ -141,7 +141,7 @@ function Laptop_Nav_Items({
             <div className=" flex items center justify-center gap-5">
                 {isProfileCompleted ? (
                     <div className="flex items-center justify-center gap-6 ">
-                        <Link to={"/Client/chats"}>
+                        <Link to={"/Client/rooms"}>
                             <img src={message_icon} alt="" />
                         </Link>
                         <div className="relative">

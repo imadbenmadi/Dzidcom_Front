@@ -9,6 +9,7 @@ const ChatRoom = () => {
     const userId = user.id;
     const { roomId } = useParams();
     const [messages, setMessages] = useState([]);
+    const [room, setRoom] = useState();
     const [newMessage, setNewMessage] = useState("");
     const [isNewMessage, setIsNewMessage] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -27,7 +28,8 @@ const ChatRoom = () => {
                 });
                 console.log("response form get messsages", response.data);
                 if (response.status === 200) {
-                    setMessages(response.data);
+                    setMessages(response.data.messages);
+                    setRoom(response.data.room);
                 } else {
                     throw new Error("Failed to fetch messages");
                 }
@@ -39,7 +41,7 @@ const ChatRoom = () => {
         };
 
         fetchMessages();
-    }, [chatApiUrl]);
+    }, []);
 
     if (loading) {
         return (
@@ -64,6 +66,7 @@ const ChatRoom = () => {
                 postApiUrl,
                 {
                     message: newMessage,
+                    clientId: room.Client.id,
                 },
                 {
                     withCredentials: true,
@@ -84,27 +87,33 @@ const ChatRoom = () => {
     return (
         <div className="h-[calc(100vh-60px)] flex flex-col justify-between w-full">
             <div className="space-y-4 mb-4 flex-grow overflow-y-auto h-[calc(100vh-60px-70px)] px-6">
-                {messages.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`p-4 rounded-lg shadow transition-transform duration-300 ${
-                            msg.senderId === userId
-                                ? "bg-blue-100 transform translate-x-2"
-                                : "bg-gray-100 transform -translate-x-2"
-                        } ${
-                            isNewMessage && index === messages.length - 1
-                                ? "transform translate-y-[-10px] opacity-0"
-                                : ""
-                        }`}
-                        onAnimationEnd={() => {
-                            if (index === messages.length - 1) {
-                                setIsNewMessage(false);
-                            }
-                        }}
-                    >
-                        <p>{msg.message}</p>
-                    </div>
-                ))}
+                {!messages || messages.length === 0 ? (
+                    <p className="text-sm font-semibold text-gray-500 pt-12">
+                        No messages available.
+                    </p>
+                ) : (
+                    messages.map((msg, index) => (
+                        <div
+                            key={index}
+                            className={`p-4 rounded-lg shadow transition-transform duration-300 ${
+                                msg.senderId === userId
+                                    ? "bg-blue-100 transform translate-x-2"
+                                    : "bg-gray-100 transform -translate-x-2"
+                            } ${
+                                isNewMessage && index === messages.length - 1
+                                    ? "transform translate-y-[-10px] opacity-0"
+                                    : ""
+                            }`}
+                            onAnimationEnd={() => {
+                                if (index === messages.length - 1) {
+                                    setIsNewMessage(false);
+                                }
+                            }}
+                        >
+                            <p>{msg.message}</p>
+                        </div>
+                    ))
+                )}
             </div>
             <div className="flex items-center space-x-4 w-full h-[70px] overflow-auto bg-white border-t px-6">
                 <textarea

@@ -139,7 +139,7 @@ const routes = createBrowserRouter([
                     //     element: <Freelancer_Messages />,
                     // },
                     {
-                        path: "/Freelancer/chats",
+                        path: "/Freelancer/rooms",
                         element: <Freelancer_chatList />,
                         errorElement: <ErrorElement />,
                         children: [
@@ -148,14 +148,14 @@ const routes = createBrowserRouter([
                                 element: <Freelancer_chatList_default />,
                             },
                             {
-                                path: "/Freelancer/chats/:roomId",
+                                path: "/Freelancer/rooms/:roomId",
                                 element: <Freelancer_chatRoom />,
                                 errorElement: <ErrorElement />,
                             },
                         ],
                     },
                     // {
-                    //     path: "/Freelancer/chats/:roomId",
+                    //     path: "/Freelancer/rooms/:roomId",
                     //     element: <Freelancer_chatRoom />,
                     //     errorElement: <ErrorElement />,
                     // },
@@ -219,12 +219,12 @@ const routes = createBrowserRouter([
                         element: <Client_Payment />,
                     },
                     {
-                        path: "/Client/chats",
+                        path: "/Client/rooms",
                         element: <Client_chatList />,
                         errorElement: <ErrorElement />,
                     },
                     {
-                        path: "/Client/chats/:roomId",
+                        path: "/Client/rooms/:roomId",
                         element: <Client_chatRoom />,
                         errorElement: <ErrorElement />,
                     },

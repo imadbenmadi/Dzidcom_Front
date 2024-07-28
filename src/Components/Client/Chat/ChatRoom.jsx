@@ -23,7 +23,7 @@ const ChatRoom = ({ userId, userType }) => {
         };
 
         fetchMessages();
-    }, [chatApiUrl]);
+    }, []);
 
     const handleSendMessage = async () => {
         if (newMessage.trim() === "") return;

@@ -34,7 +34,7 @@ const ChatList = ({ userId }) => {
         };
 
         fetchChats();
-    }, [apiUrl]);
+    }, []);
 
     if (loading) {
         return (
@@ -68,7 +68,7 @@ const ChatList = ({ userId }) => {
                                     <Link
                                         className="p-4  flex items-center
                                          gap-x-4 border-y border-y-gray_white"
-                                        to={`/Freelancer/chats/${chat.id}`}
+                                        to={`/Freelancer/rooms/${chat.id}`}
                                     >
                                         <img
                                             className=" rounded-full w-12 h-12 object-cover"
