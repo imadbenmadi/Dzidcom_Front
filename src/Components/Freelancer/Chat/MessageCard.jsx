@@ -32,11 +32,14 @@ const MessageCard = ({
             <div
                 className={`rounded-lg ${
                     msg.senderId === userId
-                        ? "bg-blue-500 text-white"
+                        ? "bg-blue-600 text-white"
                         : "bg-gray-100 text-black_text"
                 }`}
             >
-                <p className="break-words p-2 text-xs" style={breakTheWordStyle}>
+                <p
+                    className="break-words p-2 text-sm leading-6"
+                    style={breakTheWordStyle}
+                >
                     {msg.message}
                 </p>
             </div>
