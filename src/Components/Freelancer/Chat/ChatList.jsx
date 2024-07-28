@@ -61,7 +61,7 @@ const ChatList = ({ userId }) => {
             ) : (
                 <div className=" flex ">
                     {" "}
-                    <div className=" w-full md:w-[30%] min-h-screen shrink-0 border-r border-r-gray_white">
+                    <div className=" w-full md:w-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
                         <ul className="space-y-4 w-full">
                             {chats.map((chat) => (
                                 <li key={chat.id} className="">
@@ -77,7 +77,6 @@ const ChatList = ({ userId }) => {
                                         />
                                         <h3 className="text-xs text-gray_v font-semibold ">
                                             {`${chat?.Client?.lastName}`}
-
                                         </h3>
                                         {/* <p className="text-sm text-gray-600">
                                             {chat?.lastMessage[0]?.message}

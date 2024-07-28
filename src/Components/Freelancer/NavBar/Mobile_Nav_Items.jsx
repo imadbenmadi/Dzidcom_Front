@@ -19,7 +19,7 @@ function Mobile_Nav_Items({
                 } absolute   transition-transform duration-300 select-none w-[100vw]
                   z-50    text-black_text  bg-white `}
             >
-                <div className="  h-screen text-xl  pt-8 overflow-y-auto ">
+                <div className="  h-[calc(100vh-60px)] text-xl  pt-8 overflow-y-auto ">
                     <div className=" flex flex-col justify-start items-center h-[80%]  ">
                         <div className="text-center flex flex-col gap-8 my-8 ">
                             <Link

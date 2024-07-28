@@ -267,7 +267,7 @@ function ProjectItem() {
         );
     } else if (error)
         return (
-            <div className=" w-screen h-screen flex items-center justify-center">
+            <div className=" w-screen h-[calc(100vh-60px)] flex items-center justify-center">
                 <div className="text-red-600 font-semibold">
                     {error.message}
                 </div>

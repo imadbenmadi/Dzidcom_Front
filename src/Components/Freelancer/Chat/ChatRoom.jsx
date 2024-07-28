@@ -41,8 +41,7 @@ const ChatRoom = ({ userId, userType }) => {
     };
 
     return (
-        <div className="p-4">
-            {/* <h2 className="text-2xl font-bold mb-4">Chat Room</h2> */}
+        <div className="h-[calc(100vh-60px)]">
             <div className="space-y-4 mb-4">
                 {messages.map((msg, index) => (
                     <div
