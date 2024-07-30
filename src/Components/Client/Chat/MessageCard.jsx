@@ -17,7 +17,7 @@ const MessageCard = ({
         <div
             key={index}
             className={`rounded-lg transition-transform duration-300 flex text-sm  font-semibold ${
-                msg.senderId === userId ? "justify-end" : "justify-start"
+                msg.senderType === "client" ? "justify-end" : "justify-start"
             } ${
                 isNewMessage && index === totalMessages - 1
                     ? "transform translate-y-[-10px] opacity-0"
@@ -31,7 +31,7 @@ const MessageCard = ({
         >
             <div
                 className={`rounded-lg ${
-                    msg.senderId === userId
+                    msg.senderType === "client"
                         ? "bg-blue-600 text-white"
                         : "bg-gray-100 text-black_text"
                 }`}
