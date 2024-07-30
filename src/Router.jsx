@@ -37,6 +37,8 @@ import Client_Project_item from "./Components/Client/Client_Projects/Project_ite
 
 import Client_chatList from "./Components/Client/Chat/ChatList";
 import Client_chatRoom from "./Components/Client/Chat/ChatRoom";
+import Client_chatList_default from "./Components/Client/Chat/Default";
+
 import Freelancer_chatList from "./Components/Freelancer/Chat/ChatList";
 import Freelancer_chatRoom from "./Components/Freelancer/Chat/ChatRoom";
 import Freelancer_chatList_default from "./Components/Freelancer/Chat/Default";
@@ -224,9 +226,20 @@ const routes = createBrowserRouter([
                         errorElement: <ErrorElement />,
                     },
                     {
-                        path: "/Client/rooms/:roomId",
-                        element: <Client_chatRoom />,
+                        path: "/Client/rooms",
+                        element: <Client_chatList />,
                         errorElement: <ErrorElement />,
+                        children: [
+                            {
+                                index: true,
+                                element: <Client_chatList_default />,
+                            },
+                            {
+                                path: "/Client/rooms/:roomId",
+                                element: <Client_chatRoom />,
+                                errorElement: <ErrorElement />,
+                            },
+                        ],
                     },
                     // {
                     //     path: "/Client/Process",
