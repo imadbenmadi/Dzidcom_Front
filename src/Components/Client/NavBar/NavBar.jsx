@@ -6,7 +6,11 @@ import { useEffect } from "react";
 import { useAppContext } from "../../../AppContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
+
 function NavBar({ isProfileCompleted }) {
+    const Navigate = useNavigate();
+
     const { set_Auth, store_logout } = useAppContext();
     const [Active_nav, setActive_nav] = useState("Home");
     const location = useLocation();
@@ -28,10 +32,9 @@ function NavBar({ isProfileCompleted }) {
                 }
             );
             if (response.status == 204) {
-                // Successfully logged out, you may want to redirect to the login page or update the UI accordingly
                 store_logout();
                 set_Auth(false);
-                // You can use state or context to handle the logout state in your application
+                Navigate("/");
             } else {
                 Swal.fire("Error!", `Something Went Wrong ,`, "error");
             }
