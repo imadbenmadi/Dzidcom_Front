@@ -69,7 +69,13 @@ function Mobile_Nav({
                 <div className=" flex items-center justify-center gap-4 md:gap-6">
                     {isProfileCompleted && (
                         <>
-                            <Link to={"/Freelancer/rooms"}>
+                            <Link
+                                to={"/Freelancer/rooms"}
+                                onClick={() => {
+                                    setopen_Notifications(false);
+                                    set_MobileNav_Open(false);
+                                }}
+                            >
                                 <img src={message_icon} alt="" />
                             </Link>
                             <div>
