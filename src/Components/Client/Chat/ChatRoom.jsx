@@ -4,6 +4,7 @@ import axios from "axios";
 import { useAppContext } from "../../../AppContext";
 import { FaArrowUp } from "react-icons/fa";
 import MessageCard from "./MessageCard";
+import Swal from "sweetalert2";
 
 const ChatRoom = () => {
     const { user } = useAppContext();
@@ -67,23 +68,31 @@ const ChatRoom = () => {
                 postApiUrl,
                 {
                     message: newMessage,
-                    freelancer: room.Freelancer.id,
+                    freelancerId: room.Freelancer.id,
                 },
                 {
                     withCredentials: true,
                     validateStatus: () => true,
                 }
             );
-            console.log("response from post message", response.data);
-            const newMsg = {
-                ...response.data,
-                senderId: user?.id,
-            };
-            console.log("new message", newMsg);
-            setMessages((prevMessages) => [...prevMessages, newMsg]);
-            setNewMessage("");
-            setIsNewMessage(true);
-            setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
+            if (response.status !== 200) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to send message",
+                    text: response.data.message,
+                });
+            } else {
+                console.log("response from post message", response.data);
+                const newMsg = {
+                    ...response.data,
+                    senderId: user?.id,
+                };
+                console.log("new message", newMsg);
+                setMessages((prevMessages) => [...prevMessages, newMsg]);
+                setNewMessage("");
+                setIsNewMessage(true);
+                setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
+            }
         } catch (error) {
             console.error("Error sending message:", error);
         } finally {
