@@ -116,56 +116,6 @@ const ChatList = ({ userId }) => {
                 </p>
             ) : (
                 <>
-                    <div className="hidden md:flex">
-                        <div className="w-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
-                            <ul className="space-y-4 w-full">
-                                {chats.map((chat) => (
-                                    <li key={chat.id} className="">
-                                        <Link
-                                            className="p-4 flex items-center gap-x-4 border-y border-y-gray_white"
-                                            to={`/Client/rooms/${chat.id}`}
-                                            onClick={() =>
-                                                handleChatClick(chat.id)
-                                            }
-                                        >
-                                            <img
-                                                className="rounded-full w-12 h-12 object-cover"
-                                                src={`http://localhost:3000/${chat?.Freelancer?.profile_pic_link}`}
-                                                alt=""
-                                            />
-                                            <div className="flex-col flex">
-                                                <div className="text-sm text-gray_v font-semibold break-all">
-                                                    {`${
-                                                        chat?.Freelancer
-                                                            ?.lastName
-                                                            ? chat?.Freelancer
-                                                                  ?.lastName
-                                                                  .length > 10
-                                                                ? chat?.Freelancer?.lastName.slice(
-                                                                      0,
-                                                                      10
-                                                                  ) + "..."
-                                                                : chat?.Freelancer?.lastName.toUpperCase()
-                                                            : "not available"
-                                                    }`}
-                                                </div>
-                                                <div className="text-xs text-red-600 pt-2 font-semibold">
-                                                    {getUnreadMessagesText(
-                                                        chat.clientUnreadMessages,
-                                                        chat
-                                                    )}
-                                                </div>
-                                                <div className="text-[10px] text-gray-500">
-                                                    {getLastMessageDate(chat)}
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Outlet context={{ chats }} />
-                    </div>
                     <div className="block md:hidden">
                         <div className="w-full min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
                             <ul className="space-y-4 w-full">
@@ -195,7 +145,9 @@ const ChatList = ({ userId }) => {
                                                                       0,
                                                                       10
                                                                   ) + "..."
-                                                                : chat?.Freelancer?.lastName.toUpperCase()
+                                                                : chat
+                                                                      ?.Freelancer
+                                                                      ?.lastName
                                                             : "not available"
                                                     }`}
                                                 </div>
@@ -214,16 +166,12 @@ const ChatList = ({ userId }) => {
                                 ))}
                             </ul>
                         </div>
-                        <div className="w-[70%] flex-col items-center pt-12 h-screen hidden md:flex gap-6">
-                            <div className="text-gray_v font-semibold">
-                                Please select a room to start chat
-                            </div>
-                            <img
-                                src={chat_icon}
-                                className="w-32"
-                                alt="Chat Icon"
-                            />
+                    </div>
+                    <div className="w-full  flex-col items-center just pt-12 h-screen hidden md:flex gap-6">
+                        <div className="text-gray_v font-semibold">
+                            Please select a room to start chat
                         </div>
+                        <img src={chat_icon} className="w-32" alt="Chat Icon" />
                     </div>
                 </>
             )}

@@ -146,7 +146,7 @@ const ChatList = ({ userId }) => {
                                                                       0,
                                                                       10
                                                                   ) + "..."
-                                                                : chat?.Freelancer?.lastName.toUpperCase()
+                                                                : chat?.Freelancer?.lastName
                                                             : "not available"
                                                     }`}
                                                 </div>
