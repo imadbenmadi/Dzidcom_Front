@@ -5,7 +5,10 @@ import { useAppContext } from "../../../AppContext";
 import handleEdite from "./API/Post_EditUser";
 import { useState, useEffect, useRef } from "react";
 import { FaRegImage } from "react-icons/fa";
+import { useNavigate } from "react-router";
+
 function Step_1() {
+    const Navigate = useNavigate();
     const { user, set_user, isProfileCompleted } = useAppContext();
     if (!user || !set_user) return null;
     const [image_state, setimage_state] = useState(null);
@@ -45,7 +48,7 @@ function Step_1() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -108,10 +111,10 @@ function Step_1() {
                     </div>
                     <div className=" order-1  md:order-2">
                         {(!isProfileCompleted ||
-                            !user.instgram_Link ||
-                            !user.linkedIn_Link ||
-                            !user.facebook_Link ||
-                            !user.portfolioWebsite) && (
+                            !user?.instgram_Link ||
+                            !user?.linkedIn_Link ||
+                            !user?.facebook_Link ||
+                            !user?.portfolioWebsite) && (
                             <div className=" font-semibold text-gray_v pt-6">
                                 Profil 80% Completed ✅
                             </div>
@@ -184,19 +187,20 @@ function Step_1() {
                         }}
                         onSubmit={(values, { setSubmitting }) => {
                             if (
-                                values.portfolioWebsite == user.portfolioWebsite
+                                values.portfolioWebsite ==
+                                user?.portfolioWebsite
                             ) {
                                 delete values.portfolioWebsite;
                             } else if (
-                                values.instgram_Link == user.instgram_Link
+                                values.instgram_Link == user?.instgram_Link
                             ) {
                                 delete values.instgram_Link;
                             } else if (
-                                values.linkedIn_Link == user.linkedIn_Link
+                                values.linkedIn_Link == user?.linkedIn_Link
                             ) {
                                 delete values.linkedIn_Link;
                             } else if (
-                                values.facebook_Link == user.facebook_Link
+                                values.facebook_Link == user?.facebook_Link
                             ) {
                                 delete values.facebook_Link;
                             }
@@ -212,7 +216,7 @@ function Step_1() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href("/Freelancer/Profile");
+                                Navigate("/Freelancer/Profile");
                             }
                         }}
                     >

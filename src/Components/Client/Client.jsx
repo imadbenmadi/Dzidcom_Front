@@ -139,15 +139,15 @@ function Client() {
     useEffect(() => {
         if (!user) return;
         else if (
-            !user.firstName ||
-            !user.lastName ||
-            !user.email ||
-            !user.telephone ||
-            !user.nationalCardNumber ||
-            !user.company_Name ||
-            !user.company_WorkField
+            !user?.firstName ||
+            !user?.lastName ||
+            !user?.email ||
+            !user?.telephone ||
+            !user?.nationalCardNumber ||
+            !user?.company_Name ||
+            !user?.company_WorkField
             // ||
-            // !user.profile_pic_link
+            // !user?.profile_pic_link
         ) {
             // if (isProfileIncomplete(user)) {
             setisProfileCompleted(false);

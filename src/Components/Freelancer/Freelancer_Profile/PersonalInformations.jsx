@@ -15,10 +15,10 @@ function PersonalInformations() {
         <div className="  py-16 px-6 md:px-0 max-w-[750px] mx-auto  flex flex-col gap-6 md:gap-16 break-all ">
             <div className=" text-3xl text-gray_v font-semibold flex items-start justify-between ">
                 <div>
-                    {user?.JobTitle ? user.JobTitle : "no job title"}
+                    {user?.JobTitle ? user?.JobTitle : "no job title"}
 
                     <div className=" text-base font-normal pt-6">
-                        {user?.about ? user.about : null}
+                        {user?.about ? user?.about : null}
                     </div>
                 </div>
                 <img
@@ -39,7 +39,7 @@ function PersonalInformations() {
                     </div>
                     <div>
                         {user?.email ? (
-                            user.email
+                            user?.email
                         ) : (
                             <div className="text-sm">none</div>
                         )}
@@ -63,7 +63,7 @@ function PersonalInformations() {
                     </div>
                     <div>
                         {user?.about ? (
-                            user.about
+                            user?.about
                         ) : (
                             <div className="text-sm">none</div>
                         )}
@@ -87,7 +87,7 @@ function PersonalInformations() {
                     </div>
                     <div>
                         {user?.telephone ? (
-                            user.telephone
+                            user?.telephone
                         ) : (
                             <div className="text-sm">none</div>
                         )}
@@ -112,7 +112,7 @@ function PersonalInformations() {
                         National Card Number{"    "}
                     </div>
                     {user?.nationalCardNumber ? (
-                        user.nationalCardNumber
+                        user?.nationalCardNumber
                     ) : (
                         <div className="text-sm">none</div>
                     )}{" "}
@@ -135,7 +135,7 @@ function PersonalInformations() {
                     </div>
                     <div className="flex flex-wrap  gap-6">
                         {user?.Skills ? (
-                            user.Skills.map((skill) => (
+                            user?.Skills.map((skill) => (
                                 <div key={skill.id}>
                                     <div
                                         className=" bg-perpol_v text-xl w-fit py-1
@@ -174,9 +174,9 @@ function PersonalInformations() {
                         {user?.portfolioWebsite ? (
                             <a
                                 className=" text-purple-400 underline"
-                                href={user.portfolioWebsite}
+                                href={user?.portfolioWebsite}
                             >
-                                {user.portfolioWebsite}
+                                {user?.portfolioWebsite}
                             </a>
                         ) : (
                             <div className="text-sm">none</div>
@@ -201,8 +201,8 @@ function PersonalInformations() {
                     </div>
                     <div className="flex flex-wrap gap-6">
                         {user?.PortfolioItems &&
-                            user.PortfolioItems.length > 0 &&
-                            user.PortfolioItems.map((project) => (
+                            user?.PortfolioItems.length > 0 &&
+                            user?.PortfolioItems.map((project) => (
                                 <div
                                     key={project.id}
                                     className="w-full mx-auto md:mx-0 md:min-w-full break-words overflow-hidden flex flex-col gap-5 font-semibold border border-gray_white rounded-lg p-4"
@@ -289,7 +289,7 @@ function PersonalInformations() {
                             <FaFacebook
                                 className=" text-blue-500 text-5xl cursor-pointer  "
                                 onClick={() => {
-                                    window.location.href = user.facebook_Link;
+                                    window.location.href = user?.facebook_Link;
                                 }}
                             />
                         )}
@@ -297,7 +297,7 @@ function PersonalInformations() {
                             <FaInstagram
                                 className=" text-red-500 text-5xl cursor-pointer  "
                                 onClick={() => {
-                                    window.location.href = user.instagram_Link;
+                                    window.location.href = user?.instagram_Link;
                                 }}
                             />
                         )}
@@ -305,7 +305,7 @@ function PersonalInformations() {
                             <FaLinkedin
                                 className=" text-blue-500 text-5xl cursor-pointer  "
                                 onClick={() => {
-                                    window.location.href = user.linkedin_Link;
+                                    window.location.href = user?.linkedin_Link;
                                 }}
                             />
                         )}
@@ -331,14 +331,14 @@ function PersonalInformations() {
                         <div className=" flex items-center justify-center gap-4 ">
                             {user?.Rate ? (
                                 <>
-                                    <div className=" ">{user.Rate}</div>
+                                    <div className=" ">{user?.Rate}</div>
                                     {/* <div className=" text-yellow-400 flex gap-1">
-                                        {[...Array(Math.floor(user.Rate))].map(
+                                        {[...Array(Math.floor(user?.Rate))].map(
                                             (_, index) => (
                                                 <FaStar key={index} />
                                             )
                                         )}
-                                        {user.Rate % 1 !== 0 && <FaStarHalf />}
+                                        {user?.Rate % 1 !== 0 && <FaStarHalf />}
                                     </div> */}
                                     <FaStar className="text-yellow-400 " />
                                 </>

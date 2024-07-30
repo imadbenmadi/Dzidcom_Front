@@ -12,8 +12,11 @@ dayjs.extend(customParseFormat);
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
 import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
+import { useNavigate } from "react-router";
 
 function Step_3() {
+    const Navigate = useNavigate();
+
     const [stillWorking, setstillWorking] = useState(false);
     const [addProjectClicked, setAddProjectClicked] = useState(false);
     function toogleAddProject() {
@@ -28,13 +31,13 @@ function Step_3() {
         setdeltedProject_Loading(true);
 
         // Filter out the project to be removed
-        const updatedPortfolioItems = user.PortfolioItems.filter(
+        const updatedPortfolioItems = user?.PortfolioItems.filter(
             (item) => item.id !== projectId
         );
 
         try {
             let response = await Axios.put(
-                `http://localhost:3000/Freelancers/${user.id}/Profile`,
+                `http://localhost:3000/Freelancers/${user?.id}/Profile`,
                 { PortfolioItems: updatedPortfolioItems }, // Send the updated list to the backend
                 {
                     withCredentials: true,
@@ -97,7 +100,7 @@ function Step_3() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -161,7 +164,7 @@ function Step_3() {
                     <div className=" order-1  md:order-2">
                         {(!isProfileCompleted ||
                             !user?.PortfolioItems ||
-                            !user.PortfolioItems.length > 0) && (
+                            !user?.PortfolioItems.length > 0) && (
                             <div className=" font-semibold text-gray_v pt-6">
                                 Profil 60% Completed ✅
                             </div>
@@ -169,13 +172,13 @@ function Step_3() {
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div className=" break-all">
-                                {user?.firstName && user.firstName}
+                                {user?.firstName && user?.firstName}
                             </div>
                             <div className=" break-all">
-                                {user?.lastName && user.lastName}
+                                {user?.lastName && user?.lastName}
                             </div>
                             <div className=" break-all">
-                                {user?.email && user.email}{" "}
+                                {user?.email && user?.email}{" "}
                             </div>
                         </div>
                     </div>
@@ -197,7 +200,7 @@ function Step_3() {
                     <div>
                         {!addProjectClicked ? (
                             !user?.PortfolioItems ||
-                            user.PortfolioItems.length == 0 ? (
+                            user?.PortfolioItems.length == 0 ? (
                                 <div className=" flex flex-col items-center justify-center gap-6">
                                     <div className=" text-center flex items-center justify-center gap-2 text-gray_v ">
                                         <div>
@@ -231,7 +234,7 @@ function Step_3() {
                                     </div>
                                     <div className=" flex flex-col gap-6">
                                         {user?.PortfolioItems &&
-                                            user.PortfolioItems.map(
+                                            user?.PortfolioItems.map(
                                                 (project) => (
                                                     <div
                                                         key={project.id}
@@ -328,8 +331,9 @@ function Step_3() {
                                         flex items-center justify-center 
                                              font-semibold px-4 py-2 rounded-lg"
                                         onClick={() => {
-                                            window.location.href =
-                                                "/Freelancer/Complete_Profile/Step_4";
+                                            Navigate(
+                                                "/Freelancer/Complete_Profile/Step_4"
+                                            );
                                         }}
                                     >
                                         Continue
@@ -340,7 +344,7 @@ function Step_3() {
                             <div>
                                 <Formik
                                     initialValues={{
-                                        userId: user.id,
+                                        userId: user?.id,
                                         title: "",
                                         description: "",
                                         startDate: "",
@@ -431,7 +435,7 @@ function Step_3() {
                                             //     values.stillWorking,
                                             // ],
                                             PortfolioItems: [
-                                                ...user.PortfolioItems,
+                                                ...user?.PortfolioItems,
                                                 {
                                                     title: values.title,
                                                     description:

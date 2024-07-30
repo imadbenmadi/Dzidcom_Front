@@ -22,7 +22,7 @@ function Freelancer_Process() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/Process`,
+                    `http://localhost:3000/Freelancers/${user?.id}/Process`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

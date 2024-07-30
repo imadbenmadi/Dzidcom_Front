@@ -62,7 +62,7 @@ function Freelancer_Process_item() {
         setFeedback_Loading(true);
         try {
             let response = await axios.post(
-                `http://localhost:3000/Freelancers/${user.id}/Rate/${project.ClientId}`,
+                `http://localhost:3000/Freelancers/${user?.id}/Rate/${project.ClientId}`,
                 {
                     Rate,
                     Comment,
@@ -133,7 +133,7 @@ function Freelancer_Process_item() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/Process/${projectId}`,
+                    `http://localhost:3000/Freelancers/${user?.id}/Process/${projectId}`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,
@@ -176,7 +176,7 @@ function Freelancer_Process_item() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/${projectId}/Rejections`,
+                    `http://localhost:3000/Freelancers/${user?.id}/${projectId}/Rejections`,
                     {
                         withCredentials: true,
                         validateStatus: () => true,

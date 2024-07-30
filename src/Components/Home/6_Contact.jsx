@@ -39,42 +39,43 @@ function Contact() {
                 // title: "Oops...",
                 text: "Please enter a valid email address",
             });
-        }
-        setLoading(true);
-        fetch("http://localhost:3000/Contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                message: message,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setLoading(false);
-                Swal.fire({
-                    icon: "success",
-                    // title: "Oops...",
-                    text: "Message sent successfully",
-                });
-
-                setfirstName("");
-                setlastName("");
-                setEmail("");
-                setMessage("");
+        } else {
+            setLoading(true);
+            fetch("http://localhost:3000/Contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    message: message,
+                }),
             })
-            .catch((error) => {
-                setLoading(false);
-                Swal.fire({
-                    icon: "error",
-                    // title: "Oops...",
-                    text: "Something went wrong",
+                .then((response) => response.json())
+                .then((data) => {
+                    setLoading(false);
+                    Swal.fire({
+                        icon: "success",
+                        // title: "Oops...",
+                        text: "Message sent successfully",
+                    });
+
+                    setfirstName("");
+                    setlastName("");
+                    setEmail("");
+                    setMessage("");
+                })
+                .catch((error) => {
+                    setLoading(false);
+                    Swal.fire({
+                        icon: "error",
+                        // title: "Oops...",
+                        text: "Something went wrong",
+                    });
                 });
-            });
+        }
     };
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });

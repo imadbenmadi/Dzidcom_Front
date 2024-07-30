@@ -20,12 +20,12 @@ function HeroLeft({ isChecked, setIsChecked }) {
                 <div className="flex flex-col ml-2  max-lg:text-xs max-md:ml-0 max-md:w-full">
                     {!isChecked ? (
                         <img
-                            src={Arrow}
+                            src={ArrowWhite}
                             className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
                         />
                     ) : (
                         <img
-                            src={ArrowWhite}
+                            src={Arrow}
                             className="grow px-1  max-w-full mr-4 aspect-[1.61] w-[179px] max-md:mt-3.5"
                         />
                     )}

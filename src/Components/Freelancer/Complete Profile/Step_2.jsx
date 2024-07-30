@@ -7,8 +7,11 @@ import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
 import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
+import { useNavigate } from "react-router";
 
 function Step_2() {
+    const Navigate = useNavigate();
+
     const [image_state, setimage_state] = useState(null);
     const { user, set_user, isProfileCompleted } = useAppContext();
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
@@ -45,7 +48,7 @@ function Step_2() {
         "Digital Marketing",
     ];
     const Skills_from_Server = user?.Skills
-        ? user.Skills.map((skill) => skill.skill)
+        ? user?.Skills.map((skill) => skill.skill)
         : [];
     const [selectedSkills, setSelectedSkills] = useState(Skills_from_Server);
     const [availableSkills, setAvailableSkills] = useState(
@@ -93,7 +96,7 @@ function Step_2() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -162,13 +165,13 @@ function Step_2() {
                         )}
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div className=" break-all">
-                                {user?.firstName && user.firstName}
+                                {user?.firstName && user?.firstName}
                             </div>
                             <div className=" break-all">
-                                {user?.lastName && user.lastName}
+                                {user?.lastName && user?.lastName}
                             </div>
                             <div className=" break-all">
-                                {user?.email && user.email}{" "}
+                                {user?.email && user?.email}{" "}
                             </div>
                         </div>
                     </div>
@@ -205,7 +208,7 @@ function Step_2() {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            if (values.about == user.about) {
+                            if (values.about == user?.about) {
                                 delete values.about;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
@@ -220,8 +223,7 @@ function Step_2() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href =
-                                    "/Freelancer/Complete_Profile/Step_3";
+                                Navigate("/Freelancer/Complete_Profile/Step_3");
                             }
                         }}
                     >

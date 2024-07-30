@@ -7,10 +7,13 @@ import { useState, useEffect, useRef } from "react";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Client_Post_EditUser";
 import Delete_Profile_Pic from "./API/Client_Delete_Profile_Pic";
+import Swal from "sweetalert2";
+import Axios from "axios";
+import { useNavigate } from "react-router";
 function Step_1() {
+    const Navigate = useNavigate();
     const [image_state, setimage_state] = useState(null);
     const { user, set_user, isProfileCompleted } = useAppContext();
-
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
     const [imageChanged, setimageChanged] = useState(false);
     const fileInputRef = useRef(null);
@@ -20,7 +23,98 @@ function Step_1() {
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
+    // async function handleEdite(
+    //     values,
+    //     set_user,
+    //     Link,
+    //     image_state,
+    //     { setSubmitting }
+    // ) {
+    //     setSubmitting(true);
+    //     try {
+    //         if (image_state) {
+    //             let formData = new FormData();
+    //             formData.append("ProfilePic", image_state);
+    //             let Image_Response = await Axios.post(
+    //                 `http://localhost:3000/upload/Client/ProfilePic`,
+    //                 formData,
+    //                 {
+    //                     withCredentials: true,
+    //                     validateStatus: () => true,
+    //                 }
+    //             );
+    //             if (Image_Response.status == 200) {
+    //                 // set_user({
+    //                 //     profile_pic_link: Image_Response.data.profile_pic_link,
+    //                 // });
+    //             } else if (Image_Response.status == 401) {
+    //                 // Swal.fire("Error", `${Image_Response.data.message} `, "error");
+    //                 Navigate("/Login");
+    //             } else if (Image_Response.status == 400) {
+    //                 Swal.fire(
+    //                     "Error",
+    //                     `${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             } else if (Image_Response.status == 409) {
+    //                 Swal.fire(
+    //                     "Error!",
+    //                     `${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             } else if (Image_Response.status == 500) {
+    //                 Swal.fire("Error!", `Internal Server Error   `, "error");
+    //             } else {
+    //                 Swal.fire(
+    //                     "Error!",
+    //                     `Something Went Wrong ,please trye again latter, ${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             }
+    //         }
+    //         let response = await Axios.put(
+    //             `http://localhost:3000/Clients/${values.userId}/Profile`,
+    //             values,
+    //             {
+    //                 withCredentials: true,
+    //                 validateStatus: () => true,
+    //             }
+    //         );
+    //         if (response.status == 200) {
+    //             set_user(response.data.user);
+    //             if (Link) {
+    //                 Navigate(Link);
+    //             }
+    //         } else if (response.status == 401) {
+    //             Navigate("/Login");
+    //         } else if (response.status == 400) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error", `${response.data.message} `, "error");
+    //         } else if (response.status == 409) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error!", `${response.data.message} `, "error");
+    //         } else if (response.status == 500) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error!", `Internal Server Error   `, "error");
+    //         } else {
+    //             setSubmitting(false);
+    //             Swal.fire(
+    //                 "Error!",
+    //                 `Something Went Wrong ,please trye again latter, ${response.data.message} `,
+    //                 "error"
+    //             );
+    //         }
+    //     } catch (error) {
+    //         setSubmitting(false);
+    //         Swal.fire(
+    //             "Error!",
+    //             `Something Went Wrong ,please trye again latter`,
+    //             "error"
+    //         );
+    //     }
 
+    //     // setSubmitting(false);
+    // }
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -48,7 +142,7 @@ function Step_1() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -118,13 +212,13 @@ function Step_1() {
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div className=" break-all">
-                                {user?.firstName && user.firstName}
+                                {user?.firstName && user?.firstName}
                             </div>
                             <div className=" break-all">
-                                {user?.lastName && user.lastName}
+                                {user?.lastName && user?.lastName}
                             </div>
                             <div className=" break-all">
-                                {user?.email && user.email}{" "}
+                                {user?.email && user?.email}{" "}
                             </div>
                         </div>
                     </div>
@@ -175,14 +269,14 @@ function Step_1() {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            if (values.telephone == user.telephone) {
+                            if (values.telephone == user?.telephone) {
                                 delete values.telephone;
                             } else if (
                                 values.nationalCardNumber ==
-                                user.nationalCardNumber
+                                user?.nationalCardNumber
                             ) {
                                 delete values.nationalCardNumber;
-                            } else if (values.JobTitle == user.JobTitle) {
+                            } else if (values.JobTitle == user?.JobTitle) {
                                 delete values.JobTitle;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
@@ -198,9 +292,7 @@ function Step_1() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Client/Complete_Profile/Step_2"
-                                );
+                                Navigate("/Client/Complete_Profile/Step_2");
                             }
                         }}
                     >

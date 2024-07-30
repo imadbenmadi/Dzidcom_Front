@@ -7,7 +7,11 @@ import Delete_Profile_Pic from "./API/Client_Delete_Profile_Pic";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Client_Post_EditUser";
+import Swal from "sweetalert2";
+import Axios from "axios";
+import { useNavigate } from "react-router";
 function Step_0() {
+    const Navigate = useNavigate();
     const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
@@ -20,7 +24,98 @@ function Step_0() {
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
     }, [image_state]);
+    // async function handleEdite(
+    //     values,
+    //     set_user,
+    //     Link,
+    //     image_state,
+    //     { setSubmitting }
+    // ) {
+    //     setSubmitting(true);
+    //     try {
+    //         if (image_state) {
+    //             let formData = new FormData();
+    //             formData.append("ProfilePic", image_state);
+    //             let Image_Response = await Axios.post(
+    //                 `http://localhost:3000/upload/Client/ProfilePic`,
+    //                 formData,
+    //                 {
+    //                     withCredentials: true,
+    //                     validateStatus: () => true,
+    //                 }
+    //             );
+    //             if (Image_Response.status == 200) {
+    //                 // set_user({
+    //                 //     profile_pic_link: Image_Response.data.profile_pic_link,
+    //                 // });
+    //             } else if (Image_Response.status == 401) {
+    //                 // Swal.fire("Error", `${Image_Response.data.message} `, "error");
+    //                 Navigate("/Login");
+    //             } else if (Image_Response.status == 400) {
+    //                 Swal.fire(
+    //                     "Error",
+    //                     `${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             } else if (Image_Response.status == 409) {
+    //                 Swal.fire(
+    //                     "Error!",
+    //                     `${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             } else if (Image_Response.status == 500) {
+    //                 Swal.fire("Error!", `Internal Server Error   `, "error");
+    //             } else {
+    //                 Swal.fire(
+    //                     "Error!",
+    //                     `Something Went Wrong ,please trye again latter, ${Image_Response.data.message} `,
+    //                     "error"
+    //                 );
+    //             }
+    //         }
+    //         let response = await Axios.put(
+    //             `http://localhost:3000/Clients/${values.userId}/Profile`,
+    //             values,
+    //             {
+    //                 withCredentials: true,
+    //                 validateStatus: () => true,
+    //             }
+    //         );
+    //         if (response.status == 200) {
+    //             set_user(response.data.user);
+    //             if (Link) {
+    //                 Navigate(Link);
+    //             }
+    //         } else if (response.status == 401) {
+    //             Navigate("/Login");
+    //         } else if (response.status == 400) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error", `${response.data.message} `, "error");
+    //         } else if (response.status == 409) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error!", `${response.data.message} `, "error");
+    //         } else if (response.status == 500) {
+    //             setSubmitting(false);
+    //             Swal.fire("Error!", `Internal Server Error   `, "error");
+    //         } else {
+    //             setSubmitting(false);
+    //             Swal.fire(
+    //                 "Error!",
+    //                 `Something Went Wrong ,please trye again latter, ${response.data.message} `,
+    //                 "error"
+    //             );
+    //         }
+    //     } catch (error) {
+    //         setSubmitting(false);
+    //         Swal.fire(
+    //             "Error!",
+    //             `Something Went Wrong ,please trye again latter`,
+    //             "error"
+    //         );
+    //     }
 
+    //     // setSubmitting(false);
+    // }
     return (
         <div className="  flex flex-col items-center justify-center  mt-6 gap-6 ">
             <div className="w-full px-6 md:max-w-[500px] flex flex-col gap-6  ">
@@ -48,7 +143,7 @@ function Step_0() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -169,11 +264,11 @@ function Step_0() {
                             return errors;
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
-                            if (values.firstName == user.firstName) {
+                            if (values.firstName == user?.firstName) {
                                 delete values.firstName;
-                            } else if (values.lastName == user.lastName) {
+                            } else if (values.lastName == user?.lastName) {
                                 delete values.lastName;
-                            } else if (values.email == user.email) {
+                            } else if (values.email == user?.email) {
                                 delete values.email;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
@@ -189,9 +284,7 @@ function Step_0() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Client/Complete_Profile/Step_1"
-                                );
+                                Navigate("/Client/Complete_Profile/Step_1");
                             }
                             // }
                         }}

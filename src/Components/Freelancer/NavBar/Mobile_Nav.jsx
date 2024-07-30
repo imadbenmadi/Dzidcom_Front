@@ -44,7 +44,7 @@ function Mobile_Nav({
         set_Notifications(newNotifications);
         axios
             .delete(
-                `http://localhost:3000/Freelancers/${user.id}/Notifications/${id}`,
+                `http://localhost:3000/Freelancers/${user?.id}/Notifications/${id}`,
 
                 {
                     withCredentials: true,

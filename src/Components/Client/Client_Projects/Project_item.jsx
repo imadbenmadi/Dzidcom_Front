@@ -43,7 +43,7 @@ function ProjectItem() {
         SetDelete_Loading(true);
         try {
             const response = await axios.delete(
-                `http://localhost:3000/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user?.id}/Projects/${
                     location.pathname.split("/")[3]
                 }`,
                 {
@@ -73,7 +73,7 @@ function ProjectItem() {
         setAccept_Loading(true);
         try {
             let response = await axios.post(
-                `http://localhost:3000/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user?.id}/Projects/${
                     location.pathname.split("/")[3]
                 }/Accept_work`,
                 {},
@@ -112,7 +112,7 @@ function ProjectItem() {
         setReject_Loading(true);
         try {
             let response = await axios.post(
-                `http://localhost:3000/Clients/${user.id}/Projects/${
+                `http://localhost:3000/Clients/${user?.id}/Projects/${
                     location.pathname.split("/")[3]
                 }/Reject_work`,
                 { Reason },
@@ -147,7 +147,7 @@ function ProjectItem() {
         setFeedback_Loading(true);
         try {
             let response = await axios.post(
-                `http://localhost:3000/Clients/${user.id}/Rate/${project.FreelancerId}`,
+                `http://localhost:3000/Clients/${user?.id}/Rate/${project.FreelancerId}`,
                 {
                     Rate,
                     Comment,
@@ -178,7 +178,7 @@ function ProjectItem() {
         const fetchProject = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${user.id}/Projects/${
+                    `http://localhost:3000/Clients/${user?.id}/Projects/${
                         location.pathname.split("/")[3]
                     }`,
                     {
@@ -217,7 +217,7 @@ function ProjectItem() {
         const fetchRejections = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${user.id}/${
+                    `http://localhost:3000/Clients/${user?.id}/${
                         location.pathname.split("/")[3]
                     }/Rejections`,
                     {

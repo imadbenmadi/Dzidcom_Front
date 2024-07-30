@@ -44,7 +44,7 @@ function Laptop_Nav_Items({
         );
         set_Notifications(newNotifications);
         axios.delete(
-            `http://localhost:3000/Clients/${user.id}/Notifications/${id}`,
+            `http://localhost:3000/Clients/${user?.id}/Notifications/${id}`,
 
             {
                 withCredentials: true,
@@ -168,7 +168,7 @@ function Laptop_Nav_Items({
                 <div className=" relative">
                     {user?.profile_pic_link ? (
                         <img
-                            src={user.profile_pic_link}
+                            src={user?.profile_pic_link}
                             onError={(e) => {
                                 e.target.onerror = null;
                                 e.target.src = user_default;

@@ -29,7 +29,7 @@ function Payment() {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Clients/${user.id}/Payment/${
+                    `http://localhost:3000/Clients/${user?.id}/Payment/${
                         location.pathname.split("/")[3]
                     }/status`,
                     {

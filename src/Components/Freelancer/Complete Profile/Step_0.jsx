@@ -7,7 +7,9 @@ import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 import { IoClose } from "react-icons/io5";
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
+import { useNavigate } from "react-router";
 function Step_0() {
+    const Navigate = useNavigate();
     const { isProfileCompleted } = useAppContext();
     const [image_state, setimage_state] = useState(null);
     const [imageChanged, setimageChanged] = useState(false);
@@ -48,7 +50,7 @@ function Step_0() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -169,11 +171,11 @@ function Step_0() {
                             return errors;
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
-                            if (values.firstName == user.firstName) {
+                            if (values.firstName == user?.firstName) {
                                 delete values.firstName;
-                            } else if (values.lastName == user.lastName) {
+                            } else if (values.lastName == user?.lastName) {
                                 delete values.lastName;
-                            } else if (values.email == user.email) {
+                            } else if (values.email == user?.email) {
                                 delete values.email;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
@@ -189,9 +191,7 @@ function Step_0() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Freelancer/Complete_Profile/Step_1"
-                                );
+                                Navigate("/Freelancer/Complete_Profile/Step_1");
                             }
                             // }
                         }}

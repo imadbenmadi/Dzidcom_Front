@@ -7,7 +7,7 @@ import MessageCard from "./MessageCard";
 
 const ChatRoom = () => {
     const { user } = useAppContext();
-    const userId = user.id;
+    const userId = user?.id;
     const { roomId } = useParams();
     const [messages, setMessages] = useState([]);
     const [room, setRoom] = useState();
@@ -77,7 +77,7 @@ const ChatRoom = () => {
             console.log("response from post message", response.data);
             const newMsg = {
                 ...response.data,
-                senderId: user.id,
+                senderId: user?.id,
             };
             console.log("new message", newMsg);
             setMessages((prevMessages) => [...prevMessages, newMsg]);

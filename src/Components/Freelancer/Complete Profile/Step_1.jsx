@@ -3,6 +3,7 @@ import user_default from "../../../../public/Profile/user_default.png";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAppContext } from "../../../AppContext";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router";
 
 import { FaRegImage } from "react-icons/fa";
 import handleEdite from "./API/Post_EditUser";
@@ -10,6 +11,7 @@ import Delete_Profile_Pic from "./API/Delete_Profile_Pic";
 function Step_1() {
     const [image_state, setimage_state] = useState(null);
     const { user, set_user, isProfileCompleted } = useAppContext();
+    const Navigate = useNavigate();
 
     const [imageDeleteLoading, setimageDeleteLoading] = useState(false);
     const [imageChanged, setimageChanged] = useState(false);
@@ -48,7 +50,7 @@ function Step_1() {
                                     <img
                                         src={
                                             "http://localhost:3000/" +
-                                            user.profile_pic_link
+                                            user?.profile_pic_link
                                         }
                                         alt="Profile Pic"
                                         className=" w-[150px] h-[150px] object-cover rounded-full"
@@ -118,13 +120,13 @@ function Step_1() {
 
                         <div className=" flex flex-col gap-1 pt-2 text-sm font-semibold text-gray_v">
                             <div className=" break-all">
-                                {user?.firstName && user.firstName}
+                                {user?.firstName && user?.firstName}
                             </div>
                             <div className=" break-all">
-                                {user?.lastName && user.lastName}
+                                {user?.lastName && user?.lastName}
                             </div>
                             <div className=" break-all">
-                                {user?.email && user.email}{" "}
+                                {user?.email && user?.email}{" "}
                             </div>
                         </div>
                     </div>
@@ -186,14 +188,14 @@ function Step_1() {
                             return errors;
                         }}
                         onSubmit={(values, { setSubmitting }) => {
-                            if (values.telephone == user.telephone) {
+                            if (values.telephone == user?.telephone) {
                                 delete values.telephone;
                             } else if (
                                 values.nationalCardNumber ==
-                                user.nationalCardNumber
+                                user?.nationalCardNumber
                             ) {
                                 delete values.nationalCardNumber;
-                            } else if (values.JobTitle == user.JobTitle) {
+                            } else if (values.JobTitle == user?.JobTitle) {
                                 delete values.JobTitle;
                             }
                             if (Object.keys(values).length >= 1 || imageChanged)
@@ -208,9 +210,7 @@ function Step_1() {
                                 );
                             else {
                                 setSubmitting(false);
-                                window.location.href(
-                                    "/Freelancer/Complete_Profile/Step_2"
-                                );
+                                Navigate("/Freelancer/Complete_Profile/Step_2");
                             }
                         }}
                     >

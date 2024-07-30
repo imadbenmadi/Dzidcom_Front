@@ -36,7 +36,7 @@ function JobItem() {
             const response = await axios.post(
                 `http://localhost:3000/Freelancers/Jobs/${job_id}/Apply`,
                 {
-                    // freelancerId: user.id,
+                    // freelancerId: user?.id,
                     Freelancer_Time_Needed: values.Freelancer_Time_Needed,
                     Freelancer_Budget: values.Freelancer_Budget,
                 },

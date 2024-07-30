@@ -12,7 +12,7 @@ function Reviews() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/Freelancers/${user.id}/Feedbacks`,
+                    `http://localhost:3000/Freelancers/${user?.id}/Feedbacks`,
                     {
                         withCredentials: true,
                         // validateStatus: () => true,
