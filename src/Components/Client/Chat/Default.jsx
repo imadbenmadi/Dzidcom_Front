@@ -120,7 +120,7 @@ const ChatList = ({ userId }) => {
                     No chats available.
                 </p>
             ) : (
-                <>
+                <div className=" w-full ">
                     <div className="block md:hidden">
                         <div className="w-full min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
                             <ul className="space-y-4 w-full">
@@ -172,13 +172,17 @@ const ChatList = ({ userId }) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="w-full  flex-col items-center just pt-12 h-screen hidden md:flex gap-6">
-                        <div className="text-gray_v font-semibold">
+                    <div
+                        className="w-full shrink-0  flex-col 
+                    items-center  justify-center
+                     pt-12 hidden md:flex flex-grow  gap-6 "
+                    >
+                        <div className="text-gray_v font-semibold text-center w-full ">
                             Please select a room to start chat
                         </div>
                         <img src={chat_icon} className="w-32" alt="Chat Icon" />
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

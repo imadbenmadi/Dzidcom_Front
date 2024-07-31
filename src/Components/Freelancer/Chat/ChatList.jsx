@@ -124,7 +124,7 @@ const ChatList = ({ userId }) => {
             ) : (
                 <>
                     <div className="hidden md:flex">
-                        <div className="w-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
+                        <div className="flex-[30%] min-h-[calc(100vh-60px)] shrink-0 border-r border-r-gray_white">
                             <ul className="space-y-4 w-full">
                                 {chats.map((chat) => (
                                     <li key={chat.id} className="">
@@ -151,7 +151,8 @@ const ChatList = ({ userId }) => {
                                                                       0,
                                                                       10
                                                                   ) + "..."
-                                                                : chat?.Client?.lastName
+                                                                : chat?.Client
+                                                                      ?.lastName
                                                             : "not available"
                                                     }`}
                                                 </div>
@@ -174,9 +175,11 @@ const ChatList = ({ userId }) => {
                                 ))}
                             </ul>
                         </div>
-                        <Outlet context={{ chats }} />
+                        <div className=" flex-[70%] shrink-0 ">
+                            <Outlet context={{ chats }} />
+                        </div>
                     </div>
-                    <div className="block md:hidden">
+                    <div className="block md:hidden flex-[70%] shrink-0">
                         <Outlet context={{ chats }} />
                     </div>
                 </>
