@@ -21,7 +21,6 @@ const ChatList = () => {
                     withCredentials: true,
                     validateStatus: () => true,
                 });
-                console.log(response.data);
                 if (response.status === 200) {
                     setChats(response.data.rooms);
                 } else if (response.status === 401) {

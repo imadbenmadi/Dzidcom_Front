@@ -40,7 +40,6 @@ const ChatRoom = () => {
                     withCredentials: true,
                     validateStatus: () => true,
                 });
-                console.log("response from get messages", response.data);
                 if (response.status === 200) {
                     setMessages(response.data.messages);
                     setRoom(response.data.room);
@@ -51,7 +50,6 @@ const ChatRoom = () => {
                     throw new Error("Failed to fetch messages");
                 }
             } catch (error) {
-                console.error("Error fetching messages:", error);
             } finally {
                 setLoading(false);
             }
@@ -88,19 +86,16 @@ const ChatRoom = () => {
                     text: response.data.message,
                 });
             } else {
-                console.log("response from post message", response.data);
                 const newMsg = {
                     ...response.data,
                     senderId: user?.id,
                 };
-                console.log("new message", newMsg);
                 setMessages((prevMessages) => [...prevMessages, newMsg]);
                 setNewMessage("");
                 setIsNewMessage(true);
                 setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
             }
         } catch (error) {
-            console.error("Error sending message:", error);
         } finally {
             setSendLoading(false);
         }
