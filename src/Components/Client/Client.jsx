@@ -40,11 +40,11 @@ function Client() {
         set_show_Alert_completeProfile,
         set_Notifications,
     } = useAppContext();
-
+   
     useEffect(() => {
         if (!isAuth || !userId) {
             // window.location.href = "/Login";
-            Navigate("/Login");
+            Navigate("/");
         }
         const fetchData = async () => {
             try {
