@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAppContext } from "../../../AppContext";
-
-const ChatList = ({ userId }) => {
+import { useNavigate } from "react-router-dom";
+const ChatList = () => {
+    const Navigate = useNavigate();
     const { user } = useAppContext();
     const [chats, setChats] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,6 +24,8 @@ const ChatList = ({ userId }) => {
                 console.log(response.data);
                 if (response.status === 200) {
                     setChats(response.data.rooms);
+                } else if (response.status === 401) {
+                    Navigate("/Login");
                 } else {
                     throw new Error("Failed to fetch chats");
                 }

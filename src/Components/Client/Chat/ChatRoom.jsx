@@ -5,8 +5,10 @@ import { useAppContext } from "../../../AppContext";
 import { FaArrowUp } from "react-icons/fa";
 import MessageCard from "./MessageCard";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ChatRoom = () => {
+    const Navigate = useNavigate();
     const { user } = useAppContext();
     const userId = user?.id;
     const { roomId } = useParams();
@@ -43,6 +45,8 @@ const ChatRoom = () => {
                     setMessages(response.data.messages);
                     setRoom(response.data.room);
                     scrollToBottom();
+                } else if (response.status === 401) {
+                    Navigate("/Login");
                 } else {
                     throw new Error("Failed to fetch messages");
                 }
@@ -75,10 +79,12 @@ const ChatRoom = () => {
                     validateStatus: () => true,
                 }
             );
-            if (response.status !== 200) {
+            if (response.status === 401) {
+                Navigate("/Login");
+            } else if (response.status !== 200) {
                 Swal.fire({
                     icon: "error",
-                    title: "Failed to send message",
+                    title: "Failed to send message, please try again",
                     text: response.data.message,
                 });
             } else {
