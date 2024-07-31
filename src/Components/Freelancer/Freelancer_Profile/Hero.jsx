@@ -8,8 +8,8 @@ function Hero() {
     const Navigate = useNavigate();
     const { user, isProfileCompleted } = useAppContext();
     return (
-        <div className="flex flex-row  items-start justify-around mt-8">
-            <div className="  flex  justify-center max-w-[350px] gap-6 md:gap-12">
+        <div className="flex flex-row  items-start justify-around mt-8 ">
+            <div className="  flex flex-col lg:flex-row  justify-center items-center max-w-[350px] gap-6 md:gap-12">
                 {user?.profile_pic_link ? (
                     <img
                         src={"http://localhost:3000/" + user?.profile_pic_link}
@@ -27,8 +27,8 @@ function Hero() {
                         className=" w-32  object-cover"
                     />
                 )}
-                <div className=" flex items-center justify-center flex-col mb-6">
-                    <div className=" text-xl font-semibold mb-4 text-gray_v">
+                <div className=" flex  items-center justify-center flex-col mb-6">
+                    <div className=" text-xl max-w-[250px] font-semibold mb-4 text-gray_v break-all px-6">
                         <span>{user?.firstName}</span>{" "}
                         <span>{user?.lastName}</span>
                     </div>
@@ -55,7 +55,7 @@ function Hero() {
                     </div>
                     {isProfileCompleted && (
                         <div
-                            className=" block  md:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
+                            className=" block  lg:hidden  text-white font-semibold bg-perpol_v py-2 px-4  text-sm mt-4
                                 rounded-md cursor-pointer "
                             onClick={() => {
                                 // window.location.href = "/Freelancer/Jobs";
@@ -69,7 +69,7 @@ function Hero() {
             </div>
             {isProfileCompleted && (
                 <div
-                    className=" hidden md:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
+                    className=" hidden lg:block text-white font-semibold bg-perpol_v py-2 px-4  text-xl
                   rounded-md cursor-pointer "
                     onClick={() => {
                         // window.location.href = "/Freelancer/Jobs";
