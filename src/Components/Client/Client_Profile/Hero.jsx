@@ -29,7 +29,7 @@ function Hero() {
                     />
                 )}
                 <div className=" flex  items-center justify-center flex-col mb-6">
-                    <div className=" text-xl max-w-[250px] font-semibold mb-4 text-gray_v break-all px-6">
+                    <div className=" text-xl w-[250px] lg:w-[400px] font-semibold mb-4 text-gray_v break-all px-6">
                         <span>{user?.firstName}</span>{" "}
                         <span>{user?.lastName}</span>
                         {/* <div>imad</div>
