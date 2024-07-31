@@ -114,8 +114,8 @@ const ChatList = ({ userId }) => {
 
     return (
         <div className="">
-            {chats.length === 0 ? (
-                <p className="text-sm font-semibold text-gray_v pt-12">
+            {chats.length === 0 ? ( 
+                <p className="text-sm font-semibold text-gray_v pt-12 text-center w-full">
                     No chats available.
                 </p>
             ) : (
