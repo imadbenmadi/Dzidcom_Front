@@ -4,8 +4,11 @@ import axios from "axios";
 import { useAppContext } from "../../../AppContext";
 import { FaArrowUp } from "react-icons/fa";
 import MessageCard from "./MessageCard";
+import { useNavigate } from "react-router-dom";
 
 const ChatRoom = () => {
+    const Navigate = useNavigate();
+
     const { user } = useAppContext();
     const userId = user?.id;
     const { roomId } = useParams();
@@ -42,6 +45,8 @@ const ChatRoom = () => {
                     setMessages(response.data.messages);
                     setRoom(response.data.room);
                     scrollToBottom();
+                } else if (response.status === 401) {
+                    Navigate("/Login");
                 } else {
                     throw new Error("Failed to fetch messages");
                 }
@@ -74,16 +79,26 @@ const ChatRoom = () => {
                     validateStatus: () => true,
                 }
             );
-            console.log("response from post message", response.data);
-            const newMsg = {
-                ...response.data,
-                senderId: user?.id,
-            };
-            console.log("new message", newMsg);
-            setMessages((prevMessages) => [...prevMessages, newMsg]);
-            setNewMessage("");
-            setIsNewMessage(true);
-            setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
+            if (response.status === 401) {
+                Navigate("/Login");
+            } else if (response.status !== 200) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to send message, please try again",
+                    text: response.data.message,
+                });
+            } else {
+                console.log("response from post message", response.data);
+                const newMsg = {
+                    ...response.data,
+                    senderId: user?.id,
+                };
+                console.log("new message", newMsg);
+                setMessages((prevMessages) => [...prevMessages, newMsg]);
+                setNewMessage("");
+                setIsNewMessage(true);
+                setTimeout(() => setIsNewMessage(false), 500); // Reset the new message state after the transition
+            }
         } catch (error) {
             console.error("Error sending message:", error);
         } finally {
