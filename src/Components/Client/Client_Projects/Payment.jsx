@@ -62,7 +62,7 @@ function Payment() {
 
         fetchProject();
     }, []);
-    useEffect(() => {
+    useEffect(() => { 
         if (image_state) setimageChanged(true);
         else if (!image_state) setimageChanged(false);
         else setimageChanged(false);
@@ -176,7 +176,7 @@ function Payment() {
                 </div>
             </div>
             <div className=" flex flex-col text-center gap-2 pt-6">
-                Contact Dzidcom :{" "}
+                Contact flexedu :{" "}
                 <span className=" font-semibold flex flex-col gap-1 ">
                     <a href="mailto:dziidcom@gmail.com">dziidcom@gmail.com</a>
                     <a href="tel:+213784321399">0784321399</a>
